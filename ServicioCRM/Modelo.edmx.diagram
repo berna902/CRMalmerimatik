@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="32e602baa41a4a659a2a66e48265c5c6" Name="Diagram1">
+        <EntityTypeShape EntityType="BDCRMModel.AccionComercial" Width="1.5" PointX="8.25" PointY="5.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="BDCRMModel.Cargo" Width="1.5" PointX="9" PointY="2.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="BDCRMModel.Contacto" Width="1.5" PointX="11.25" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BDCRMModel.Direccion" Width="1.5" PointX="0.75" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BDCRMModel.DireccionContacto" Width="1.5" PointX="3" PointY="6.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="BDCRMModel.Empresa" Width="1.5" PointX="6" PointY="5.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="BDCRMModel.Estado" Width="1.5" PointX="6" PointY="2.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="BDCRMModel.TelefonoContacto" Width="1.5" PointX="13.5" PointY="6.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="BDCRMModel.TelefonoEmpresa" Width="1.5" PointX="8.25" PointY="13.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="BDCRMModel.TipoAccion" Width="1.5" PointX="6" PointY="10" IsExpanded="true" />
+        <EntityTypeShape EntityType="BDCRMModel.TipoEmpresa" Width="1.5" PointX="3.75" PointY="3.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="BDCRMModel.User" Width="1.5" PointX="6" PointY="12.25" IsExpanded="true" />
+        <AssociationConnector Association="BDCRMModel.FK_AccionComercial_Empresa" ManuallyRouted="false" />
+        <AssociationConnector Association="BDCRMModel.FK_AccionComercial_Estado" ManuallyRouted="false" />
+        <AssociationConnector Association="BDCRMModel.FK_AccionComercial_TipoAccion" ManuallyRouted="false" />
+        <AssociationConnector Association="BDCRMModel.FK_AccionComercial_User" ManuallyRouted="false" />
+        <AssociationConnector Association="BDCRMModel.FK_Contacto_Empresa" ManuallyRouted="false" />
+        <AssociationConnector Association="BDCRMModel.FK_TelefonoContacto_Contacto" ManuallyRouted="false" />
+        <AssociationConnector Association="BDCRMModel.FK_DireccionContacto_Direccion" ManuallyRouted="false" />
+        <AssociationConnector Association="BDCRMModel.FK_Empresa_TipoEmpresa" ManuallyRouted="false" />
+        <AssociationConnector Association="BDCRMModel.FK_TelefonoEmpresa_Empresa" ManuallyRouted="false" />
+        <AssociationConnector Association="BDCRMModel.CargoContacto" ManuallyRouted="false" />
+        <AssociationConnector Association="BDCRMModel.DireccionEmpresa" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

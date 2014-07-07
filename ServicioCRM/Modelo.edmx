@@ -1,0 +1,814 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="BDCRMModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="AccionComercial">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Usuario" Type="int" Nullable="false" />
+          <Property Name="IDEmpresa" Type="int" Nullable="false" />
+          <Property Name="Fecha" Type="datetime" Nullable="false" />
+          <Property Name="Descripcion" Type="varchar" MaxLength="250" Nullable="false" />
+          <Property Name="Comentarios" Type="varchar" MaxLength="250" />
+          <Property Name="IDAccion" Type="int" Nullable="false" />
+          <Property Name="IDEstado" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Cargo">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Carg" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CargoContacto">
+          <Key>
+            <PropertyRef Name="IDContacto" />
+            <PropertyRef Name="IDCargo" />
+          </Key>
+          <Property Name="IDContacto" Type="int" Nullable="false" />
+          <Property Name="IDCargo" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Contacto">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IDEmpresa" Type="int" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Email" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Direccion">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Domicilio" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="Poblacion" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Provincia" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="CP" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DireccionContacto">
+          <Key>
+            <PropertyRef Name="IDContacto" />
+            <PropertyRef Name="IDDireccion" />
+          </Key>
+          <Property Name="IDContacto" Type="int" Nullable="false" />
+          <Property Name="IDDireccion" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DireccionEmpresa">
+          <Key>
+            <PropertyRef Name="IDEmprsa" />
+            <PropertyRef Name="IDDireccion" />
+          </Key>
+          <Property Name="IDEmprsa" Type="int" Nullable="false" />
+          <Property Name="IDDireccion" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Empresa">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CIF" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="RazonSocial" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Email" Type="varchar" MaxLength="50" />
+          <Property Name="Web" Type="varchar" MaxLength="50" />
+          <Property Name="TipoEmpresa" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Estado">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Estado" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TelefonoContacto">
+          <Key>
+            <PropertyRef Name="Telefono" />
+          </Key>
+          <Property Name="IDContacto" Type="int" Nullable="false" />
+          <Property Name="Telefono" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TelefonoEmpresa">
+          <Key>
+            <PropertyRef Name="Telefono" />
+          </Key>
+          <Property Name="IDEmpresa" Type="int" Nullable="false" />
+          <Property Name="Telefono" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TipoAccion">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Tipo" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TipoEmpresa">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Tipo" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="IDUsuario" />
+          </Key>
+          <Property Name="IDUsuario" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Username" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Password" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_AccionComercial_Empresa">
+          <End Role="Empresa" Type="Self.Empresa" Multiplicity="1" />
+          <End Role="AccionComercial" Type="Self.AccionComercial" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Empresa">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="AccionComercial">
+              <PropertyRef Name="IDEmpresa" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AccionComercial_Estado">
+          <End Role="Estado" Type="Self.Estado" Multiplicity="1" />
+          <End Role="AccionComercial" Type="Self.AccionComercial" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Estado">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="AccionComercial">
+              <PropertyRef Name="IDEstado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AccionComercial_TipoAccion">
+          <End Role="TipoAccion" Type="Self.TipoAccion" Multiplicity="1" />
+          <End Role="AccionComercial" Type="Self.AccionComercial" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipoAccion">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="AccionComercial">
+              <PropertyRef Name="IDAccion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AccionComercial_User">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="AccionComercial" Type="Self.AccionComercial" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="IDUsuario" />
+            </Principal>
+            <Dependent Role="AccionComercial">
+              <PropertyRef Name="Usuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CargoContacto_Cargo">
+          <End Role="Cargo" Type="Self.Cargo" Multiplicity="1" />
+          <End Role="CargoContacto" Type="Self.CargoContacto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cargo">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="CargoContacto">
+              <PropertyRef Name="IDCargo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CargoContacto_Contacto">
+          <End Role="Contacto" Type="Self.Contacto" Multiplicity="1" />
+          <End Role="CargoContacto" Type="Self.CargoContacto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Contacto">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="CargoContacto">
+              <PropertyRef Name="IDContacto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Contacto_Empresa">
+          <End Role="Empresa" Type="Self.Empresa" Multiplicity="1" />
+          <End Role="Contacto" Type="Self.Contacto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Empresa">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Contacto">
+              <PropertyRef Name="IDEmpresa" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DireccionContacto_Direccion">
+          <End Role="Direccion" Type="Self.Direccion" Multiplicity="1" />
+          <End Role="DireccionContacto" Type="Self.DireccionContacto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Direccion">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="DireccionContacto">
+              <PropertyRef Name="IDDireccion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DireccionEmpresa_Direccion">
+          <End Role="Direccion" Type="Self.Direccion" Multiplicity="1" />
+          <End Role="DireccionEmpresa" Type="Self.DireccionEmpresa" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Direccion">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="DireccionEmpresa">
+              <PropertyRef Name="IDDireccion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DireccionEmpresa_Empresa">
+          <End Role="Empresa" Type="Self.Empresa" Multiplicity="1" />
+          <End Role="DireccionEmpresa" Type="Self.DireccionEmpresa" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Empresa">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="DireccionEmpresa">
+              <PropertyRef Name="IDEmprsa" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Empresa_TipoEmpresa">
+          <End Role="TipoEmpresa" Type="Self.TipoEmpresa" Multiplicity="1" />
+          <End Role="Empresa" Type="Self.Empresa" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipoEmpresa">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Empresa">
+              <PropertyRef Name="TipoEmpresa" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TelefonoContacto_Contacto">
+          <End Role="Contacto" Type="Self.Contacto" Multiplicity="1" />
+          <End Role="TelefonoContacto" Type="Self.TelefonoContacto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Contacto">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TelefonoContacto">
+              <PropertyRef Name="IDContacto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TelefonoEmpresa_Empresa">
+          <End Role="Empresa" Type="Self.Empresa" Multiplicity="1" />
+          <End Role="TelefonoEmpresa" Type="Self.TelefonoEmpresa" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Empresa">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TelefonoEmpresa">
+              <PropertyRef Name="IDEmpresa" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="BDCRMModelStoreContainer">
+          <EntitySet Name="AccionComercial" EntityType="Self.AccionComercial" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Cargo" EntityType="Self.Cargo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CargoContacto" EntityType="Self.CargoContacto" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Contacto" EntityType="Self.Contacto" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Direccion" EntityType="Self.Direccion" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DireccionContacto" EntityType="Self.DireccionContacto" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DireccionEmpresa" EntityType="Self.DireccionEmpresa" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Empresa" EntityType="Self.Empresa" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Estado" EntityType="Self.Estado" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TelefonoContacto" EntityType="Self.TelefonoContacto" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TelefonoEmpresa" EntityType="Self.TelefonoEmpresa" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TipoAccion" EntityType="Self.TipoAccion" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TipoEmpresa" EntityType="Self.TipoEmpresa" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_AccionComercial_Empresa" Association="Self.FK_AccionComercial_Empresa">
+            <End Role="Empresa" EntitySet="Empresa" />
+            <End Role="AccionComercial" EntitySet="AccionComercial" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AccionComercial_Estado" Association="Self.FK_AccionComercial_Estado">
+            <End Role="Estado" EntitySet="Estado" />
+            <End Role="AccionComercial" EntitySet="AccionComercial" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AccionComercial_TipoAccion" Association="Self.FK_AccionComercial_TipoAccion">
+            <End Role="TipoAccion" EntitySet="TipoAccion" />
+            <End Role="AccionComercial" EntitySet="AccionComercial" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AccionComercial_User" Association="Self.FK_AccionComercial_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="AccionComercial" EntitySet="AccionComercial" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CargoContacto_Cargo" Association="Self.FK_CargoContacto_Cargo">
+            <End Role="Cargo" EntitySet="Cargo" />
+            <End Role="CargoContacto" EntitySet="CargoContacto" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CargoContacto_Contacto" Association="Self.FK_CargoContacto_Contacto">
+            <End Role="Contacto" EntitySet="Contacto" />
+            <End Role="CargoContacto" EntitySet="CargoContacto" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Contacto_Empresa" Association="Self.FK_Contacto_Empresa">
+            <End Role="Empresa" EntitySet="Empresa" />
+            <End Role="Contacto" EntitySet="Contacto" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DireccionContacto_Direccion" Association="Self.FK_DireccionContacto_Direccion">
+            <End Role="Direccion" EntitySet="Direccion" />
+            <End Role="DireccionContacto" EntitySet="DireccionContacto" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DireccionEmpresa_Direccion" Association="Self.FK_DireccionEmpresa_Direccion">
+            <End Role="Direccion" EntitySet="Direccion" />
+            <End Role="DireccionEmpresa" EntitySet="DireccionEmpresa" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DireccionEmpresa_Empresa" Association="Self.FK_DireccionEmpresa_Empresa">
+            <End Role="Empresa" EntitySet="Empresa" />
+            <End Role="DireccionEmpresa" EntitySet="DireccionEmpresa" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Empresa_TipoEmpresa" Association="Self.FK_Empresa_TipoEmpresa">
+            <End Role="TipoEmpresa" EntitySet="TipoEmpresa" />
+            <End Role="Empresa" EntitySet="Empresa" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TelefonoContacto_Contacto" Association="Self.FK_TelefonoContacto_Contacto">
+            <End Role="Contacto" EntitySet="Contacto" />
+            <End Role="TelefonoContacto" EntitySet="TelefonoContacto" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TelefonoEmpresa_Empresa" Association="Self.FK_TelefonoEmpresa_Empresa">
+            <End Role="Empresa" EntitySet="Empresa" />
+            <End Role="TelefonoEmpresa" EntitySet="TelefonoEmpresa" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="BDCRMModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="AccionComercial">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Usuario" Type="Int32" Nullable="false" />
+          <Property Name="IDEmpresa" Type="Int32" Nullable="false" />
+          <Property Name="Fecha" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Descripcion" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Comentarios" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="IDAccion" Type="Int32" Nullable="false" />
+          <Property Name="IDEstado" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Empresa" Relationship="Self.FK_AccionComercial_Empresa" FromRole="AccionComercial" ToRole="Empresa" />
+          <NavigationProperty Name="Estado" Relationship="Self.FK_AccionComercial_Estado" FromRole="AccionComercial" ToRole="Estado" />
+          <NavigationProperty Name="TipoAccion" Relationship="Self.FK_AccionComercial_TipoAccion" FromRole="AccionComercial" ToRole="TipoAccion" />
+          <NavigationProperty Name="User" Relationship="Self.FK_AccionComercial_User" FromRole="AccionComercial" ToRole="User" />
+        </EntityType>
+        <EntityType Name="Cargo">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Carg" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Contacto" Relationship="Self.CargoContacto" FromRole="Cargo" ToRole="Contacto" />
+        </EntityType>
+        <EntityType Name="Contacto">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IDEmpresa" Type="Int32" Nullable="false" />
+          <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Empresa" Relationship="Self.FK_Contacto_Empresa" FromRole="Contacto" ToRole="Empresa" />
+          <NavigationProperty Name="TelefonoContacto" Relationship="Self.FK_TelefonoContacto_Contacto" FromRole="Contacto" ToRole="TelefonoContacto" />
+          <NavigationProperty Name="Cargo" Relationship="Self.CargoContacto" FromRole="Contacto" ToRole="Cargo" />
+        </EntityType>
+        <EntityType Name="Direccion">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Domicilio" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Poblacion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Provincia" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CP" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="DireccionContacto" Relationship="Self.FK_DireccionContacto_Direccion" FromRole="Direccion" ToRole="DireccionContacto" />
+          <NavigationProperty Name="Empresa" Relationship="Self.DireccionEmpresa" FromRole="Direccion" ToRole="Empresa" />
+        </EntityType>
+        <EntityType Name="DireccionContacto">
+          <Key>
+            <PropertyRef Name="IDContacto" />
+            <PropertyRef Name="IDDireccion" />
+          </Key>
+          <Property Name="IDContacto" Type="Int32" Nullable="false" />
+          <Property Name="IDDireccion" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Direccion" Relationship="Self.FK_DireccionContacto_Direccion" FromRole="DireccionContacto" ToRole="Direccion" />
+        </EntityType>
+        <EntityType Name="Empresa">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CIF" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="RazonSocial" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Web" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="TipoEmpresa" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="AccionComercial" Relationship="Self.FK_AccionComercial_Empresa" FromRole="Empresa" ToRole="AccionComercial" />
+          <NavigationProperty Name="Contacto" Relationship="Self.FK_Contacto_Empresa" FromRole="Empresa" ToRole="Contacto" />
+          <NavigationProperty Name="TipoEmpresa1" Relationship="Self.FK_Empresa_TipoEmpresa" FromRole="Empresa" ToRole="TipoEmpresa" />
+          <NavigationProperty Name="TelefonoEmpresa" Relationship="Self.FK_TelefonoEmpresa_Empresa" FromRole="Empresa" ToRole="TelefonoEmpresa" />
+          <NavigationProperty Name="Direccion" Relationship="Self.DireccionEmpresa" FromRole="Empresa" ToRole="Direccion" />
+        </EntityType>
+        <EntityType Name="Estado">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Estado1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="AccionComercial" Relationship="Self.FK_AccionComercial_Estado" FromRole="Estado" ToRole="AccionComercial" />
+        </EntityType>
+        <EntityType Name="TelefonoContacto">
+          <Key>
+            <PropertyRef Name="Telefono" />
+          </Key>
+          <Property Name="IDContacto" Type="Int32" Nullable="false" />
+          <Property Name="Telefono" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Contacto" Relationship="Self.FK_TelefonoContacto_Contacto" FromRole="TelefonoContacto" ToRole="Contacto" />
+        </EntityType>
+        <EntityType Name="TelefonoEmpresa">
+          <Key>
+            <PropertyRef Name="Telefono" />
+          </Key>
+          <Property Name="IDEmpresa" Type="Int32" Nullable="false" />
+          <Property Name="Telefono" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Empresa" Relationship="Self.FK_TelefonoEmpresa_Empresa" FromRole="TelefonoEmpresa" ToRole="Empresa" />
+        </EntityType>
+        <EntityType Name="TipoAccion">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Tipo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="AccionComercial" Relationship="Self.FK_AccionComercial_TipoAccion" FromRole="TipoAccion" ToRole="AccionComercial" />
+        </EntityType>
+        <EntityType Name="TipoEmpresa">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Tipo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Empresa" Relationship="Self.FK_Empresa_TipoEmpresa" FromRole="TipoEmpresa" ToRole="Empresa" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="IDUsuario" />
+          </Key>
+          <Property Name="IDUsuario" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Username" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="AccionComercial" Relationship="Self.FK_AccionComercial_User" FromRole="User" ToRole="AccionComercial" />
+        </EntityType>
+        <Association Name="FK_AccionComercial_Empresa">
+          <End Role="Empresa" Type="Self.Empresa" Multiplicity="1" />
+          <End Role="AccionComercial" Type="Self.AccionComercial" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Empresa">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="AccionComercial">
+              <PropertyRef Name="IDEmpresa" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AccionComercial_Estado">
+          <End Role="Estado" Type="Self.Estado" Multiplicity="1" />
+          <End Role="AccionComercial" Type="Self.AccionComercial" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Estado">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="AccionComercial">
+              <PropertyRef Name="IDEstado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AccionComercial_TipoAccion">
+          <End Role="TipoAccion" Type="Self.TipoAccion" Multiplicity="1" />
+          <End Role="AccionComercial" Type="Self.AccionComercial" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipoAccion">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="AccionComercial">
+              <PropertyRef Name="IDAccion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AccionComercial_User">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="AccionComercial" Type="Self.AccionComercial" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="IDUsuario" />
+            </Principal>
+            <Dependent Role="AccionComercial">
+              <PropertyRef Name="Usuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Contacto_Empresa">
+          <End Role="Empresa" Type="Self.Empresa" Multiplicity="1" />
+          <End Role="Contacto" Type="Self.Contacto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Empresa">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Contacto">
+              <PropertyRef Name="IDEmpresa" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TelefonoContacto_Contacto">
+          <End Role="Contacto" Type="Self.Contacto" Multiplicity="1" />
+          <End Role="TelefonoContacto" Type="Self.TelefonoContacto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Contacto">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TelefonoContacto">
+              <PropertyRef Name="IDContacto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DireccionContacto_Direccion">
+          <End Role="Direccion" Type="Self.Direccion" Multiplicity="1" />
+          <End Role="DireccionContacto" Type="Self.DireccionContacto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Direccion">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="DireccionContacto">
+              <PropertyRef Name="IDDireccion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Empresa_TipoEmpresa">
+          <End Role="TipoEmpresa" Type="Self.TipoEmpresa" Multiplicity="1" />
+          <End Role="Empresa" Type="Self.Empresa" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipoEmpresa">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Empresa">
+              <PropertyRef Name="TipoEmpresa" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TelefonoEmpresa_Empresa">
+          <End Role="Empresa" Type="Self.Empresa" Multiplicity="1" />
+          <End Role="TelefonoEmpresa" Type="Self.TelefonoEmpresa" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Empresa">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TelefonoEmpresa">
+              <PropertyRef Name="IDEmpresa" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="CargoContacto">
+          <End Role="Cargo" Type="Self.Cargo" Multiplicity="*" />
+          <End Role="Contacto" Type="Self.Contacto" Multiplicity="*" />
+        </Association>
+        <Association Name="DireccionEmpresa">
+          <End Role="Direccion" Type="Self.Direccion" Multiplicity="*" />
+          <End Role="Empresa" Type="Self.Empresa" Multiplicity="*" />
+        </Association>
+        <EntityContainer Name="BDCRMEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="AccionComercial" EntityType="Self.AccionComercial" />
+          <EntitySet Name="Cargo" EntityType="Self.Cargo" />
+          <EntitySet Name="Contacto" EntityType="Self.Contacto" />
+          <EntitySet Name="Direccion" EntityType="Self.Direccion" />
+          <EntitySet Name="DireccionContacto" EntityType="Self.DireccionContacto" />
+          <EntitySet Name="Empresa" EntityType="Self.Empresa" />
+          <EntitySet Name="Estado" EntityType="Self.Estado" />
+          <EntitySet Name="TelefonoContacto" EntityType="Self.TelefonoContacto" />
+          <EntitySet Name="TelefonoEmpresa" EntityType="Self.TelefonoEmpresa" />
+          <EntitySet Name="TipoAccion" EntityType="Self.TipoAccion" />
+          <EntitySet Name="TipoEmpresa" EntityType="Self.TipoEmpresa" />
+          <EntitySet Name="User" EntityType="Self.User" />
+          <AssociationSet Name="FK_AccionComercial_Empresa" Association="Self.FK_AccionComercial_Empresa">
+            <End Role="Empresa" EntitySet="Empresa" />
+            <End Role="AccionComercial" EntitySet="AccionComercial" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AccionComercial_Estado" Association="Self.FK_AccionComercial_Estado">
+            <End Role="Estado" EntitySet="Estado" />
+            <End Role="AccionComercial" EntitySet="AccionComercial" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AccionComercial_TipoAccion" Association="Self.FK_AccionComercial_TipoAccion">
+            <End Role="TipoAccion" EntitySet="TipoAccion" />
+            <End Role="AccionComercial" EntitySet="AccionComercial" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AccionComercial_User" Association="Self.FK_AccionComercial_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="AccionComercial" EntitySet="AccionComercial" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Contacto_Empresa" Association="Self.FK_Contacto_Empresa">
+            <End Role="Empresa" EntitySet="Empresa" />
+            <End Role="Contacto" EntitySet="Contacto" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TelefonoContacto_Contacto" Association="Self.FK_TelefonoContacto_Contacto">
+            <End Role="Contacto" EntitySet="Contacto" />
+            <End Role="TelefonoContacto" EntitySet="TelefonoContacto" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DireccionContacto_Direccion" Association="Self.FK_DireccionContacto_Direccion">
+            <End Role="Direccion" EntitySet="Direccion" />
+            <End Role="DireccionContacto" EntitySet="DireccionContacto" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Empresa_TipoEmpresa" Association="Self.FK_Empresa_TipoEmpresa">
+            <End Role="TipoEmpresa" EntitySet="TipoEmpresa" />
+            <End Role="Empresa" EntitySet="Empresa" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TelefonoEmpresa_Empresa" Association="Self.FK_TelefonoEmpresa_Empresa">
+            <End Role="Empresa" EntitySet="Empresa" />
+            <End Role="TelefonoEmpresa" EntitySet="TelefonoEmpresa" />
+          </AssociationSet>
+          <AssociationSet Name="CargoContacto" Association="Self.CargoContacto">
+            <End Role="Cargo" EntitySet="Cargo" />
+            <End Role="Contacto" EntitySet="Contacto" />
+          </AssociationSet>
+          <AssociationSet Name="DireccionEmpresa" Association="Self.DireccionEmpresa">
+            <End Role="Direccion" EntitySet="Direccion" />
+            <End Role="Empresa" EntitySet="Empresa" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="BDCRMModelStoreContainer" CdmEntityContainer="BDCRMEntities">
+          <EntitySetMapping Name="AccionComercial">
+            <EntityTypeMapping TypeName="BDCRMModel.AccionComercial">
+              <MappingFragment StoreEntitySet="AccionComercial">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Usuario" ColumnName="Usuario" />
+                <ScalarProperty Name="IDEmpresa" ColumnName="IDEmpresa" />
+                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="Comentarios" ColumnName="Comentarios" />
+                <ScalarProperty Name="IDAccion" ColumnName="IDAccion" />
+                <ScalarProperty Name="IDEstado" ColumnName="IDEstado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Cargo">
+            <EntityTypeMapping TypeName="BDCRMModel.Cargo">
+              <MappingFragment StoreEntitySet="Cargo">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Carg" ColumnName="Carg" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Contacto">
+            <EntityTypeMapping TypeName="BDCRMModel.Contacto">
+              <MappingFragment StoreEntitySet="Contacto">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="IDEmpresa" ColumnName="IDEmpresa" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Direccion">
+            <EntityTypeMapping TypeName="BDCRMModel.Direccion">
+              <MappingFragment StoreEntitySet="Direccion">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Domicilio" ColumnName="Domicilio" />
+                <ScalarProperty Name="Poblacion" ColumnName="Poblacion" />
+                <ScalarProperty Name="Provincia" ColumnName="Provincia" />
+                <ScalarProperty Name="CP" ColumnName="CP" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DireccionContacto">
+            <EntityTypeMapping TypeName="BDCRMModel.DireccionContacto">
+              <MappingFragment StoreEntitySet="DireccionContacto">
+                <ScalarProperty Name="IDContacto" ColumnName="IDContacto" />
+                <ScalarProperty Name="IDDireccion" ColumnName="IDDireccion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Empresa">
+            <EntityTypeMapping TypeName="BDCRMModel.Empresa">
+              <MappingFragment StoreEntitySet="Empresa">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="CIF" ColumnName="CIF" />
+                <ScalarProperty Name="RazonSocial" ColumnName="RazonSocial" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Web" ColumnName="Web" />
+                <ScalarProperty Name="TipoEmpresa" ColumnName="TipoEmpresa" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Estado">
+            <EntityTypeMapping TypeName="BDCRMModel.Estado">
+              <MappingFragment StoreEntitySet="Estado">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Estado1" ColumnName="Estado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TelefonoContacto">
+            <EntityTypeMapping TypeName="BDCRMModel.TelefonoContacto">
+              <MappingFragment StoreEntitySet="TelefonoContacto">
+                <ScalarProperty Name="IDContacto" ColumnName="IDContacto" />
+                <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TelefonoEmpresa">
+            <EntityTypeMapping TypeName="BDCRMModel.TelefonoEmpresa">
+              <MappingFragment StoreEntitySet="TelefonoEmpresa">
+                <ScalarProperty Name="IDEmpresa" ColumnName="IDEmpresa" />
+                <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TipoAccion">
+            <EntityTypeMapping TypeName="BDCRMModel.TipoAccion">
+              <MappingFragment StoreEntitySet="TipoAccion">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Tipo" ColumnName="Tipo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TipoEmpresa">
+            <EntityTypeMapping TypeName="BDCRMModel.TipoEmpresa">
+              <MappingFragment StoreEntitySet="TipoEmpresa">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Tipo" ColumnName="Tipo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="User">
+            <EntityTypeMapping TypeName="BDCRMModel.User">
+              <MappingFragment StoreEntitySet="User">
+                <ScalarProperty Name="IDUsuario" ColumnName="IDUsuario" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="CargoContacto" TypeName="BDCRMModel.CargoContacto" StoreEntitySet="CargoContacto">
+            <EndProperty Name="Cargo">
+              <ScalarProperty Name="ID" ColumnName="IDCargo" />
+            </EndProperty>
+            <EndProperty Name="Contacto">
+              <ScalarProperty Name="ID" ColumnName="IDContacto" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="DireccionEmpresa" TypeName="BDCRMModel.DireccionEmpresa" StoreEntitySet="DireccionEmpresa">
+            <EndProperty Name="Direccion">
+              <ScalarProperty Name="ID" ColumnName="IDDireccion" />
+            </EndProperty>
+            <EndProperty Name="Empresa">
+              <ScalarProperty Name="ID" ColumnName="IDEmprsa" />
+            </EndProperty>
+          </AssociationSetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
