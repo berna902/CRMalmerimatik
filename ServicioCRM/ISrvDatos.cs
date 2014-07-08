@@ -11,20 +11,19 @@ namespace almerimatik.ServicioCRM
     public interface ISrvDatos
     {
         [OperationContract]
-        List<LibroData> GetAllLibros();
-        [OperationContract]
-        bool GuardarLibro(LibroData libro);
+        List<UserData> GetAllUsers();
+        
     }
     [DataContract]
-    public class LibroData
+    public class UserData
     {
         [DataMember]
-        public string isbn;
+        public int IDUsuario { get; set; }
         [DataMember]
-        public string titulo;
+        public string Nombre { get; set; }
         [DataMember]
-        public string Tema;
+        public string Username { get; set; }
         [DataMember]
-        public string portada;
+        public string Password { get; set; }
     }
 }
