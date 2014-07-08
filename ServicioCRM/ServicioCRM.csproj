@@ -107,6 +107,18 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Modelo.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Models\AccionesComerciales.cs" />
+    <Compile Include="Models\Cargos.cs" />
+    <Compile Include="Models\Contactos.cs" />
+    <Compile Include="Models\Direcciones.cs" />
+    <Compile Include="Models\DireccionesContacto.cs" />
+    <Compile Include="Models\Empresas.cs" />
+    <Compile Include="Models\Estados.cs" />
+    <Compile Include="Models\TelefonosContacto.cs" />
+    <Compile Include="Models\TelefonosEmpresa.cs" />
+    <Compile Include="Models\TipoAcciones.cs" />
+    <Compile Include="Models\TipoEmpresas.cs" />
+    <Compile Include="Models\Users.cs" />
     <Compile Include="Service1.svc.cs">
       <DependentUpon>Service1.svc</DependentUpon>
     </Compile>
