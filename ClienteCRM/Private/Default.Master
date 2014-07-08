@@ -6,15 +6,23 @@
 <head runat="server">
     <title></title>
     <asp:ContentPlaceHolder ID="head" runat="server">
+        <link href="../Service%20References/Content/bootstrap.min.css" rel="stylesheet" />
+        <link href="../Service%20References/Content/bootstrap-theme.min.css" rel="stylesheet" />
+        <script src="../Scripts/jquery-2.1.1.min.js"></script>
+        <script src="../Scripts/bootstrap.min.js"></script>
     </asp:ContentPlaceHolder>
 </head>
 <body>
+
     <form id="form1" runat="server">
-    <div>
+    <header></header>
+    <section class="row">
         <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
         
         </asp:ContentPlaceHolder>
-    </div>
+    </section>
+    <footer></footer>
     </form>
+    
 </body>
 </html>
