@@ -16,9 +16,6 @@ namespace ServicioCRM
         [OperationContract]
         string GetData(int value);
 
-        //esto es una prueba
-        //para ti, para toda la familia
-        //pasa de nosotros
        
     }
 
