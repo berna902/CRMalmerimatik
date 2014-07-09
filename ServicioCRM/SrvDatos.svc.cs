@@ -81,7 +81,7 @@ namespace almerimatik.ServicioCRM
         /// metodo que devuelve los datos de las acciones comerciales en forma de lista
         /// </summary>
         /// <returns></returns>
-        public List<AccionComercialData> GetAllAccionesComerciales()
+        public List<AccionComercialData> GetAllAccionesComerciales() 
         {
             List<AccionComercialData> lst = new List<AccionComercialData>();
             try
