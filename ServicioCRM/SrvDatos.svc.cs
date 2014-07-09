@@ -112,5 +112,124 @@ namespace almerimatik.ServicioCRM
         }
 
 
+        /// <summary>
+        /// metodo que devuelve los posibles tipos que tendrá una emrpesa
+        /// </summary>
+        /// <returns></returns>
+        public List<TipoEmpresaData> GetAllTiposEmpresa()
+        {
+            List<TipoEmpresaData> lst = new List<TipoEmpresaData>();
+            try
+            {
+                using (BDCRMEntities datos = new BDCRMEntities())
+                {
+                    var consulta = from tabla in datos.TipoEmpresa
+                                   select new TipoEmpresaData()
+                                   {
+                                       ID = tabla.ID,
+                                       Tipo = tabla.Tipo
+                                       
+                                   };
+                    lst = consulta.ToList();
+                    return lst;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new FaultException("ERROR EN ACCESO A DATOS. " + ex.Message);
+            }
+        }
+
+        /// <summary>
+        /// metodo que devolvera con tipos de acciones comerciales que se pueden realizar
+        /// </summary>
+        /// <returns></returns>
+        public List<TipoAccionData> GetAllTiposAccion()
+        {
+            List<TipoAccionData> lst = new List<TipoAccionData>();
+            try
+            {
+                using (BDCRMEntities datos = new BDCRMEntities())
+                {
+                    var consulta = from tabla in datos.TipoAccion
+                                   select new TipoAccionData()
+                                   {
+                                       ID = tabla.ID,
+                                       Tipo = tabla.Tipo
+
+                                   };
+                    lst = consulta.ToList();
+                    return lst;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new FaultException("ERROR EN ACCESO A DATOS. " + ex.Message);
+            }
+        }
+
+
+        /// <summary>
+        /// metodo que devuelve una lista de telefonos que pertenecen a una empresa concreta
+        /// </summary>
+        /// <param name="id">identificador de la empresa</param>
+        /// <returns></returns>
+        public List<TelefonosData> GetAllTelefonosEmpresa(int id)
+        {
+            List<TelefonosData> lst = new List<TelefonosData>();
+            try
+            {
+                using (BDCRMEntities datos = new BDCRMEntities())
+                {
+                    var consulta = from tabla in datos.TelefonoEmpresa
+                                   where tabla.IDEmpresa == id
+                                   select new TelefonosData()
+                                   {
+                                      ID = tabla.IDEmpresa,
+                                      Telefono = tabla.Telefono
+
+                                   };
+                    lst = consulta.ToList();
+                   
+                    return lst;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new FaultException("ERROR EN ACCESO A DATOS. " + ex.Message);
+            }
+        }
+
+        /// <summary>
+        /// metodo que devuelve una lista de telefonos que pertenecen a un contacto concreto
+        /// </summary>
+        /// <param name="id">identificador del contacto</param>
+        /// <returns></returns>
+        public List<TelefonosData> GetAllTelefonosContacto(int id)
+        {
+            List<TelefonosData> lst = new List<TelefonosData>();
+            try
+            {
+                using (BDCRMEntities datos = new BDCRMEntities())
+                {
+                    var consulta = from tabla in datos.TelefonoContacto
+                                   where tabla.IDContacto == id
+                                   select new TelefonosData()
+                                   {
+                                       ID = tabla.IDContacto,
+                                       Telefono = tabla.Telefono
+
+                                   };
+                    lst = consulta.ToList();
+
+                    return lst;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new FaultException("ERROR EN ACCESO A DATOS. " + ex.Message);
+            }
+        }
+
     }
 }
