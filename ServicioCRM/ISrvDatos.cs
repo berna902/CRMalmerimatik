@@ -29,7 +29,38 @@ namespace almerimatik.ServicioCRM
         /// </summary>
         /// <returns></returns>
         [OperationContract]
-        List<EmpresaData> GetAllAccionesComerciales();
+        List<AccionComercialData> GetAllAccionesComerciales();
+
+        /// <summary>
+        /// Operacion del servicio que devuelve una lista con los tipos de empresas
+        /// </summary>
+        /// <returns></returns>
+        [OperationContract]
+        List<TipoEmpresaData> GetAllTiposEmpresa();
+
+        /// <summary>
+        /// Operacion del servicio que devuelve una lista con los telefonos de la empresa concreta
+        /// </summary>
+        /// <param name="id">identificador de la empresa</param>
+        /// <returns>lista con telefonos</returns>
+        [OperationContract]
+        List<TelefonosData> GetAllTelefonosEmpresa(int id);
+
+        /// <summary>
+        /// Operacion del servicio que devuelve una lista con los telefonos del contacto concreto
+        /// </summary>
+        /// <param name="id">identificador del contacto</param>
+        /// <returns>lista con telefonos</returns>
+        [OperationContract]
+        List<TelefonosData> GetAllTelefonosContacto(int id);
+
+
+        /// <summary>
+        /// Operacion del servicio que devuelve una lista con los tipos de acciones comerciales
+        /// </summary>
+        /// <returns></returns>
+        [OperationContract]
+        List<TipoAccionData> GetAllTiposAccion();
         
     }
 
@@ -94,5 +125,41 @@ namespace almerimatik.ServicioCRM
         public int IDAccion { get; set; }
         [DataMember]
         public int IDEstado { get; set; }
+    }
+
+    /// <summary>
+    /// datos que definen el tipo de empresa
+    /// </summary>
+    [DataContract]
+    public class TipoEmpresaData
+    {
+        [DataMember]
+        public int ID { get; set; }
+        [DataMember]
+        public string Tipo { get; set; }
+    }
+
+    /// <summary>
+    /// datos que definen el tipo de accion comercial
+    /// </summary>
+    [DataContract]
+    public class TipoAccionData
+    {
+        [DataMember]
+        public int ID { get; set; }
+        [DataMember]
+        public string Tipo { get; set; }
+    }
+
+    /// <summary>
+    /// datos que defienen un listado de telefonos
+    /// </summary>
+    [DataContract]
+    public class TelefonosData
+    {
+        [DataMember]
+        public int ID { get; set; }
+        [DataMember]
+        public string Telefono { get; set; }
     }
 }
