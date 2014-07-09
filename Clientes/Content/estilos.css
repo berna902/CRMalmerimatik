@@ -1,0 +1,8 @@
+﻿.historial > a{
+    background-color: orange !important;
+}
+
+.notificaciones {
+    text-align:left;
+    margin-left: 0;
+}

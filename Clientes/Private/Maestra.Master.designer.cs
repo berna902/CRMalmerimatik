@@ -40,21 +40,21 @@ namespace Clientes.Private {
         protected global::System.Web.UI.WebControls.LoginStatus LoginStatus1;
         
         /// <summary>
-        /// zona2 control.
+        /// menu_lateral control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ContentPlaceHolder zona2;
+        protected global::System.Web.UI.WebControls.ContentPlaceHolder menu_lateral;
         
         /// <summary>
-        /// zona1 control.
+        /// central control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ContentPlaceHolder zona1;
+        protected global::System.Web.UI.WebControls.ContentPlaceHolder central;
     }
 }
