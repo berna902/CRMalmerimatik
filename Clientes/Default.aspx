@@ -3,7 +3,7 @@
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
 
        <div class="row">
-        <div class="col-md-10">
+        <div class="col-md-12">
             <asp:Login ID="Login1" runat="server" FailureText="Usuario o contraseña incorrecta. Pruebe de nuevo" LoginButtonText="Iniciar sesion" PasswordLabelText="Contraseña:" PasswordRequiredErrorMessage="Debe introducir una contraseña" RememberMeText="Recuerdame" RenderOuterTable="False" TitleText="Iniciar sesion" UserNameLabelText="Correo electronico" UserNameRequiredErrorMessage="Debe escribir su correo electronico" OnAuthenticate="Entrar">
                 <LayoutTemplate>
                     <br />

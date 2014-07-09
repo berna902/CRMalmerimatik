@@ -7,6 +7,8 @@
     <title></title>
     <link href="../Content/bootstrap.css" rel="stylesheet" />
     <link href="../Content/bootstrap-theme.min.css" rel="stylesheet" />
+    <link href="../Content/dashboard.css" rel="stylesheet" />
+    <link href="../Content/estilos.css" rel="stylesheet" />
     <script src="../Scripts/jquery-2.1.0.js"></script>
     <script src="../Scripts/bootstrap.min.js"></script>
     <style>
@@ -18,57 +20,61 @@
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
 </head>
-<body style="margin:75px 20px 0px 20px">
-     <form runat="server">
-     <header>
-        <div class="navbar navbar-inverse navbar-fixed-top">
-            <div class="container">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">                        
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <a class="navbar-brand" runat="server" href="~/">Zona Privada</a>
-                </div>
-                <div class="navbar-collapse collapse">
-                    <ul class="nav navbar-nav navbar-right">
-                        <li>
-                            <asp:LoginView ID="LoginView1" runat="server">
-                                <AnonymousTemplate>
-                                    <a href="#"><span class="text-warning">Anonimo</span></a>
-                                </AnonymousTemplate>
-                                <LoggedInTemplate>
-                                    <a href="~/Private/Default.aspx" runat="server"><span class="text-muted"><asp:LoginName ID="LoginName1" runat="server" /></span></a>
-                                </LoggedInTemplate>
-                            </asp:LoginView>
-                            
-                        </li>
-                        <li>
-                            <asp:LoginStatus ID="LoginStatus1" runat="server" />
-                        </li>
-                    </ul>
+<body style="margin: 75px 20px 0px 20px">
+    <form runat="server">
+        <header>
+            <div class="navbar navbar-inverse navbar-fixed-top">
+                <div class="container">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a class="navbar-brand" runat="server" href="~/">CRM</a>
+                    </div>
+                    <div class="navbar-collapse collapse">
+                        <ul class="nav navbar-nav navbar-right">
+                            <li>
+                                <asp:LoginView ID="LoginView1" runat="server">
+                                    <AnonymousTemplate>
+                                        <a href="#"><span class="text-warning">Anonimo</span></a>
+                                    </AnonymousTemplate>
+                                    <LoggedInTemplate>
+                                        <a href="~/Private/Default.aspx" runat="server"><span class="text-muted">
+                                            <asp:LoginName ID="LoginName1" runat="server" />
+                                        </span></a>
+                                    </LoggedInTemplate>
+                                </asp:LoginView>
+
+                            </li>
+                            <li>
+                                <asp:LoginStatus ID="LoginStatus1" runat="server" />
+                            </li>
+                        </ul>
+                    </div>
                 </div>
             </div>
-        </div>
-       
-    </header>
-    <section class="row">
-        <nav class="col-md-3">
-            <asp:ContentPlaceHolder ID="zona2" runat="server">
 
-            </asp:ContentPlaceHolder>
-        </nav>
-        <section class="col-md-9">
-            <asp:ContentPlaceHolder ID="zona1" runat="server">
+        </header>
 
-            </asp:ContentPlaceHolder>
-        </section>
-    </section>
-    <footer>
-        <hr />
-        <h1>&copy;2014 Laura Rodríguez Mora</h1>
-    </footer>
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-sm-3 col-md-2 sidebar">
+                        <asp:ContentPlaceHolder ID="menu_lateral" runat="server">
+                        </asp:ContentPlaceHolder>
+                    </div>
+                    <section class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+                        <asp:ContentPlaceHolder ID="central" runat="server">
+                        </asp:ContentPlaceHolder>
+                    </section>
+                    </div>
+                </div>
+
+        <footer>
+            <hr />
+            <h1>&copy;2014 Laura Rodríguez Mora</h1>
+        </footer>
     </form>
 </body>
 </html>
