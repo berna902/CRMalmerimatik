@@ -20,7 +20,7 @@
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
 </head>
-<body style="margin: 75px 20px 0px 20px">
+<body>
     <form runat="server">
         <header>
             <div class="navbar navbar-inverse navbar-fixed-top">
@@ -72,8 +72,7 @@
                 </div>
 
         <footer>
-            <hr />
-            <h1>&copy;2014 Laura Rodríguez Mora</h1>
+
         </footer>
     </form>
 </body>
