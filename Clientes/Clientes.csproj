@@ -366,6 +366,12 @@
       <Name>ServicioCRM</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ServicioCRM\ServicioCRM.csproj">
+      <Project>{05b72d86-feb4-4770-b5fc-b34488874865}</Project>
+      <Name>ServicioCRM</Name>
+    </ProjectReference>
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
