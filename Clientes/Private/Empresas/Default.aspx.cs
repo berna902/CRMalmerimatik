@@ -4,7 +4,8 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-
+using ServicioCRM;
+using Clientes.ServicioDatos2;
 
 namespace Clientes.Private.Empresas
 {
@@ -14,18 +15,12 @@ namespace Clientes.Private.Empresas
         {
             if (!this.IsPostBack)
             {
-                //ServicioDatos proxy = new ServicioDatos();
+                SrvDatosClient proxy = new SrvDatosClient();
 
-                /*string username = (string)Session["user"];
-                string pass = (string)Session["pass"];
+                EmpresaData[] empresas =  proxy.GetAllEmpresas();
 
-                proxy.ClientCredentials.UserName.UserName = username;
-                proxy.ClientCredentials.UserName.Password = pass;
-                proxy.ClientCredentials.ServiceCertificate.Authentication.CertificateValidationMode = X509CertificateValidationMode.None;
-
-                LibroData[] libros = proxy.GetAllLibros();
-                this.GridView1.DataSource = libros;
-                this.GridView1.DataBind();*/
+                this.GridView1.DataSource = empresas;
+                this.GridView1.DataBind();
 
             }
         }
