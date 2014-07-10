@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/almerimatik.ServicioCRM" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/almerimatik.ServicioCRM" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:complexType name="ArrayOfUserData">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="UserData" nillable="true" type="tns:UserData" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfUserData" nillable="true" type="tns:ArrayOfUserData" />
+  <xs:complexType name="UserData">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="IDUsuario" type="xs:int" />
+      <xs:element minOccurs="0" name="Nombre" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Password" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Username" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="UserData" nillable="true" type="tns:UserData" />
+  <xs:complexType name="ArrayOfEmpresaData">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="EmpresaData" nillable="true" type="tns:EmpresaData" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfEmpresaData" nillable="true" type="tns:ArrayOfEmpresaData" />
+  <xs:complexType name="EmpresaData">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CIF" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Email" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ID" type="xs:int" />
+      <xs:element minOccurs="0" name="Nombre" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="RazonSocial" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="TipoEmpresa" type="xs:int" />
+      <xs:element minOccurs="0" name="Web" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="EmpresaData" nillable="true" type="tns:EmpresaData" />
+  <xs:complexType name="ArrayOfAccionComercialData">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="AccionComercialData" nillable="true" type="tns:AccionComercialData" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfAccionComercialData" nillable="true" type="tns:ArrayOfAccionComercialData" />
+  <xs:complexType name="AccionComercialData">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Comentarios" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Descripcion" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Fecha" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="ID" type="xs:int" />
+      <xs:element minOccurs="0" name="IDAccion" type="xs:int" />
+      <xs:element minOccurs="0" name="IDEmpresa" type="xs:int" />
+      <xs:element minOccurs="0" name="IDEstado" type="xs:int" />
+      <xs:element minOccurs="0" name="Usuario" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="AccionComercialData" nillable="true" type="tns:AccionComercialData" />
+  <xs:complexType name="ArrayOfTipoEmpresaData">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="TipoEmpresaData" nillable="true" type="tns:TipoEmpresaData" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfTipoEmpresaData" nillable="true" type="tns:ArrayOfTipoEmpresaData" />
+  <xs:complexType name="TipoEmpresaData">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ID" type="xs:int" />
+      <xs:element minOccurs="0" name="Tipo" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="TipoEmpresaData" nillable="true" type="tns:TipoEmpresaData" />
+  <xs:complexType name="ArrayOfTelefonosData">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="TelefonosData" nillable="true" type="tns:TelefonosData" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfTelefonosData" nillable="true" type="tns:ArrayOfTelefonosData" />
+  <xs:complexType name="TelefonosData">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ID" type="xs:int" />
+      <xs:element minOccurs="0" name="Telefono" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="TelefonosData" nillable="true" type="tns:TelefonosData" />
+  <xs:complexType name="ArrayOfTipoAccionData">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="TipoAccionData" nillable="true" type="tns:TipoAccionData" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfTipoAccionData" nillable="true" type="tns:ArrayOfTipoAccionData" />
+  <xs:complexType name="TipoAccionData">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ID" type="xs:int" />
+      <xs:element minOccurs="0" name="Tipo" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="TipoAccionData" nillable="true" type="tns:TipoAccionData" />
+</xs:schema>

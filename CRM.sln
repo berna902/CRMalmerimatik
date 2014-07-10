@@ -6,6 +6,9 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServicioCRM", "ServicioCRM\ServicioCRM.csproj", "{05B72D86-FEB4-4770-B5FC-B34488874865}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Clientes", "Clientes\Clientes.csproj", "{0B492FDD-6926-46D9-A4D0-3F6C53848F91}"
+	ProjectSection(ProjectDependencies) = postProject
+		{05B72D86-FEB4-4770-B5FC-B34488874865} = {05B72D86-FEB4-4770-B5FC-B34488874865}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
