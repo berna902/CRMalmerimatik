@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
+
 namespace Clientes.Private.Empresas
 {
     public partial class Default : System.Web.UI.Page
@@ -13,9 +14,9 @@ namespace Clientes.Private.Empresas
         {
             if (!this.IsPostBack)
             {
-                /*SrvDatosClient proxy = new SrvDatosClient();
+                //ServicioDatos proxy = new ServicioDatos();
 
-                string username = (string)Session["user"];
+                /*string username = (string)Session["user"];
                 string pass = (string)Session["pass"];
 
                 proxy.ClientCredentials.UserName.UserName = username;

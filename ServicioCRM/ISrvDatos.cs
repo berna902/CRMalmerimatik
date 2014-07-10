@@ -5,6 +5,7 @@ using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.Web;
 
+
 namespace almerimatik.ServicioCRM
 {
     [ServiceContract]
