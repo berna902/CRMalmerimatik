@@ -5,9 +5,9 @@
           <ul class="nav nav-sidebar">
             <li class="active"><a href="Default.aspx">Resumen</a></li>
             <li><a href="Empresas/Default.aspx">Gestión Empresas</a></li>
-            <li><a href="#">Gestión Usuarios</a></li>
-            <li><a href="#">Gestión Acciones</a></li>
-            <li><a href="#">Administración</a></li>
+            <li><a href="Usuarios/Default.aspx">Gestión Usuarios</a></li>
+            <li><a href="Acciones/Default.aspx">Gestión Acciones</a></li>
+            <li><a href="Admin/Default.aspx">Administración</a></li>
           </ul>
           <ul class="nav nav-sidebar">
             <li class="active historial"><a href="#">Historial</a></li>
