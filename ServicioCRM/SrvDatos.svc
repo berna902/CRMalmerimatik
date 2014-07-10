@@ -1,1 +1,1 @@
-﻿<%@ ServiceHost Language="C#" Debug="true" Service="ServicioCRM.Service1" CodeBehind="SrvDatos.svc.cs" %>
+﻿<%@ ServiceHost Language="C#" Debug="true" Service="almerimatik.ServicioCRM.SrvDatos" CodeBehind="SrvDatos.svc.cs" %>
