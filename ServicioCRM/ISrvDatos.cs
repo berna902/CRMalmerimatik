@@ -62,6 +62,21 @@ namespace almerimatik.ServicioCRM
         /// <returns></returns>
         [OperationContract]
         List<TipoAccionData> GetAllTiposAccion();
+
+        /// <summary>
+        /// Operacion del servicio que devuelve una lista con los contactos de una empresa
+        /// </summary>
+        /// <param name="idEmpresa">identificador de la empresa en la que queremos buscar</param>
+        /// <returns>listado de contactos</returns>
+        [OperationContract]
+        List<ContactoData> GetAllContactos(int idEmpresa);
+
+        /// <summary>
+        /// Operacion del servicio que devuelve una lista con los cargos que existen
+        /// </summary>
+        /// <returns></returns>
+        [OperationContract]
+        List<CargoData> GetAllCargos();
         
     }
 
@@ -153,7 +168,7 @@ namespace almerimatik.ServicioCRM
     }
 
     /// <summary>
-    /// datos que defienen un listado de telefonos
+    /// datos que definen un listado de telefonos
     /// </summary>
     [DataContract]
     public class TelefonosData
@@ -163,4 +178,37 @@ namespace almerimatik.ServicioCRM
         [DataMember]
         public string Telefono { get; set; }
     }
+
+
+    /// <summary>
+    /// datos que definen un contacto
+    /// </summary>
+    [DataContract]
+    public class ContactoData
+    {
+        [DataMember]
+        public int ID { get; set; }
+        [DataMember]
+        public int IDEmpresa { get; set; }
+        [DataMember]
+        public string Nombre { get; set; }
+        [DataMember]
+        public string Email { get; set; }
+    }
+
+
+    /// <summary>
+    /// datos que definen un cargo
+    /// </summary>
+    [DataContract]
+    public class CargoData
+    {
+        [DataMember]
+        public int ID { get; set; }
+        [DataMember]
+        public string Cargo { get; set; }
+        
+    }
+
+
 }

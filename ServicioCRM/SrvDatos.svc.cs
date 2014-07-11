@@ -230,9 +230,68 @@ namespace almerimatik.ServicioCRM
                 throw new FaultException("ERROR EN ACCESO A DATOS. " + ex.Message);
             }
         }
+                
+
+        /// <summary>
+        /// metodo que devuelve una lista de contactos que pertenecen a una empresa
+        /// </summary>
+        /// <param name="idEmpresa">identificador de la empresa</param>
+        /// <returns></returns>
+        public List<ContactoData> GetAllContactos(int idEmpresa)
+        {
+            List<ContactoData> lst = new List<ContactoData>();
+            try
+            {
+                using (BDCRMEntities datos = new BDCRMEntities())
+                {
+                    var consulta = from tabla in datos.Contacto
+                                   where tabla.IDEmpresa == idEmpresa
+                                   select new ContactoData()
+                                   {
+                                       ID = tabla.ID,
+                                       IDEmpresa = tabla.IDEmpresa,
+                                       Nombre = tabla.Nombre,
+                                       Email = tabla.Email
+
+                                   };
+                    lst = consulta.ToList();
+
+                    return lst;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new FaultException("ERROR EN ACCESO A DATOS. " + ex.Message);
+            }
+        }
 
 
+        /// <summary>
+        /// metodo que devolvera los cargos que los contactos pueden tener
+        /// </summary>
+        /// <returns></returns>
+        public List<CargoData> GetAllCargos()
+        {
+            List<CargoData> lst = new List<CargoData>();
+            try
+            {
+                using (BDCRMEntities datos = new BDCRMEntities())
+                {
+                    var consulta = from tabla in datos.Cargo
+                                   select new CargoData()
+                                   {
+                                       ID = tabla.ID,
+                                       Cargo = tabla.Carg
 
-
+                                   };
+                    lst = consulta.ToList();
+                    return lst;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new FaultException("ERROR EN ACCESO A DATOS. " + ex.Message);
+            }
+        }
     }
 }
