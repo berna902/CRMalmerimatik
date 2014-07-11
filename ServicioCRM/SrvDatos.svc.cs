@@ -1,6 +1,8 @@
 ﻿using ServicioCRM;
+using ServicioCRM.Models;
 using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Runtime.Serialization;
 using System.ServiceModel;
@@ -27,20 +29,20 @@ namespace almerimatik.ServicioCRM
                     var consulta = from tabla in datos.User
                                    select new UserData()
                                    {
-                                        IDUsuario = tabla.IDUsuario,
-                                        Nombre = tabla.Nombre,
-                                        Username = tabla.Username,
-                                        Password = tabla.Password
+                                       IDUsuario = tabla.IDUsuario,
+                                       Nombre = tabla.Nombre,
+                                       Username = tabla.Username
+                                       
 
                                    };
                     lst = consulta.ToList();
-                    return lst;        
+                    return lst;
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 throw new FaultException("ERROR EN ACCESO A DATOS. " + ex.Message);
-            }           
+            }
         }
 
         /// <summary>
@@ -63,7 +65,8 @@ namespace almerimatik.ServicioCRM
                                        Nombre = tabla.Nombre,
                                        Email = tabla.Email,
                                        Web = tabla.Web,
-                                       TipoEmpresa = tabla.TipoEmpresa
+                                       IDTipoEmpresa = tabla.TipoEmpresa,
+                                       TipoEmpresa = tabla.TipoEmpresa1.Tipo
 
                                    };
                     lst = consulta.ToList();
@@ -81,7 +84,7 @@ namespace almerimatik.ServicioCRM
         /// metodo que devuelve los datos de las acciones comerciales en forma de lista
         /// </summary>
         /// <returns></returns>
-        public List<AccionComercialData> GetAllAccionesComerciales() 
+        public List<AccionComercialData> GetAllAccionesComerciales()
         {
             List<AccionComercialData> lst = new List<AccionComercialData>();
             try
@@ -91,7 +94,7 @@ namespace almerimatik.ServicioCRM
                     var consulta = from tabla in datos.AccionComercial
                                    select new AccionComercialData()
                                    {
-                                       ID  = tabla.ID,
+                                       ID = tabla.ID,
                                        Usuario = tabla.Usuario,
                                        IDEmpresa = tabla.IDEmpresa,
                                        Fecha = tabla.Fecha,
@@ -128,7 +131,7 @@ namespace almerimatik.ServicioCRM
                                    {
                                        ID = tabla.ID,
                                        Tipo = tabla.Tipo
-                                       
+
                                    };
                     lst = consulta.ToList();
                     return lst;
@@ -185,12 +188,12 @@ namespace almerimatik.ServicioCRM
                                    where tabla.IDEmpresa == id
                                    select new TelefonosData()
                                    {
-                                      ID = tabla.IDEmpresa,
-                                      Telefono = tabla.Telefono
+                                       ID = tabla.IDEmpresa,
+                                       Telefono = tabla.Telefono
 
                                    };
                     lst = consulta.ToList();
-                   
+
                     return lst;
                 }
             }
@@ -230,7 +233,7 @@ namespace almerimatik.ServicioCRM
                 throw new FaultException("ERROR EN ACCESO A DATOS. " + ex.Message);
             }
         }
-                
+
 
         /// <summary>
         /// metodo que devuelve una lista de contactos que pertenecen a una empresa
@@ -293,5 +296,170 @@ namespace almerimatik.ServicioCRM
                 throw new FaultException("ERROR EN ACCESO A DATOS. " + ex.Message);
             }
         }
+
+
+        /// <summary>
+        /// metodo que guardara una empresa en la BD. Devolvera verdadero o falso
+        /// </summary>
+        /// <param name="empresa">datos de la empresa nueva</param>
+        /// <returns></returns>
+        public bool AddEmpresa(EmpresaData empresa)
+        {
+            try
+            {
+                using (BDCRMEntities db = new BDCRMEntities())
+                {
+                    Empresas nuevo = new Empresas();
+
+                    nuevo.ID = empresa.ID;
+                    nuevo.Nombre = empresa.Nombre;
+                    nuevo.RazonSocial = empresa.RazonSocial;
+                    nuevo.CIF = empresa.CIF;
+                    nuevo.Email = empresa.Email;
+                    nuevo.Web = empresa.Web;
+                    nuevo.TipoEmpresa = 0;
+                    
+                    db.Empresa.Add(nuevo);
+                    db.SaveChanges();
+                    return true;
+                }
+
+            }
+            catch (SqlException ex)
+            {
+                FaultException fault = new FaultException("Error SQL: " + ex.Message, new FaultCode("SQL"));
+                return false;
+
+            }
+            catch (Exception ex)
+            {
+                FaultException fault = new FaultException("Error: " + ex.Message, new FaultCode("GENERAL"));
+                return false;
+            }
+        }
+
+
+        /// <summary>
+        /// metodo que guardara los cambios al editar una empresa
+        /// </summary>
+        /// <param name="empresa">datos de la empresa a editar</param>
+        /// <returns>verdadero o falso segun si la accion se llevo a cabo o no</returns>
+        public bool EditEmpresa(EmpresaData empresa)
+        {
+            try
+            {
+                if (empresa != null)
+                {
+                    using (BDCRMEntities db = new BDCRMEntities())
+                    {
+                        var consulta = from tabla in db.Empresa where tabla.ID == empresa.ID select tabla;
+
+                        Empresas nuevo = (Empresas)consulta.First();
+
+                        nuevo.Nombre = empresa.Nombre;
+                        nuevo.Web = empresa.Web;
+                        nuevo.RazonSocial = empresa.RazonSocial;
+                        nuevo.Email = empresa.Email;
+                        nuevo.CIF = empresa.CIF;
+                        nuevo.TipoEmpresa = empresa.IDTipoEmpresa;
+
+
+                        db.SaveChanges();
+                        return true;
+                    }
+                }
+                else
+                {
+                    return false;
+                }
+
+
+            }
+            catch (SqlException ex)
+            {
+                FaultException fault = new FaultException("Error SQL: " + ex.Message, new FaultCode("SQL"));
+                return false;
+
+            }
+            catch (Exception ex)
+            {
+                FaultException fault = new FaultException("Error: " + ex.Message, new FaultCode("GENERAL"));
+                return false;
+            }
+        }
+
+
+        /// <summary>
+        /// metodo que devuelve los datos de una empresa
+        /// </summary>
+        /// <param name="idEmpresa">identificador de esa empresa</param>
+        /// <returns>verdadero o falso segun si la accion se llevo a cabo o no</returns>
+        public EmpresaData GetEmpresa(int idEmpresa)
+        {
+            List<EmpresaData> lst = new List<EmpresaData>();
+            try
+            {
+                using (BDCRMEntities datos = new BDCRMEntities())
+                {
+                    var consulta = from tabla in datos.Empresa where tabla.ID == idEmpresa
+                                   select new EmpresaData()
+                                   {
+                                       ID = tabla.ID,
+                                       CIF = tabla.CIF,
+                                       RazonSocial = tabla.RazonSocial,
+                                       Nombre = tabla.Nombre,
+                                       Email = tabla.Email,
+                                       Web = tabla.Web,
+                                       IDTipoEmpresa = tabla.TipoEmpresa,
+                                       TipoEmpresa = tabla.TipoEmpresa1.Tipo,
+                                       
+
+                                   };
+                    lst = consulta.ToList();
+                    return lst.First();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new FaultException("ERROR EN ACCESO A DATOS. " + ex.Message);
+            }
+        }
+
+
+        /// <summary>
+        /// metodo que borra una empresa de la BD
+        /// </summary>
+        /// <param name="idEmpresa">identificador de la empresa a borrar</param>
+        /// <returns>verdadero o falso segun si la accion se llevo a cabo o no</returns>
+        public bool BorrarEmpresa(int idEmpresa)
+        {
+            try
+            {
+                using (BDCRMEntities db = new BDCRMEntities())
+                {
+                    var consulta = from tabla in db.Empresa where tabla.ID == idEmpresa select tabla;
+                    Empresas emp = (Empresas)consulta.First();
+
+                    db.Empresa.Remove(emp);
+                    db.SaveChanges();
+                    return true;
+
+
+                }
+            }
+            catch (SqlException ex)
+            {
+                FaultException fault = new FaultException("Error SQL: " + ex.Message, new FaultCode("SQL"));
+                return false;
+
+            }
+            catch (Exception ex)
+            {
+                FaultException fault = new FaultException("Error: " + ex.Message, new FaultCode("GENERAL"));
+                return false;
+            }
+        }
+
+
     }
 }

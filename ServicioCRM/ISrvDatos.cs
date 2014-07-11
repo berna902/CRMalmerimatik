@@ -77,6 +77,31 @@ namespace almerimatik.ServicioCRM
         /// <returns></returns>
         [OperationContract]
         List<CargoData> GetAllCargos();
+
+        /// <summary>
+        /// Operacion del servicio que devuelve los datos de la empresa que se solicita
+        /// </summary>
+        /// <param name="idEmpresa">identificador de la empresa</param>
+        /// <returns>datos de la empresa en concreto</returns>
+        [OperationContract]
+        EmpresaData GetEmpresa(int idEmpresa);
+
+
+        /// <summary>
+        /// Operacion del servicio que guarda una empresa al editarla
+        /// </summary>
+        /// <param name="empresa">datos de la empresa</param>
+        /// <returns>veradero o falso</returns>
+        [OperationContract]
+        bool EditEmpresa(EmpresaData empresa);
+
+        /// <summary>
+        /// Operacion del servicio que guarda los datos de una empresa nueva
+        /// </summary>
+        /// <param name="empresa">datos de la empresa</param>
+        /// <returns>verdadero o falso</returns>
+        [OperationContract]
+        bool AddEmpresa(EmpresaData empresa);
         
     }
 
@@ -115,7 +140,15 @@ namespace almerimatik.ServicioCRM
         [DataMember]
         public string Web { get; set; }
         [DataMember]
-        public int TipoEmpresa { get; set; }
+        public int IDTipoEmpresa { get; set; }
+        [DataMember]
+        public string TipoEmpresa { get; set; }
+        /// <summary>
+        /// Este telefono es el primero de la lista de telefonos de la empresa. Será el que salga por defecto.
+        /// </summary>
+        [DataMember]
+        public string Telefono { get; set; }
+        
     }
 
 
@@ -194,6 +227,11 @@ namespace almerimatik.ServicioCRM
         public string Nombre { get; set; }
         [DataMember]
         public string Email { get; set; }
+        /// <summary>
+        /// Este telefono es el primero de la lista de telefonos del contacto. Será el que salga por defecto.
+        /// </summary>
+        [DataMember]
+        public string Telefono { get; set; }
     }
 
 
