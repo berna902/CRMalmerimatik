@@ -62,6 +62,46 @@ namespace almerimatik.ServicioCRM
         /// <returns></returns>
         [OperationContract]
         List<TipoAccionData> GetAllTiposAccion();
+
+        /// <summary>
+        /// Operacion del servicio que devuelve una lista con los contactos de una empresa
+        /// </summary>
+        /// <param name="idEmpresa">identificador de la empresa en la que queremos buscar</param>
+        /// <returns>listado de contactos</returns>
+        [OperationContract]
+        List<ContactoData> GetAllContactos(int idEmpresa);
+
+        /// <summary>
+        /// Operacion del servicio que devuelve una lista con los cargos que existen
+        /// </summary>
+        /// <returns></returns>
+        [OperationContract]
+        List<CargoData> GetAllCargos();
+
+        /// <summary>
+        /// Operacion del servicio que devuelve los datos de la empresa que se solicita
+        /// </summary>
+        /// <param name="idEmpresa">identificador de la empresa</param>
+        /// <returns>datos de la empresa en concreto</returns>
+        [OperationContract]
+        EmpresaData GetEmpresa(int idEmpresa);
+
+
+        /// <summary>
+        /// Operacion del servicio que guarda una empresa al editarla
+        /// </summary>
+        /// <param name="empresa">datos de la empresa</param>
+        /// <returns>veradero o falso</returns>
+        [OperationContract]
+        bool EditEmpresa(EmpresaData empresa);
+
+        /// <summary>
+        /// Operacion del servicio que guarda los datos de una empresa nueva
+        /// </summary>
+        /// <param name="empresa">datos de la empresa</param>
+        /// <returns>verdadero o falso</returns>
+        [OperationContract]
+        bool AddEmpresa(EmpresaData empresa);
         
     }
 
@@ -100,7 +140,15 @@ namespace almerimatik.ServicioCRM
         [DataMember]
         public string Web { get; set; }
         [DataMember]
-        public int TipoEmpresa { get; set; }
+        public int IDTipoEmpresa { get; set; }
+        [DataMember]
+        public string TipoEmpresa { get; set; }
+        /// <summary>
+        /// Este telefono es el primero de la lista de telefonos de la empresa. Será el que salga por defecto.
+        /// </summary>
+        [DataMember]
+        public string Telefono { get; set; }
+        
     }
 
 
@@ -153,7 +201,7 @@ namespace almerimatik.ServicioCRM
     }
 
     /// <summary>
-    /// datos que defienen un listado de telefonos
+    /// datos que definen un listado de telefonos
     /// </summary>
     [DataContract]
     public class TelefonosData
@@ -163,4 +211,42 @@ namespace almerimatik.ServicioCRM
         [DataMember]
         public string Telefono { get; set; }
     }
+
+
+    /// <summary>
+    /// datos que definen un contacto
+    /// </summary>
+    [DataContract]
+    public class ContactoData
+    {
+        [DataMember]
+        public int ID { get; set; }
+        [DataMember]
+        public int IDEmpresa { get; set; }
+        [DataMember]
+        public string Nombre { get; set; }
+        [DataMember]
+        public string Email { get; set; }
+        /// <summary>
+        /// Este telefono es el primero de la lista de telefonos del contacto. Será el que salga por defecto.
+        /// </summary>
+        [DataMember]
+        public string Telefono { get; set; }
+    }
+
+
+    /// <summary>
+    /// datos que definen un cargo
+    /// </summary>
+    [DataContract]
+    public class CargoData
+    {
+        [DataMember]
+        public int ID { get; set; }
+        [DataMember]
+        public string Cargo { get; set; }
+        
+    }
+
+
 }
