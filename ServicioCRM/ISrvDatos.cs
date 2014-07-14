@@ -102,7 +102,24 @@ namespace almerimatik.ServicioCRM
         /// <returns>verdadero o falso</returns>
         [OperationContract]
         bool AddEmpresa(EmpresaData empresa);
-        
+
+        [OperationContract]
+        bool BorrarEmpresa(int idEmpresa);
+
+
+        [OperationContract]
+        bool AddTipoEmpresa(String tipo);
+
+
+        [OperationContract]
+        bool BorrarTipoEmpresa(int idTipo);
+
+
+
+        [OperationContract]
+        bool AddTipoAccion(String tipo);
+
+
     }
 
     /// <summary>

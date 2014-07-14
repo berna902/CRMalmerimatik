@@ -311,13 +311,13 @@ namespace almerimatik.ServicioCRM
                 {
                     Empresas nuevo = new Empresas();
 
-                    nuevo.ID = empresa.ID;
+                    
                     nuevo.Nombre = empresa.Nombre;
                     nuevo.RazonSocial = empresa.RazonSocial;
                     nuevo.CIF = empresa.CIF;
                     nuevo.Email = empresa.Email;
                     nuevo.Web = empresa.Web;
-                    nuevo.TipoEmpresa = 0;
+                    nuevo.TipoEmpresa = empresa.IDTipoEmpresa;
                     
                     db.Empresa.Add(nuevo);
                     db.SaveChanges();
@@ -446,6 +446,115 @@ namespace almerimatik.ServicioCRM
 
 
                 }
+            }
+            catch (SqlException ex)
+            {
+                FaultException fault = new FaultException("Error SQL: " + ex.Message, new FaultCode("SQL"));
+                return false;
+
+            }
+            catch (Exception ex)
+            {
+                FaultException fault = new FaultException("Error: " + ex.Message, new FaultCode("GENERAL"));
+                return false;
+            }
+        }
+
+
+        /// <summary>
+        /// metodo que añade un tipo de empresa a la BD
+        /// </summary>
+        /// <param name="tipo">nombre con el tipo nuevo</param>
+        /// <returns>verdadero o falso segun si la accion se llevo a cabo o no</returns>
+        public bool AddTipoEmpresa(String tipo)
+        {
+            try
+            {
+                using (BDCRMEntities db = new BDCRMEntities())
+                {
+                    TipoEmpresas nuevo = new TipoEmpresas();
+
+                    
+                    nuevo.Tipo = tipo;
+
+                    db.TipoEmpresa.Add(nuevo);
+                    db.SaveChanges();
+                    return true;
+                }
+
+            }
+            catch (SqlException ex)
+            {
+                FaultException fault = new FaultException("Error SQL: " + ex.Message, new FaultCode("SQL"));
+                return false;
+
+            }
+            catch (Exception ex)
+            {
+                FaultException fault = new FaultException("Error: " + ex.Message, new FaultCode("GENERAL"));
+                return false;
+            }
+        }
+
+
+
+        /// <summary>
+        /// metodo que borra un tipo de empresa de la BD
+        /// </summary>
+        /// <param name="idTipo">identificador del tipo de empresa a borrar</param>
+        /// <returns>verdadero o falso segun si la accion se llevo a cabo o no</returns>
+        public bool BorrarTipoEmpresa(int idTipo)
+        {
+            try
+            {
+                using (BDCRMEntities db = new BDCRMEntities())
+                {
+                    var consulta = from tabla in db.TipoEmpresa where tabla.ID == idTipo select tabla;
+                    TipoEmpresas borrar = (TipoEmpresas)consulta.First();
+
+                    db.TipoEmpresa.Remove(borrar);
+                    db.SaveChanges();
+                    return true;
+
+
+                }
+            }
+            catch (SqlException ex)
+            {
+                FaultException fault = new FaultException("Error SQL: " + ex.Message, new FaultCode("SQL"));
+                return false;
+
+            }
+            catch (Exception ex)
+            {
+                FaultException fault = new FaultException("Error: " + ex.Message, new FaultCode("GENERAL"));
+                return false;
+            }
+        }
+
+
+
+        /// <summary>
+        /// metodo que añade un tipo de accion a la BD
+        /// </summary>
+        /// <param name="tipo">nombre con el tipo nuevo</param>
+        /// <returns>verdadero o falso segun si la accion se llevo a cabo o no</returns>
+        public bool AddTipoAccion(String tipo)
+        {
+            try
+            {
+                using (BDCRMEntities db = new BDCRMEntities())
+                {
+                    TipoAcciones nuevo = new TipoAcciones();
+
+
+                    nuevo.Tipo = tipo;
+
+                    db.TipoAccion.Add(nuevo);
+                    db.SaveChanges();
+                    return true;
+                }
+
             }
             catch (SqlException ex)
             {
