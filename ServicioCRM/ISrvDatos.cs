@@ -91,7 +91,7 @@ namespace almerimatik.ServicioCRM
         /// Operacion del servicio que guarda una empresa al editarla
         /// </summary>
         /// <param name="empresa">datos de la empresa</param>
-        /// <returns>veradero o falso</returns>
+        /// <returns>verdadero o falso segun si la accion se llevo a cabo o no</returns>
         [OperationContract]
         bool EditEmpresa(EmpresaData empresa);
 
@@ -99,28 +99,66 @@ namespace almerimatik.ServicioCRM
         /// Operacion del servicio que guarda los datos de una empresa nueva
         /// </summary>
         /// <param name="empresa">datos de la empresa</param>
-        /// <returns>verdadero o falso</returns>
+        /// <returns>verdadero o falso segun si la accion se llevo a cabo o no</returns>
         [OperationContract]
         bool AddEmpresa(EmpresaData empresa);
 
+        /// <summary>
+        /// Operacion del Servicio que Borra una empresa segun su identificador
+        /// </summary>
+        /// <param name="idEmpresa">identificador de la empresa a borrar</param>
+        /// <returns>verdadero o falso segun si la accion se llevo a cabo o no</returns>
         [OperationContract]
         bool BorrarEmpresa(int idEmpresa);
 
-
+        /// <summary>
+        /// Operacion del servicio que añade un tipo de empresa a la BD
+        /// </summary>
+        /// <param name="tipo">nombre con el tipo nuevo</param>
+        /// <returns>verdadero o falso segun si la accion se llevo a cabo o no</returns>
         [OperationContract]
         bool AddTipoEmpresa(String tipo);
 
-
+        /// <summary>
+        /// Operacion del servicio que borra un tipo de empresa de la BD
+        /// </summary>
+        /// <param name="idTipo">identificador del tipo de empresa a borrar</param>
+        /// <returns>verdadero o falso segun si la accion se llevo a cabo o no</returns>
         [OperationContract]
         bool BorrarTipoEmpresa(int idTipo);
 
 
-
+        /// <summary>
+        /// Operacion del servicio que añade un tipo de accion a la BD
+        /// </summary>
+        /// <param name="tipo">nombre con el tipo nuevo</param>
+        /// <returns>verdadero o falso segun si la accion se llevo a cabo o no</returns>
         [OperationContract]
         bool AddTipoAccion(String tipo);
 
 
+        /// <summary>
+        /// Operacion del servicio que borra un tipo de Accion de la BD
+        /// </summary>
+        /// <param name="idTipo">identificador del tipo de Accion a borrar</param>
+        /// <returns>verdadero o falso segun si la accion se llevo a cabo o no</returns>
+        bool BorrarTipoAccion(int idTipo);
+
+
     }
+
+
+
+
+
+
+
+    /****************************************************************************
+    //TIPOS DE DATOS
+    ****************************************************************************/
+
+
+
 
     /// <summary>
     /// Datos que definen un usuario
