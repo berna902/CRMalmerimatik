@@ -6,7 +6,7 @@
         <li><a href="../Default.aspx">Resumen</a></li>
         <li><a href="../Empresas/Default.aspx">Gestión Empresas</a></li>
         <li><a href="../Usuarios/Default.aspx">Gestión Usuarios</a></li>
-        <li><a href="Default.aspx">Gestión Acciones</a></li>
+        <li><a href="../Acciones/Default.aspx">Gestión Acciones</a></li>
         <li  class="active"><a href="Default.aspx">Administración</a></li>
     </ul>
     <ul class="nav nav-sidebar">
@@ -18,8 +18,6 @@
      <h1 class="page-header">Gestión de Administración</h1>
 
     <div class="row placeholders">
-        <div class="table-responsive">
-            <asp:GridView ID="GridView1" runat="server" CssClass="table table-striped"></asp:GridView>
-        </div>
+
     </div>
 </asp:Content>
