@@ -19,7 +19,7 @@ namespace almerimatik.ServicioCRM
         /// metodo que devuelve los datos de los usuarios en forma de lista
         /// </summary>
         /// <returns></returns>
-        public static List<UserData> GetAllUsers()
+        public List<UserData> GetAllUsers()
         {
             List<UserData> lst = new List<UserData>();
             try
@@ -49,7 +49,7 @@ namespace almerimatik.ServicioCRM
         /// metodo que devuelve los datos de las empresas en forma de lista
         /// </summary>
         /// <returns></returns>
-        public static List<EmpresaData> GetAllEmpresas()
+        public List<EmpresaData> GetAllEmpresas()
         {
             List<EmpresaData> lst = new List<EmpresaData>();
             try
@@ -84,7 +84,7 @@ namespace almerimatik.ServicioCRM
         /// metodo que devuelve los datos de las acciones comerciales en forma de lista
         /// </summary>
         /// <returns></returns>
-        public static List<AccionComercialData> GetAllAccionesComerciales()
+        public List<AccionComercialData> GetAllAccionesComerciales()
         {
             List<AccionComercialData> lst = new List<AccionComercialData>();
             try
@@ -119,7 +119,7 @@ namespace almerimatik.ServicioCRM
         /// metodo que devuelve los posibles tipos que tendrá una emrpesa
         /// </summary>
         /// <returns></returns>
-        public static List<TipoEmpresaData> GetAllTiposEmpresa()
+        public List<TipoEmpresaData> GetAllTiposEmpresa()
         {
             List<TipoEmpresaData> lst = new List<TipoEmpresaData>();
             try
@@ -147,7 +147,7 @@ namespace almerimatik.ServicioCRM
         /// metodo que devolvera con tipos de acciones comerciales que se pueden realizar
         /// </summary>
         /// <returns></returns>
-        public static List<TipoAccionData> GetAllTiposAccion()
+        public List<TipoAccionData> GetAllTiposAccion()
         {
             List<TipoAccionData> lst = new List<TipoAccionData>();
             try
@@ -177,7 +177,7 @@ namespace almerimatik.ServicioCRM
         /// </summary>
         /// <param name="id">identificador de la empresa</param>
         /// <returns></returns>
-        public static List<TelefonosData> GetAllTelefonosEmpresa(int id)
+        public List<TelefonosData> GetAllTelefonosEmpresa(int id)
         {
             List<TelefonosData> lst = new List<TelefonosData>();
             try
@@ -208,7 +208,7 @@ namespace almerimatik.ServicioCRM
         /// </summary>
         /// <param name="id">identificador del contacto</param>
         /// <returns></returns>
-        public static List<TelefonosData> GetAllTelefonosContacto(int id)
+        public List<TelefonosData> GetAllTelefonosContacto(int id)
         {
             List<TelefonosData> lst = new List<TelefonosData>();
             try
@@ -240,7 +240,7 @@ namespace almerimatik.ServicioCRM
         /// </summary>
         /// <param name="idEmpresa">identificador de la empresa</param>
         /// <returns></returns>
-        public static List<ContactoData> GetAllContactos(int idEmpresa)
+        public List<ContactoData> GetAllContactos(int idEmpresa)
         {
             List<ContactoData> lst = new List<ContactoData>();
             try
@@ -273,7 +273,7 @@ namespace almerimatik.ServicioCRM
         /// metodo que devolvera los cargos que los contactos pueden tener
         /// </summary>
         /// <returns></returns>
-        public static List<CargoData> GetAllCargos()
+        public List<CargoData> GetAllCargos()
         {
             List<CargoData> lst = new List<CargoData>();
             try
@@ -303,7 +303,7 @@ namespace almerimatik.ServicioCRM
         /// </summary>
         /// <param name="empresa">datos de la empresa nueva</param>
         /// <returns></returns>
-        public static bool AddEmpresa(EmpresaData empresa)
+        public bool AddEmpresa(EmpresaData empresa)
         {
             try
             {
@@ -354,7 +354,7 @@ namespace almerimatik.ServicioCRM
         /// </summary>
         /// <param name="empresa">datos de la empresa a editar</param>
         /// <returns>verdadero o falso segun si la accion se llevo a cabo o no</returns>
-        public static bool EditEmpresa(EmpresaData empresa)
+        public bool EditEmpresa(EmpresaData empresa)
         {
             try
             {
@@ -404,7 +404,7 @@ namespace almerimatik.ServicioCRM
         /// </summary>
         /// <param name="idEmpresa">identificador de esa empresa</param>
         /// <returns>verdadero o falso segun si la accion se llevo a cabo o no</returns>
-        public static EmpresaData GetEmpresa(int idEmpresa)
+        public EmpresaData GetEmpresa(int idEmpresa)
         {
             List<EmpresaData> lst = new List<EmpresaData>();
             try
@@ -441,7 +441,7 @@ namespace almerimatik.ServicioCRM
         /// </summary>
         /// <param name="idEmpresa">identificador de la empresa a borrar</param>
         /// <returns>verdadero o falso segun si la accion se llevo a cabo o no</returns>
-        public static bool BorrarEmpresa(int idEmpresa)
+        public bool BorrarEmpresa(int idEmpresa)
         {
             try
             {
@@ -476,7 +476,7 @@ namespace almerimatik.ServicioCRM
         /// </summary>
         /// <param name="tipo">nombre con el tipo nuevo</param>
         /// <returns>verdadero o falso segun si la accion se llevo a cabo o no</returns>
-        public static bool AddTipoEmpresa(String tipo)
+        public bool AddTipoEmpresa(String tipo)
         {
             try
             {
@@ -523,7 +523,7 @@ namespace almerimatik.ServicioCRM
         /// </summary>
         /// <param name="idTipo">identificador del tipo de empresa a borrar</param>
         /// <returns>verdadero o falso segun si la accion se llevo a cabo o no</returns>
-        public static bool BorrarTipoEmpresa(int idTipo)
+        public bool BorrarTipoEmpresa(int idTipo)
         {
             try
             {
@@ -558,7 +558,7 @@ namespace almerimatik.ServicioCRM
         /// </summary>
         /// <param name="tipo">nombre con el tipo nuevo</param>
         /// <returns>verdadero o falso segun si la accion se llevo a cabo o no</returns>
-        public static bool AddTipoAccion(String tipo)
+        public bool AddTipoAccion(String tipo)
         {
             try
             {
@@ -603,7 +603,7 @@ namespace almerimatik.ServicioCRM
         /// </summary>
         /// <param name="idTipo">identificador del tipo de Accion a borrar</param>
         /// <returns>verdadero o falso segun si la accion se llevo a cabo o no</returns>
-        public static bool BorrarTipoAccion(int idTipo)
+        public bool BorrarTipoAccion(int idTipo)
         {
             try
             {
@@ -633,7 +633,165 @@ namespace almerimatik.ServicioCRM
         }
 
 
+        /// <summary>
+        /// metodo que añade un telefono a una empresa
+        /// </summary>
+        /// <param name="telefono">nombre con el telefono nuevo yla empresa a la que pertenece</param>
+        /// <returns>verdadero o falso segun si la accion se llevo a cabo o no</returns>
+        public bool AddTelefonoEmpresa(TelefonosData telefono)
+        {
+            try
+            {
+                if (telefono != null)
+                {
+                    using (BDCRMEntities db = new BDCRMEntities())
+                    {
+                        TelefonosEmpresa nuevo = new TelefonosEmpresa();
 
+
+                        nuevo.IDEmpresa = telefono.ID;
+                        nuevo.Telefono = telefono.Telefono;
+
+                        db.TelefonoEmpresa.Add(nuevo);
+                        db.SaveChanges();
+                        return true;
+                    }
+                }
+                else
+                {
+                    return false;
+                }
+
+
+
+            }
+            catch (SqlException ex)
+            {
+                FaultException fault = new FaultException("Error SQL: " + ex.Message, new FaultCode("SQL"));
+                return false;
+
+            }
+            catch (Exception ex)
+            {
+                FaultException fault = new FaultException("Error: " + ex.Message, new FaultCode("GENERAL"));
+                return false;
+            }
+        }
+
+        /// <summary>
+        /// metodo que borra un telefono de una empresa
+        /// </summary>
+        /// <param name="telefono">identificador del telefono a borrar</param>
+        /// <returns>verdadero o falso segun si la accion se llevo a cabo o no</returns>
+        public bool BorrarTelefonoEmpresa(String telefono)
+        {
+            try
+            {
+                using (BDCRMEntities db = new BDCRMEntities())
+                {
+                    var consulta = from tabla in db.TelefonoEmpresa where tabla.Telefono == telefono select tabla;
+                    TelefonosEmpresa borrar = (TelefonosEmpresa)consulta.First();
+
+                    db.TelefonoEmpresa.Remove(borrar);
+                    db.SaveChanges();
+                    return true;
+
+
+                }
+            }
+            catch (SqlException ex)
+            {
+                FaultException fault = new FaultException("Error SQL: " + ex.Message, new FaultCode("SQL"));
+                return false;
+
+            }
+            catch (Exception ex)
+            {
+                FaultException fault = new FaultException("Error: " + ex.Message, new FaultCode("GENERAL"));
+                return false;
+            }
+        }
+
+
+        /// <summary>
+        /// metodo que añade un telefono a un contacto
+        /// </summary>
+        /// <param name="telefono">nombre con el telefono nuevo y el contacto al que pertenece</param>
+        /// <returns>verdadero o falso segun si la accion se llevo a cabo o no</returns>
+        public bool AddTelefonoContacto(TelefonosData telefono)
+        {
+            try
+            {
+                if (telefono != null)
+                {
+                    using (BDCRMEntities db = new BDCRMEntities())
+                    {
+                        TelefonosContacto nuevo = new TelefonosContacto();
+
+
+                        nuevo.IDContacto = telefono.ID;
+                        nuevo.Telefono = telefono.Telefono;
+
+                        db.TelefonoContacto.Add(nuevo);
+                        db.SaveChanges();
+                        return true;
+                    }
+                }
+                else
+                {
+                    return false;
+                }
+
+
+
+            }
+            catch (SqlException ex)
+            {
+                FaultException fault = new FaultException("Error SQL: " + ex.Message, new FaultCode("SQL"));
+                return false;
+
+            }
+            catch (Exception ex)
+            {
+                FaultException fault = new FaultException("Error: " + ex.Message, new FaultCode("GENERAL"));
+                return false;
+            }
+        }
+
+
+        /// <summary>
+        /// metodo que borra un telefono de un contacto
+        /// </summary>
+        /// <param name="telefono">identificador del telefono a borrar</param>
+        /// <returns>verdadero o falso segun si la accion se llevo a cabo o no</returns>
+        public bool BorrarTelefonoContacto(String telefono)
+        {
+            try
+            {
+                using (BDCRMEntities db = new BDCRMEntities())
+                {
+                    var consulta = from tabla in db.TelefonoContacto where tabla.Telefono == telefono select tabla;
+                    TelefonosContacto borrar = (TelefonosContacto)consulta.First();
+
+                    db.TelefonoContacto.Remove(borrar);
+                    db.SaveChanges();
+                    return true;
+
+
+                }
+            }
+            catch (SqlException ex)
+            {
+                FaultException fault = new FaultException("Error SQL: " + ex.Message, new FaultCode("SQL"));
+                return false;
+
+            }
+            catch (Exception ex)
+            {
+                FaultException fault = new FaultException("Error: " + ex.Message, new FaultCode("GENERAL"));
+                return false;
+            }
+        }
 
 
     }

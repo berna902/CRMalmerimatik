@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ServicioCRM.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Serialization;
@@ -142,7 +143,46 @@ namespace almerimatik.ServicioCRM
         /// </summary>
         /// <param name="idTipo">identificador del tipo de Accion a borrar</param>
         /// <returns>verdadero o falso segun si la accion se llevo a cabo o no</returns>
+        [OperationContract]
         bool BorrarTipoAccion(int idTipo);
+
+
+        /// <summary>
+        /// Operacion del servicio que añade un telefono a una empresa
+        /// </summary>
+        /// <param name="telefono">nombre con el telefono nuevo y el identificador de la empresa</param>
+        /// <returns>verdadero o falso segun si la accion se llevo a cabo o no</returns>
+        [OperationContract]
+        bool AddTelefonoEmpresa(TelefonosData telefono);
+
+
+        /// <summary>
+        ///Operacion del servicio que borra un telefono de una empresa
+        /// </summary>
+        /// <param name="telefono">identificador del telefono a borrar</param>
+        /// <returns>verdadero o falso segun si la accion se llevo a cabo o no</returns>
+        [OperationContract]
+        bool BorrarTelefonoEmpresa(String telefono);
+
+
+        /// <summary>
+        /// Operacion del servicio que añade un telefono a un contacto
+        /// </summary>
+        /// <param name="telefono">nombre con el telefono nuevo y el identificador del contacto</param>
+        /// <returns>verdadero o falso segun si la accion se llevo a cabo o no</returns>
+        [OperationContract]
+        bool AddTelefonoContacto(TelefonosData telefono);
+
+
+        /// <summary>
+        ///Operacion del servicio que borra un telefono de un contacto
+        /// </summary>
+        /// <param name="telefono">identificador del telefono a borrar</param>
+        /// <returns>verdadero o falso segun si la accion se llevo a cabo o no</returns>
+        [OperationContract]
+        bool BorrarTelefonoContacto(String telefono);
+
+
 
 
     }
