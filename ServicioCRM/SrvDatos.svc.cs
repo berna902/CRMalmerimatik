@@ -309,19 +309,29 @@ namespace almerimatik.ServicioCRM
             {
                 using (BDCRMEntities db = new BDCRMEntities())
                 {
-                    Empresas nuevo = new Empresas();
+                    if (empresa != null)
+                    {
+                        Empresas nuevo = new Empresas();
 
-                    nuevo.ID = empresa.ID;
-                    nuevo.Nombre = empresa.Nombre;
-                    nuevo.RazonSocial = empresa.RazonSocial;
-                    nuevo.CIF = empresa.CIF;
-                    nuevo.Email = empresa.Email;
-                    nuevo.Web = empresa.Web;
-                    nuevo.TipoEmpresa = 0;
+
+                        nuevo.Nombre = empresa.Nombre;
+                        nuevo.RazonSocial = empresa.RazonSocial;
+                        nuevo.CIF = empresa.CIF;
+                        nuevo.Email = empresa.Email;
+                        nuevo.Web = empresa.Web;
+                        nuevo.TipoEmpresa = empresa.IDTipoEmpresa;
+
+                        db.Empresa.Add(nuevo);
+                        db.SaveChanges();
+                        return true;
+
+                    }
+                    else
+                    {
+                        return false;
+                    }
+
                     
-                    db.Empresa.Add(nuevo);
-                    db.SaveChanges();
-                    return true;
                 }
 
             }
@@ -441,6 +451,329 @@ namespace almerimatik.ServicioCRM
                     Empresas emp = (Empresas)consulta.First();
 
                     db.Empresa.Remove(emp);
+                    db.SaveChanges();
+                    return true;
+
+
+                }
+            }
+            catch (SqlException ex)
+            {
+                FaultException fault = new FaultException("Error SQL: " + ex.Message, new FaultCode("SQL"));
+                return false;
+
+            }
+            catch (Exception ex)
+            {
+                FaultException fault = new FaultException("Error: " + ex.Message, new FaultCode("GENERAL"));
+                return false;
+            }
+        }
+
+
+        /// <summary>
+        /// metodo que añade un tipo de empresa a la BD
+        /// </summary>
+        /// <param name="tipo">nombre con el tipo nuevo</param>
+        /// <returns>verdadero o falso segun si la accion se llevo a cabo o no</returns>
+        public bool AddTipoEmpresa(String tipo)
+        {
+            try
+            {
+                if (tipo != "" && tipo != null)
+                {
+
+                    using (BDCRMEntities db = new BDCRMEntities())
+                    {
+                        TipoEmpresas nuevo = new TipoEmpresas();
+
+
+                        nuevo.Tipo = tipo;
+
+                        db.TipoEmpresa.Add(nuevo);
+                        db.SaveChanges();
+                        return true;
+                    }
+
+                }
+                else
+                {
+                    return false;
+                }
+                
+
+            }
+            catch (SqlException ex)
+            {
+                FaultException fault = new FaultException("Error SQL: " + ex.Message, new FaultCode("SQL"));
+                return false;
+
+            }
+            catch (Exception ex)
+            {
+                FaultException fault = new FaultException("Error: " + ex.Message, new FaultCode("GENERAL"));
+                return false;
+            }
+        }
+
+
+
+        /// <summary>
+        /// metodo que borra un tipo de empresa de la BD
+        /// </summary>
+        /// <param name="idTipo">identificador del tipo de empresa a borrar</param>
+        /// <returns>verdadero o falso segun si la accion se llevo a cabo o no</returns>
+        public bool BorrarTipoEmpresa(int idTipo)
+        {
+            try
+            {
+                using (BDCRMEntities db = new BDCRMEntities())
+                {
+                    var consulta = from tabla in db.TipoEmpresa where tabla.ID == idTipo select tabla;
+                    TipoEmpresas borrar = (TipoEmpresas)consulta.First();
+
+                    db.TipoEmpresa.Remove(borrar);
+                    db.SaveChanges();
+                    return true;
+
+
+                }
+            }
+            catch (SqlException ex)
+            {
+                FaultException fault = new FaultException("Error SQL: " + ex.Message, new FaultCode("SQL"));
+                return false;
+
+            }
+            catch (Exception ex)
+            {
+                FaultException fault = new FaultException("Error: " + ex.Message, new FaultCode("GENERAL"));
+                return false;
+            }
+        }
+
+        
+        /// <summary>
+        /// metodo que añade un tipo de accion a la BD
+        /// </summary>
+        /// <param name="tipo">nombre con el tipo nuevo</param>
+        /// <returns>verdadero o falso segun si la accion se llevo a cabo o no</returns>
+        public bool AddTipoAccion(String tipo)
+        {
+            try
+            {
+                if (tipo != "" && tipo != null)
+                {
+                    using (BDCRMEntities db = new BDCRMEntities())
+                    {
+                        TipoAcciones nuevo = new TipoAcciones();
+
+
+                        nuevo.Tipo = tipo;
+
+                        db.TipoAccion.Add(nuevo);
+                        db.SaveChanges();
+                        return true;
+                    }
+                }
+                else
+                {
+                    return false;
+                }
+
+                
+
+            }
+            catch (SqlException ex)
+            {
+                FaultException fault = new FaultException("Error SQL: " + ex.Message, new FaultCode("SQL"));
+                return false;
+
+            }
+            catch (Exception ex)
+            {
+                FaultException fault = new FaultException("Error: " + ex.Message, new FaultCode("GENERAL"));
+                return false;
+            }
+        }
+
+
+        /// <summary>
+        /// metodo que borra un tipo de Accion de la BD
+        /// </summary>
+        /// <param name="idTipo">identificador del tipo de Accion a borrar</param>
+        /// <returns>verdadero o falso segun si la accion se llevo a cabo o no</returns>
+        public bool BorrarTipoAccion(int idTipo)
+        {
+            try
+            {
+                using (BDCRMEntities db = new BDCRMEntities())
+                {
+                    var consulta = from tabla in db.TipoAccion where tabla.ID == idTipo select tabla;
+                    TipoAcciones borrar = (TipoAcciones)consulta.First();
+
+                    db.TipoAccion.Remove(borrar);
+                    db.SaveChanges();
+                    return true;
+
+
+                }
+            }
+            catch (SqlException ex)
+            {
+                FaultException fault = new FaultException("Error SQL: " + ex.Message, new FaultCode("SQL"));
+                return false;
+
+            }
+            catch (Exception ex)
+            {
+                FaultException fault = new FaultException("Error: " + ex.Message, new FaultCode("GENERAL"));
+                return false;
+            }
+        }
+
+
+        /// <summary>
+        /// metodo que añade un telefono a una empresa
+        /// </summary>
+        /// <param name="telefono">nombre con el telefono nuevo yla empresa a la que pertenece</param>
+        /// <returns>verdadero o falso segun si la accion se llevo a cabo o no</returns>
+        public bool AddTelefonoEmpresa(TelefonosData telefono)
+        {
+            try
+            {
+                if (telefono != null)
+                {
+                    using (BDCRMEntities db = new BDCRMEntities())
+                    {
+                        TelefonosEmpresa nuevo = new TelefonosEmpresa();
+
+
+                        nuevo.IDEmpresa = telefono.ID;
+                        nuevo.Telefono = telefono.Telefono;
+
+                        db.TelefonoEmpresa.Add(nuevo);
+                        db.SaveChanges();
+                        return true;
+                    }
+                }
+                else
+                {
+                    return false;
+                }
+
+
+
+            }
+            catch (SqlException ex)
+            {
+                FaultException fault = new FaultException("Error SQL: " + ex.Message, new FaultCode("SQL"));
+                return false;
+
+            }
+            catch (Exception ex)
+            {
+                FaultException fault = new FaultException("Error: " + ex.Message, new FaultCode("GENERAL"));
+                return false;
+            }
+        }
+
+        /// <summary>
+        /// metodo que borra un telefono de una empresa
+        /// </summary>
+        /// <param name="telefono">identificador del telefono a borrar</param>
+        /// <returns>verdadero o falso segun si la accion se llevo a cabo o no</returns>
+        public bool BorrarTelefonoEmpresa(String telefono)
+        {
+            try
+            {
+                using (BDCRMEntities db = new BDCRMEntities())
+                {
+                    var consulta = from tabla in db.TelefonoEmpresa where tabla.Telefono == telefono select tabla;
+                    TelefonosEmpresa borrar = (TelefonosEmpresa)consulta.First();
+
+                    db.TelefonoEmpresa.Remove(borrar);
+                    db.SaveChanges();
+                    return true;
+
+
+                }
+            }
+            catch (SqlException ex)
+            {
+                FaultException fault = new FaultException("Error SQL: " + ex.Message, new FaultCode("SQL"));
+                return false;
+
+            }
+            catch (Exception ex)
+            {
+                FaultException fault = new FaultException("Error: " + ex.Message, new FaultCode("GENERAL"));
+                return false;
+            }
+        }
+
+
+        /// <summary>
+        /// metodo que añade un telefono a un contacto
+        /// </summary>
+        /// <param name="telefono">nombre con el telefono nuevo y el contacto al que pertenece</param>
+        /// <returns>verdadero o falso segun si la accion se llevo a cabo o no</returns>
+        public bool AddTelefonoContacto(TelefonosData telefono)
+        {
+            try
+            {
+                if (telefono != null)
+                {
+                    using (BDCRMEntities db = new BDCRMEntities())
+                    {
+                        TelefonosContacto nuevo = new TelefonosContacto();
+
+
+                        nuevo.IDContacto = telefono.ID;
+                        nuevo.Telefono = telefono.Telefono;
+
+                        db.TelefonoContacto.Add(nuevo);
+                        db.SaveChanges();
+                        return true;
+                    }
+                }
+                else
+                {
+                    return false;
+                }
+
+
+
+            }
+            catch (SqlException ex)
+            {
+                FaultException fault = new FaultException("Error SQL: " + ex.Message, new FaultCode("SQL"));
+                return false;
+
+            }
+            catch (Exception ex)
+            {
+                FaultException fault = new FaultException("Error: " + ex.Message, new FaultCode("GENERAL"));
+                return false;
+            }
+        }
+
+
+        /// <summary>
+        /// metodo que borra un telefono de un contacto
+        /// </summary>
+        /// <param name="telefono">identificador del telefono a borrar</param>
+        /// <returns>verdadero o falso segun si la accion se llevo a cabo o no</returns>
+        public bool BorrarTelefonoContacto(String telefono)
+        {
+            try
+            {
+                using (BDCRMEntities db = new BDCRMEntities())
+                {
+                    var consulta = from tabla in db.TelefonoContacto where tabla.Telefono == telefono select tabla;
+                    TelefonosContacto borrar = (TelefonosContacto)consulta.First();
+
+                    db.TelefonoContacto.Remove(borrar);
                     db.SaveChanges();
                     return true;
 
