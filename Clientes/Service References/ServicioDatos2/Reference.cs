@@ -125,13 +125,19 @@ namespace Clientes.ServicioDatos2 {
         private int IDField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int IDTipoEmpresaField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string NombreField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string RazonSocialField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int TipoEmpresaField;
+        private string TelefonoField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string TipoEmpresaField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string WebField;
@@ -186,6 +192,19 @@ namespace Clientes.ServicioDatos2 {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
+        public int IDTipoEmpresa {
+            get {
+                return this.IDTipoEmpresaField;
+            }
+            set {
+                if ((this.IDTipoEmpresaField.Equals(value) != true)) {
+                    this.IDTipoEmpresaField = value;
+                    this.RaisePropertyChanged("IDTipoEmpresa");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
         public string Nombre {
             get {
                 return this.NombreField;
@@ -212,12 +231,25 @@ namespace Clientes.ServicioDatos2 {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public int TipoEmpresa {
+        public string Telefono {
+            get {
+                return this.TelefonoField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.TelefonoField, value) != true)) {
+                    this.TelefonoField = value;
+                    this.RaisePropertyChanged("Telefono");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string TipoEmpresa {
             get {
                 return this.TipoEmpresaField;
             }
             set {
-                if ((this.TipoEmpresaField.Equals(value) != true)) {
+                if ((object.ReferenceEquals(this.TipoEmpresaField, value) != true)) {
                     this.TipoEmpresaField = value;
                     this.RaisePropertyChanged("TipoEmpresa");
                 }
@@ -587,6 +619,176 @@ namespace Clientes.ServicioDatos2 {
         }
     }
     
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="ContactoData", Namespace="http://schemas.datacontract.org/2004/07/almerimatik.ServicioCRM")]
+    [System.SerializableAttribute()]
+    public partial class ContactoData : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string EmailField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int IDField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int IDEmpresaField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string NombreField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string TelefonoField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Email {
+            get {
+                return this.EmailField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.EmailField, value) != true)) {
+                    this.EmailField = value;
+                    this.RaisePropertyChanged("Email");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int ID {
+            get {
+                return this.IDField;
+            }
+            set {
+                if ((this.IDField.Equals(value) != true)) {
+                    this.IDField = value;
+                    this.RaisePropertyChanged("ID");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int IDEmpresa {
+            get {
+                return this.IDEmpresaField;
+            }
+            set {
+                if ((this.IDEmpresaField.Equals(value) != true)) {
+                    this.IDEmpresaField = value;
+                    this.RaisePropertyChanged("IDEmpresa");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Nombre {
+            get {
+                return this.NombreField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.NombreField, value) != true)) {
+                    this.NombreField = value;
+                    this.RaisePropertyChanged("Nombre");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Telefono {
+            get {
+                return this.TelefonoField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.TelefonoField, value) != true)) {
+                    this.TelefonoField = value;
+                    this.RaisePropertyChanged("Telefono");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="CargoData", Namespace="http://schemas.datacontract.org/2004/07/almerimatik.ServicioCRM")]
+    [System.SerializableAttribute()]
+    public partial class CargoData : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string CargoField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int IDField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Cargo {
+            get {
+                return this.CargoField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.CargoField, value) != true)) {
+                    this.CargoField = value;
+                    this.RaisePropertyChanged("Cargo");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int ID {
+            get {
+                return this.IDField;
+            }
+            set {
+                if ((this.IDField.Equals(value) != true)) {
+                    this.IDField = value;
+                    this.RaisePropertyChanged("ID");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="ServicioDatos2.ISrvDatos")]
     public interface ISrvDatos {
@@ -632,6 +834,36 @@ namespace Clientes.ServicioDatos2 {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISrvDatos/GetAllTiposAccion", ReplyAction="http://tempuri.org/ISrvDatos/GetAllTiposAccionResponse")]
         System.Threading.Tasks.Task<Clientes.ServicioDatos2.TipoAccionData[]> GetAllTiposAccionAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISrvDatos/GetAllContactos", ReplyAction="http://tempuri.org/ISrvDatos/GetAllContactosResponse")]
+        Clientes.ServicioDatos2.ContactoData[] GetAllContactos(int idEmpresa);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISrvDatos/GetAllContactos", ReplyAction="http://tempuri.org/ISrvDatos/GetAllContactosResponse")]
+        System.Threading.Tasks.Task<Clientes.ServicioDatos2.ContactoData[]> GetAllContactosAsync(int idEmpresa);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISrvDatos/GetAllCargos", ReplyAction="http://tempuri.org/ISrvDatos/GetAllCargosResponse")]
+        Clientes.ServicioDatos2.CargoData[] GetAllCargos();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISrvDatos/GetAllCargos", ReplyAction="http://tempuri.org/ISrvDatos/GetAllCargosResponse")]
+        System.Threading.Tasks.Task<Clientes.ServicioDatos2.CargoData[]> GetAllCargosAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISrvDatos/GetEmpresa", ReplyAction="http://tempuri.org/ISrvDatos/GetEmpresaResponse")]
+        Clientes.ServicioDatos2.EmpresaData GetEmpresa(int idEmpresa);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISrvDatos/GetEmpresa", ReplyAction="http://tempuri.org/ISrvDatos/GetEmpresaResponse")]
+        System.Threading.Tasks.Task<Clientes.ServicioDatos2.EmpresaData> GetEmpresaAsync(int idEmpresa);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISrvDatos/EditEmpresa", ReplyAction="http://tempuri.org/ISrvDatos/EditEmpresaResponse")]
+        bool EditEmpresa(Clientes.ServicioDatos2.EmpresaData empresa);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISrvDatos/EditEmpresa", ReplyAction="http://tempuri.org/ISrvDatos/EditEmpresaResponse")]
+        System.Threading.Tasks.Task<bool> EditEmpresaAsync(Clientes.ServicioDatos2.EmpresaData empresa);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISrvDatos/AddEmpresa", ReplyAction="http://tempuri.org/ISrvDatos/AddEmpresaResponse")]
+        bool AddEmpresa(Clientes.ServicioDatos2.EmpresaData empresa);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISrvDatos/AddEmpresa", ReplyAction="http://tempuri.org/ISrvDatos/AddEmpresaResponse")]
+        System.Threading.Tasks.Task<bool> AddEmpresaAsync(Clientes.ServicioDatos2.EmpresaData empresa);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -715,6 +947,46 @@ namespace Clientes.ServicioDatos2 {
         
         public System.Threading.Tasks.Task<Clientes.ServicioDatos2.TipoAccionData[]> GetAllTiposAccionAsync() {
             return base.Channel.GetAllTiposAccionAsync();
+        }
+        
+        public Clientes.ServicioDatos2.ContactoData[] GetAllContactos(int idEmpresa) {
+            return base.Channel.GetAllContactos(idEmpresa);
+        }
+        
+        public System.Threading.Tasks.Task<Clientes.ServicioDatos2.ContactoData[]> GetAllContactosAsync(int idEmpresa) {
+            return base.Channel.GetAllContactosAsync(idEmpresa);
+        }
+        
+        public Clientes.ServicioDatos2.CargoData[] GetAllCargos() {
+            return base.Channel.GetAllCargos();
+        }
+        
+        public System.Threading.Tasks.Task<Clientes.ServicioDatos2.CargoData[]> GetAllCargosAsync() {
+            return base.Channel.GetAllCargosAsync();
+        }
+        
+        public Clientes.ServicioDatos2.EmpresaData GetEmpresa(int idEmpresa) {
+            return base.Channel.GetEmpresa(idEmpresa);
+        }
+        
+        public System.Threading.Tasks.Task<Clientes.ServicioDatos2.EmpresaData> GetEmpresaAsync(int idEmpresa) {
+            return base.Channel.GetEmpresaAsync(idEmpresa);
+        }
+        
+        public bool EditEmpresa(Clientes.ServicioDatos2.EmpresaData empresa) {
+            return base.Channel.EditEmpresa(empresa);
+        }
+        
+        public System.Threading.Tasks.Task<bool> EditEmpresaAsync(Clientes.ServicioDatos2.EmpresaData empresa) {
+            return base.Channel.EditEmpresaAsync(empresa);
+        }
+        
+        public bool AddEmpresa(Clientes.ServicioDatos2.EmpresaData empresa) {
+            return base.Channel.AddEmpresa(empresa);
+        }
+        
+        public System.Threading.Tasks.Task<bool> AddEmpresaAsync(Clientes.ServicioDatos2.EmpresaData empresa) {
+            return base.Channel.AddEmpresaAsync(empresa);
         }
     }
 }

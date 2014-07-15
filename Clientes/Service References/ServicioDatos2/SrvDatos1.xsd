@@ -26,9 +26,11 @@
       <xs:element minOccurs="0" name="CIF" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Email" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="ID" type="xs:int" />
+      <xs:element minOccurs="0" name="IDTipoEmpresa" type="xs:int" />
       <xs:element minOccurs="0" name="Nombre" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="RazonSocial" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="TipoEmpresa" type="xs:int" />
+      <xs:element minOccurs="0" name="Telefono" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="TipoEmpresa" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Web" nillable="true" type="xs:string" />
     </xs:sequence>
   </xs:complexType>
@@ -91,4 +93,33 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="TipoAccionData" nillable="true" type="tns:TipoAccionData" />
+  <xs:complexType name="ArrayOfContactoData">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ContactoData" nillable="true" type="tns:ContactoData" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfContactoData" nillable="true" type="tns:ArrayOfContactoData" />
+  <xs:complexType name="ContactoData">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Email" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ID" type="xs:int" />
+      <xs:element minOccurs="0" name="IDEmpresa" type="xs:int" />
+      <xs:element minOccurs="0" name="Nombre" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Telefono" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ContactoData" nillable="true" type="tns:ContactoData" />
+  <xs:complexType name="ArrayOfCargoData">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="CargoData" nillable="true" type="tns:CargoData" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfCargoData" nillable="true" type="tns:ArrayOfCargoData" />
+  <xs:complexType name="CargoData">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Cargo" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ID" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="CargoData" nillable="true" type="tns:CargoData" />
 </xs:schema>

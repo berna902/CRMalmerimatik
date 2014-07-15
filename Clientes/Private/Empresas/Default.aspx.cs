@@ -24,5 +24,18 @@ namespace Clientes.Private.Empresas
 
             }
         }
+
+        protected void GridView1_RowEditing(object sender, GridViewEditEventArgs e)
+        {
+            string id = this.GridView1.Rows[e.NewEditIndex].Cells[0].Text;
+            this.Response.Redirect("empresa.aspx?estado=1&id=" + id);
+        }
+
+        protected void GridView1_RowDeleting(object sender, GridViewDeleteEventArgs e)
+        {
+            string s = "prueba";
+        }
+
+
     }
 }
