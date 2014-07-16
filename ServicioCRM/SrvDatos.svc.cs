@@ -303,7 +303,7 @@ namespace almerimatik.ServicioCRM
         /// </summary>
         /// <param name="empresa">datos de la empresa nueva</param>
         /// <returns></returns>
-        public bool AddEmpresa(EmpresaData empresa)
+        public int AddEmpresa(EmpresaData empresa)
         {
             try
             {
@@ -323,12 +323,12 @@ namespace almerimatik.ServicioCRM
 
                         db.Empresa.Add(nuevo);
                         db.SaveChanges();
-                        return true;
+                        return nuevo.ID;
 
                     }
                     else
                     {
-                        return false;
+                        return -1;
                     }
 
                     
@@ -338,13 +338,13 @@ namespace almerimatik.ServicioCRM
             catch (SqlException ex)
             {
                 FaultException fault = new FaultException("Error SQL: " + ex.Message, new FaultCode("SQL"));
-                return false;
+                return -1;
 
             }
             catch (Exception ex)
             {
                 FaultException fault = new FaultException("Error: " + ex.Message, new FaultCode("GENERAL"));
-                return false;
+                return -1;
             }
         }
 
@@ -448,7 +448,7 @@ namespace almerimatik.ServicioCRM
                 using (BDCRMEntities db = new BDCRMEntities())
                 {
                     var consulta = from tabla in db.Empresa where tabla.ID == idEmpresa select tabla;
-                    Empresas emp = (Empresas)consulta.First();
+                    Empresa emp = consulta.First();
 
                     db.Empresa.Remove(emp);
                     db.SaveChanges();
@@ -530,7 +530,7 @@ namespace almerimatik.ServicioCRM
                 using (BDCRMEntities db = new BDCRMEntities())
                 {
                     var consulta = from tabla in db.TipoEmpresa where tabla.ID == idTipo select tabla;
-                    TipoEmpresas borrar = (TipoEmpresas)consulta.First();
+                    TipoEmpresa borrar = consulta.First();
 
                     db.TipoEmpresa.Remove(borrar);
                     db.SaveChanges();
@@ -610,7 +610,7 @@ namespace almerimatik.ServicioCRM
                 using (BDCRMEntities db = new BDCRMEntities())
                 {
                     var consulta = from tabla in db.TipoAccion where tabla.ID == idTipo select tabla;
-                    TipoAcciones borrar = (TipoAcciones)consulta.First();
+                    TipoAccion borrar = consulta.First();
 
                     db.TipoAccion.Remove(borrar);
                     db.SaveChanges();
@@ -690,7 +690,7 @@ namespace almerimatik.ServicioCRM
                 using (BDCRMEntities db = new BDCRMEntities())
                 {
                     var consulta = from tabla in db.TelefonoEmpresa where tabla.Telefono == telefono select tabla;
-                    TelefonosEmpresa borrar = (TelefonosEmpresa)consulta.First();
+                    TelefonoEmpresa borrar = consulta.First();
 
                     db.TelefonoEmpresa.Remove(borrar);
                     db.SaveChanges();
@@ -771,7 +771,7 @@ namespace almerimatik.ServicioCRM
                 using (BDCRMEntities db = new BDCRMEntities())
                 {
                     var consulta = from tabla in db.TelefonoContacto where tabla.Telefono == telefono select tabla;
-                    TelefonosContacto borrar = (TelefonosContacto)consulta.First();
+                    TelefonoContacto borrar = consulta.First();
 
                     db.TelefonoContacto.Remove(borrar);
                     db.SaveChanges();

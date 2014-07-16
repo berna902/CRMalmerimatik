@@ -100,9 +100,9 @@ namespace almerimatik.ServicioCRM
         /// Operacion del servicio que guarda los datos de una empresa nueva
         /// </summary>
         /// <param name="empresa">datos de la empresa</param>
-        /// <returns>verdadero o falso segun si la accion se llevo a cabo o no</returns>
+        /// <returns>devuelve el id de la nueva empresa o -1 si es error</returns>
         [OperationContract]
-        bool AddEmpresa(EmpresaData empresa);
+        int AddEmpresa(EmpresaData empresa);
 
         /// <summary>
         /// Operacion del Servicio que Borra una empresa segun su identificador
