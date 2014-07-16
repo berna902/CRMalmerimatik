@@ -16,7 +16,8 @@ namespace Pruebas
         [TestMethod]
         public void GetAllUsersTest()
         {
-            List<UserData> lst = SrvDatos.GetAllUsers();
+            SrvDatos d = new SrvDatos();
+            List<UserData> lst = d.GetAllUsers();
             Assert.AreEqual(lst.Count, 3);
             
         }

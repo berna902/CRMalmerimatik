@@ -311,7 +311,7 @@ namespace almerimatik.ServicioCRM
                 {
                     if (empresa != null)
                     {
-                        Empresas nuevo = new Empresas();
+                        Empresa nuevo = new Empresa();
 
 
                         nuevo.Nombre = empresa.Nombre;
@@ -364,7 +364,7 @@ namespace almerimatik.ServicioCRM
                     {
                         var consulta = from tabla in db.Empresa where tabla.ID == empresa.ID select tabla;
 
-                        Empresas nuevo = (Empresas)consulta.First();
+                        Empresa nuevo = consulta.First();
 
                         nuevo.Nombre = empresa.Nombre;
                         nuevo.Web = empresa.Web;
@@ -485,7 +485,7 @@ namespace almerimatik.ServicioCRM
 
                     using (BDCRMEntities db = new BDCRMEntities())
                     {
-                        TipoEmpresas nuevo = new TipoEmpresas();
+                        TipoEmpresa nuevo = new TipoEmpresa();
 
 
                         nuevo.Tipo = tipo;
@@ -566,7 +566,7 @@ namespace almerimatik.ServicioCRM
                 {
                     using (BDCRMEntities db = new BDCRMEntities())
                     {
-                        TipoAcciones nuevo = new TipoAcciones();
+                        TipoAccion nuevo = new TipoAccion();
 
 
                         nuevo.Tipo = tipo;
@@ -646,7 +646,7 @@ namespace almerimatik.ServicioCRM
                 {
                     using (BDCRMEntities db = new BDCRMEntities())
                     {
-                        TelefonosEmpresa nuevo = new TelefonosEmpresa();
+                        TelefonoEmpresa nuevo = new TelefonoEmpresa();
 
 
                         nuevo.IDEmpresa = telefono.ID;
@@ -726,7 +726,7 @@ namespace almerimatik.ServicioCRM
                 {
                     using (BDCRMEntities db = new BDCRMEntities())
                     {
-                        TelefonosContacto nuevo = new TelefonosContacto();
+                        TelefonoContacto nuevo = new TelefonoContacto();
 
 
                         nuevo.IDContacto = telefono.ID;
