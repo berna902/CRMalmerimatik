@@ -79,6 +79,60 @@
   <wsdl:message name="ISrvDatos_AddEmpresa_OutputMessage">
     <wsdl:part name="parameters" element="tns:AddEmpresaResponse" />
   </wsdl:message>
+  <wsdl:message name="ISrvDatos_BorrarEmpresa_InputMessage">
+    <wsdl:part name="parameters" element="tns:BorrarEmpresa" />
+  </wsdl:message>
+  <wsdl:message name="ISrvDatos_BorrarEmpresa_OutputMessage">
+    <wsdl:part name="parameters" element="tns:BorrarEmpresaResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISrvDatos_AddTipoEmpresa_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddTipoEmpresa" />
+  </wsdl:message>
+  <wsdl:message name="ISrvDatos_AddTipoEmpresa_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddTipoEmpresaResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISrvDatos_BorrarTipoEmpresa_InputMessage">
+    <wsdl:part name="parameters" element="tns:BorrarTipoEmpresa" />
+  </wsdl:message>
+  <wsdl:message name="ISrvDatos_BorrarTipoEmpresa_OutputMessage">
+    <wsdl:part name="parameters" element="tns:BorrarTipoEmpresaResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISrvDatos_AddTipoAccion_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddTipoAccion" />
+  </wsdl:message>
+  <wsdl:message name="ISrvDatos_AddTipoAccion_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddTipoAccionResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISrvDatos_BorrarTipoAccion_InputMessage">
+    <wsdl:part name="parameters" element="tns:BorrarTipoAccion" />
+  </wsdl:message>
+  <wsdl:message name="ISrvDatos_BorrarTipoAccion_OutputMessage">
+    <wsdl:part name="parameters" element="tns:BorrarTipoAccionResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISrvDatos_AddTelefonoEmpresa_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddTelefonoEmpresa" />
+  </wsdl:message>
+  <wsdl:message name="ISrvDatos_AddTelefonoEmpresa_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddTelefonoEmpresaResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISrvDatos_BorrarTelefonoEmpresa_InputMessage">
+    <wsdl:part name="parameters" element="tns:BorrarTelefonoEmpresa" />
+  </wsdl:message>
+  <wsdl:message name="ISrvDatos_BorrarTelefonoEmpresa_OutputMessage">
+    <wsdl:part name="parameters" element="tns:BorrarTelefonoEmpresaResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISrvDatos_AddTelefonoContacto_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddTelefonoContacto" />
+  </wsdl:message>
+  <wsdl:message name="ISrvDatos_AddTelefonoContacto_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddTelefonoContactoResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISrvDatos_BorrarTelefonoContacto_InputMessage">
+    <wsdl:part name="parameters" element="tns:BorrarTelefonoContacto" />
+  </wsdl:message>
+  <wsdl:message name="ISrvDatos_BorrarTelefonoContacto_OutputMessage">
+    <wsdl:part name="parameters" element="tns:BorrarTelefonoContactoResponse" />
+  </wsdl:message>
   <wsdl:portType name="ISrvDatos">
     <wsdl:operation name="GetAllUsers">
       <wsdl:input wsaw:Action="http://tempuri.org/ISrvDatos/GetAllUsers" message="tns:ISrvDatos_GetAllUsers_InputMessage" />
@@ -127,6 +181,42 @@
     <wsdl:operation name="AddEmpresa">
       <wsdl:input wsaw:Action="http://tempuri.org/ISrvDatos/AddEmpresa" message="tns:ISrvDatos_AddEmpresa_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/ISrvDatos/AddEmpresaResponse" message="tns:ISrvDatos_AddEmpresa_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="BorrarEmpresa">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISrvDatos/BorrarEmpresa" message="tns:ISrvDatos_BorrarEmpresa_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISrvDatos/BorrarEmpresaResponse" message="tns:ISrvDatos_BorrarEmpresa_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AddTipoEmpresa">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISrvDatos/AddTipoEmpresa" message="tns:ISrvDatos_AddTipoEmpresa_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISrvDatos/AddTipoEmpresaResponse" message="tns:ISrvDatos_AddTipoEmpresa_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="BorrarTipoEmpresa">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISrvDatos/BorrarTipoEmpresa" message="tns:ISrvDatos_BorrarTipoEmpresa_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISrvDatos/BorrarTipoEmpresaResponse" message="tns:ISrvDatos_BorrarTipoEmpresa_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AddTipoAccion">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISrvDatos/AddTipoAccion" message="tns:ISrvDatos_AddTipoAccion_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISrvDatos/AddTipoAccionResponse" message="tns:ISrvDatos_AddTipoAccion_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="BorrarTipoAccion">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISrvDatos/BorrarTipoAccion" message="tns:ISrvDatos_BorrarTipoAccion_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISrvDatos/BorrarTipoAccionResponse" message="tns:ISrvDatos_BorrarTipoAccion_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AddTelefonoEmpresa">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISrvDatos/AddTelefonoEmpresa" message="tns:ISrvDatos_AddTelefonoEmpresa_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISrvDatos/AddTelefonoEmpresaResponse" message="tns:ISrvDatos_AddTelefonoEmpresa_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="BorrarTelefonoEmpresa">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISrvDatos/BorrarTelefonoEmpresa" message="tns:ISrvDatos_BorrarTelefonoEmpresa_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISrvDatos/BorrarTelefonoEmpresaResponse" message="tns:ISrvDatos_BorrarTelefonoEmpresa_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AddTelefonoContacto">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISrvDatos/AddTelefonoContacto" message="tns:ISrvDatos_AddTelefonoContacto_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISrvDatos/AddTelefonoContactoResponse" message="tns:ISrvDatos_AddTelefonoContacto_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="BorrarTelefonoContacto">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISrvDatos/BorrarTelefonoContacto" message="tns:ISrvDatos_BorrarTelefonoContacto_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISrvDatos/BorrarTelefonoContactoResponse" message="tns:ISrvDatos_BorrarTelefonoContacto_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_ISrvDatos" type="tns:ISrvDatos">
@@ -232,6 +322,87 @@
     </wsdl:operation>
     <wsdl:operation name="AddEmpresa">
       <soap:operation soapAction="http://tempuri.org/ISrvDatos/AddEmpresa" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="BorrarEmpresa">
+      <soap:operation soapAction="http://tempuri.org/ISrvDatos/BorrarEmpresa" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddTipoEmpresa">
+      <soap:operation soapAction="http://tempuri.org/ISrvDatos/AddTipoEmpresa" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="BorrarTipoEmpresa">
+      <soap:operation soapAction="http://tempuri.org/ISrvDatos/BorrarTipoEmpresa" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddTipoAccion">
+      <soap:operation soapAction="http://tempuri.org/ISrvDatos/AddTipoAccion" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="BorrarTipoAccion">
+      <soap:operation soapAction="http://tempuri.org/ISrvDatos/BorrarTipoAccion" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddTelefonoEmpresa">
+      <soap:operation soapAction="http://tempuri.org/ISrvDatos/AddTelefonoEmpresa" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="BorrarTelefonoEmpresa">
+      <soap:operation soapAction="http://tempuri.org/ISrvDatos/BorrarTelefonoEmpresa" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddTelefonoContacto">
+      <soap:operation soapAction="http://tempuri.org/ISrvDatos/AddTelefonoContacto" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="BorrarTelefonoContacto">
+      <soap:operation soapAction="http://tempuri.org/ISrvDatos/BorrarTelefonoContacto" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

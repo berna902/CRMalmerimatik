@@ -13,6 +13,15 @@ namespace Clientes.Private.Empresas {
     public partial class Default {
         
         /// <summary>
+        /// scripmanager1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.ScriptManager scripmanager1;
+        
+        /// <summary>
         /// btnAlta control.
         /// </summary>
         /// <remarks>
@@ -29,6 +38,15 @@ namespace Clientes.Private.Empresas {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView GridView2;
+        
+        /// <summary>
+        /// UpdatePanel1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel UpdatePanel1;
         
         /// <summary>
         /// GridView1 control.
