@@ -9,8 +9,6 @@
     <link href="../Content/bootstrap-theme.min.css" rel="stylesheet" />
     <link href="../Content/dashboard.css" rel="stylesheet" />
     <link href="../Content/estilos.css" rel="stylesheet" />
-    <script src="../Scripts/jquery-2.1.0.js"></script>
-    <script src="../Scripts/bootstrap.min.js"></script>
     <style>
         footer h1 {
             font-size: 0.7em;
