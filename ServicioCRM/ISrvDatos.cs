@@ -189,6 +189,7 @@ namespace almerimatik.ServicioCRM
         /// </summary>
         /// <param name="user">datos del usuario</param>
         /// <returns>devuelve el identificador del usuario nuevo o -1 si no se ha insertado</returns>
+        [OperationContract]
         int AddUser(UserData user);
 
 
@@ -197,6 +198,7 @@ namespace almerimatik.ServicioCRM
         /// </summary>
         /// <param name="idUsuario">identificador del usuario</param>
         /// <returns>verdadero o falso segun si la accion se llevo a cabo o no</returns>
+        [OperationContract]
         bool BorrarUser(int idUsuario);
 
 
@@ -205,6 +207,7 @@ namespace almerimatik.ServicioCRM
         /// </summary>
         /// <param name="user">datos del usuario</param>
         /// <returns>verdadero o falso segun si la accion se llevo a cabo o no</returns>
+        [OperationContract]
         bool EditUser(UserData user);
 
 
@@ -213,6 +216,7 @@ namespace almerimatik.ServicioCRM
         /// </summary>
         /// <param name="idUsuario">identificador del usuario a buscar</param>
         /// <returns>devuelve los datos del usuario</returns>
+        [OperationContract]
         UserData GetUser(int idUsuario);
     }
 
