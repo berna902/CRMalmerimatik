@@ -1,15 +1,17 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Private/Maestra.Master" AutoEventWireup="true" CodeBehind="empresa.aspx.cs" Inherits="Clientes.Private.Empresas.empresa" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-    
+    <script src="../../Scripts/jquery-1.10.2.min.js"></script>
+    <script src="../../Scripts/bootstrap.min.js"></script>
     <script>
 
-        $(function(){
-            $('#central_btAddTelf').click(function () {
-                
-                $('#central_mcorrecto').slideDown(1000);
+        $(document).ready(function () {
+            $('#central_btAddTelf').on("click", function (event) {
+                //alert("clicked on Tozih");
+                $('#central_mcorrecto').slideDown(500);
             });
-
+            
         });
+
         </script>
 
 </asp:Content>
@@ -72,7 +74,7 @@
 
         </div>
 
-        <div class="form-group ">
+        <div class="form-group" id="formularioTelefonos" runat="server">
 
 
                 <asp:Label CssClass="control-label" Text="Telefonos" ID="Label1" runat="server" AssociatedControlID="tbTelefonos"></asp:Label>
@@ -85,8 +87,8 @@
                                 </asp:DropDownList>
 
                         <asp:TextBox ID="tbTelefono" runat="server" CssClass="form-control" placeholder="nuevo telefono"></asp:TextBox>
-                        <asp:Button ID="btAddTelf" runat="server" Text="Añadir" CssClass="btn btn-success" />
-                                <div id="mcorrecto" class="alert alert-success hidden" role="alert" runat="server">Insertado!</div>
+                        <asp:Button ID="btAddTelf" runat="server" Text="Añadir" CssClass="btn btn-success" OnClick="btAddTelf_Click" />
+                                <div id="mcorrecto" class="alert alert-success hidden " role="alert" runat="server">Insertado!</div>
                                 <div id="mfallo" class="alert alert-danger hidden" role="alert">ERROR!</div>
                             </ContentTemplate>
                             <Triggers>
@@ -105,6 +107,43 @@
                 <asp:ListItem Value="1">S.L.</asp:ListItem>
             </asp:DropDownList>
 
+        </div>
+
+        <div class="table-responsive">
+            <!--<asp:GridView ID="GridView2" runat="server" CssClass="table table-striped"></asp:GridView>-->
+            <asp:GridView ID="GridView1" runat="server" CssClass="table table-hover table-striped" AutoGenerateColumns="False" GridLines="None" AllowPaging="True" OnRowEditing="GridView1_RowEditing" OnRowDeleting="GridView1_RowDeleting">
+                
+                <Columns>
+                    <asp:BoundField DataField="ID" HeaderText="ID">
+                        <HeaderStyle BackColor="#000066" ForeColor="White" HorizontalAlign="Center" VerticalAlign="Middle" />
+                    <ItemStyle HorizontalAlign="Justify" VerticalAlign="Middle" />
+                    </asp:BoundField>
+                    <asp:BoundField DataField="IDEmpresa" HeaderText="IDEmpresa">
+                        <HeaderStyle BackColor="#000066" ForeColor="White" HorizontalAlign="Center" VerticalAlign="Middle" />
+                    <ItemStyle HorizontalAlign="Justify" VerticalAlign="Middle" />
+                    </asp:BoundField>
+                    <asp:BoundField DataField="Nombre" HeaderText="Nombre">
+                        <HeaderStyle BackColor="#000066" ForeColor="White" HorizontalAlign="Center" VerticalAlign="Middle" />
+                    <ItemStyle HorizontalAlign="Justify" VerticalAlign="Middle" />
+                    </asp:BoundField>
+                    <asp:BoundField DataField="Email" HeaderText="Email">
+                        <HeaderStyle BackColor="#000066" ForeColor="White" HorizontalAlign="Center" VerticalAlign="Middle" />
+                    <ItemStyle HorizontalAlign="Justify" VerticalAlign="Middle" />
+                    </asp:BoundField>
+                    
+
+                    <asp:TemplateField>
+                        <ItemTemplate>
+
+                            
+                            <asp:LinkButton ID="btnModificar" runat="server" Text="Modificar" CssClass="btn btn-warning" CommandName="Edit"><span class="glyphicon glyphicon-pencil"></span>Modificar</asp:LinkButton>
+                            <asp:LinkButton ID="btnEliminar" runat="server" Text="Eliminar" CssClass="btn btn-danger"  CommandName="Delete"><span class="glyphicon glyphicon-minus"></span>Eliminar</asp:LinkButton>
+
+                        </ItemTemplate>
+                        <HeaderStyle BackColor="#000066" />
+                    </asp:TemplateField>
+                </Columns>
+            </asp:GridView>
         </div>
 
         <div class="form-group">

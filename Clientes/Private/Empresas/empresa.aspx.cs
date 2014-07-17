@@ -49,7 +49,7 @@ namespace Clientes.Private.Empresas
                             tbTipoEMpresa.DataSource = tiposEmpresas;
                             tbTipoEMpresa.DataValueField = "ID";
                             tbTipoEMpresa.DataTextField = "Tipo";
-                            
+                            formularioTelefonos.Visible = false;
                             tbTipoEMpresa.DataBind();
 
                             break;
@@ -83,10 +83,14 @@ namespace Clientes.Private.Empresas
                             this.tbRazonSocial.Text = empresa.RazonSocial;
                             this.tbWeb.Text = empresa.Web;
 
+
+                            ContactoData[] contactos = proxy.GetAllContactos(idEmpresa);
+
+                            this.GridView1.DataSource = contactos;
+                            this.GridView1.DataBind();
                             //this.tbTipoEMpresa.Text = empresa.TipoEmpresa;
                             break;
-                        case 2:
-                            break;
+                       
                         default:
                             Response.Redirect("Default.aspx");
                             break;
@@ -119,7 +123,14 @@ namespace Clientes.Private.Empresas
                         empresa.CIF = tbCIF.Text;
                         empresa.Email = tbEmail.Text;
                         empresa.Web = tbWeb.Text;
-                        proxy.AddEmpresa(empresa);
+                        if(proxy.AddEmpresa(empresa)!=-1){
+                            Response.Redirect("Default.aspx");
+                            //string script = "alert('No se pudo modificar la empresa');";
+                            //ClientScript.RegisterClientScriptBlock(this.GetType(), "Alert", script, true);
+                        }else{
+                            string script = "alert('No se pudo insertar la empresa');";
+                            ClientScript.RegisterClientScriptBlock(this.GetType(), "Alert", script, true);
+                        }
 
                         break;
 
@@ -152,10 +163,32 @@ namespace Clientes.Private.Empresas
         protected void btAddTelf_Click(object sender, EventArgs e)
         {
             SrvDatosClient proxy = new SrvDatosClient();
+            TelefonosData telefono = new TelefonosData();
+            telefono.ID = Int32.Parse(tbIDEmpresa.Text);
+            telefono.Telefono = tbTelefono.Text;
+            proxy.AddTelefonoEmpresa(telefono);
             //llamar al servicio para que inserte el telefono nuevo. aun no está hecho T_T
-            tbTelefonos.Items.Add(new ListItem("Item 2", "2"));
+            tbTelefonos.Items.Add(new ListItem(tbTelefono.Text, tbTelefono.Text));
             tbTelefono.DataBind();
+            tbTelefono.Text = "";
 
+        }
+
+        protected void GridView1_RowDeleting(object sender, GridViewDeleteEventArgs e)
+        {
+            string id = e.Values["id"].ToString();
+            SrvDatosClient proxy = new SrvDatosClient();
+            //proxy.BorrarEmpresa(Int32.Parse(id));
+
+            //this.GridView1.DataSource = proxy.GetAllEmpresas();
+            this.GridView1.DataBind();
+        }
+
+        protected void GridView1_RowEditing(object sender, GridViewEditEventArgs e)
+        {
+
+            string id = this.GridView1.Rows[e.NewEditIndex].Cells[0].Text;
+            this.Response.Redirect("GContactos.aspx?estado=1&id=" + id);
         }
     }
 }
