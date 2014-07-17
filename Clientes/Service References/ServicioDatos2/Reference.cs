@@ -860,10 +860,10 @@ namespace Clientes.ServicioDatos2 {
         System.Threading.Tasks.Task<bool> EditEmpresaAsync(Clientes.ServicioDatos2.EmpresaData empresa);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISrvDatos/AddEmpresa", ReplyAction="http://tempuri.org/ISrvDatos/AddEmpresaResponse")]
-        bool AddEmpresa(Clientes.ServicioDatos2.EmpresaData empresa);
+        int AddEmpresa(Clientes.ServicioDatos2.EmpresaData empresa);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISrvDatos/AddEmpresa", ReplyAction="http://tempuri.org/ISrvDatos/AddEmpresaResponse")]
-        System.Threading.Tasks.Task<bool> AddEmpresaAsync(Clientes.ServicioDatos2.EmpresaData empresa);
+        System.Threading.Tasks.Task<int> AddEmpresaAsync(Clientes.ServicioDatos2.EmpresaData empresa);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISrvDatos/BorrarEmpresa", ReplyAction="http://tempuri.org/ISrvDatos/BorrarEmpresaResponse")]
         bool BorrarEmpresa(int idEmpresa);
@@ -1035,11 +1035,11 @@ namespace Clientes.ServicioDatos2 {
             return base.Channel.EditEmpresaAsync(empresa);
         }
         
-        public bool AddEmpresa(Clientes.ServicioDatos2.EmpresaData empresa) {
+        public int AddEmpresa(Clientes.ServicioDatos2.EmpresaData empresa) {
             return base.Channel.AddEmpresa(empresa);
         }
         
-        public System.Threading.Tasks.Task<bool> AddEmpresaAsync(Clientes.ServicioDatos2.EmpresaData empresa) {
+        public System.Threading.Tasks.Task<int> AddEmpresaAsync(Clientes.ServicioDatos2.EmpresaData empresa) {
             return base.Channel.AddEmpresaAsync(empresa);
         }
         

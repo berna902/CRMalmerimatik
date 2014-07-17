@@ -135,7 +135,7 @@
                     <asp:TemplateField>
                         <ItemTemplate>
 
-                            <asp:LinkButton ID="btnInfo" runat="server" Text="Info" CssClass="btn btn-info"><span class="glyphicon glyphicon-plus"></span>Info</asp:LinkButton>
+                            
                             <asp:LinkButton ID="btnModificar" runat="server" Text="Modificar" CssClass="btn btn-warning" CommandName="Edit"><span class="glyphicon glyphicon-pencil"></span>Modificar</asp:LinkButton>
                             <asp:LinkButton ID="btnEliminar" runat="server" Text="Eliminar" CssClass="btn btn-danger"  CommandName="Delete"><span class="glyphicon glyphicon-minus"></span>Eliminar</asp:LinkButton>
 

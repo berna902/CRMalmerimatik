@@ -23,7 +23,7 @@
     <div class="row placeholders">
         <fieldset class="opciones">
             <asp:LinkButton  ID="btnAlta" runat="server" Text="Añadir" CssClass="btn btn-success" PostBackUrl="empresa.aspx?estado=0"><span class="glyphicon glyphicon-plus"></span>Alta</asp:LinkButton>
-
+            <asp:LinkButton  ID="btnGestionContactos" runat="server" Text="Gestión de Contactos" CssClass="btn btn-info" PostBackUrl="contactos.aspx"><span class="glyphicon glyphicon-plus"></span>Gestión de Contactos</asp:LinkButton>
         </fieldset>
         <div class="table-responsive">
             <!--<asp:GridView ID="GridView2" runat="server" CssClass="table table-striped"></asp:GridView>-->
@@ -64,7 +64,7 @@
                             <asp:TemplateField>
                                 <ItemTemplate>
 
-                                    <asp:LinkButton ID="btnInfo" runat="server" Text="Info" CssClass="btn btn-info"><span class="glyphicon glyphicon-plus"></span>Info</asp:LinkButton>
+                                    
                                     <asp:LinkButton ID="btnModificar" runat="server" Text="Modificar" CssClass="btn btn-warning" CommandName="Edit"><span class="glyphicon glyphicon-pencil"></span>Modificar</asp:LinkButton>
                                     <asp:LinkButton ID="btnEliminar" runat="server" Text="Eliminar" CssClass="btn btn-danger" CommandName="Delete"><span class="glyphicon glyphicon-minus"></span>Eliminar</asp:LinkButton>
 

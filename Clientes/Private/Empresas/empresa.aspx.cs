@@ -90,8 +90,7 @@ namespace Clientes.Private.Empresas
                             this.GridView1.DataBind();
                             //this.tbTipoEMpresa.Text = empresa.TipoEmpresa;
                             break;
-                        case 2:
-                            break;
+                       
                         default:
                             Response.Redirect("Default.aspx");
                             break;
@@ -124,7 +123,7 @@ namespace Clientes.Private.Empresas
                         empresa.CIF = tbCIF.Text;
                         empresa.Email = tbEmail.Text;
                         empresa.Web = tbWeb.Text;
-                        if(proxy.AddEmpresa(empresa){
+                        if(proxy.AddEmpresa(empresa)!=-1){
                             Response.Redirect("Default.aspx");
                             //string script = "alert('No se pudo modificar la empresa');";
                             //ClientScript.RegisterClientScriptBlock(this.GetType(), "Alert", script, true);
@@ -177,12 +176,19 @@ namespace Clientes.Private.Empresas
 
         protected void GridView1_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {
+            string id = e.Values["id"].ToString();
+            SrvDatosClient proxy = new SrvDatosClient();
+            //proxy.BorrarEmpresa(Int32.Parse(id));
 
+            //this.GridView1.DataSource = proxy.GetAllEmpresas();
+            this.GridView1.DataBind();
         }
 
         protected void GridView1_RowEditing(object sender, GridViewEditEventArgs e)
         {
 
+            string id = this.GridView1.Rows[e.NewEditIndex].Cells[0].Text;
+            this.Response.Redirect("GContactos.aspx?estado=1&id=" + id);
         }
     }
 }

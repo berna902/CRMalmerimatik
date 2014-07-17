@@ -153,7 +153,7 @@
   <xs:element name="AddEmpresaResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element minOccurs="0" name="AddEmpresaResult" type="xs:boolean" />
+        <xs:element minOccurs="0" name="AddEmpresaResult" type="xs:int" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
