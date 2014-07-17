@@ -13,6 +13,33 @@ namespace Clientes.Private.Usuarios {
     public partial class usuarios {
         
         /// <summary>
+        /// H1Titulo control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl H1Titulo;
+        
+        /// <summary>
+        /// lbID control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbID;
+        
+        /// <summary>
+        /// tbID control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox tbID;
+        
+        /// <summary>
         /// lbNombre control.
         /// </summary>
         /// <remarks>
@@ -85,12 +112,12 @@ namespace Clientes.Private.Usuarios {
         protected global::System.Web.UI.WebControls.TextBox tbpassword2;
         
         /// <summary>
-        /// Button1 control.
+        /// btnAlta control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Button1;
+        protected global::System.Web.UI.WebControls.Button btnAlta;
     }
 }

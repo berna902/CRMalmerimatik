@@ -19,12 +19,12 @@
 
     <div class="row placeholders">
         <fieldset class="opciones">
-            <asp:LinkButton  ID="btnAlta" runat="server" Text="Añadir" CssClass="btn btn-success"><span class="glyphicon glyphicon-plus"></span>Alta</asp:LinkButton>
+            <asp:LinkButton  ID="btnAlta" runat="server" Text="Añadir" CssClass="btn btn-success"  PostBackUrl="usuarios.aspx?estado=0"><span class="glyphicon glyphicon-plus"></span>Alta</asp:LinkButton>
 
         </fieldset>
         <div class="table-responsive">
             <!--<asp:GridView ID="GridView2" runat="server" CssClass="table table-striped"></asp:GridView>-->
-            <asp:GridView ID="GridView1" runat="server" CssClass="table table-hover table-striped" AutoGenerateColumns="False" GridLines="None" AllowPaging="True">
+            <asp:GridView ID="GridView1" runat="server" CssClass="table table-hover table-striped" AutoGenerateColumns="False" GridLines="None" AllowPaging="True" OnRowDeleting="GridView1_RowDeleting" OnRowEditing="GridView1_RowEditing">
 
                 <Columns>
                     <asp:BoundField DataField="idUsuario" HeaderText="ID">
@@ -43,7 +43,7 @@
                     <asp:TemplateField>
                         <ItemTemplate>
 
-                            <asp:LinkButton ID="btnAlta" runat="server" Text="Añadir" CssClass="btn btn-info"><span class="glyphicon glyphicon-plus"></span>Info</asp:LinkButton>
+                            
                             <asp:LinkButton ID="btnModificar" runat="server" Text="Modificar" CssClass="btn btn-warning"><span class="glyphicon glyphicon-pencil"></span>Modificar</asp:LinkButton>
                             <asp:LinkButton ID="btnEliminar" runat="server" Text="Eliminar" CssClass="btn btn-danger"><span class="glyphicon glyphicon-minus"></span>Eliminar</asp:LinkButton>
 

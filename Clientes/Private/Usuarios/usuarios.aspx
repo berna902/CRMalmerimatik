@@ -16,9 +16,15 @@
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="central" runat="server">
 
-    <h1>Alta empresa</h1>
+    <h1 id="H1Titulo" runat="server">Alta usuario</h1>
 
     <div class="col-md-12">
+        <div class="form-group">
+            <asp:Label CssClass="control-label" Text="ID" ID="lbID" runat="server" AssociatedControlID="tbID"></asp:Label>
+
+            <asp:TextBox ID="tbID" runat="server" CssClass="form-control" placeholder="ID del usuario"></asp:TextBox>
+
+        </div>
         <div class="form-group">
             <asp:Label CssClass="control-label" Text="Nombre" ID="lbNombre" runat="server" AssociatedControlID="tbNombre"></asp:Label>
 
@@ -52,7 +58,7 @@
 
         <div class="form-group">
 
-                <asp:Button ID="Button1" runat="server" Text="Alta" CssClass="btn btn-primary" />
+             <asp:Button ID="btnAlta" runat="server" Text="Alta" CssClass="btn btn-primary" OnClick="btnAlta_Click" />
 
         </div>
     </div>

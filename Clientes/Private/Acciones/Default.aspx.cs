@@ -23,5 +23,23 @@ namespace Clientes.Private.Acciones
 
             }
         }
+
+        protected void GridView1_RowDeleting(object sender, GridViewDeleteEventArgs e)
+        {
+            string id = e.Values["id"].ToString();
+
+            SrvDatosClient proxy = new SrvDatosClient();
+
+            //proxy.BorrarEmpresa(Int32.Parse(id));
+
+            this.GridView1.DataSource = proxy.GetAllAccionesComerciales();
+            this.GridView1.DataBind();
+        }
+
+        protected void GridView1_RowEditing(object sender, GridViewEditEventArgs e)
+        {
+            string id = this.GridView1.Rows[e.NewEditIndex].Cells[0].Text;
+            this.Response.Redirect("acciones.aspx?estado=1&id=" + id);
+        }
     }
 }
