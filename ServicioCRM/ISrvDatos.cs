@@ -118,7 +118,7 @@ namespace almerimatik.ServicioCRM
         /// <param name="tipo">nombre con el tipo nuevo</param>
         /// <returns>verdadero o falso segun si la accion se llevo a cabo o no</returns>
         [OperationContract]
-        bool AddTipoEmpresa(String tipo);
+        int AddTipoEmpresa(String tipo);
 
         /// <summary>
         /// Operacion del servicio que borra un tipo de empresa de la BD
@@ -135,7 +135,7 @@ namespace almerimatik.ServicioCRM
         /// <param name="tipo">nombre con el tipo nuevo</param>
         /// <returns>verdadero o falso segun si la accion se llevo a cabo o no</returns>
         [OperationContract]
-        bool AddTipoAccion(String tipo);
+        int AddTipoAccion(String tipo);
 
 
         /// <summary>
@@ -184,7 +184,40 @@ namespace almerimatik.ServicioCRM
 
 
 
+        /// <summary>
+        /// Operacion del servicio que inserta un usuario nuevo en la BD
+        /// </summary>
+        /// <param name="user">datos del usuario</param>
+        /// <returns>devuelve el identificador del usuario nuevo o -1 si no se ha insertado</returns>
+        [OperationContract]
+        int AddUser(UserData user);
 
+
+        /// <summary>
+        /// Operacion del servicio que borra un usuario dado su identificador
+        /// </summary>
+        /// <param name="idUsuario">identificador del usuario</param>
+        /// <returns>verdadero o falso segun si la accion se llevo a cabo o no</returns>
+        [OperationContract]
+        bool BorrarUser(int idUsuario);
+
+
+        /// <summary>
+        /// Operacion del servicio que edita un usuario existente
+        /// </summary>
+        /// <param name="user">datos del usuario</param>
+        /// <returns>verdadero o falso segun si la accion se llevo a cabo o no</returns>
+        [OperationContract]
+        bool EditUser(UserData user);
+
+
+        /// <summary>
+        /// Operacion del servicio que devuelve los datos de un usuario especifico
+        /// </summary>
+        /// <param name="idUsuario">identificador del usuario a buscar</param>
+        /// <returns>devuelve los datos del usuario</returns>
+        [OperationContract]
+        UserData GetUser(int idUsuario);
     }
 
 

@@ -476,7 +476,7 @@ namespace almerimatik.ServicioCRM
         /// </summary>
         /// <param name="tipo">nombre con el tipo nuevo</param>
         /// <returns>verdadero o falso segun si la accion se llevo a cabo o no</returns>
-        public bool AddTipoEmpresa(String tipo)
+        public int AddTipoEmpresa(String tipo)
         {
             try
             {
@@ -492,13 +492,13 @@ namespace almerimatik.ServicioCRM
 
                         db.TipoEmpresa.Add(nuevo);
                         db.SaveChanges();
-                        return true;
+                        return nuevo.ID;
                     }
 
                 }
                 else
                 {
-                    return false;
+                    return -1;
                 }
                 
 
@@ -506,13 +506,13 @@ namespace almerimatik.ServicioCRM
             catch (SqlException ex)
             {
                 FaultException fault = new FaultException("Error SQL: " + ex.Message, new FaultCode("SQL"));
-                return false;
+                return -1;
 
             }
             catch (Exception ex)
             {
                 FaultException fault = new FaultException("Error: " + ex.Message, new FaultCode("GENERAL"));
-                return false;
+                return -1;
             }
         }
 
@@ -558,7 +558,7 @@ namespace almerimatik.ServicioCRM
         /// </summary>
         /// <param name="tipo">nombre con el tipo nuevo</param>
         /// <returns>verdadero o falso segun si la accion se llevo a cabo o no</returns>
-        public bool AddTipoAccion(String tipo)
+        public int AddTipoAccion(String tipo)
         {
             try
             {
@@ -573,12 +573,12 @@ namespace almerimatik.ServicioCRM
 
                         db.TipoAccion.Add(nuevo);
                         db.SaveChanges();
-                        return true;
+                        return nuevo.ID;
                     }
                 }
                 else
                 {
-                    return false;
+                    return -1;
                 }
 
                 
@@ -587,13 +587,13 @@ namespace almerimatik.ServicioCRM
             catch (SqlException ex)
             {
                 FaultException fault = new FaultException("Error SQL: " + ex.Message, new FaultCode("SQL"));
-                return false;
+                return -1;
 
             }
             catch (Exception ex)
             {
                 FaultException fault = new FaultException("Error: " + ex.Message, new FaultCode("GENERAL"));
-                return false;
+                return -1;
             }
         }
 
@@ -792,6 +792,172 @@ namespace almerimatik.ServicioCRM
                 return false;
             }
         }
+
+
+        /// <summary>
+        /// metodo que inserta un usuario nuevo en la BD
+        /// </summary>
+        /// <param name="user">datos del usuario</param>
+        /// <returns>devuelve el identificador del usuario nuevo o -1 si no se ha insertado</returns>
+        public int AddUser(UserData user)
+        {
+            try
+            {
+                using (BDCRMEntities db = new BDCRMEntities())
+                {
+                    if (user != null)
+                    {
+                        User nuevo = new User();
+
+
+                        nuevo.Nombre = user.Nombre;
+                        nuevo.Username = user.Username;
+                        nuevo.Password = user.Password;
+                        
+
+                        db.User.Add(nuevo);
+                        db.SaveChanges();
+                        return nuevo.IDUsuario;
+
+                    }
+                    else
+                    {
+                        return -1;
+                    }
+
+
+                }
+
+            }
+            catch (SqlException ex)
+            {
+                FaultException fault = new FaultException("Error SQL: " + ex.Message, new FaultCode("SQL"));
+                return -1;
+
+            }
+            catch (Exception ex)
+            {
+                FaultException fault = new FaultException("Error: " + ex.Message, new FaultCode("GENERAL"));
+                return -1;
+            }
+        }
+
+
+        /// <summary>
+        /// metodo que borra un usuario dado su identificador
+        /// </summary>
+        /// <param name="idUsuario">identificador del usuario</param>
+        /// <returns>verdadero o falso segun si la accion se llevo a cabo o no</returns>
+        public bool BorrarUser(int idUsuario)
+        {
+            try
+            {
+                using (BDCRMEntities db = new BDCRMEntities())
+                {
+                    var consulta = from tabla in db.User where tabla.IDUsuario == idUsuario select tabla;
+                    User emp = consulta.First();
+
+                    db.User.Remove(emp);
+                    db.SaveChanges();
+                    return true;
+
+
+                }
+            }
+            catch (SqlException ex)
+            {
+                FaultException fault = new FaultException("Error SQL: " + ex.Message, new FaultCode("SQL"));
+                return false;
+
+            }
+            catch (Exception ex)
+            {
+                FaultException fault = new FaultException("Error: " + ex.Message, new FaultCode("GENERAL"));
+                return false;
+            }
+        }
+
+
+        /// <summary>
+        /// metodo que edita un usuario existente
+        /// </summary>
+        /// <param name="user">datos del usuario</param>
+        /// <returns>verdadero o falso segun si la accion se llevo a cabo o no</returns>
+        public bool EditUser(UserData user)
+        {
+            try
+            {
+                if (user != null)
+                {
+                    using (BDCRMEntities db = new BDCRMEntities())
+                    {
+                        var consulta = from tabla in db.User where tabla.IDUsuario == user.IDUsuario select tabla;
+
+                        User nuevo = consulta.First();
+
+                        nuevo.Nombre = user.Nombre;
+                        nuevo.Username = user.Username;
+                        nuevo.Password = user.Password;
+                        
+                        db.SaveChanges();
+                        return true;
+                    }
+                }
+                else
+                {
+                    return false;
+                }
+
+
+            }
+            catch (SqlException ex)
+            {
+                FaultException fault = new FaultException("Error SQL: " + ex.Message, new FaultCode("SQL"));
+                return false;
+
+            }
+            catch (Exception ex)
+            {
+                FaultException fault = new FaultException("Error: " + ex.Message, new FaultCode("GENERAL"));
+                return false;
+            }
+        }
+
+
+        /// <summary>
+        /// metodo que devuelve los datos de un usuario especifico
+        /// </summary>
+        /// <param name="idUsuario">identificador del usuario a buscar</param>
+        /// <returns>devuelve los datos del usuario</returns>
+        public UserData GetUser(int idUsuario)
+        {
+            List<UserData> lst = new List<UserData>();
+            try
+            {
+                using (BDCRMEntities datos = new BDCRMEntities())
+                {
+                    var consulta = from tabla in datos.User where tabla.IDUsuario == idUsuario
+                                   select new UserData()
+                                   {
+                                       IDUsuario = tabla.IDUsuario,
+                                       Username = tabla.Username,
+                                       Password = tabla.Password,
+                                       Nombre = tabla.Nombre,
+                                      
+                                   };
+                    lst = consulta.ToList();
+                    return lst.First();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new FaultException("ERROR EN ACCESO A DATOS. " + ex.Message);
+            }
+        
+        }
+
+
+
 
 
     }
