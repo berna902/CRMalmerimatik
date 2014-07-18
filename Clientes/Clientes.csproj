@@ -166,6 +166,7 @@
     <Content Include="Private\Acciones\acciones.aspx" />
     <Content Include="Private\Acciones\Default.aspx" />
     <Content Include="Private\Admin\Default.aspx" />
+    <Content Include="Private\Admin\TEmpresas.aspx" />
     <Content Include="Private\Default.aspx" />
     <Content Include="Private\Empresas\contactos.aspx" />
     <Content Include="Private\Empresas\Default.aspx" />
@@ -365,6 +366,13 @@
     </Compile>
     <Compile Include="Private\Admin\Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Private\Admin\TEmpresas.aspx.cs">
+      <DependentUpon>TEmpresas.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Private\Admin\TEmpresas.aspx.designer.cs">
+      <DependentUpon>TEmpresas.aspx</DependentUpon>
     </Compile>
     <Compile Include="Private\Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
