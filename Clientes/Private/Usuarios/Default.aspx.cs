@@ -23,5 +23,23 @@ namespace Clientes.Private.Usuarios
 
             }
         }
+        protected void GridView1_RowEditing(object sender, GridViewEditEventArgs e)
+        {
+            string id = this.GridView1.Rows[e.NewEditIndex].Cells[0].Text;
+            this.Response.Redirect("usuarios.aspx?estado=1&id=" + id);
+        }
+
+        protected void GridView1_RowDeleting(object sender, GridViewDeleteEventArgs e)
+        {
+            string id = e.Values["id"].ToString();
+
+            SrvDatosClient proxy = new SrvDatosClient();
+
+            //proxy.borrarUsuario(Int32.Parse(id));
+
+            this.GridView1.DataSource = proxy.GetAllUsers();
+            this.GridView1.DataBind();
+        }
+
     }
 }
