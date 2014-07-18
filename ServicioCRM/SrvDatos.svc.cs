@@ -268,6 +268,37 @@ namespace almerimatik.ServicioCRM
             }
         }
 
+        /// <summary>
+        /// metodo que devuelve una lista de todos contactos
+        /// </summary>
+        /// <returns>listado con todos los contactos</returns>
+        public List<ContactoData> GetAllContactos()
+        {
+            List<ContactoData> lst = new List<ContactoData>();
+            try
+            {
+                using (BDCRMEntities datos = new BDCRMEntities())
+                {
+                    var consulta = from tabla in datos.Contacto
+                                   select new ContactoData()
+                                   {
+                                       ID = tabla.ID,
+                                       IDEmpresa = tabla.IDEmpresa,
+                                       Nombre = tabla.Nombre,
+                                       Email = tabla.Email
+
+                                   };
+                    lst = consulta.ToList();
+
+                    return lst;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new FaultException("ERROR EN ACCESO A DATOS. " + ex.Message);
+            }
+        }
+
 
         /// <summary>
         /// metodo que devolvera los cargos que los contactos pueden tener
