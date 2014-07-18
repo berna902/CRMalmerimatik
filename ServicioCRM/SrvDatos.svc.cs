@@ -957,8 +957,168 @@ namespace almerimatik.ServicioCRM
         }
 
 
+        /// <summary>
+        /// metodo que devuelve los datos de un contacto especifico
+        /// </summary>
+        /// <param name="idContacto">identificador del contacto</param>
+        /// <returns>devuelve los datos del contacto</returns>
+        public ContactoData GetContacto(int idContacto)
+        {
+            List<ContactoData> lst = new List<ContactoData>();
+            try
+            {
+                using (BDCRMEntities datos = new BDCRMEntities())
+                {
+                    var consulta = from tabla in datos.Contacto
+                                   where tabla.ID == idContacto
+                                   select new ContactoData()
+                                   {
+                                       ID = tabla.ID,
+                                       IDEmpresa = tabla.IDEmpresa,
+                                       Nombre = tabla.Nombre,
+                                       Email = tabla.Email
+                                       //telefono y cargo principales??
+
+                                   };
+                    lst = consulta.ToList();
+                    ContactoData c = lst.First();
+
+                    return c;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new FaultException("ERROR EN ACCESO A DATOS. " + ex.Message);
+            }
+        }
 
 
+        /// <summary>
+        /// metodo que añade un contacto a una empresa
+        /// </summary>
+        /// <param name="contacto">datos del contacto a añadir</param>
+        /// <returns>devuelve el identificador del nuevo contacto o -1 si hubo algun error</returns>
+        public int AddContacto(ContactoData contacto){
+            try
+            {
+                using (BDCRMEntities db = new BDCRMEntities())
+                {
+                    if (contacto != null)
+                    {
+                        Contacto nuevo = new Contacto();
 
+
+                        nuevo.Nombre = contacto.Nombre;
+                        nuevo.Email = contacto.Email;
+                        nuevo.IDEmpresa = contacto.IDEmpresa;
+                        //faltan cargo y telefono????
+
+                        db.Contacto.Add(nuevo);
+                        db.SaveChanges();
+                        return nuevo.ID;
+
+                    }
+                    else
+                    {
+                        return -1;
+                    }
+
+
+                }
+
+            }
+            catch (SqlException ex)
+            {
+                FaultException fault = new FaultException("Error SQL: " + ex.Message, new FaultCode("SQL"));
+                return -1;
+
+            }
+            catch (Exception ex)
+            {
+                FaultException fault = new FaultException("Error: " + ex.Message, new FaultCode("GENERAL"));
+                return -1;
+            }
+        }
+
+
+        /// <summary>
+        /// metodo que borra un contacto de una empresa
+        /// </summary>
+        /// <param name="idContacto">identificador del contacto</param>
+        /// <returns>verdadero o falso segun si la accion se llevo a cabo o no</returns>
+        public bool BorrarContacto(int idContacto)
+        {
+            try
+            {
+                using (BDCRMEntities db = new BDCRMEntities())
+                {
+                    var consulta = from tabla in db.Contacto where tabla.ID == idContacto select tabla;
+                    Contacto c = consulta.First();
+
+                    db.Contacto.Remove(c);
+                    db.SaveChanges();
+                    return true;
+
+
+                }
+            }
+            catch (SqlException ex)
+            {
+                FaultException fault = new FaultException("Error SQL: " + ex.Message, new FaultCode("SQL"));
+                return false;
+
+            }
+            catch (Exception ex)
+            {
+                FaultException fault = new FaultException("Error: " + ex.Message, new FaultCode("GENERAL"));
+                return false;
+            }
+        }
+
+
+        /// <summary>
+        /// metodo que edita un contacto existente
+        /// </summary>
+        /// <param name="contacto">datos del contacto</param>
+        /// <returns>verdadero o falso segun si la accion se llevo a cabo o no</returns>
+        public bool EditContacto(ContactoData contacto)
+        {
+            try
+            {
+                if (contacto != null)
+                {
+                    using (BDCRMEntities db = new BDCRMEntities())
+                    {
+                        var consulta = from tabla in db.Contacto where tabla.ID == contacto.ID select tabla;
+
+                        Contacto nuevo = consulta.First();
+
+                        nuevo.Nombre = contacto.Nombre;
+                        nuevo.Email = contacto.Email;
+                        
+
+                        db.SaveChanges();
+                        return true;
+                    }
+                }
+                else
+                {
+                    return false;
+                }
+
+
+            }
+            catch (SqlException ex)
+            {
+                FaultException fault = new FaultException("Error SQL: " + ex.Message, new FaultCode("SQL"));
+                return false;
+
+            }
+            catch (Exception ex)
+            {
+                FaultException fault = new FaultException("Error: " + ex.Message, new FaultCode("GENERAL"));
+                return false;
+            }
+        }
     }
 }

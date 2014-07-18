@@ -218,6 +218,44 @@ namespace almerimatik.ServicioCRM
         /// <returns>devuelve los datos del usuario</returns>
         [OperationContract]
         UserData GetUser(int idUsuario);
+
+
+        /// <summary>
+        /// Operacion del servicio que devuelve los datos de un contacto especifico
+        /// </summary>
+        /// <param name="idContacto">identificador del contacto</param>
+        /// <returns>devuelve los datos del contacto</returns>
+        [OperationContract]
+        ContactoData GetContacto(int idContacto);
+
+
+        /// <summary>
+        /// Operacion del servicio que añade un contacto a una empresa
+        /// </summary>
+        /// <param name="contacto">datos del contacto a añadir</param>
+        /// <returns>devuelve el identificador del nuevo contacto o -1 si hubo algun error</returns>
+        [OperationContract]
+        int AddContacto(ContactoData contacto);
+
+
+        /// <summary>
+        /// Operacion del servicio que borra un contacto de una empresa
+        /// </summary>
+        /// <param name="idContacto">identificador del contacto</param>
+        /// <returns>verdadero o falso segun si la accion se llevo a cabo o no</returns>
+        [OperationContract]
+        bool BorrarContacto(int idContacto);
+
+
+        /// <summary>
+        /// Operacion del servicio que edita un contacto existente
+        /// </summary>
+        /// <param name="contacto">datos del contacto</param>
+        /// <returns>verdadero o falso segun si la accion se llevo a cabo o no</returns>
+        [OperationContract]
+        bool EditContacto(ContactoData contacto);
+
+
     }
 
 
@@ -355,6 +393,8 @@ namespace almerimatik.ServicioCRM
         public string Nombre { get; set; }
         [DataMember]
         public string Email { get; set; }
+        [DataMember]
+        public string Cargo { get; set; }
         /// <summary>
         /// Este telefono es el primero de la lista de telefonos del contacto. Será el que salga por defecto.
         /// </summary>
