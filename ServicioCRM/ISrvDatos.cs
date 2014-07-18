@@ -256,6 +256,38 @@ namespace almerimatik.ServicioCRM
         bool EditContacto(ContactoData contacto);
 
 
+
+        /// <summary>
+        /// Operacion del servicio que devuelve los datos de una accion comercial
+        /// </summary>
+        /// <param name="idAccionComercial">identificador de dicha accion</param>
+        /// <returns>los datos de la accion</returns>
+        AccionComercialData GetAccionComercial(int idAccionComercial);
+
+
+        /// <summary>
+        /// Operacion del servicio que añade una accion comercial a una empresa y un usuario
+        /// </summary>
+        /// <param name="contacto">datos de la accion a añadir</param>
+        /// <returns>devuelve el identificador de la nueva accion o -1 si hubo algun error</returns>
+        int AddAccionComercial(AccionComercialData accion);
+
+
+        /// <summary>
+        /// Operacion del servicio que borra una accion comercial de una empresa y un usuario
+        /// </summary>
+        /// <param name="idContacto">identificador de la accion</param>
+        /// <returns>verdadero o falso segun si la accion se llevo a cabo o no</returns>
+        bool BorrarAccionComercial(int idaccion);
+
+
+        /// <summary>
+        /// Operacion del servicio que edita una accion comercial existente
+        /// </summary>
+        /// <param name="contacto">datos de la accion</param>
+        /// <returns>verdadero o falso segun si la accion se llevo a cabo o no</returns>
+        bool EditAccionComercial(AccionComercialData accion);
+
     }
 
 

@@ -1120,5 +1120,186 @@ namespace almerimatik.ServicioCRM
                 return false;
             }
         }
+
+
+        /// <summary>
+        /// metodo que devuelve los datos de una accion comercial
+        /// </summary>
+        /// <param name="idAccionComercial">identificador de dicha accion</param>
+        /// <returns>los datos de la accion</returns>
+        public AccionComercialData GetAccionComercial(int idAccionComercial)
+        {
+            List<AccionComercialData> lst = new List<AccionComercialData>();
+            try
+            {
+                using (BDCRMEntities datos = new BDCRMEntities())
+                {
+                    var consulta = from tabla in datos.AccionComercial
+                                   where tabla.ID == idAccionComercial
+                                   select new AccionComercialData()
+                                   {
+                                       ID = tabla.ID,
+                                       IDEmpresa = tabla.IDEmpresa,
+                                       IDAccion = tabla.IDAccion,
+                                       IDEstado = tabla.IDEstado,
+                                       Comentarios = tabla.Comentarios,
+                                       Descripcion = tabla.Descripcion,
+                                       Fecha = tabla.Fecha,
+                                       Usuario = tabla.Usuario
+                                       
+                                   };
+                    lst = consulta.ToList();
+                    AccionComercialData c = lst.First();
+
+                    return c;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new FaultException("ERROR EN ACCESO A DATOS. " + ex.Message);
+            }
+        }
+        
+
+        /// <summary>
+        /// metodo que añade una accion comercial a una empresa y un usuario
+        /// </summary>
+        /// <param name="contacto">datos de la accion a añadir</param>
+        /// <returns>devuelve el identificador de la nueva accion o -1 si hubo algun error</returns>
+        public int AddAccionComercial(AccionComercialData accion)
+        {
+            try
+            {
+                using (BDCRMEntities db = new BDCRMEntities())
+                {
+                    if (accion != null)
+                    {
+                        AccionComercial nuevo = new AccionComercial();
+
+
+                        
+                        nuevo.IDEmpresa = accion.IDEmpresa;
+                        nuevo.IDAccion = accion.IDAccion;
+                        nuevo.IDEstado = accion.IDEstado;
+                        nuevo.Comentarios = accion.Comentarios;
+                        nuevo.Descripcion = accion.Descripcion;
+                        nuevo.Fecha = accion.Fecha;
+                        nuevo.Usuario = accion.Usuario;
+                        
+
+                        db.AccionComercial.Add(nuevo);
+                        db.SaveChanges();
+                        return nuevo.ID;
+
+                    }
+                    else
+                    {
+                        return -1;
+                    }
+
+
+                }
+
+            }
+            catch (SqlException ex)
+            {
+                FaultException fault = new FaultException("Error SQL: " + ex.Message, new FaultCode("SQL"));
+                return -1;
+
+            }
+            catch (Exception ex)
+            {
+                FaultException fault = new FaultException("Error: " + ex.Message, new FaultCode("GENERAL"));
+                return -1;
+            }
+        }
+
+
+        /// <summary>
+        /// metodo que borra una accion comercial de una empresa y un usuario
+        /// </summary>
+        /// <param name="idContacto">identificador de la accion</param>
+        /// <returns>verdadero o falso segun si la accion se llevo a cabo o no</returns>
+        public bool BorrarAccionComercial(int idaccion)
+        {
+            try
+            {
+                using (BDCRMEntities db = new BDCRMEntities())
+                {
+                    var consulta = from tabla in db.AccionComercial where tabla.ID == idaccion select tabla;
+                    AccionComercial c = consulta.First();
+
+                    db.AccionComercial.Remove(c);
+                    db.SaveChanges();
+                    return true;
+
+
+                }
+            }
+            catch (SqlException ex)
+            {
+                FaultException fault = new FaultException("Error SQL: " + ex.Message, new FaultCode("SQL"));
+                return false;
+
+            }
+            catch (Exception ex)
+            {
+                FaultException fault = new FaultException("Error: " + ex.Message, new FaultCode("GENERAL"));
+                return false;
+            }
+        }
+
+
+        /// <summary>
+        /// metodo que edita una accion comercial existente
+        /// </summary>
+        /// <param name="contacto">datos de la accion</param>
+        /// <returns>verdadero o falso segun si la accion se llevo a cabo o no</returns>
+        public bool EditAccionComercial(AccionComercialData accion)
+        {
+            try
+            {
+                if (accion != null)
+                {
+                    using (BDCRMEntities db = new BDCRMEntities())
+                    {
+                        var consulta = from tabla in db.AccionComercial where tabla.ID == accion.ID select tabla;
+
+                        AccionComercial nuevo = consulta.First();
+
+                        nuevo.IDAccion = accion.IDAccion;
+                        nuevo.IDEstado = accion.IDEstado;
+                        nuevo.Fecha = accion.Fecha;
+                        nuevo.Descripcion = accion.Descripcion;
+                        nuevo.Comentarios = accion.Comentarios;
+
+
+                        db.SaveChanges();
+                        return true;
+                    }
+                }
+                else
+                {
+                    return false;
+                }
+
+
+            }
+            catch (SqlException ex)
+            {
+                FaultException fault = new FaultException("Error SQL: " + ex.Message, new FaultCode("SQL"));
+                return false;
+
+            }
+            catch (Exception ex)
+            {
+                FaultException fault = new FaultException("Error: " + ex.Message, new FaultCode("GENERAL"));
+                return false;
+            }
+        }
+
+
+
+
     }
 }
