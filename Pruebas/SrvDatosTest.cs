@@ -397,5 +397,123 @@ namespace Pruebas
         ////////////////////////////////////////////////////////////////////////////////////////////
         // CONTACTOS DE EMPRESAS
         //////////////////////////////////////////////////////////////////////////////////////////
+        
+
+        /// <summary>
+        /// Test del metodo GetAllContactos
+        /// </summary>
+        [TestMethod]
+        public void GetAllContactosTest()
+        {
+            //comprobamos cuantos usuarios hay
+            SrvDatos d = new SrvDatos();
+            List<ContactoData> lst = d.GetAllContactos(2);
+            int contador1 = lst.Count;
+
+            //insertamos un usuario nuevo
+            ContactoData u = new ContactoData();
+            u.Nombre = "Flanders";
+            u.Email = "contacto@mail.com";
+            u.IDEmpresa = 2;
+            
+            int id = d.AddContacto(u);
+
+            //volvemos a ver cuantos usuarios hay
+            lst = d.GetAllContactos(2);
+            int contador2 = lst.Count;
+
+            //comprobamos que ha aumentado en uno
+            Assert.AreEqual(contador1 + 1, contador2);
+
+            //borramos el contacto creado
+            bool b = d.BorrarContacto(id);
+        }
+
+
+        /// <summary>
+        /// Test del metodo GetContacto
+        /// </summary>
+        [TestMethod]
+        public void GetContactoTest()
+        {
+            SrvDatos d = new SrvDatos();
+            ContactoData u = d.GetContacto(1);
+            Assert.AreEqual(u.Nombre, "laura");
+        }
+
+
+        /// <summary>
+        /// Test del metodo AddContacto
+        /// </summary>
+        [TestMethod]
+        public void AddContactoTest()
+        {
+            SrvDatos d = new SrvDatos();
+
+            //insertamos un usuario nuevo
+            ContactoData u = new ContactoData();
+            u.Nombre = "Flanders";
+            u.IDEmpresa = 2;
+            u.Email = "contacto@email.com";
+            int id = d.AddContacto(u);
+
+
+            //comprobamos que ha aumentado en uno
+            Assert.AreNotEqual(id, -1);
+
+            //borramos el usuario creado
+            bool b = d.BorrarContacto(id);
+        }
+
+
+        /// <summary>
+        /// Test del metodo BorrarContacto
+        /// </summary>
+        [TestMethod]
+        public void BorrarContactoTest()
+        {
+            SrvDatos d = new SrvDatos();
+
+            //insertamos un usuario nuevo
+            ContactoData u = new ContactoData();
+            u.Nombre = "Flanders";
+            u.IDEmpresa = 2;
+            u.Email = "contacto@email.com";
+            int id = d.AddContacto(u);
+
+            //borramos el usuario creado
+            bool b = d.BorrarContacto(id);
+            //comprobamos que no da error al borrar
+            Assert.AreEqual(b, true);
+        }
+
+        /// <summary>
+        /// Test del metodo EditContacto
+        /// </summary>
+        [TestMethod]
+        public void EditContactoTest()
+        {
+            SrvDatos d = new SrvDatos();
+            ContactoData u = d.GetContacto(1);
+            if (u.Nombre == "laura")
+            {
+                u.Nombre = "PAKITA";
+            }
+            else
+            {
+                u.Nombre = "laura";
+            }
+            bool b = d.EditContacto(u);
+            Assert.AreEqual(b, true);
+        }
+
+
+        //////////////////////////////////////////////////////////////////////////////////////////
+        // ACCIONES COMERCIALES
+        //////////////////////////////////////////////////////////////////////////////////////
+
+
+
+
     }
 }

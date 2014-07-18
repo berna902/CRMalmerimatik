@@ -228,6 +228,13 @@ namespace almerimatik.ServicioCRM
         [OperationContract]
         ContactoData GetContacto(int idContacto);
 
+        /// <summary>
+        /// metodo que devuelve una lista de todos contactos
+        /// </summary>
+        /// <returns>listado con todos los contactos</returns>
+        [OperationContract]
+        List<ContactoData> GetAllContactos();
+
 
         /// <summary>
         /// Operacion del servicio que añade un contacto a una empresa
@@ -262,6 +269,7 @@ namespace almerimatik.ServicioCRM
         /// </summary>
         /// <param name="idAccionComercial">identificador de dicha accion</param>
         /// <returns>los datos de la accion</returns>
+        [OperationContract]
         AccionComercialData GetAccionComercial(int idAccionComercial);
 
 
@@ -270,6 +278,7 @@ namespace almerimatik.ServicioCRM
         /// </summary>
         /// <param name="contacto">datos de la accion a añadir</param>
         /// <returns>devuelve el identificador de la nueva accion o -1 si hubo algun error</returns>
+        [OperationContract]
         int AddAccionComercial(AccionComercialData accion);
 
 
@@ -278,6 +287,7 @@ namespace almerimatik.ServicioCRM
         /// </summary>
         /// <param name="idContacto">identificador de la accion</param>
         /// <returns>verdadero o falso segun si la accion se llevo a cabo o no</returns>
+        [OperationContract]
         bool BorrarAccionComercial(int idaccion);
 
 
@@ -286,6 +296,7 @@ namespace almerimatik.ServicioCRM
         /// </summary>
         /// <param name="contacto">datos de la accion</param>
         /// <returns>verdadero o falso segun si la accion se llevo a cabo o no</returns>
+        [OperationContract]
         bool EditAccionComercial(AccionComercialData accion);
 
     }
@@ -425,6 +436,9 @@ namespace almerimatik.ServicioCRM
         public string Nombre { get; set; }
         [DataMember]
         public string Email { get; set; }
+        /// <summary>
+        /// Este cargo es el primero de la lsita de cargos del contacto.
+        /// </summary>
         [DataMember]
         public string Cargo { get; set; }
         /// <summary>
