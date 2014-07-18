@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Clientes.ServicioDatos2;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -13,7 +14,13 @@ namespace Clientes.Private.Empresas
         {
             if (!this.IsPostBack)
             {
- 
+                SrvDatosClient proxy = new SrvDatosClient();
+
+                /*ContactoData[] contactos = proxy();
+
+                this.GridView1.DataSource = acciones;
+                this.GridView1.DataBind();
+                */
             }
         }
 

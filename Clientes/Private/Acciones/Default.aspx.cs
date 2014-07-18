@@ -30,7 +30,7 @@ namespace Clientes.Private.Acciones
 
             SrvDatosClient proxy = new SrvDatosClient();
 
-            //proxy.BorrarEmpresa(Int32.Parse(id));
+            //proxy.bo(Int32.Parse(id));
 
             this.GridView1.DataSource = proxy.GetAllAccionesComerciales();
             this.GridView1.DataBind();

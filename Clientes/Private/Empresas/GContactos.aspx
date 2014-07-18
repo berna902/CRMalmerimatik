@@ -15,8 +15,8 @@
     </ul>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="central" runat="server">
-
-    <h1>Alta empresa</h1>
+    <asp:ScriptManager runat="server" ID="scripmanager1"></asp:ScriptManager>
+    <h1 id="H1Titulo" runat="server">Alta de contacto</h1>
 
     <div class="col-md-12">
         <div class="form-group">
@@ -40,10 +40,35 @@
 
         </div>
 
+        <div class="form-group" id="formularioTelefonos" runat="server">
+
+
+                <asp:Label CssClass="control-label" Text="Telefonos" ID="Label1" runat="server" AssociatedControlID="tbTelefonos"></asp:Label>
+                <div class="telefonos navbar-form">
+                    <div class="form-group">
+                        <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+                            <ContentTemplate>
+                                <asp:DropDownList ID="tbTelefonos" runat="server" CssClass="form-control" AutoPostBack="True">
+                                    <asp:ListItem Value="1">-</asp:ListItem>
+                                </asp:DropDownList>
+
+                        <asp:TextBox ID="tbTelefono" runat="server" CssClass="form-control" placeholder="nuevo telefono"></asp:TextBox>
+                        <asp:Button ID="btAddTelf" runat="server" Text="Añadir" CssClass="btn btn-success" OnClick="btAddTelf_Click" />
+                                <div id="mcorrecto" class="alert alert-success hidden " role="alert" runat="server">Insertado!</div>
+                                <div id="mfallo" class="alert alert-danger hidden" role="alert">ERROR!</div>
+                            </ContentTemplate>
+                            <Triggers>
+                                <asp:AsyncPostBackTrigger ControlID="btAddTelf" />
+                            </Triggers>
+                        </asp:UpdatePanel>
+                    </div>
+                </div>
+
+        </div>
 
         <div class="form-group">
 
-                <asp:Button ID="Button1" runat="server" Text="Alta" CssClass="btn btn-primary" />
+                <asp:Button ID="btnAltaContacto" runat="server" Text="Alta" CssClass="btn btn-primary" OnClick="btnAltaContacto_Click" />
 
         </div>
     </div>
