@@ -32,7 +32,7 @@ namespace Clientes.Private.Usuarios
 
                     SrvDatosClient proxy = new SrvDatosClient();
 
-                    TipoEmpresaData[] tiposEmpresas = proxy.GetAllTiposEmpresa();
+                   
 
                     switch (estado)
                     {
@@ -52,11 +52,13 @@ namespace Clientes.Private.Usuarios
                             this.H1Titulo.InnerHtml = "Modificar usuario";
                             this.btnAlta.Text = "Guardar";
                             this.btnAlta.Visible = true;
-
+                            
+                            UserData usuario = proxy.GetUser(idUsuario);
+                            this.tbID.Text = id;
+                            this.tbNombre.Text = usuario.Nombre;
+                            this.tbUsername.Text = usuario.Username;
                             break;
-
                         default:
-                            Response.Redirect("Default.aspx");
                             break;
                     }
 
@@ -77,44 +79,45 @@ namespace Clientes.Private.Usuarios
                 int estado = -1;
                 if (s != null)
                     estado = Int32.Parse(s);
+                UserData usuario = new UserData();
                 switch (estado)
                 {
                     case 0:
-                        UserData usuario = new UserData();
+
+                        
                         usuario.Nombre = tbNombre.Text;
                         usuario.Username = tbUsername.Text;
                         usuario.Password = tbPassword.Text;
                         
-                        if (proxy.ad(usuario) != -1)
+                        if (proxy.AddUser(usuario) != -1)
                         {
                             Response.Redirect("Default.aspx");
                             
                         }
                         else
                         {
-                            string script = "alert('No se pudo insertar la empresa');";
+                            string script = "alert('No se pudo insertar el usuario');";
                             ClientScript.RegisterClientScriptBlock(this.GetType(), "Alert", script, true);
                         }
 
                         break;
 
                     case 1:
-                        EmpresaData empresa2 = new EmpresaData();
-                        empresa2.ID = Int32.Parse(tbIDEmpresa.Text);
-                        empresa2.Nombre = tbNombre.Text;
-                        empresa2.IDTipoEmpresa = Int32.Parse(tbTipoEMpresa.SelectedValue);
-                        empresa2.RazonSocial = tbRazonSocial.Text;
-                        empresa2.CIF = tbCIF.Text;
-                        empresa2.Email = tbEmail.Text;
-                        empresa2.Web = tbWeb.Text;
-                        if (proxy.EditEmpresa(empresa2))
+                        //UserData usuario = new UserData();
+                        usuario.IDUsuario = Int32.Parse(tbID.Text);
+                        usuario.Nombre = tbNombre.Text;
+                        usuario.Username = tbUsername.Text;
+                        usuario.Password = tbPassword.Text;
+                        
+                        if (proxy.EditUser(usuario))
                         {
-                            string script = "alert('Empresa modificada con exito');";
+                            string script = "alert('Usuario modificado');";
                             ClientScript.RegisterClientScriptBlock(this.GetType(), "Alert", script, true);
+                            
                         }
                         else
                         {
-                            string script = "alert('No se pudo modificar la empresa');";
+                            string script = "alert('No se pudo modificar el usuario');";
                             ClientScript.RegisterClientScriptBlock(this.GetType(), "Alert", script, true);
                         }
                         break;

@@ -872,10 +872,10 @@ namespace Clientes.ServicioDatos2 {
         System.Threading.Tasks.Task<bool> BorrarEmpresaAsync(int idEmpresa);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISrvDatos/AddTipoEmpresa", ReplyAction="http://tempuri.org/ISrvDatos/AddTipoEmpresaResponse")]
-        bool AddTipoEmpresa(string tipo);
+        int AddTipoEmpresa(string tipo);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISrvDatos/AddTipoEmpresa", ReplyAction="http://tempuri.org/ISrvDatos/AddTipoEmpresaResponse")]
-        System.Threading.Tasks.Task<bool> AddTipoEmpresaAsync(string tipo);
+        System.Threading.Tasks.Task<int> AddTipoEmpresaAsync(string tipo);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISrvDatos/BorrarTipoEmpresa", ReplyAction="http://tempuri.org/ISrvDatos/BorrarTipoEmpresaResponse")]
         bool BorrarTipoEmpresa(int idTipo);
@@ -884,10 +884,10 @@ namespace Clientes.ServicioDatos2 {
         System.Threading.Tasks.Task<bool> BorrarTipoEmpresaAsync(int idTipo);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISrvDatos/AddTipoAccion", ReplyAction="http://tempuri.org/ISrvDatos/AddTipoAccionResponse")]
-        bool AddTipoAccion(string tipo);
+        int AddTipoAccion(string tipo);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISrvDatos/AddTipoAccion", ReplyAction="http://tempuri.org/ISrvDatos/AddTipoAccionResponse")]
-        System.Threading.Tasks.Task<bool> AddTipoAccionAsync(string tipo);
+        System.Threading.Tasks.Task<int> AddTipoAccionAsync(string tipo);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISrvDatos/BorrarTipoAccion", ReplyAction="http://tempuri.org/ISrvDatos/BorrarTipoAccionResponse")]
         bool BorrarTipoAccion(int idTipo);
@@ -918,6 +918,30 @@ namespace Clientes.ServicioDatos2 {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISrvDatos/BorrarTelefonoContacto", ReplyAction="http://tempuri.org/ISrvDatos/BorrarTelefonoContactoResponse")]
         System.Threading.Tasks.Task<bool> BorrarTelefonoContactoAsync(string telefono);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISrvDatos/AddUser", ReplyAction="http://tempuri.org/ISrvDatos/AddUserResponse")]
+        int AddUser(Clientes.ServicioDatos2.UserData user);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISrvDatos/AddUser", ReplyAction="http://tempuri.org/ISrvDatos/AddUserResponse")]
+        System.Threading.Tasks.Task<int> AddUserAsync(Clientes.ServicioDatos2.UserData user);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISrvDatos/BorrarUser", ReplyAction="http://tempuri.org/ISrvDatos/BorrarUserResponse")]
+        bool BorrarUser(int idUsuario);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISrvDatos/BorrarUser", ReplyAction="http://tempuri.org/ISrvDatos/BorrarUserResponse")]
+        System.Threading.Tasks.Task<bool> BorrarUserAsync(int idUsuario);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISrvDatos/EditUser", ReplyAction="http://tempuri.org/ISrvDatos/EditUserResponse")]
+        bool EditUser(Clientes.ServicioDatos2.UserData user);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISrvDatos/EditUser", ReplyAction="http://tempuri.org/ISrvDatos/EditUserResponse")]
+        System.Threading.Tasks.Task<bool> EditUserAsync(Clientes.ServicioDatos2.UserData user);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISrvDatos/GetUser", ReplyAction="http://tempuri.org/ISrvDatos/GetUserResponse")]
+        Clientes.ServicioDatos2.UserData GetUser(int idUsuario);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISrvDatos/GetUser", ReplyAction="http://tempuri.org/ISrvDatos/GetUserResponse")]
+        System.Threading.Tasks.Task<Clientes.ServicioDatos2.UserData> GetUserAsync(int idUsuario);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -1051,11 +1075,11 @@ namespace Clientes.ServicioDatos2 {
             return base.Channel.BorrarEmpresaAsync(idEmpresa);
         }
         
-        public bool AddTipoEmpresa(string tipo) {
+        public int AddTipoEmpresa(string tipo) {
             return base.Channel.AddTipoEmpresa(tipo);
         }
         
-        public System.Threading.Tasks.Task<bool> AddTipoEmpresaAsync(string tipo) {
+        public System.Threading.Tasks.Task<int> AddTipoEmpresaAsync(string tipo) {
             return base.Channel.AddTipoEmpresaAsync(tipo);
         }
         
@@ -1067,11 +1091,11 @@ namespace Clientes.ServicioDatos2 {
             return base.Channel.BorrarTipoEmpresaAsync(idTipo);
         }
         
-        public bool AddTipoAccion(string tipo) {
+        public int AddTipoAccion(string tipo) {
             return base.Channel.AddTipoAccion(tipo);
         }
         
-        public System.Threading.Tasks.Task<bool> AddTipoAccionAsync(string tipo) {
+        public System.Threading.Tasks.Task<int> AddTipoAccionAsync(string tipo) {
             return base.Channel.AddTipoAccionAsync(tipo);
         }
         
@@ -1113,6 +1137,38 @@ namespace Clientes.ServicioDatos2 {
         
         public System.Threading.Tasks.Task<bool> BorrarTelefonoContactoAsync(string telefono) {
             return base.Channel.BorrarTelefonoContactoAsync(telefono);
+        }
+        
+        public int AddUser(Clientes.ServicioDatos2.UserData user) {
+            return base.Channel.AddUser(user);
+        }
+        
+        public System.Threading.Tasks.Task<int> AddUserAsync(Clientes.ServicioDatos2.UserData user) {
+            return base.Channel.AddUserAsync(user);
+        }
+        
+        public bool BorrarUser(int idUsuario) {
+            return base.Channel.BorrarUser(idUsuario);
+        }
+        
+        public System.Threading.Tasks.Task<bool> BorrarUserAsync(int idUsuario) {
+            return base.Channel.BorrarUserAsync(idUsuario);
+        }
+        
+        public bool EditUser(Clientes.ServicioDatos2.UserData user) {
+            return base.Channel.EditUser(user);
+        }
+        
+        public System.Threading.Tasks.Task<bool> EditUserAsync(Clientes.ServicioDatos2.UserData user) {
+            return base.Channel.EditUserAsync(user);
+        }
+        
+        public Clientes.ServicioDatos2.UserData GetUser(int idUsuario) {
+            return base.Channel.GetUser(idUsuario);
+        }
+        
+        public System.Threading.Tasks.Task<Clientes.ServicioDatos2.UserData> GetUserAsync(int idUsuario) {
+            return base.Channel.GetUserAsync(idUsuario);
         }
     }
 }
