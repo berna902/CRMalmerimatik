@@ -20,7 +20,7 @@ namespace Clientes.Private.Acciones
 
                 this.GridView1.DataSource = acciones;
                 this.GridView1.DataBind();
-
+                
             }
         }
 
