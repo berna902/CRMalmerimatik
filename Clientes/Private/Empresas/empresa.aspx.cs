@@ -84,7 +84,7 @@ namespace Clientes.Private.Empresas
                             this.tbWeb.Text = empresa.Web;
 
 
-                            ContactoData[] contactos = proxy.GetAllContactos(idEmpresa);
+                            ContactoData[] contactos = proxy.GetAllContactosEmpresa(idEmpresa);
 
                             this.GridView1.DataSource = contactos;
                             this.GridView1.DataBind();
@@ -187,8 +187,9 @@ namespace Clientes.Private.Empresas
         protected void GridView1_RowEditing(object sender, GridViewEditEventArgs e)
         {
 
-            string id = this.GridView1.Rows[e.NewEditIndex].Cells[0].Text;
-            this.Response.Redirect("GContactos.aspx?estado=1&id=" + id);
+            string idu = this.GridView1.Rows[e.NewEditIndex].Cells[0].Text;
+            string id = this.GridView1.Rows[e.NewEditIndex].Cells[1].Text;
+            this.Response.Redirect("GContactos.aspx?estado=1&idU=" + idu+"&id="+id);
         }
     }
 }

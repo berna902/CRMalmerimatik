@@ -19,7 +19,7 @@
 
     <div class="row placeholders">
         <fieldset class="opciones">
-            <asp:LinkButton  ID="btnAlta" runat="server" Text="Añadir" CssClass="btn btn-success"><span class="glyphicon glyphicon-plus"></span>Alta</asp:LinkButton>
+            <asp:LinkButton  ID="btnAlta" runat="server" Text="Añadir" CssClass="btn btn-success" PostBackUrl="GContactos.aspx?estado=0"><span class="glyphicon glyphicon-plus"></span>Alta</asp:LinkButton>
 
         </fieldset>
        <div class="table-responsive">

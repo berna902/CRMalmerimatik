@@ -20,9 +20,17 @@
 
     <div class="col-md-12">
         <div class="form-group">
-            <asp:Label CssClass="control-label" Text="ID de la Empresa" ID="lbIDEmpresa" runat="server" AssociatedControlID="tbIDEmpresa"></asp:Label>
+            <asp:Label CssClass="control-label" Text="ID Usuario" ID="lbIDUsuario" runat="server" AssociatedControlID="tbIDUsuario"></asp:Label>
 
-            <asp:TextBox ID="tbIDEmpresa" runat="server" CssClass="form-control"></asp:TextBox>
+            <asp:TextBox ID="tbIDUsuario" runat="server" CssClass="form-control"></asp:TextBox>
+
+        </div>
+        <div class="form-group">
+            <asp:Label CssClass="control-label" Text="Empresa" ID="lbEmpresa" runat="server" AssociatedControlID="tbEmpresa"></asp:Label>
+
+            <asp:DropDownList ID="tbEmpresa" runat="server" CssClass="form-control" AutoPostBack="True">
+                <asp:ListItem Value="1">-</asp:ListItem>
+            </asp:DropDownList>
 
         </div>
 
@@ -30,6 +38,15 @@
             <asp:Label CssClass="control-label" Text="Nombre" ID="lbNombre" runat="server" AssociatedControlID="tbNombre"></asp:Label>
 
             <asp:TextBox ID="tbNombre" runat="server" CssClass="form-control" placeholder="Nombre del contacto"></asp:TextBox>
+
+        </div>
+
+         <div class="form-group">
+            <asp:Label CssClass="control-label" Text="Cargo" ID="lbCargo" runat="server" AssociatedControlID="tbCargos"></asp:Label>
+
+            <asp:DropDownList ID="tbCargos" runat="server" CssClass="form-control" AutoPostBack="True">
+                <asp:ListItem Value="1">-</asp:ListItem>
+            </asp:DropDownList>
 
         </div>
 

@@ -49,11 +49,11 @@
   <wsdl:message name="ISrvDatos_GetAllTiposAccion_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetAllTiposAccionResponse" />
   </wsdl:message>
-  <wsdl:message name="ISrvDatos_GetAllContactos_InputMessage">
-    <wsdl:part name="parameters" element="tns:GetAllContactos" />
+  <wsdl:message name="ISrvDatos_GetAllContactosEmpresa_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllContactosEmpresa" />
   </wsdl:message>
-  <wsdl:message name="ISrvDatos_GetAllContactos_OutputMessage">
-    <wsdl:part name="parameters" element="tns:GetAllContactosResponse" />
+  <wsdl:message name="ISrvDatos_GetAllContactosEmpresa_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllContactosEmpresaResponse" />
   </wsdl:message>
   <wsdl:message name="ISrvDatos_GetAllCargos_InputMessage">
     <wsdl:part name="parameters" element="tns:GetAllCargos" />
@@ -157,6 +157,72 @@
   <wsdl:message name="ISrvDatos_GetUser_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetUserResponse" />
   </wsdl:message>
+  <wsdl:message name="ISrvDatos_GetContacto_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetContacto" />
+  </wsdl:message>
+  <wsdl:message name="ISrvDatos_GetContacto_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetContactoResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISrvDatos_GetAllContactos_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllContactos" />
+  </wsdl:message>
+  <wsdl:message name="ISrvDatos_GetAllContactos_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllContactosResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISrvDatos_AddContacto_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddContacto" />
+  </wsdl:message>
+  <wsdl:message name="ISrvDatos_AddContacto_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddContactoResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISrvDatos_BorrarContacto_InputMessage">
+    <wsdl:part name="parameters" element="tns:BorrarContacto" />
+  </wsdl:message>
+  <wsdl:message name="ISrvDatos_BorrarContacto_OutputMessage">
+    <wsdl:part name="parameters" element="tns:BorrarContactoResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISrvDatos_EditContacto_InputMessage">
+    <wsdl:part name="parameters" element="tns:EditContacto" />
+  </wsdl:message>
+  <wsdl:message name="ISrvDatos_EditContacto_OutputMessage">
+    <wsdl:part name="parameters" element="tns:EditContactoResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISrvDatos_GetAccionComercial_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAccionComercial" />
+  </wsdl:message>
+  <wsdl:message name="ISrvDatos_GetAccionComercial_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAccionComercialResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISrvDatos_AddAccionComercial_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddAccionComercial" />
+  </wsdl:message>
+  <wsdl:message name="ISrvDatos_AddAccionComercial_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddAccionComercialResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISrvDatos_BorrarAccionComercial_InputMessage">
+    <wsdl:part name="parameters" element="tns:BorrarAccionComercial" />
+  </wsdl:message>
+  <wsdl:message name="ISrvDatos_BorrarAccionComercial_OutputMessage">
+    <wsdl:part name="parameters" element="tns:BorrarAccionComercialResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISrvDatos_EditAccionComercial_InputMessage">
+    <wsdl:part name="parameters" element="tns:EditAccionComercial" />
+  </wsdl:message>
+  <wsdl:message name="ISrvDatos_EditAccionComercial_OutputMessage">
+    <wsdl:part name="parameters" element="tns:EditAccionComercialResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISrvDatos_GetAllAccionesComercialesEmpresa_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllAccionesComercialesEmpresa" />
+  </wsdl:message>
+  <wsdl:message name="ISrvDatos_GetAllAccionesComercialesEmpresa_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllAccionesComercialesEmpresaResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISrvDatos_GetAllAccionesComercialesUsuario_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllAccionesComercialesUsuario" />
+  </wsdl:message>
+  <wsdl:message name="ISrvDatos_GetAllAccionesComercialesUsuario_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllAccionesComercialesUsuarioResponse" />
+  </wsdl:message>
   <wsdl:portType name="ISrvDatos">
     <wsdl:operation name="GetAllUsers">
       <wsdl:input wsaw:Action="http://tempuri.org/ISrvDatos/GetAllUsers" message="tns:ISrvDatos_GetAllUsers_InputMessage" />
@@ -186,9 +252,9 @@
       <wsdl:input wsaw:Action="http://tempuri.org/ISrvDatos/GetAllTiposAccion" message="tns:ISrvDatos_GetAllTiposAccion_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/ISrvDatos/GetAllTiposAccionResponse" message="tns:ISrvDatos_GetAllTiposAccion_OutputMessage" />
     </wsdl:operation>
-    <wsdl:operation name="GetAllContactos">
-      <wsdl:input wsaw:Action="http://tempuri.org/ISrvDatos/GetAllContactos" message="tns:ISrvDatos_GetAllContactos_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/ISrvDatos/GetAllContactosResponse" message="tns:ISrvDatos_GetAllContactos_OutputMessage" />
+    <wsdl:operation name="GetAllContactosEmpresa">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISrvDatos/GetAllContactosEmpresa" message="tns:ISrvDatos_GetAllContactosEmpresa_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISrvDatos/GetAllContactosEmpresaResponse" message="tns:ISrvDatos_GetAllContactosEmpresa_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="GetAllCargos">
       <wsdl:input wsaw:Action="http://tempuri.org/ISrvDatos/GetAllCargos" message="tns:ISrvDatos_GetAllCargos_InputMessage" />
@@ -258,6 +324,50 @@
       <wsdl:input wsaw:Action="http://tempuri.org/ISrvDatos/GetUser" message="tns:ISrvDatos_GetUser_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/ISrvDatos/GetUserResponse" message="tns:ISrvDatos_GetUser_OutputMessage" />
     </wsdl:operation>
+    <wsdl:operation name="GetContacto">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISrvDatos/GetContacto" message="tns:ISrvDatos_GetContacto_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISrvDatos/GetContactoResponse" message="tns:ISrvDatos_GetContacto_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllContactos">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISrvDatos/GetAllContactos" message="tns:ISrvDatos_GetAllContactos_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISrvDatos/GetAllContactosResponse" message="tns:ISrvDatos_GetAllContactos_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AddContacto">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISrvDatos/AddContacto" message="tns:ISrvDatos_AddContacto_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISrvDatos/AddContactoResponse" message="tns:ISrvDatos_AddContacto_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="BorrarContacto">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISrvDatos/BorrarContacto" message="tns:ISrvDatos_BorrarContacto_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISrvDatos/BorrarContactoResponse" message="tns:ISrvDatos_BorrarContacto_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="EditContacto">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISrvDatos/EditContacto" message="tns:ISrvDatos_EditContacto_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISrvDatos/EditContactoResponse" message="tns:ISrvDatos_EditContacto_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAccionComercial">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISrvDatos/GetAccionComercial" message="tns:ISrvDatos_GetAccionComercial_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISrvDatos/GetAccionComercialResponse" message="tns:ISrvDatos_GetAccionComercial_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AddAccionComercial">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISrvDatos/AddAccionComercial" message="tns:ISrvDatos_AddAccionComercial_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISrvDatos/AddAccionComercialResponse" message="tns:ISrvDatos_AddAccionComercial_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="BorrarAccionComercial">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISrvDatos/BorrarAccionComercial" message="tns:ISrvDatos_BorrarAccionComercial_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISrvDatos/BorrarAccionComercialResponse" message="tns:ISrvDatos_BorrarAccionComercial_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="EditAccionComercial">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISrvDatos/EditAccionComercial" message="tns:ISrvDatos_EditAccionComercial_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISrvDatos/EditAccionComercialResponse" message="tns:ISrvDatos_EditAccionComercial_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllAccionesComercialesEmpresa">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISrvDatos/GetAllAccionesComercialesEmpresa" message="tns:ISrvDatos_GetAllAccionesComercialesEmpresa_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISrvDatos/GetAllAccionesComercialesEmpresaResponse" message="tns:ISrvDatos_GetAllAccionesComercialesEmpresa_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllAccionesComercialesUsuario">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISrvDatos/GetAllAccionesComercialesUsuario" message="tns:ISrvDatos_GetAllAccionesComercialesUsuario_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISrvDatos/GetAllAccionesComercialesUsuarioResponse" message="tns:ISrvDatos_GetAllAccionesComercialesUsuario_OutputMessage" />
+    </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_ISrvDatos" type="tns:ISrvDatos">
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
@@ -324,8 +434,8 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="GetAllContactos">
-      <soap:operation soapAction="http://tempuri.org/ISrvDatos/GetAllContactos" style="document" />
+    <wsdl:operation name="GetAllContactosEmpresa">
+      <soap:operation soapAction="http://tempuri.org/ISrvDatos/GetAllContactosEmpresa" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -479,6 +589,105 @@
     </wsdl:operation>
     <wsdl:operation name="GetUser">
       <soap:operation soapAction="http://tempuri.org/ISrvDatos/GetUser" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetContacto">
+      <soap:operation soapAction="http://tempuri.org/ISrvDatos/GetContacto" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllContactos">
+      <soap:operation soapAction="http://tempuri.org/ISrvDatos/GetAllContactos" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddContacto">
+      <soap:operation soapAction="http://tempuri.org/ISrvDatos/AddContacto" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="BorrarContacto">
+      <soap:operation soapAction="http://tempuri.org/ISrvDatos/BorrarContacto" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EditContacto">
+      <soap:operation soapAction="http://tempuri.org/ISrvDatos/EditContacto" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAccionComercial">
+      <soap:operation soapAction="http://tempuri.org/ISrvDatos/GetAccionComercial" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddAccionComercial">
+      <soap:operation soapAction="http://tempuri.org/ISrvDatos/AddAccionComercial" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="BorrarAccionComercial">
+      <soap:operation soapAction="http://tempuri.org/ISrvDatos/BorrarAccionComercial" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EditAccionComercial">
+      <soap:operation soapAction="http://tempuri.org/ISrvDatos/EditAccionComercial" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllAccionesComercialesEmpresa">
+      <soap:operation soapAction="http://tempuri.org/ISrvDatos/GetAllAccionesComercialesEmpresa" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllAccionesComercialesUsuario">
+      <soap:operation soapAction="http://tempuri.org/ISrvDatos/GetAllAccionesComercialesUsuario" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
