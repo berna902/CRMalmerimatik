@@ -70,7 +70,7 @@ namespace almerimatik.ServicioCRM
         /// <param name="idEmpresa">identificador de la empresa en la que queremos buscar</param>
         /// <returns>listado de contactos</returns>
         [OperationContract]
-        List<ContactoData> GetAllContactos(int idEmpresa);
+        List<ContactoData> GetAllContactosEmpresa(int idEmpresa);
 
         /// <summary>
         /// Operacion del servicio que devuelve una lista con los cargos que existen
@@ -298,6 +298,20 @@ namespace almerimatik.ServicioCRM
         /// <returns>verdadero o falso segun si la accion se llevo a cabo o no</returns>
         [OperationContract]
         bool EditAccionComercial(AccionComercialData accion);
+
+        /// <summary>
+        /// Operacion del servicio que devuelve una lista con todas las acciones comerciales
+        /// </summary>
+        /// <returns></returns>
+        [OperationContract]
+        List<AccionComercialData> GetAllAccionesComercialesEmpresa(int idEmpresa);
+
+        /// <summary>
+        /// Operacion del servicio que devuelve una lista con todas las acciones comerciales
+        /// </summary>
+        /// <returns></returns>
+        [OperationContract]
+        List<AccionComercialData> GetAllAccionesComercialesUsuario(int idUsuario);
 
     }
 

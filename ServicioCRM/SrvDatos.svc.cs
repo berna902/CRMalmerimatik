@@ -114,6 +114,76 @@ namespace almerimatik.ServicioCRM
             }
         }
 
+        /// <summary>
+        /// metodo que devuelve los datos de las acciones comerciales realizadas en una empresa
+        /// </summary>
+        /// <returns></returns>
+        public List<AccionComercialData> GetAllAccionesComercialesEmpresa(int idEmpresa)
+        {
+            List<AccionComercialData> lst = new List<AccionComercialData>();
+            try
+            {
+                using (BDCRMEntities datos = new BDCRMEntities())
+                {
+                    var consulta = from tabla in datos.AccionComercial
+                                   where tabla.IDEmpresa == idEmpresa
+                                   select new AccionComercialData()
+                                   {
+                                       ID = tabla.ID,
+                                       Usuario = tabla.Usuario,
+                                       IDEmpresa = tabla.IDEmpresa,
+                                       Fecha = tabla.Fecha,
+                                       Descripcion = tabla.Descripcion,
+                                       Comentarios = tabla.Comentarios,
+                                       IDAccion = tabla.IDAccion,
+                                       IDEstado = tabla.IDEstado
+
+                                   };
+                    lst = consulta.ToList();
+                    return lst;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new FaultException("ERROR EN ACCESO A DATOS. " + ex.Message);
+            }
+        }
+
+        /// <summary>
+        /// metodo que devuelve los datos de las acciones comerciales de un usuario
+        /// </summary>
+        /// <returns></returns>
+        public List<AccionComercialData> GetAllAccionesComercialesUsuario(int idUsuario)
+        {
+            List<AccionComercialData> lst = new List<AccionComercialData>();
+            try
+            {
+                using (BDCRMEntities datos = new BDCRMEntities())
+                {
+                    var consulta = from tabla in datos.AccionComercial
+                                   where tabla.Usuario == idUsuario
+                                   select new AccionComercialData()
+                                   {
+                                       ID = tabla.ID,
+                                       Usuario = tabla.Usuario,
+                                       IDEmpresa = tabla.IDEmpresa,
+                                       Fecha = tabla.Fecha,
+                                       Descripcion = tabla.Descripcion,
+                                       Comentarios = tabla.Comentarios,
+                                       IDAccion = tabla.IDAccion,
+                                       IDEstado = tabla.IDEstado
+
+                                   };
+                    lst = consulta.ToList();
+                    return lst;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new FaultException("ERROR EN ACCESO A DATOS. " + ex.Message);
+            }
+        }
+
 
         /// <summary>
         /// metodo que devuelve los posibles tipos que tendrá una emrpesa
@@ -240,7 +310,7 @@ namespace almerimatik.ServicioCRM
         /// </summary>
         /// <param name="idEmpresa">identificador de la empresa</param>
         /// <returns></returns>
-        public List<ContactoData> GetAllContactos(int idEmpresa)
+        public List<ContactoData> GetAllContactosEmpresa(int idEmpresa)
         {
             List<ContactoData> lst = new List<ContactoData>();
             try

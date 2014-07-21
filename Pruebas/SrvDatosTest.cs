@@ -407,7 +407,7 @@ namespace Pruebas
         {
             //comprobamos cuantos usuarios hay
             SrvDatos d = new SrvDatos();
-            List<ContactoData> lst = d.GetAllContactos(2);
+            List<ContactoData> lst = d.GetAllContactos();
             int contador1 = lst.Count;
 
             //insertamos un usuario nuevo
@@ -419,7 +419,37 @@ namespace Pruebas
             int id = d.AddContacto(u);
 
             //volvemos a ver cuantos usuarios hay
-            lst = d.GetAllContactos(2);
+            lst = d.GetAllContactos();
+            int contador2 = lst.Count;
+
+            //comprobamos que ha aumentado en uno
+            Assert.AreEqual(contador1 + 1, contador2);
+
+            //borramos el contacto creado
+            bool b = d.BorrarContacto(id);
+        }
+
+        /// <summary>
+        /// Test del metodo GetAllContactosEmpresa
+        /// </summary>
+        [TestMethod]
+        public void GetAllContactosEmpresaTest()
+        {
+            //comprobamos cuantos usuarios hay
+            SrvDatos d = new SrvDatos();
+            List<ContactoData> lst = d.GetAllContactosEmpresa(2);
+            int contador1 = lst.Count;
+
+            //insertamos un usuario nuevo
+            ContactoData u = new ContactoData();
+            u.Nombre = "Flanders";
+            u.Email = "contacto@mail.com";
+            u.IDEmpresa = 2;
+
+            int id = d.AddContacto(u);
+
+            //volvemos a ver cuantos usuarios hay
+            lst = d.GetAllContactosEmpresa(2);
             int contador2 = lst.Count;
 
             //comprobamos que ha aumentado en uno
