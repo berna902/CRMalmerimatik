@@ -11,7 +11,7 @@
     </ul>
     <ul class="nav nav-sidebar">
         <li class="active historial"><a href="#">Historial</a></li>
-
+        
     </ul>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="central" runat="server">
