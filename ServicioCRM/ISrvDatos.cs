@@ -320,6 +320,33 @@ namespace almerimatik.ServicioCRM
         [OperationContract]
         List<AccionComercialData> GetAllAccionesComercialesUsuario(int idUsuario);
 
+
+
+        /// <summary>
+        /// Operacion del servicio que devuelve la lista de todos los estados
+        /// </summary>
+        /// <returns></returns>
+        [OperationContract]
+        List<EstadoData> GetAllEstados();
+
+
+        /// <summary>
+        ///  Operacion del servicio que añade un estado a la BD
+        /// </summary>
+        /// <param name="estado">nombre con el estado nuevo</param>
+        /// <returns>id del estado nuevo</returns>
+        [OperationContract]
+        int AddEstado(String estado);
+
+
+        /// <summary>
+        ///  Operacion del servicio que borra un estado de la BD
+        /// </summary>
+        /// <param name="idEstado">identificador del estado a borrar</param>
+        /// <returns>verdadero o falso segun si la accion se llevo a cabo o no</returns>
+        [OperationContract]
+        bool BorrarEstado(int idEstado);
+
     }
 
 
@@ -404,6 +431,8 @@ namespace almerimatik.ServicioCRM
         public int IDAccion { get; set; }
         [DataMember]
         public int IDEstado { get; set; }
+        [DataMember]
+        public string Estado { get; set; }
     }
 
     /// <summary>
@@ -483,6 +512,19 @@ namespace almerimatik.ServicioCRM
         [DataMember]
         public string Cargo { get; set; }
         
+    }
+
+
+    /// <summary>
+    /// datos que definen un estado
+    /// </summary>
+    [DataContract]
+    public class EstadoData
+    {
+        [DataMember]
+        public int ID { get; set; }
+        [DataMember]
+        public string Estado { get; set; }
     }
 
 
