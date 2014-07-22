@@ -80,6 +80,13 @@ namespace almerimatik.ServicioCRM
         List<CargoData> GetAllCargos();
 
         /// <summary>
+        /// Operacion del servicio que devolvera los cargos de un contacto
+        /// </summary>
+        /// <returns></returns>
+        [OperationContract]
+        List<CargoData> GetAllCargosContacto(int contacto);
+
+        /// <summary>
         /// Operacion del servicio que devuelve los datos de la empresa que se solicita
         /// </summary>
         /// <param name="idEmpresa">identificador de la empresa</param>
@@ -451,10 +458,12 @@ namespace almerimatik.ServicioCRM
         [DataMember]
         public string Email { get; set; }
         /// <summary>
-        /// Este cargo es el primero de la lsita de cargos del contacto.
+        /// Este cargo es el primero de la lista de cargos del contacto.
         /// </summary>
         [DataMember]
         public string Cargo { get; set; }
+        [DataMember]
+        public int IDCargo { get; set; }
         /// <summary>
         /// Este telefono es el primero de la lista de telefonos del contacto. Será el que salga por defecto.
         /// </summary>

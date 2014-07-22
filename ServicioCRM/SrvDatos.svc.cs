@@ -66,7 +66,8 @@ namespace almerimatik.ServicioCRM
                                        Email = tabla.Email,
                                        Web = tabla.Web,
                                        IDTipoEmpresa = tabla.TipoEmpresa,
-                                       TipoEmpresa = tabla.TipoEmpresa1.Tipo
+                                       TipoEmpresa = tabla.TipoEmpresa1.Tipo,
+                                       Telefono = tabla.TelefonoEmpresa.FirstOrDefault().Telefono
 
                                    };
                     lst = consulta.ToList();
@@ -324,7 +325,10 @@ namespace almerimatik.ServicioCRM
                                        ID = tabla.ID,
                                        IDEmpresa = tabla.IDEmpresa,
                                        Nombre = tabla.Nombre,
-                                       Email = tabla.Email
+                                       Email = tabla.Email,
+                                       Telefono = tabla.TelefonoContacto.FirstOrDefault().Telefono,
+                                       Cargo = tabla.Cargo.FirstOrDefault().Carg,
+                                       IDCargo = tabla.Cargo.FirstOrDefault().ID
 
                                    };
                     lst = consulta.ToList();
@@ -355,7 +359,10 @@ namespace almerimatik.ServicioCRM
                                        ID = tabla.ID,
                                        IDEmpresa = tabla.IDEmpresa,
                                        Nombre = tabla.Nombre,
-                                       Email = tabla.Email
+                                       Email = tabla.Email,
+                                       Telefono = tabla.TelefonoContacto.FirstOrDefault().Telefono,
+                                       Cargo = tabla.Cargo.FirstOrDefault().Carg,
+                                       IDCargo = tabla.Cargo.FirstOrDefault().ID
 
                                    };
                     lst = consulta.ToList();
@@ -400,6 +407,42 @@ namespace almerimatik.ServicioCRM
 
 
         /// <summary>
+        /// metodo que devolvera los cargos de un contacto
+        /// </summary>
+        /// <returns></returns>
+        public List<CargoData> GetAllCargosContacto(int contacto)
+        {
+            List<CargoData> lst = new List<CargoData>();
+            try
+            {
+                using (BDCRMEntities datos = new BDCRMEntities())
+                {
+                    var consulta = from tabla in datos.Contacto
+                                   where (tabla.ID == contacto)
+                                   select tabla;
+                                   
+                                                      
+                    
+                    Contacto c = consulta.First();
+                    CargoData cd;
+                    foreach(var ele in c.Cargo){
+                        cd = new CargoData();
+                        cd.ID = ele.ID;
+                        cd.Cargo = ele.Carg;
+                        lst.Add(cd);
+                    }
+                    
+                    return lst;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new FaultException("ERROR EN ACCESO A DATOS. " + ex.Message);
+            }
+        }
+
+
+        /// <summary>
         /// metodo que guardara una empresa en la BD. Devolvera verdadero o falso
         /// </summary>
         /// <param name="empresa">datos de la empresa nueva</param>
@@ -412,17 +455,28 @@ namespace almerimatik.ServicioCRM
                 {
                     if (empresa != null)
                     {
+                        //insertamos empresa
                         Empresa nuevo = new Empresa();
-
-
+                        
                         nuevo.Nombre = empresa.Nombre;
                         nuevo.RazonSocial = empresa.RazonSocial;
                         nuevo.CIF = empresa.CIF;
                         nuevo.Email = empresa.Email;
                         nuevo.Web = empresa.Web;
                         nuevo.TipoEmpresa = empresa.IDTipoEmpresa;
-
+                        
                         db.Empresa.Add(nuevo);
+
+                        //insertamos el telefono
+                        if (empresa.Telefono != null && empresa.Telefono != "")
+                        {
+                            TelefonosData nuevoTlf = new TelefonosData();
+                            nuevoTlf.ID = nuevo.ID;
+                            nuevoTlf.Telefono = empresa.Telefono;
+                            AddTelefonoEmpresa(nuevoTlf);
+                        }
+
+
                         db.SaveChanges();
                         return nuevo.ID;
 
@@ -512,7 +566,8 @@ namespace almerimatik.ServicioCRM
             {
                 using (BDCRMEntities datos = new BDCRMEntities())
                 {
-                    var consulta = from tabla in datos.Empresa where tabla.ID == idEmpresa
+                    var consulta = from tabla in datos.Empresa
+                                   where tabla.ID == idEmpresa
                                    select new EmpresaData()
                                    {
                                        ID = tabla.ID,
@@ -523,6 +578,7 @@ namespace almerimatik.ServicioCRM
                                        Web = tabla.Web,
                                        IDTipoEmpresa = tabla.TipoEmpresa,
                                        TipoEmpresa = tabla.TipoEmpresa1.Tipo,
+                                       Telefono = tabla.TelefonoEmpresa.FirstOrDefault().Telefono
                                        
 
                                    };
@@ -548,6 +604,14 @@ namespace almerimatik.ServicioCRM
             {
                 using (BDCRMEntities db = new BDCRMEntities())
                 {
+                    //borramos los telefonos asociados a la empresa
+                    var consultaT = from tabla in db.TelefonoEmpresa where tabla.IDEmpresa == idEmpresa select tabla;
+                    foreach(var element in consultaT){
+                        //se peude pasar solo el tlf pues es clave primaria
+                        BorrarTelefonoEmpresa(element.Telefono);
+                    }
+
+                    //borramos la empresa
                     var consulta = from tabla in db.Empresa where tabla.ID == idEmpresa select tabla;
                     Empresa emp = consulta.First();
 
@@ -1077,8 +1141,10 @@ namespace almerimatik.ServicioCRM
                                        ID = tabla.ID,
                                        IDEmpresa = tabla.IDEmpresa,
                                        Nombre = tabla.Nombre,
-                                       Email = tabla.Email
-                                       //telefono y cargo principales??
+                                       Email = tabla.Email,
+                                       Telefono = tabla.TelefonoContacto.FirstOrDefault().Telefono,
+                                       Cargo = tabla.Cargo.FirstOrDefault().Carg
+                                       
 
                                    };
                     lst = consulta.ToList();
@@ -1153,8 +1219,26 @@ namespace almerimatik.ServicioCRM
             {
                 using (BDCRMEntities db = new BDCRMEntities())
                 {
+                    //borramos los telefonos asociados a al contacto
+                    var consultaT = from tabla in db.TelefonoContacto where tabla.IDContacto == idContacto select tabla;
+                    foreach (var element in consultaT)
+                    {
+                        //se puede pasar solo el tlf pues es clave primaria
+                        BorrarTelefonoContacto(element.Telefono);
+                    }
+
+
+                    
+
+
                     var consulta = from tabla in db.Contacto where tabla.ID == idContacto select tabla;
                     Contacto c = consulta.First();
+
+                    //borramos los cargos de este contacto
+                    foreach (var ele in c.Cargo)
+                    {
+                        //borrarCargo
+                    }
 
                     db.Contacto.Remove(c);
                     db.SaveChanges();
@@ -1247,6 +1331,7 @@ namespace almerimatik.ServicioCRM
                                        Descripcion = tabla.Descripcion,
                                        Fecha = tabla.Fecha,
                                        Usuario = tabla.Usuario
+                                       
                                        
                                    };
                     lst = consulta.ToList();
