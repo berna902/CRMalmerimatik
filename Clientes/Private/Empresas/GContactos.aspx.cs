@@ -103,9 +103,18 @@ namespace Clientes.Private.Empresas
                             tbCargos.DataSource = cargos2;
                             tbCargos.DataValueField = "ID";
                             tbCargos.DataTextField = "Cargo";
-                            
-                            tbCargos.SelectedValue = tbCargos.Items.FindByText(usuario.Cargo).Value;
+                            usuario.Cargo = "Gerente";
                             tbCargos.DataBind();
+
+                            ListItem selectedListItem = tbCargos.Items.FindByText(usuario.Cargo);
+
+                            if (selectedListItem != null)
+                            {
+                                selectedListItem.Selected = true;
+                            };
+
+                            //tbCargos.SelectedValue = tbCargos.Items.FindByText(usuario.Cargo).Value;
+                            
 
                             break;
 
