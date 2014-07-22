@@ -16,9 +16,23 @@
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="central" runat="server">
 
-    <h1>Nueva acción</h1>
+    <h1 id="H1Titulo" runat="server">Nueva acción</h1>
 
     <div class="col-md-12">
+        <div class="form-group">
+            <asp:Label CssClass="control-label" Text="ID Acción" ID="lbIDAccion" runat="server" AssociatedControlID="tbIDAcciones"></asp:Label>
+
+            <asp:TextBox ID="tbIDAcciones" runat="server" CssClass="form-control"></asp:TextBox>
+
+        </div>
+                <div class="form-group">
+            <asp:Label CssClass="control-label" Text="Empresa" ID="lbEmpresa" runat="server" AssociatedControlID="tbEmpresa"></asp:Label>
+
+            <asp:DropDownList ID="tbEmpresa" runat="server" CssClass="form-control">
+                <asp:ListItem Value="1">S.L.</asp:ListItem>
+            </asp:DropDownList>
+
+        </div>
         <div class="form-group">
             <asp:Label CssClass="control-label" Text="Usuario" ID="lbUsuario" runat="server" AssociatedControlID="tbUsuario"></asp:Label>
 
@@ -68,7 +82,7 @@
         </div>
         <div class="form-group">
 
-                <asp:Button ID="Button1" runat="server" Text="Alta" CssClass="btn btn-primary" />
+                <asp:Button ID="btnAlta" runat="server" Text="Alta" CssClass="btn btn-primary" OnClick="btnAlta_Click" />
 
         </div>
     </div>

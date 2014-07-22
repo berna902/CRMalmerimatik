@@ -13,6 +13,51 @@ namespace Clientes.Private.Acciones {
     public partial class acciones {
         
         /// <summary>
+        /// H1Titulo control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl H1Titulo;
+        
+        /// <summary>
+        /// lbIDAccion control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbIDAccion;
+        
+        /// <summary>
+        /// tbIDAcciones control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox tbIDAcciones;
+        
+        /// <summary>
+        /// lbEmpresa control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbEmpresa;
+        
+        /// <summary>
+        /// tbEmpresa control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList tbEmpresa;
+        
+        /// <summary>
         /// lbUsuario control.
         /// </summary>
         /// <remarks>
@@ -121,12 +166,12 @@ namespace Clientes.Private.Acciones {
         protected global::System.Web.UI.WebControls.DropDownList tbEstado;
         
         /// <summary>
-        /// Button1 control.
+        /// btnAlta control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Button1;
+        protected global::System.Web.UI.WebControls.Button btnAlta;
     }
 }
