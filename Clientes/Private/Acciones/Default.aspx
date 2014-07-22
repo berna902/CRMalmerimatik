@@ -64,8 +64,8 @@
                         <ItemTemplate>
 
                             
-                            <asp:LinkButton ID="btnModificar" runat="server" Text="Modificar" CssClass="btn btn-warning"><span class="glyphicon glyphicon-pencil"></span>Modificar</asp:LinkButton>
-                            <asp:LinkButton ID="btnEliminar" runat="server" Text="Eliminar" CssClass="btn btn-danger"><span class="glyphicon glyphicon-minus"></span>Eliminar</asp:LinkButton>
+                            <asp:LinkButton ID="btnModificar" runat="server" Text="Modificar" CssClass="btn btn-warning" CommandName="Edit"><span class="glyphicon glyphicon-pencil"></span>Modificar</asp:LinkButton>
+                            <asp:LinkButton ID="btnEliminar" runat="server" Text="Eliminar" CssClass="btn btn-danger" CommandName="Delete"><span class="glyphicon glyphicon-minus"></span>Eliminar</asp:LinkButton>
 
                         </ItemTemplate>
                         <HeaderStyle BackColor="#000066" />

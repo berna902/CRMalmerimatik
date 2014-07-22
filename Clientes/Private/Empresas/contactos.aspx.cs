@@ -26,12 +26,20 @@ namespace Clientes.Private.Empresas
 
         protected void GridView1_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {
+            string id = e.Values["id"].ToString();
+            SrvDatosClient proxy = new SrvDatosClient();
+            
+            proxy.BorrarContacto(Int32.Parse(id));
 
+            this.GridView1.DataSource = proxy.GetAllEmpresas();
+            this.GridView1.DataBind();
         }
 
         protected void GridView1_RowEditing(object sender, GridViewEditEventArgs e)
         {
-
+            string idu = this.GridView1.Rows[e.NewEditIndex].Cells[0].Text;
+            string id = this.GridView1.Rows[e.NewEditIndex].Cells[1].Text;
+            this.Response.Redirect("GContactos.aspx?estado=1&idU=" + idu + "&id=" + id);
         }
     }
 }
