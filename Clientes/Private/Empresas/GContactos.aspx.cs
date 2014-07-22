@@ -43,22 +43,70 @@ namespace Clientes.Private.Empresas
                     switch (estado)
                     {
                         case 0:
-                            this.lbIDEmpresa.Visible = false;
-                            this.tbIDEmpresa.Visible = false;           
+                            this.lbIDUsuario.Visible = false;
+                            this.tbIDUsuario.Visible = false;           
                             this.H1Titulo.InnerHtml = "Alta de Usuario";
                             this.btnAltaContacto.Text = "Alta";
                             this.btnAltaContacto.Visible = true;
+
+                            EmpresaData[] empresas = proxy.GetAllEmpresas();
+
+                            tbEmpresa.DataSource = empresas;
+                            tbEmpresa.DataValueField = "ID";
+                            tbEmpresa.DataTextField = "Nombre";
+                            tbEmpresa.SelectedValue = empresas[0].ID.ToString();
+                            tbEmpresa.DataBind();
+
+                            //this.formularioTelefonos.Visible = false;
+
+                            CargoData[] cargos = proxy.GetAllCargos();
+                            tbEmpresa.DataSource = cargos;
+                            tbEmpresa.DataValueField = "ID";
+                            tbEmpresa.DataTextField = "Cargo";
+                            tbEmpresa.SelectedValue = cargos[0].ID.ToString();
+                            tbEmpresa.DataBind();
+
                             break;
 
                         case 1:
-                            this.lbIDEmpresa.Visible = true;
-                            this.tbIDEmpresa.Visible = true;
-                            this.tbIDEmpresa.ReadOnly = true;
+                            this.lbIDUsuario.Visible = true;
+                            this.tbIDUsuario.Visible = true;
+                            this.tbIDUsuario.ReadOnly = true;
                             this.H1Titulo.InnerHtml = "Modificar usuario";
                             this.btnAltaContacto.Text = "Guardar";
                             this.btnAltaContacto.Visible = true;
 
-                           
+                            ContactoData usuario = proxy.GetContacto(idUsuario);
+
+                            tbIDUsuario.Text = usuario.ID.ToString();
+                            tbNombre.Text = usuario.Nombre;
+                            tbEmail.Text = usuario.Email;
+
+                            TelefonosData[] telefonos = proxy.GetAllTelefonosContacto(idUsuario);
+                            if (telefonos.Length > 0)
+                            {
+                                tbTelefonos.DataSource = telefonos;
+                                tbTelefonos.DataValueField = "Telefono";
+                                tbTelefonos.DataTextField = "Telefono";
+                                tbTelefonos.DataBind();
+                            }
+
+                            EmpresaData[] empresas2 = proxy.GetAllEmpresas();
+
+                            tbEmpresa.DataSource = empresas2;
+                            tbEmpresa.DataValueField = "ID";
+                            tbEmpresa.DataTextField = "Nombre";
+                            tbEmpresa.SelectedValue = usuario.IDEmpresa.ToString();
+                            tbEmpresa.DataBind();
+
+                            CargoData[] cargos2 = proxy.GetAllCargos();
+                            tbCargos.DataSource = cargos2;
+                            tbCargos.DataValueField = "ID";
+                            tbCargos.DataTextField = "Cargo";
+                            
+                            tbCargos.SelectedValue = tbCargos.Items.FindByText(usuario.Cargo).Value;
+                            tbCargos.DataBind();
+
                             break;
 
                         default:
@@ -78,9 +126,14 @@ namespace Clientes.Private.Empresas
         {
             SrvDatosClient proxy = new SrvDatosClient();
             TelefonosData telefono = new TelefonosData();
-            telefono.ID = Int32.Parse(tbIDEmpresa.Text);
+            telefono.ID = Int32.Parse(tbIDUsuario.Text);
             telefono.Telefono = tbTelefono.Text;
-            proxy.AddTelefonoEmpresa(telefono);
+            String s = Request.QueryString["estado"];
+            int estado = -1;
+            if (s != null)
+               estado = Int32.Parse(s);
+            if(estado==1)
+                proxy.AddTelefonoContacto(telefono);
             //llamar al servicio para que inserte el telefono nuevo. aun no está hecho T_T
             tbTelefonos.Items.Add(new ListItem(tbTelefono.Text, tbTelefono.Text));
             tbTelefono.DataBind();
@@ -99,12 +152,31 @@ namespace Clientes.Private.Empresas
                 switch (estado)
                 {
                     case 0:
-                        
+                        ContactoData contacto = new ContactoData();
+
+                        contacto.Email = tbEmail.Text;
+                        contacto.IDEmpresa = Int32.Parse(tbEmpresa.SelectedValue);
+                        contacto.Nombre = tbNombre.Text;
+                        int id = proxy.AddContacto(contacto);
+                        TelefonosData tel = new TelefonosData();
+                        tel.ID = id;
+                        for (int i = 0; i < tbTelefonos.Items.Count; i++ )
+                        {
+                            tel.Telefono = tbTelefonos.SelectedValue;
+                            proxy.AddTelefonoContacto(tel);
+                        }
 
                         break;
 
                     case 1:
-                       
+                       ContactoData contacto2 = new ContactoData();
+
+                        contacto2.Email = tbEmail.Text;
+                        contacto2.IDEmpresa = Int32.Parse(tbEmpresa.SelectedValue);
+                        contacto2.Nombre = tbNombre.Text;
+                        contacto2.Cargo = tbEmpresa.SelectedValue;
+                        proxy.EditContacto(contacto2);
+
                         break;
                     default:
                         break;

@@ -31,22 +31,40 @@ namespace Clientes.Private.Empresas {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl H1Titulo;
         
         /// <summary>
-        /// lbIDEmpresa control.
+        /// lbIDUsuario control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbIDEmpresa;
+        protected global::System.Web.UI.WebControls.Label lbIDUsuario;
         
         /// <summary>
-        /// tbIDEmpresa control.
+        /// tbIDUsuario control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbIDEmpresa;
+        protected global::System.Web.UI.WebControls.TextBox tbIDUsuario;
+        
+        /// <summary>
+        /// lbEmpresa control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbEmpresa;
+        
+        /// <summary>
+        /// tbEmpresa control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList tbEmpresa;
         
         /// <summary>
         /// lbNombre control.
@@ -65,6 +83,24 @@ namespace Clientes.Private.Empresas {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox tbNombre;
+        
+        /// <summary>
+        /// lbCargo control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbCargo;
+        
+        /// <summary>
+        /// tbCargos control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList tbCargos;
         
         /// <summary>
         /// lbEmail control.

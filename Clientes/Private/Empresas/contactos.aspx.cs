@@ -16,11 +16,11 @@ namespace Clientes.Private.Empresas
             {
                 SrvDatosClient proxy = new SrvDatosClient();
 
-                /*ContactoData[] contactos = proxy();
+                ContactoData[] contactos = proxy.GetAllContactos();
 
-                this.GridView1.DataSource = acciones;
+                this.GridView1.DataSource = contactos;
                 this.GridView1.DataBind();
-                */
+                
             }
         }
 
