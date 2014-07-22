@@ -102,7 +102,8 @@ namespace almerimatik.ServicioCRM
                                        Descripcion = tabla.Descripcion,
                                        Comentarios = tabla.Comentarios,
                                        IDAccion = tabla.IDAccion,
-                                       IDEstado = tabla.IDEstado
+                                       IDEstado = tabla.IDEstado,
+                                       Estado = tabla.Estado.Estado1
 
                                    };
                     lst = consulta.ToList();
@@ -137,7 +138,8 @@ namespace almerimatik.ServicioCRM
                                        Descripcion = tabla.Descripcion,
                                        Comentarios = tabla.Comentarios,
                                        IDAccion = tabla.IDAccion,
-                                       IDEstado = tabla.IDEstado
+                                       IDEstado = tabla.IDEstado,
+                                       Estado = tabla.Estado.Estado1
 
                                    };
                     lst = consulta.ToList();
@@ -172,7 +174,8 @@ namespace almerimatik.ServicioCRM
                                        Descripcion = tabla.Descripcion,
                                        Comentarios = tabla.Comentarios,
                                        IDAccion = tabla.IDAccion,
-                                       IDEstado = tabla.IDEstado
+                                       IDEstado = tabla.IDEstado,
+                                       Estado = tabla.Estado.Estado1
 
                                    };
                     lst = consulta.ToList();
@@ -1178,7 +1181,7 @@ namespace almerimatik.ServicioCRM
                         nuevo.Nombre = contacto.Nombre;
                         nuevo.Email = contacto.Email;
                         nuevo.IDEmpresa = contacto.IDEmpresa;
-                        //faltan cargo y telefono????
+                        //faltan cargo y telefono
 
                         db.Contacto.Add(nuevo);
                         db.SaveChanges();
@@ -1237,7 +1240,7 @@ namespace almerimatik.ServicioCRM
                     //borramos los cargos de este contacto
                     foreach (var ele in c.Cargo)
                     {
-                        //borrarCargo
+                        //borrar
                     }
 
                     db.Contacto.Remove(c);
@@ -1327,6 +1330,7 @@ namespace almerimatik.ServicioCRM
                                        IDEmpresa = tabla.IDEmpresa,
                                        IDAccion = tabla.IDAccion,
                                        IDEstado = tabla.IDEstado,
+                                       Estado = tabla.Estado.Estado1,
                                        Comentarios = tabla.Comentarios,
                                        Descripcion = tabla.Descripcion,
                                        Fecha = tabla.Fecha,
@@ -1485,7 +1489,113 @@ namespace almerimatik.ServicioCRM
         }
 
 
+        /// <summary>
+        /// metodo que devuelve la lista de todos los estados
+        /// </summary>
+        /// <returns></returns>
+        public List<EstadoData> GetAllEstados()
+        {
+            List<EstadoData> lst = new List<EstadoData>();
+            try
+            {
+                using (BDCRMEntities datos = new BDCRMEntities())
+                {
+                    var consulta = from tabla in datos.Estado
+                                   select new EstadoData()
+                                   {
+                                       ID = tabla.ID,
+                                       Estado = tabla.Estado1
 
+                                   };
+                    lst = consulta.ToList();
+                    return lst;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new FaultException("ERROR EN ACCESO A DATOS. " + ex.Message);
+            }
+        }
+
+
+        /// <summary>
+        /// metodo que añade un estado a la BD
+        /// </summary>
+        /// <param name="estado">nombre con el estado nuevo</param>
+        /// <returns>id del estado nuevo</returns>
+        public int AddEstado(String estado)
+        {
+            try
+            {
+                if (estado != "" && estado != null)
+                {
+                    using (BDCRMEntities db = new BDCRMEntities())
+                    {
+                        Estado nuevo = new Estado();
+
+
+                        nuevo.Estado1 = estado;
+
+                        db.Estado.Add(nuevo);
+                        db.SaveChanges();
+                        return nuevo.ID;
+                    }
+                }
+                else
+                {
+                    return -1;
+                }
+
+
+
+            }
+            catch (SqlException ex)
+            {
+                FaultException fault = new FaultException("Error SQL: " + ex.Message, new FaultCode("SQL"));
+                return -1;
+
+            }
+            catch (Exception ex)
+            {
+                FaultException fault = new FaultException("Error: " + ex.Message, new FaultCode("GENERAL"));
+                return -1;
+            }
+        }
+
+
+        /// <summary>
+        /// metodo que borra un estado de la BD
+        /// </summary>
+        /// <param name="idEstado">identificador del estado a borrar</param>
+        /// <returns>verdadero o falso segun si la accion se llevo a cabo o no</returns>
+        public bool BorrarEstado(int idEstado)
+        {
+            try
+            {
+                using (BDCRMEntities db = new BDCRMEntities())
+                {
+                    var consulta = from tabla in db.Estado where tabla.ID == idEstado select tabla;
+                    Estado borrar = consulta.First();
+
+                    db.Estado.Remove(borrar);
+                    db.SaveChanges();
+                    return true;
+
+
+                }
+            }
+            catch (SqlException ex)
+            {
+                FaultException fault = new FaultException("Error SQL: " + ex.Message, new FaultCode("SQL"));
+                return false;
+
+            }
+            catch (Exception ex)
+            {
+                FaultException fault = new FaultException("Error: " + ex.Message, new FaultCode("GENERAL"));
+                return false;
+            }
+        }
 
     }
 }
