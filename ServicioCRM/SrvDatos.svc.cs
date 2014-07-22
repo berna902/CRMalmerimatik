@@ -1597,5 +1597,93 @@ namespace almerimatik.ServicioCRM
             }
         }
 
+
+        /// <summary>
+        /// metodo que añade nu cargo a la BD
+        /// </summary>
+        /// <param name="cargo">cargo a insertar</param>
+        /// <returns>identificador del cargo nuevo</returns>
+        public int AddCargo(string cargo)
+        {
+            try
+            {
+                if (cargo != null && cargo !="")
+                {
+                    using (BDCRMEntities db = new BDCRMEntities())
+                    {
+                        Cargo nuevo = new Cargo();
+
+
+                        nuevo.Carg = cargo;
+
+                        db.Cargo.Add(nuevo);
+                        db.SaveChanges();
+                        return nuevo.ID;
+                    }
+                }
+                else
+                {
+                    return -1;
+                }
+
+
+
+            }
+            catch (SqlException ex)
+            {
+                FaultException fault = new FaultException("Error SQL: " + ex.Message, new FaultCode("SQL"));
+                return -1;
+
+            }
+            catch (Exception ex)
+            {
+                FaultException fault = new FaultException("Error: " + ex.Message, new FaultCode("GENERAL"));
+                return -1;
+            }
+        }
+
+
+        /// <summary>
+        /// metodo que borra un cargo especifico
+        /// </summary>
+        /// <param name="idCargo">identificador del cargo</param>
+        /// <returns>verdadero o falso segun si realiza la operacion o no</returns>
+        public bool BorrarCargo(int idCargo)
+        {
+            try
+            {
+                using (BDCRMEntities db = new BDCRMEntities())
+                {
+                    var consulta = from tabla in db.Cargo where tabla.ID == idCargo select tabla;
+                    Cargo borrar = consulta.First();
+
+                    db.Cargo.Remove(borrar);
+                    db.SaveChanges();
+                    return true;
+
+
+                }
+            }
+            catch (SqlException ex)
+            {
+                FaultException fault = new FaultException("Error SQL: " + ex.Message, new FaultCode("SQL"));
+                return false;
+
+            }
+            catch (Exception ex)
+            {
+                FaultException fault = new FaultException("Error: " + ex.Message, new FaultCode("GENERAL"));
+                return false;
+            }
+        }
+
+
+        public List<DireccionData> GetAllDireccionesEmpresa(int idEmpresa)
+        {
+            List<DireccionData> lst = new List<DireccionData>();
+            return lst;
+        }
+
+
     }
 }

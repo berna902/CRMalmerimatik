@@ -347,6 +347,28 @@ namespace almerimatik.ServicioCRM
         [OperationContract]
         bool BorrarEstado(int idEstado);
 
+
+
+        /// <summary>
+        /// Operacion del servicio que añade nu cargo a la BD
+        /// </summary>
+        /// <param name="cargo">cargo a insertar</param>
+        /// <returns>identificador del cargo nuevo</returns>
+        [OperationContract]
+        int AddCargo(string cargo);
+
+
+
+        /// <summary>
+        /// Operacion del servicio que borra un cargo especifico
+        /// </summary>
+        /// <param name="idCargo">identificador del cargo</param>
+        /// <returns>verdadero o falso segun si realiza la operacion o no</returns>
+        [OperationContract]
+        bool BorrarCargo(int idCargo);
+
+
+
     }
 
 
@@ -525,6 +547,14 @@ namespace almerimatik.ServicioCRM
         public int ID { get; set; }
         [DataMember]
         public string Estado { get; set; }
+    }
+
+
+
+    [DataContract]
+    public class DireccionData
+    {
+
     }
 
 
