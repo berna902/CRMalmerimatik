@@ -468,7 +468,7 @@ namespace Pruebas
         {
             SrvDatos d = new SrvDatos();
             ContactoData u = d.GetContacto(1);
-            Assert.AreEqual(u.Nombre, "laura");
+            Assert.AreEqual(u.Email, "laurica@gmail.com");
         }
 
 
