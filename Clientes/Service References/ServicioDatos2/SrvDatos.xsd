@@ -115,6 +115,20 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="GetAllCargosContacto">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="contacto" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetAllCargosContactoResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q10="http://schemas.datacontract.org/2004/07/almerimatik.ServicioCRM" minOccurs="0" name="GetAllCargosContactoResult" nillable="true" type="q10:ArrayOfCargoData" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
   <xs:element name="GetEmpresa">
     <xs:complexType>
       <xs:sequence>
@@ -125,14 +139,14 @@
   <xs:element name="GetEmpresaResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q10="http://schemas.datacontract.org/2004/07/almerimatik.ServicioCRM" minOccurs="0" name="GetEmpresaResult" nillable="true" type="q10:EmpresaData" />
+        <xs:element xmlns:q11="http://schemas.datacontract.org/2004/07/almerimatik.ServicioCRM" minOccurs="0" name="GetEmpresaResult" nillable="true" type="q11:EmpresaData" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="EditEmpresa">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q11="http://schemas.datacontract.org/2004/07/almerimatik.ServicioCRM" minOccurs="0" name="empresa" nillable="true" type="q11:EmpresaData" />
+        <xs:element xmlns:q12="http://schemas.datacontract.org/2004/07/almerimatik.ServicioCRM" minOccurs="0" name="empresa" nillable="true" type="q12:EmpresaData" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -146,7 +160,7 @@
   <xs:element name="AddEmpresa">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q12="http://schemas.datacontract.org/2004/07/almerimatik.ServicioCRM" minOccurs="0" name="empresa" nillable="true" type="q12:EmpresaData" />
+        <xs:element xmlns:q13="http://schemas.datacontract.org/2004/07/almerimatik.ServicioCRM" minOccurs="0" name="empresa" nillable="true" type="q13:EmpresaData" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -230,7 +244,7 @@
   <xs:element name="AddTelefonoEmpresa">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q13="http://schemas.datacontract.org/2004/07/almerimatik.ServicioCRM" minOccurs="0" name="telefono" nillable="true" type="q13:TelefonosData" />
+        <xs:element xmlns:q14="http://schemas.datacontract.org/2004/07/almerimatik.ServicioCRM" minOccurs="0" name="telefono" nillable="true" type="q14:TelefonosData" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -258,7 +272,7 @@
   <xs:element name="AddTelefonoContacto">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q14="http://schemas.datacontract.org/2004/07/almerimatik.ServicioCRM" minOccurs="0" name="telefono" nillable="true" type="q14:TelefonosData" />
+        <xs:element xmlns:q15="http://schemas.datacontract.org/2004/07/almerimatik.ServicioCRM" minOccurs="0" name="telefono" nillable="true" type="q15:TelefonosData" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -286,7 +300,7 @@
   <xs:element name="AddUser">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q15="http://schemas.datacontract.org/2004/07/almerimatik.ServicioCRM" minOccurs="0" name="user" nillable="true" type="q15:UserData" />
+        <xs:element xmlns:q16="http://schemas.datacontract.org/2004/07/almerimatik.ServicioCRM" minOccurs="0" name="user" nillable="true" type="q16:UserData" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -314,7 +328,7 @@
   <xs:element name="EditUser">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q16="http://schemas.datacontract.org/2004/07/almerimatik.ServicioCRM" minOccurs="0" name="user" nillable="true" type="q16:UserData" />
+        <xs:element xmlns:q17="http://schemas.datacontract.org/2004/07/almerimatik.ServicioCRM" minOccurs="0" name="user" nillable="true" type="q17:UserData" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -335,7 +349,7 @@
   <xs:element name="GetUserResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q17="http://schemas.datacontract.org/2004/07/almerimatik.ServicioCRM" minOccurs="0" name="GetUserResult" nillable="true" type="q17:UserData" />
+        <xs:element xmlns:q18="http://schemas.datacontract.org/2004/07/almerimatik.ServicioCRM" minOccurs="0" name="GetUserResult" nillable="true" type="q18:UserData" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -349,7 +363,7 @@
   <xs:element name="GetContactoResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q18="http://schemas.datacontract.org/2004/07/almerimatik.ServicioCRM" minOccurs="0" name="GetContactoResult" nillable="true" type="q18:ContactoData" />
+        <xs:element xmlns:q19="http://schemas.datacontract.org/2004/07/almerimatik.ServicioCRM" minOccurs="0" name="GetContactoResult" nillable="true" type="q19:ContactoData" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -361,14 +375,14 @@
   <xs:element name="GetAllContactosResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q19="http://schemas.datacontract.org/2004/07/almerimatik.ServicioCRM" minOccurs="0" name="GetAllContactosResult" nillable="true" type="q19:ArrayOfContactoData" />
+        <xs:element xmlns:q20="http://schemas.datacontract.org/2004/07/almerimatik.ServicioCRM" minOccurs="0" name="GetAllContactosResult" nillable="true" type="q20:ArrayOfContactoData" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="AddContacto">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q20="http://schemas.datacontract.org/2004/07/almerimatik.ServicioCRM" minOccurs="0" name="contacto" nillable="true" type="q20:ContactoData" />
+        <xs:element xmlns:q21="http://schemas.datacontract.org/2004/07/almerimatik.ServicioCRM" minOccurs="0" name="contacto" nillable="true" type="q21:ContactoData" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -396,7 +410,7 @@
   <xs:element name="EditContacto">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q21="http://schemas.datacontract.org/2004/07/almerimatik.ServicioCRM" minOccurs="0" name="contacto" nillable="true" type="q21:ContactoData" />
+        <xs:element xmlns:q22="http://schemas.datacontract.org/2004/07/almerimatik.ServicioCRM" minOccurs="0" name="contacto" nillable="true" type="q22:ContactoData" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -417,14 +431,14 @@
   <xs:element name="GetAccionComercialResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q22="http://schemas.datacontract.org/2004/07/almerimatik.ServicioCRM" minOccurs="0" name="GetAccionComercialResult" nillable="true" type="q22:AccionComercialData" />
+        <xs:element xmlns:q23="http://schemas.datacontract.org/2004/07/almerimatik.ServicioCRM" minOccurs="0" name="GetAccionComercialResult" nillable="true" type="q23:AccionComercialData" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="AddAccionComercial">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q23="http://schemas.datacontract.org/2004/07/almerimatik.ServicioCRM" minOccurs="0" name="accion" nillable="true" type="q23:AccionComercialData" />
+        <xs:element xmlns:q24="http://schemas.datacontract.org/2004/07/almerimatik.ServicioCRM" minOccurs="0" name="accion" nillable="true" type="q24:AccionComercialData" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -452,7 +466,7 @@
   <xs:element name="EditAccionComercial">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q24="http://schemas.datacontract.org/2004/07/almerimatik.ServicioCRM" minOccurs="0" name="accion" nillable="true" type="q24:AccionComercialData" />
+        <xs:element xmlns:q25="http://schemas.datacontract.org/2004/07/almerimatik.ServicioCRM" minOccurs="0" name="accion" nillable="true" type="q25:AccionComercialData" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -473,7 +487,7 @@
   <xs:element name="GetAllAccionesComercialesEmpresaResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q25="http://schemas.datacontract.org/2004/07/almerimatik.ServicioCRM" minOccurs="0" name="GetAllAccionesComercialesEmpresaResult" nillable="true" type="q25:ArrayOfAccionComercialData" />
+        <xs:element xmlns:q26="http://schemas.datacontract.org/2004/07/almerimatik.ServicioCRM" minOccurs="0" name="GetAllAccionesComercialesEmpresaResult" nillable="true" type="q26:ArrayOfAccionComercialData" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -487,7 +501,47 @@
   <xs:element name="GetAllAccionesComercialesUsuarioResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q26="http://schemas.datacontract.org/2004/07/almerimatik.ServicioCRM" minOccurs="0" name="GetAllAccionesComercialesUsuarioResult" nillable="true" type="q26:ArrayOfAccionComercialData" />
+        <xs:element xmlns:q27="http://schemas.datacontract.org/2004/07/almerimatik.ServicioCRM" minOccurs="0" name="GetAllAccionesComercialesUsuarioResult" nillable="true" type="q27:ArrayOfAccionComercialData" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetAllEstados">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetAllEstadosResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q28="http://schemas.datacontract.org/2004/07/almerimatik.ServicioCRM" minOccurs="0" name="GetAllEstadosResult" nillable="true" type="q28:ArrayOfEstadoData" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AddEstado">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="estado" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AddEstadoResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="AddEstadoResult" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="BorrarEstado">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="idEstado" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="BorrarEstadoResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="BorrarEstadoResult" type="xs:boolean" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

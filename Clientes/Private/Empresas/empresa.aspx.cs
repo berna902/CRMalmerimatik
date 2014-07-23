@@ -192,5 +192,17 @@ namespace Clientes.Private.Empresas
             string id = this.GridView1.Rows[e.NewEditIndex].Cells[1].Text;
             this.Response.Redirect("GContactos.aspx?estado=1&idU=" + idu+"&id="+id);
         }
+
+        protected void btnDeleteTelf_Click(object sender, EventArgs e)
+        {
+            SrvDatosClient proxy = new SrvDatosClient();
+            proxy.BorrarTelefonoEmpresa(tbTelefonos.SelectedValue);
+
+            TelefonosData[] telefonos = proxy.GetAllTelefonosEmpresa(Int32.Parse(tbIDEmpresa.Text));
+            tbTelefonos.DataSource = telefonos;
+            tbTelefonos.DataValueField = "Telefono";
+            tbTelefonos.DataTextField = "Telefono";
+            tbTelefonos.DataBind();
+        }
     }
 }

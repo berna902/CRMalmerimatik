@@ -40,7 +40,13 @@ namespace Clientes.Private.Admin
 
         protected void GridView1_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {
+            string id = e.Values["ID"].ToString();
+            SrvDatosClient proxy = new SrvDatosClient();
 
+            proxy.BorrarTipoEmpresa(Int32.Parse(id));
+
+            this.GridView1.DataSource = proxy.GetAllTiposEmpresa();
+            this.GridView1.DataBind();
         }
 
         protected void GridView2_RowEditing(object sender, GridViewEditEventArgs e)

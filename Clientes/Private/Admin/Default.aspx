@@ -1,5 +1,33 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Private/Maestra.Master" AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="Clientes.Private.Admin.Default" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+
+    <script src="../../Scripts/jquery-1.10.2.min.js"></script>
+    <script src="../../Scripts/bootstrap.min.js"></script>
+    <link href="../../Scripts/fancybox/jquery.fancybox.css" rel="stylesheet" />
+    <script src="../../Scripts/fancybox/jquery.fancybox.js"></script>
+    <script type="text/javascript">
+        jQuery(document).ready(function () {
+             jQuery("a.fancy").fancybox({
+                'type': 'iframe',
+                'autoSize': false,
+                'autoScale': false,
+                'height': "220px",
+                'width': "500px",
+                'transitionIn': 'none',
+                'transitionOut': 'none',
+                'hideOnOverlayClick': false,
+                'hideOnContentClick': false,
+                'type': 'iframe',
+                'afterClose': function () {
+                    window.location.reload();
+                }
+
+             });
+
+             
+
+        });
+    </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="menu_lateral" runat="server">
     <ul class="nav nav-sidebar">
@@ -20,8 +48,10 @@
         <div class="panel panel-primary">
             <div class="panel-heading">Tipo de Empresas</div>
             <div class="panel-body">
+                <a class="fancy" rel="fancy" href="TEmpresas.aspx" >
                 <asp:Button ID="btAltaTempresa" runat="server" Text="Nuevo tipo de empresa" CssClass="btn btn-success" OnClick="btAltaTempresa_Click" />
-                <br />
+                </a>
+                    <br />
                 <br />
                 <div class="table-responsive">
                     <asp:GridView ID="GridView1" CssClass="table table-hover table-striped" AutoGenerateColumns="False" GridLines="None" AllowPaging="True" OnRowEditing="GridView1_RowEditing" OnRowDeleting="GridView1_RowDeleting" runat="server">
@@ -36,7 +66,9 @@
                             </asp:BoundField>
                             <asp:TemplateField>
                                 <ItemTemplate>
-                                    <asp:LinkButton ID="btnModificarAccion" runat="server" Text="Modificar" CssClass="btn btn-warning" CommandName="Edit"><span class="glyphicon glyphicon-pencil"></span>Modificar</asp:LinkButton>
+                                    
+                                    <asp:LinkButton ID="btnModificarAccion" runat="server" Text="Modificar" CssClass="btn btn-warning fancy" href="TEmpresas.aspx"><span class="glyphicon glyphicon-pencil"></span>Modificar</asp:LinkButton>
+                                   
                                     <asp:LinkButton ID="btnEliminarAccion" runat="server" Text="Eliminar" CssClass="btn btn-danger" CommandName="Delete"><span class="glyphicon glyphicon-minus"></span>Eliminar</asp:LinkButton>
                                 </ItemTemplate>
                                 <HeaderStyle BackColor="#DCDCDC" />

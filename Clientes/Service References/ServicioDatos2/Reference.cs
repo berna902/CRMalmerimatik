@@ -295,6 +295,9 @@ namespace Clientes.ServicioDatos2 {
         private string DescripcionField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string EstadoField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private System.DateTime FechaField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -344,6 +347,19 @@ namespace Clientes.ServicioDatos2 {
                 if ((object.ReferenceEquals(this.DescripcionField, value) != true)) {
                     this.DescripcionField = value;
                     this.RaisePropertyChanged("Descripcion");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Estado {
+            get {
+                return this.EstadoField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.EstadoField, value) != true)) {
+                    this.EstadoField = value;
+                    this.RaisePropertyChanged("Estado");
                 }
             }
         }
@@ -638,6 +654,9 @@ namespace Clientes.ServicioDatos2 {
         private int IDField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int IDCargoField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int IDEmpresaField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -691,6 +710,19 @@ namespace Clientes.ServicioDatos2 {
                 if ((this.IDField.Equals(value) != true)) {
                     this.IDField = value;
                     this.RaisePropertyChanged("ID");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int IDCargo {
+            get {
+                return this.IDCargoField;
+            }
+            set {
+                if ((this.IDCargoField.Equals(value) != true)) {
+                    this.IDCargoField = value;
+                    this.RaisePropertyChanged("IDCargo");
                 }
             }
         }
@@ -805,6 +837,67 @@ namespace Clientes.ServicioDatos2 {
         }
     }
     
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="EstadoData", Namespace="http://schemas.datacontract.org/2004/07/almerimatik.ServicioCRM")]
+    [System.SerializableAttribute()]
+    public partial class EstadoData : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string EstadoField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int IDField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Estado {
+            get {
+                return this.EstadoField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.EstadoField, value) != true)) {
+                    this.EstadoField = value;
+                    this.RaisePropertyChanged("Estado");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int ID {
+            get {
+                return this.IDField;
+            }
+            set {
+                if ((this.IDField.Equals(value) != true)) {
+                    this.IDField = value;
+                    this.RaisePropertyChanged("ID");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="ServicioDatos2.ISrvDatos")]
     public interface ISrvDatos {
@@ -862,6 +955,12 @@ namespace Clientes.ServicioDatos2 {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISrvDatos/GetAllCargos", ReplyAction="http://tempuri.org/ISrvDatos/GetAllCargosResponse")]
         System.Threading.Tasks.Task<Clientes.ServicioDatos2.CargoData[]> GetAllCargosAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISrvDatos/GetAllCargosContacto", ReplyAction="http://tempuri.org/ISrvDatos/GetAllCargosContactoResponse")]
+        Clientes.ServicioDatos2.CargoData[] GetAllCargosContacto(int contacto);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISrvDatos/GetAllCargosContacto", ReplyAction="http://tempuri.org/ISrvDatos/GetAllCargosContactoResponse")]
+        System.Threading.Tasks.Task<Clientes.ServicioDatos2.CargoData[]> GetAllCargosContactoAsync(int contacto);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISrvDatos/GetEmpresa", ReplyAction="http://tempuri.org/ISrvDatos/GetEmpresaResponse")]
         Clientes.ServicioDatos2.EmpresaData GetEmpresa(int idEmpresa);
@@ -1024,6 +1123,24 @@ namespace Clientes.ServicioDatos2 {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISrvDatos/GetAllAccionesComercialesUsuario", ReplyAction="http://tempuri.org/ISrvDatos/GetAllAccionesComercialesUsuarioResponse")]
         System.Threading.Tasks.Task<Clientes.ServicioDatos2.AccionComercialData[]> GetAllAccionesComercialesUsuarioAsync(int idUsuario);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISrvDatos/GetAllEstados", ReplyAction="http://tempuri.org/ISrvDatos/GetAllEstadosResponse")]
+        Clientes.ServicioDatos2.EstadoData[] GetAllEstados();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISrvDatos/GetAllEstados", ReplyAction="http://tempuri.org/ISrvDatos/GetAllEstadosResponse")]
+        System.Threading.Tasks.Task<Clientes.ServicioDatos2.EstadoData[]> GetAllEstadosAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISrvDatos/AddEstado", ReplyAction="http://tempuri.org/ISrvDatos/AddEstadoResponse")]
+        int AddEstado(string estado);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISrvDatos/AddEstado", ReplyAction="http://tempuri.org/ISrvDatos/AddEstadoResponse")]
+        System.Threading.Tasks.Task<int> AddEstadoAsync(string estado);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISrvDatos/BorrarEstado", ReplyAction="http://tempuri.org/ISrvDatos/BorrarEstadoResponse")]
+        bool BorrarEstado(int idEstado);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISrvDatos/BorrarEstado", ReplyAction="http://tempuri.org/ISrvDatos/BorrarEstadoResponse")]
+        System.Threading.Tasks.Task<bool> BorrarEstadoAsync(int idEstado);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -1123,6 +1240,14 @@ namespace Clientes.ServicioDatos2 {
         
         public System.Threading.Tasks.Task<Clientes.ServicioDatos2.CargoData[]> GetAllCargosAsync() {
             return base.Channel.GetAllCargosAsync();
+        }
+        
+        public Clientes.ServicioDatos2.CargoData[] GetAllCargosContacto(int contacto) {
+            return base.Channel.GetAllCargosContacto(contacto);
+        }
+        
+        public System.Threading.Tasks.Task<Clientes.ServicioDatos2.CargoData[]> GetAllCargosContactoAsync(int contacto) {
+            return base.Channel.GetAllCargosContactoAsync(contacto);
         }
         
         public Clientes.ServicioDatos2.EmpresaData GetEmpresa(int idEmpresa) {
@@ -1339,6 +1464,30 @@ namespace Clientes.ServicioDatos2 {
         
         public System.Threading.Tasks.Task<Clientes.ServicioDatos2.AccionComercialData[]> GetAllAccionesComercialesUsuarioAsync(int idUsuario) {
             return base.Channel.GetAllAccionesComercialesUsuarioAsync(idUsuario);
+        }
+        
+        public Clientes.ServicioDatos2.EstadoData[] GetAllEstados() {
+            return base.Channel.GetAllEstados();
+        }
+        
+        public System.Threading.Tasks.Task<Clientes.ServicioDatos2.EstadoData[]> GetAllEstadosAsync() {
+            return base.Channel.GetAllEstadosAsync();
+        }
+        
+        public int AddEstado(string estado) {
+            return base.Channel.AddEstado(estado);
+        }
+        
+        public System.Threading.Tasks.Task<int> AddEstadoAsync(string estado) {
+            return base.Channel.AddEstadoAsync(estado);
+        }
+        
+        public bool BorrarEstado(int idEstado) {
+            return base.Channel.BorrarEstado(idEstado);
+        }
+        
+        public System.Threading.Tasks.Task<bool> BorrarEstadoAsync(int idEstado) {
+            return base.Channel.BorrarEstadoAsync(idEstado);
         }
     }
 }

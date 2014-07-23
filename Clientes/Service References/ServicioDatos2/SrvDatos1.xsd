@@ -45,6 +45,7 @@
     <xs:sequence>
       <xs:element minOccurs="0" name="Comentarios" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Descripcion" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Estado" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Fecha" type="xs:dateTime" />
       <xs:element minOccurs="0" name="ID" type="xs:int" />
       <xs:element minOccurs="0" name="IDAccion" type="xs:int" />
@@ -104,6 +105,7 @@
       <xs:element minOccurs="0" name="Cargo" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Email" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="ID" type="xs:int" />
+      <xs:element minOccurs="0" name="IDCargo" type="xs:int" />
       <xs:element minOccurs="0" name="IDEmpresa" type="xs:int" />
       <xs:element minOccurs="0" name="Nombre" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Telefono" nillable="true" type="xs:string" />
@@ -123,4 +125,17 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="CargoData" nillable="true" type="tns:CargoData" />
+  <xs:complexType name="ArrayOfEstadoData">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="EstadoData" nillable="true" type="tns:EstadoData" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfEstadoData" nillable="true" type="tns:ArrayOfEstadoData" />
+  <xs:complexType name="EstadoData">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Estado" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ID" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="EstadoData" nillable="true" type="tns:EstadoData" />
 </xs:schema>
