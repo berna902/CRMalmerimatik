@@ -347,6 +347,80 @@ namespace almerimatik.ServicioCRM
         [OperationContract]
         bool BorrarEstado(int idEstado);
 
+
+
+        /// <summary>
+        /// Operacion del servicio que añade nu cargo a la BD
+        /// </summary>
+        /// <param name="cargo">cargo a insertar</param>
+        /// <returns>identificador del cargo nuevo</returns>
+        [OperationContract]
+        int AddCargo(string cargo);
+
+
+
+        /// <summary>
+        /// Operacion del servicio que borra un cargo especifico
+        /// </summary>
+        /// <param name="idCargo">identificador del cargo</param>
+        /// <returns>verdadero o falso segun si realiza la operacion o no</returns>
+        [OperationContract]
+        bool BorrarCargo(int idCargo);
+
+
+        /// <summary>
+        /// Operacion del servicio que devuelve todas las direcciones de una empresa
+        /// </summary>
+        /// <param name="idEmpresa">identificador de la empresa</param>
+        /// <returns>listado de direcciones</returns>
+        [OperationContract]
+        List<DireccionData> GetAllDireccionesEmpresa(int idEmpresa);
+
+
+
+        /// <summary>
+        ///  Operacion del servicio que devuelve todas las direcciones de un contacto
+        /// </summary>
+        /// <param name="idContacto">identificador del contacto</param>
+        /// <returns>listado de direcciones</returns>
+        [OperationContract]
+        List<DireccionData> GetAllDireccionesContacto(int idContacto);
+
+
+        /// <summary>
+        /// Operacion del servicio que devuelve los datos de una direccion
+        /// </summary>
+        /// <param name="idDireccion">identificador de la direccion</param>
+        /// <returns>datos de la direccion</returns>
+        [OperationContract]
+        DireccionData GetDireccion(int idDireccion);
+
+
+        /// <summary>
+        /// Operacion del servicio que añade una direccion
+        /// </summary>
+        /// <param name="direccion">datos de la direccion a añadir</param>
+        /// <returns>devuelve el identificador de la nueva direccion o -1 si hubo algun error</returns>
+        [OperationContract]
+        int AddDireccion(DireccionData direccion);
+
+
+        /// <summary>
+        /// Operacion del servicio que edita una direccion
+        /// </summary>
+        /// <param name="direccion">datos de la direccion</param>
+        /// <returns>verdadero o falso segun si realiza la accion o no</returns>
+        [OperationContract]
+        bool EditDireccion(DireccionData direccion);
+
+
+        /// <summary>
+        /// Operacion del servicio que borra una direccion
+        /// </summary>
+        /// <param name="idDireccion">identificador de la direccion</param>
+        /// <returns>verdadero o falso segun si realiza la accion o no</returns>
+        [OperationContract]
+        bool BorrarDireccion(int idDireccion);
     }
 
 
@@ -525,6 +599,25 @@ namespace almerimatik.ServicioCRM
         public int ID { get; set; }
         [DataMember]
         public string Estado { get; set; }
+    }
+
+
+    /// <summary>
+    /// datos que definen una direccion
+    /// </summary>
+    [DataContract]
+    public class DireccionData
+    {
+        [DataMember]
+        public int ID { get; set; }
+        [DataMember]
+        public string Domicilio { get; set; }
+        [DataMember]
+        public string Poblacion { get; set; }
+        [DataMember]
+        public string Provincia { get; set; }
+        [DataMember]
+        public string CP { get; set; }
     }
 
 
