@@ -59,11 +59,17 @@ namespace Clientes.Private.Acciones
 
                             EmpresaData[] empresa = proxy.GetAllEmpresas();
 
-                            tbEmpresa.DataSource = tiposAcciones;
+                            tbEmpresa.DataSource = empresa;
                             tbEmpresa.DataValueField = "ID";
                             tbEmpresa.DataTextField = "Nombre";
                             tbEmpresa.DataBind();
                             
+                            EstadoData[] estados = proxy.GetAllEstados();
+                            tbEstado.DataSource = estados;
+                            tbEstado.DataValueField = "ID";
+                            tbEstado.DataTextField = "Estado";
+                            tbEstado.DataBind();
+
                             break;
 
                         case 1:
@@ -98,9 +104,16 @@ namespace Clientes.Private.Acciones
                             tbTipoAccion.SelectedValue = accion.IDAccion.ToString();
                             tbTipoAccion.DataBind();
 
+                            EstadoData[] estados2 = proxy.GetAllEstados();
+                            tbEstado.DataSource = estados2;
+                            tbEstado.DataValueField = "ID";
+                            tbEstado.DataTextField = "Estado";
+                            tbEstado.SelectedValue = accion.IDEstado.ToString();
+                            tbEstado.DataBind();
+
                             EmpresaData[] empresa2 = proxy.GetAllEmpresas();
 
-                            tbEmpresa.DataSource = tiposAcciones2;
+                            tbEmpresa.DataSource = empresa2;
                             tbEmpresa.DataValueField = "ID";
                             tbEmpresa.DataTextField = "Nombre";
                             tbEmpresa.SelectedValue = accion.IDEmpresa.ToString();

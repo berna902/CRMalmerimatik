@@ -43,7 +43,7 @@ namespace Clientes.Private.Empresas
                         case 0:
                             this.lbIDUsuario.Visible = false;
                             this.tbIDUsuario.Visible = false;           
-                            this.H1Titulo.InnerHtml = "Alta de Usuario";
+                            this.H1Titulo.InnerHtml = "Nuevo contacto";
                             this.btnAltaContacto.Text = "Alta";
                             this.btnAltaContacto.Visible = true;
 
@@ -70,7 +70,7 @@ namespace Clientes.Private.Empresas
                             this.lbIDUsuario.Visible = true;
                             this.tbIDUsuario.Visible = true;
                             this.tbIDUsuario.ReadOnly = true;
-                            this.H1Titulo.InnerHtml = "Modificar usuario";
+                            this.H1Titulo.InnerHtml = "Modificar contacto";
                             this.btnAltaContacto.Text = "Guardar";
                             this.btnAltaContacto.Visible = true;
 
@@ -190,6 +190,18 @@ namespace Clientes.Private.Empresas
                 }
             }
             catch (Exception ex) { }
+        }
+
+        protected void btnEliminarTelf_Click(object sender, EventArgs e)
+        {
+            SrvDatosClient proxy = new SrvDatosClient();
+            proxy.BorrarTelefonoContacto(tbTelefonos.SelectedValue);
+
+            TelefonosData[] telefonos = proxy.GetAllTelefonosContacto(Int32.Parse(tbIDUsuario.Text));
+            tbTelefonos.DataSource = telefonos;
+            tbTelefonos.DataValueField = "Telefono";
+            tbTelefonos.DataTextField = "Telefono";
+            tbTelefonos.DataBind();
         }
     }
 }

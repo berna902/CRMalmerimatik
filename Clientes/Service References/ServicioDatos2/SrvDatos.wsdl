@@ -61,6 +61,12 @@
   <wsdl:message name="ISrvDatos_GetAllCargos_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetAllCargosResponse" />
   </wsdl:message>
+  <wsdl:message name="ISrvDatos_GetAllCargosContacto_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllCargosContacto" />
+  </wsdl:message>
+  <wsdl:message name="ISrvDatos_GetAllCargosContacto_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllCargosContactoResponse" />
+  </wsdl:message>
   <wsdl:message name="ISrvDatos_GetEmpresa_InputMessage">
     <wsdl:part name="parameters" element="tns:GetEmpresa" />
   </wsdl:message>
@@ -223,6 +229,24 @@
   <wsdl:message name="ISrvDatos_GetAllAccionesComercialesUsuario_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetAllAccionesComercialesUsuarioResponse" />
   </wsdl:message>
+  <wsdl:message name="ISrvDatos_GetAllEstados_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllEstados" />
+  </wsdl:message>
+  <wsdl:message name="ISrvDatos_GetAllEstados_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllEstadosResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISrvDatos_AddEstado_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddEstado" />
+  </wsdl:message>
+  <wsdl:message name="ISrvDatos_AddEstado_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddEstadoResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISrvDatos_BorrarEstado_InputMessage">
+    <wsdl:part name="parameters" element="tns:BorrarEstado" />
+  </wsdl:message>
+  <wsdl:message name="ISrvDatos_BorrarEstado_OutputMessage">
+    <wsdl:part name="parameters" element="tns:BorrarEstadoResponse" />
+  </wsdl:message>
   <wsdl:portType name="ISrvDatos">
     <wsdl:operation name="GetAllUsers">
       <wsdl:input wsaw:Action="http://tempuri.org/ISrvDatos/GetAllUsers" message="tns:ISrvDatos_GetAllUsers_InputMessage" />
@@ -259,6 +283,10 @@
     <wsdl:operation name="GetAllCargos">
       <wsdl:input wsaw:Action="http://tempuri.org/ISrvDatos/GetAllCargos" message="tns:ISrvDatos_GetAllCargos_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/ISrvDatos/GetAllCargosResponse" message="tns:ISrvDatos_GetAllCargos_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllCargosContacto">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISrvDatos/GetAllCargosContacto" message="tns:ISrvDatos_GetAllCargosContacto_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISrvDatos/GetAllCargosContactoResponse" message="tns:ISrvDatos_GetAllCargosContacto_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="GetEmpresa">
       <wsdl:input wsaw:Action="http://tempuri.org/ISrvDatos/GetEmpresa" message="tns:ISrvDatos_GetEmpresa_InputMessage" />
@@ -368,6 +396,18 @@
       <wsdl:input wsaw:Action="http://tempuri.org/ISrvDatos/GetAllAccionesComercialesUsuario" message="tns:ISrvDatos_GetAllAccionesComercialesUsuario_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/ISrvDatos/GetAllAccionesComercialesUsuarioResponse" message="tns:ISrvDatos_GetAllAccionesComercialesUsuario_OutputMessage" />
     </wsdl:operation>
+    <wsdl:operation name="GetAllEstados">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISrvDatos/GetAllEstados" message="tns:ISrvDatos_GetAllEstados_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISrvDatos/GetAllEstadosResponse" message="tns:ISrvDatos_GetAllEstados_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AddEstado">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISrvDatos/AddEstado" message="tns:ISrvDatos_AddEstado_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISrvDatos/AddEstadoResponse" message="tns:ISrvDatos_AddEstado_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="BorrarEstado">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISrvDatos/BorrarEstado" message="tns:ISrvDatos_BorrarEstado_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISrvDatos/BorrarEstadoResponse" message="tns:ISrvDatos_BorrarEstado_OutputMessage" />
+    </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_ISrvDatos" type="tns:ISrvDatos">
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
@@ -445,6 +485,15 @@
     </wsdl:operation>
     <wsdl:operation name="GetAllCargos">
       <soap:operation soapAction="http://tempuri.org/ISrvDatos/GetAllCargos" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllCargosContacto">
+      <soap:operation soapAction="http://tempuri.org/ISrvDatos/GetAllCargosContacto" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -688,6 +737,33 @@
     </wsdl:operation>
     <wsdl:operation name="GetAllAccionesComercialesUsuario">
       <soap:operation soapAction="http://tempuri.org/ISrvDatos/GetAllAccionesComercialesUsuario" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllEstados">
+      <soap:operation soapAction="http://tempuri.org/ISrvDatos/GetAllEstados" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddEstado">
+      <soap:operation soapAction="http://tempuri.org/ISrvDatos/AddEstado" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="BorrarEstado">
+      <soap:operation soapAction="http://tempuri.org/ISrvDatos/BorrarEstado" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

@@ -85,9 +85,10 @@
                                 <asp:DropDownList ID="tbTelefonos" runat="server" CssClass="form-control" AutoPostBack="True">
                                     <asp:ListItem Value="1">-</asp:ListItem>
                                 </asp:DropDownList>
-
+                          <asp:Button ID="btnDeleteTelf" runat="server" Text="X" CssClass="btn btn-danger" OnClick="btnDeleteTelf_Click" />       
                         <asp:TextBox ID="tbTelefono" runat="server" CssClass="form-control" placeholder="nuevo telefono"></asp:TextBox>
                         <asp:Button ID="btAddTelf" runat="server" Text="Añadir" CssClass="btn btn-success" OnClick="btAddTelf_Click" />
+                       
                                 <div id="mcorrecto" class="alert alert-success hidden " role="alert" runat="server">Insertado!</div>
                                 <div id="mfallo" class="alert alert-danger hidden" role="alert">ERROR!</div>
                             </ContentTemplate>
@@ -137,7 +138,7 @@
 
                             
                             <asp:LinkButton ID="btnModificar" runat="server" Text="Modificar" CssClass="btn btn-warning" CommandName="Edit"><span class="glyphicon glyphicon-pencil"></span>Modificar</asp:LinkButton>
-                            <asp:LinkButton ID="btnEliminar" runat="server" Text="Eliminar" CssClass="btn btn-danger"  CommandName="Delete"><span class="glyphicon glyphicon-minus"></span>Eliminar</asp:LinkButton>
+                            <asp:LinkButton ID="btnEliminar" runat="server" Text="Eliminar" CssClass="btn btn-danger"  CommandName="Delete"><span class="glyphicon glyphicon-remove"></span>Eliminar</asp:LinkButton>
 
                         </ItemTemplate>
                         <HeaderStyle BackColor="#000066" />

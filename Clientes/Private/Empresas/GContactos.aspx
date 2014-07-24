@@ -68,7 +68,7 @@
                                 <asp:DropDownList ID="tbTelefonos" runat="server" CssClass="form-control" AutoPostBack="True">
                                     <asp:ListItem Value="1">-</asp:ListItem>
                                 </asp:DropDownList>
-
+                        <asp:Button ID="btnEliminarTel" runat="server" Text="X" CssClass="btn btn-danger" OnClick="btnEliminarTelf_Click" />
                         <asp:TextBox ID="tbTelefono" runat="server" CssClass="form-control" placeholder="nuevo telefono"></asp:TextBox>
                         <asp:Button ID="btAddTelf" runat="server" Text="Añadir" CssClass="btn btn-success" OnClick="btAddTelf_Click" />
                                 <div id="mcorrecto" class="alert alert-success hidden " role="alert" runat="server">Insertado!</div>
