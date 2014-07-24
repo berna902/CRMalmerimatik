@@ -2148,7 +2148,364 @@ namespace almerimatik.ServicioCRM
         }
 
 
+        /// <summary>
+        /// metodo que edita un tipo de empresa
+        /// </summary>
+        /// <param name="tipo">datos del tipo de empresa</param>
+        /// <returns>verdadero o falso segun si se realiza la accion o no</returns>
+        public bool EditTipoEmpresa(TipoEmpresaData tipo)
+        {
+            try
+            {
+                if (tipo != null)
+                {
+                    using (BDCRMEntities db = new BDCRMEntities())
+                    {
+                        var consulta = from tabla in db.TipoEmpresa where tabla.ID == tipo.ID select tabla;
 
-        
+                        TipoEmpresa nuevo = consulta.First();
+
+                        nuevo.Tipo = tipo.Tipo;
+
+                        if (tipo.Tipo != "")
+                        {
+                            db.SaveChanges();
+                            return true;
+                        }
+                        else
+                        {
+                            return false;
+                        }
+                        
+                    }
+                }
+                else
+                {
+                    return false;
+                }
+
+
+            }
+            catch (SqlException ex)
+            {
+                FaultException fault = new FaultException("Error SQL: " + ex.Message, new FaultCode("SQL"));
+                return false;
+
+            }
+            catch (Exception ex)
+            {
+                FaultException fault = new FaultException("Error: " + ex.Message, new FaultCode("GENERAL"));
+                return false;
+            }
+        }
+
+
+        /// <summary>
+        /// metodo que devuelve los datos de un tipo de empresa
+        /// </summary>
+        /// <param name="idTipo">identificador del tipo de empresa</param>
+        /// <returns></returns>
+        public TipoEmpresaData GetTipoEmpresa(int idTipo)
+        {
+            List<TipoEmpresaData> lst = new List<TipoEmpresaData>();
+            try
+            {
+                using (BDCRMEntities datos = new BDCRMEntities())
+                {
+                    var consulta = from tabla in datos.TipoEmpresa
+                                   where tabla.ID == idTipo
+                                   select new TipoEmpresaData()
+                                   {
+                                       ID = tabla.ID,
+                                       Tipo = tabla.Tipo
+                                       
+                                   };
+
+                    lst = consulta.ToList();
+                    TipoEmpresaData d = lst.First();
+
+                    return d;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new FaultException("ERROR EN ACCESO A DATOS. " + ex.Message);
+            }
+        }
+
+
+        /// <summary>
+        /// metodo que edita un tipo de accion
+        /// </summary>
+        /// <param name="tipo">datos del tipo de accion</param>
+        /// <returns>verdadero o falso segun si se realiza la accion o no</returns>
+        public bool EditTipoAccion(TipoAccionData tipo)
+        {
+            try
+            {
+                if (tipo != null)
+                {
+                    using (BDCRMEntities db = new BDCRMEntities())
+                    {
+                        var consulta = from tabla in db.TipoAccion where tabla.ID == tipo.ID select tabla;
+
+                        TipoAccion nuevo = consulta.First();
+
+                        nuevo.Tipo = tipo.Tipo;
+
+                        if (tipo.Tipo != "")
+                        {
+                            db.SaveChanges();
+                            return true;
+                        }
+                        else
+                        {
+                            return false;
+                        }
+
+                    }
+                }
+                else
+                {
+                    return false;
+                }
+
+
+            }
+            catch (SqlException ex)
+            {
+                FaultException fault = new FaultException("Error SQL: " + ex.Message, new FaultCode("SQL"));
+                return false;
+
+            }
+            catch (Exception ex)
+            {
+                FaultException fault = new FaultException("Error: " + ex.Message, new FaultCode("GENERAL"));
+                return false;
+            }
+        }
+
+
+        /// <summary>
+        /// metodo que devuelve los datos de un tipo de accion
+        /// </summary>
+        /// <param name="idTipo">identificador del tipo de accion</param>
+        /// <returns></returns>
+        public TipoAccionData GetTipoAccion(int idTipo)
+        {
+            List<TipoAccionData> lst = new List<TipoAccionData>();
+            try
+            {
+                using (BDCRMEntities datos = new BDCRMEntities())
+                {
+                    var consulta = from tabla in datos.TipoAccion
+                                   where tabla.ID == idTipo
+                                   select new TipoAccionData()
+                                   {
+                                       ID = tabla.ID,
+                                       Tipo = tabla.Tipo
+
+                                   };
+
+                    lst = consulta.ToList();
+                    TipoAccionData d = lst.First();
+
+                    return d;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new FaultException("ERROR EN ACCESO A DATOS. " + ex.Message);
+            }
+        }
+
+
+        /// <summary>
+        /// metodo que edita un cargo
+        /// </summary>
+        /// <param name="cargo">datos del cargo</param>
+        /// <returns>verdadero o falso segun si se realiza la accion o no</returns>
+        public bool EditCargo(CargoData cargo)
+        {
+            try
+            {
+                if (cargo != null)
+                {
+                    using (BDCRMEntities db = new BDCRMEntities())
+                    {
+                        var consulta = from tabla in db.Cargo where tabla.ID == cargo.ID select tabla;
+
+                        Cargo nuevo = consulta.First();
+
+                        nuevo.Carg = cargo.Cargo;
+
+                        if (cargo.Cargo != "")
+                        {
+                            db.SaveChanges();
+                            return true;
+                        }
+                        else
+                        {
+                            return false;
+                        }
+
+                    }
+                }
+                else
+                {
+                    return false;
+                }
+
+
+            }
+            catch (SqlException ex)
+            {
+                FaultException fault = new FaultException("Error SQL: " + ex.Message, new FaultCode("SQL"));
+                return false;
+
+            }
+            catch (Exception ex)
+            {
+                FaultException fault = new FaultException("Error: " + ex.Message, new FaultCode("GENERAL"));
+                return false;
+            }
+        }
+
+
+        /// <summary>
+        /// metodo que devuelve los datos de un cargo
+        /// </summary>
+        /// <param name="idCargo">identificador del cargo</param>
+        /// <returns></returns>
+        public CargoData GetCargo(int idCargo)
+        {
+            List<CargoData> lst = new List<CargoData>();
+            try
+            {
+                using (BDCRMEntities datos = new BDCRMEntities())
+                {
+                    var consulta = from tabla in datos.Cargo
+                                   where tabla.ID == idCargo
+                                   select new CargoData()
+                                   {
+                                       ID = tabla.ID,
+                                       Cargo = tabla.Carg
+
+                                   };
+
+                    lst = consulta.ToList();
+                    CargoData d = lst.First();
+
+                    return d;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new FaultException("ERROR EN ACCESO A DATOS. " + ex.Message);
+            }
+        }
+
+
+
+        /// <summary>
+        /// metodo que edita un estado
+        /// </summary>
+        /// <param name="estado">datos del estado</param>
+        /// <returns>verdadero o falso segun si se realiza la accion o no</returns>
+        public bool EditEstado(EstadoData estado)
+        {
+            try
+            {
+                if (estado != null)
+                {
+                    using (BDCRMEntities db = new BDCRMEntities())
+                    {
+                        var consulta = from tabla in db.Estado where tabla.ID == estado.ID select tabla;
+
+                        Estado nuevo = consulta.First();
+
+                        nuevo.Estado1 = estado.Estado;
+
+                        if (estado.Estado != "")
+                        {
+                            db.SaveChanges();
+                            return true;
+                        }
+                        else
+                        {
+                            return false;
+                        }
+
+                    }
+                }
+                else
+                {
+                    return false;
+                }
+
+
+            }
+            catch (SqlException ex)
+            {
+                FaultException fault = new FaultException("Error SQL: " + ex.Message, new FaultCode("SQL"));
+                return false;
+
+            }
+            catch (Exception ex)
+            {
+                FaultException fault = new FaultException("Error: " + ex.Message, new FaultCode("GENERAL"));
+                return false;
+            }
+        }
+
+
+        /// <summary>
+        /// metodo que devuelve los datos de un estado
+        /// </summary>
+        /// <param name="idEstado">identificador del estado</param>
+        /// <returns></returns>
+        public EstadoData GetEstado(int idEstado)
+        {
+            List<EstadoData> lst = new List<EstadoData>();
+            try
+            {
+                using (BDCRMEntities datos = new BDCRMEntities())
+                {
+                    var consulta = from tabla in datos.Estado
+                                   where tabla.ID == idEstado
+                                   select new EstadoData()
+                                   {
+                                       ID = tabla.ID,
+                                       Estado = tabla.Estado1
+
+                                   };
+
+                    lst = consulta.ToList();
+                    EstadoData d = lst.First();
+
+                    return d;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new FaultException("ERROR EN ACCESO A DATOS. " + ex.Message);
+            }
+        }
+
+
+
+
     }
 }
+
+
+//editDireccionEmpresa
+//editDireccionContacto
+
+
+
+
+//esUsuario
+//busqueda rapida
+//busqueda avanzada
+//DireccionToString
