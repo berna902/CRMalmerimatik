@@ -28,6 +28,9 @@ namespace Clientes.Private.Admin
                 this.GridView3.DataSource = cargos;
                 this.GridView3.DataBind();
 
+                EstadoData[] estados = proxy.GetAllEstados();
+                this.GridView4.DataSource = estados;
+                this.GridView4.DataBind();
                 
 
             }
@@ -56,59 +59,46 @@ namespace Clientes.Private.Admin
             SrvDatosClient proxy = new SrvDatosClient();
 
             proxy.BorrarTipoEmpresa(Int32.Parse(id));
-
+            
             this.GridView1.DataSource = proxy.GetAllTiposEmpresa();
             this.GridView1.DataBind();
         }
 
-        protected void GridView2_RowEditing(object sender, GridViewEditEventArgs e)
-        {
-
-        }
-
         protected void GridView2_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {
+            string id = e.Values["ID"].ToString();
+            SrvDatosClient proxy = new SrvDatosClient();
 
+            proxy.BorrarTipoAccion(Int32.Parse(id));
+
+            this.GridView1.DataSource = proxy.GetAllTiposAccion();
+            this.GridView1.DataBind();
         }
 
         protected void GridView3_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {
+            string id = e.Values["ID"].ToString();
+            SrvDatosClient proxy = new SrvDatosClient();
 
+            proxy.BorrarCargo(Int32.Parse(id));
+
+            this.GridView1.DataSource = proxy.GetAllCargos();
+            this.GridView1.DataBind();
         }
 
-        protected void GridView3_RowEditing(object sender, GridViewEditEventArgs e)
-        {
-
-        }
-
-        protected void GridView4_RowEditing(object sender, GridViewEditEventArgs e)
-        {
-
-        }
 
         protected void GridView4_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {
+            string id = e.Values["ID"].ToString();
+            SrvDatosClient proxy = new SrvDatosClient();
 
+            proxy.BorrarEstado(Int32.Parse(id));
+
+            this.GridView1.DataSource = proxy.GetAllEstados();
+            this.GridView1.DataBind();
         }
 
-        protected void btAltaEstado_Click(object sender, EventArgs e)
-        {
 
-        }
-
-        protected void btAltaTempresa_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        protected void btAltaCargos_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        protected void btAltaTAciones_Click(object sender, EventArgs e)
-        {
-
-        }
+       
     }
 }

@@ -898,6 +898,115 @@ namespace Clientes.ServicioDatos2 {
         }
     }
     
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="DireccionData", Namespace="http://schemas.datacontract.org/2004/07/almerimatik.ServicioCRM")]
+    [System.SerializableAttribute()]
+    public partial class DireccionData : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string CPField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string DomicilioField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int IDField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string PoblacionField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string ProvinciaField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string CP {
+            get {
+                return this.CPField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.CPField, value) != true)) {
+                    this.CPField = value;
+                    this.RaisePropertyChanged("CP");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Domicilio {
+            get {
+                return this.DomicilioField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.DomicilioField, value) != true)) {
+                    this.DomicilioField = value;
+                    this.RaisePropertyChanged("Domicilio");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int ID {
+            get {
+                return this.IDField;
+            }
+            set {
+                if ((this.IDField.Equals(value) != true)) {
+                    this.IDField = value;
+                    this.RaisePropertyChanged("ID");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Poblacion {
+            get {
+                return this.PoblacionField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.PoblacionField, value) != true)) {
+                    this.PoblacionField = value;
+                    this.RaisePropertyChanged("Poblacion");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Provincia {
+            get {
+                return this.ProvinciaField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ProvinciaField, value) != true)) {
+                    this.ProvinciaField = value;
+                    this.RaisePropertyChanged("Provincia");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="ServicioDatos2.ISrvDatos")]
     public interface ISrvDatos {
@@ -1141,6 +1250,78 @@ namespace Clientes.ServicioDatos2 {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISrvDatos/BorrarEstado", ReplyAction="http://tempuri.org/ISrvDatos/BorrarEstadoResponse")]
         System.Threading.Tasks.Task<bool> BorrarEstadoAsync(int idEstado);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISrvDatos/AddCargo", ReplyAction="http://tempuri.org/ISrvDatos/AddCargoResponse")]
+        int AddCargo(string cargo);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISrvDatos/AddCargo", ReplyAction="http://tempuri.org/ISrvDatos/AddCargoResponse")]
+        System.Threading.Tasks.Task<int> AddCargoAsync(string cargo);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISrvDatos/BorrarCargo", ReplyAction="http://tempuri.org/ISrvDatos/BorrarCargoResponse")]
+        bool BorrarCargo(int idCargo);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISrvDatos/BorrarCargo", ReplyAction="http://tempuri.org/ISrvDatos/BorrarCargoResponse")]
+        System.Threading.Tasks.Task<bool> BorrarCargoAsync(int idCargo);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISrvDatos/GetAllDireccionesEmpresa", ReplyAction="http://tempuri.org/ISrvDatos/GetAllDireccionesEmpresaResponse")]
+        Clientes.ServicioDatos2.DireccionData[] GetAllDireccionesEmpresa(int idEmpresa);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISrvDatos/GetAllDireccionesEmpresa", ReplyAction="http://tempuri.org/ISrvDatos/GetAllDireccionesEmpresaResponse")]
+        System.Threading.Tasks.Task<Clientes.ServicioDatos2.DireccionData[]> GetAllDireccionesEmpresaAsync(int idEmpresa);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISrvDatos/GetAllDireccionesContacto", ReplyAction="http://tempuri.org/ISrvDatos/GetAllDireccionesContactoResponse")]
+        Clientes.ServicioDatos2.DireccionData[] GetAllDireccionesContacto(int idContacto);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISrvDatos/GetAllDireccionesContacto", ReplyAction="http://tempuri.org/ISrvDatos/GetAllDireccionesContactoResponse")]
+        System.Threading.Tasks.Task<Clientes.ServicioDatos2.DireccionData[]> GetAllDireccionesContactoAsync(int idContacto);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISrvDatos/GetDireccion", ReplyAction="http://tempuri.org/ISrvDatos/GetDireccionResponse")]
+        Clientes.ServicioDatos2.DireccionData GetDireccion(int idDireccion);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISrvDatos/GetDireccion", ReplyAction="http://tempuri.org/ISrvDatos/GetDireccionResponse")]
+        System.Threading.Tasks.Task<Clientes.ServicioDatos2.DireccionData> GetDireccionAsync(int idDireccion);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISrvDatos/AddDireccion", ReplyAction="http://tempuri.org/ISrvDatos/AddDireccionResponse")]
+        int AddDireccion(Clientes.ServicioDatos2.DireccionData direccion);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISrvDatos/AddDireccion", ReplyAction="http://tempuri.org/ISrvDatos/AddDireccionResponse")]
+        System.Threading.Tasks.Task<int> AddDireccionAsync(Clientes.ServicioDatos2.DireccionData direccion);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISrvDatos/EditDireccion", ReplyAction="http://tempuri.org/ISrvDatos/EditDireccionResponse")]
+        bool EditDireccion(Clientes.ServicioDatos2.DireccionData direccion);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISrvDatos/EditDireccion", ReplyAction="http://tempuri.org/ISrvDatos/EditDireccionResponse")]
+        System.Threading.Tasks.Task<bool> EditDireccionAsync(Clientes.ServicioDatos2.DireccionData direccion);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISrvDatos/BorrarDireccion", ReplyAction="http://tempuri.org/ISrvDatos/BorrarDireccionResponse")]
+        bool BorrarDireccion(int idDireccion);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISrvDatos/BorrarDireccion", ReplyAction="http://tempuri.org/ISrvDatos/BorrarDireccionResponse")]
+        System.Threading.Tasks.Task<bool> BorrarDireccionAsync(int idDireccion);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISrvDatos/AddDireccionEmpresa", ReplyAction="http://tempuri.org/ISrvDatos/AddDireccionEmpresaResponse")]
+        int AddDireccionEmpresa(Clientes.ServicioDatos2.DireccionData direccion, int idEmpresa);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISrvDatos/AddDireccionEmpresa", ReplyAction="http://tempuri.org/ISrvDatos/AddDireccionEmpresaResponse")]
+        System.Threading.Tasks.Task<int> AddDireccionEmpresaAsync(Clientes.ServicioDatos2.DireccionData direccion, int idEmpresa);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISrvDatos/AddDireccionContacto", ReplyAction="http://tempuri.org/ISrvDatos/AddDireccionContactoResponse")]
+        int AddDireccionContacto(Clientes.ServicioDatos2.DireccionData direccion, int idContacto);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISrvDatos/AddDireccionContacto", ReplyAction="http://tempuri.org/ISrvDatos/AddDireccionContactoResponse")]
+        System.Threading.Tasks.Task<int> AddDireccionContactoAsync(Clientes.ServicioDatos2.DireccionData direccion, int idContacto);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISrvDatos/BorrarDireccionEmpresa", ReplyAction="http://tempuri.org/ISrvDatos/BorrarDireccionEmpresaResponse")]
+        bool BorrarDireccionEmpresa(int idEmpresa, int idDireccion);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISrvDatos/BorrarDireccionEmpresa", ReplyAction="http://tempuri.org/ISrvDatos/BorrarDireccionEmpresaResponse")]
+        System.Threading.Tasks.Task<bool> BorrarDireccionEmpresaAsync(int idEmpresa, int idDireccion);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISrvDatos/BorrarDireccionContacto", ReplyAction="http://tempuri.org/ISrvDatos/BorrarDireccionContactoResponse")]
+        bool BorrarDireccionContacto(int idContacto, int idDireccion);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISrvDatos/BorrarDireccionContacto", ReplyAction="http://tempuri.org/ISrvDatos/BorrarDireccionContactoResponse")]
+        System.Threading.Tasks.Task<bool> BorrarDireccionContactoAsync(int idContacto, int idDireccion);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -1488,6 +1669,102 @@ namespace Clientes.ServicioDatos2 {
         
         public System.Threading.Tasks.Task<bool> BorrarEstadoAsync(int idEstado) {
             return base.Channel.BorrarEstadoAsync(idEstado);
+        }
+        
+        public int AddCargo(string cargo) {
+            return base.Channel.AddCargo(cargo);
+        }
+        
+        public System.Threading.Tasks.Task<int> AddCargoAsync(string cargo) {
+            return base.Channel.AddCargoAsync(cargo);
+        }
+        
+        public bool BorrarCargo(int idCargo) {
+            return base.Channel.BorrarCargo(idCargo);
+        }
+        
+        public System.Threading.Tasks.Task<bool> BorrarCargoAsync(int idCargo) {
+            return base.Channel.BorrarCargoAsync(idCargo);
+        }
+        
+        public Clientes.ServicioDatos2.DireccionData[] GetAllDireccionesEmpresa(int idEmpresa) {
+            return base.Channel.GetAllDireccionesEmpresa(idEmpresa);
+        }
+        
+        public System.Threading.Tasks.Task<Clientes.ServicioDatos2.DireccionData[]> GetAllDireccionesEmpresaAsync(int idEmpresa) {
+            return base.Channel.GetAllDireccionesEmpresaAsync(idEmpresa);
+        }
+        
+        public Clientes.ServicioDatos2.DireccionData[] GetAllDireccionesContacto(int idContacto) {
+            return base.Channel.GetAllDireccionesContacto(idContacto);
+        }
+        
+        public System.Threading.Tasks.Task<Clientes.ServicioDatos2.DireccionData[]> GetAllDireccionesContactoAsync(int idContacto) {
+            return base.Channel.GetAllDireccionesContactoAsync(idContacto);
+        }
+        
+        public Clientes.ServicioDatos2.DireccionData GetDireccion(int idDireccion) {
+            return base.Channel.GetDireccion(idDireccion);
+        }
+        
+        public System.Threading.Tasks.Task<Clientes.ServicioDatos2.DireccionData> GetDireccionAsync(int idDireccion) {
+            return base.Channel.GetDireccionAsync(idDireccion);
+        }
+        
+        public int AddDireccion(Clientes.ServicioDatos2.DireccionData direccion) {
+            return base.Channel.AddDireccion(direccion);
+        }
+        
+        public System.Threading.Tasks.Task<int> AddDireccionAsync(Clientes.ServicioDatos2.DireccionData direccion) {
+            return base.Channel.AddDireccionAsync(direccion);
+        }
+        
+        public bool EditDireccion(Clientes.ServicioDatos2.DireccionData direccion) {
+            return base.Channel.EditDireccion(direccion);
+        }
+        
+        public System.Threading.Tasks.Task<bool> EditDireccionAsync(Clientes.ServicioDatos2.DireccionData direccion) {
+            return base.Channel.EditDireccionAsync(direccion);
+        }
+        
+        public bool BorrarDireccion(int idDireccion) {
+            return base.Channel.BorrarDireccion(idDireccion);
+        }
+        
+        public System.Threading.Tasks.Task<bool> BorrarDireccionAsync(int idDireccion) {
+            return base.Channel.BorrarDireccionAsync(idDireccion);
+        }
+        
+        public int AddDireccionEmpresa(Clientes.ServicioDatos2.DireccionData direccion, int idEmpresa) {
+            return base.Channel.AddDireccionEmpresa(direccion, idEmpresa);
+        }
+        
+        public System.Threading.Tasks.Task<int> AddDireccionEmpresaAsync(Clientes.ServicioDatos2.DireccionData direccion, int idEmpresa) {
+            return base.Channel.AddDireccionEmpresaAsync(direccion, idEmpresa);
+        }
+        
+        public int AddDireccionContacto(Clientes.ServicioDatos2.DireccionData direccion, int idContacto) {
+            return base.Channel.AddDireccionContacto(direccion, idContacto);
+        }
+        
+        public System.Threading.Tasks.Task<int> AddDireccionContactoAsync(Clientes.ServicioDatos2.DireccionData direccion, int idContacto) {
+            return base.Channel.AddDireccionContactoAsync(direccion, idContacto);
+        }
+        
+        public bool BorrarDireccionEmpresa(int idEmpresa, int idDireccion) {
+            return base.Channel.BorrarDireccionEmpresa(idEmpresa, idDireccion);
+        }
+        
+        public System.Threading.Tasks.Task<bool> BorrarDireccionEmpresaAsync(int idEmpresa, int idDireccion) {
+            return base.Channel.BorrarDireccionEmpresaAsync(idEmpresa, idDireccion);
+        }
+        
+        public bool BorrarDireccionContacto(int idContacto, int idDireccion) {
+            return base.Channel.BorrarDireccionContacto(idContacto, idDireccion);
+        }
+        
+        public System.Threading.Tasks.Task<bool> BorrarDireccionContactoAsync(int idContacto, int idDireccion) {
+            return base.Channel.BorrarDireccionContactoAsync(idContacto, idDireccion);
         }
     }
 }

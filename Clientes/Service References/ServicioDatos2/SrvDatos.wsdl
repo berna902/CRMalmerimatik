@@ -247,6 +247,78 @@
   <wsdl:message name="ISrvDatos_BorrarEstado_OutputMessage">
     <wsdl:part name="parameters" element="tns:BorrarEstadoResponse" />
   </wsdl:message>
+  <wsdl:message name="ISrvDatos_AddCargo_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddCargo" />
+  </wsdl:message>
+  <wsdl:message name="ISrvDatos_AddCargo_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddCargoResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISrvDatos_BorrarCargo_InputMessage">
+    <wsdl:part name="parameters" element="tns:BorrarCargo" />
+  </wsdl:message>
+  <wsdl:message name="ISrvDatos_BorrarCargo_OutputMessage">
+    <wsdl:part name="parameters" element="tns:BorrarCargoResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISrvDatos_GetAllDireccionesEmpresa_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllDireccionesEmpresa" />
+  </wsdl:message>
+  <wsdl:message name="ISrvDatos_GetAllDireccionesEmpresa_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllDireccionesEmpresaResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISrvDatos_GetAllDireccionesContacto_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllDireccionesContacto" />
+  </wsdl:message>
+  <wsdl:message name="ISrvDatos_GetAllDireccionesContacto_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllDireccionesContactoResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISrvDatos_GetDireccion_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetDireccion" />
+  </wsdl:message>
+  <wsdl:message name="ISrvDatos_GetDireccion_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetDireccionResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISrvDatos_AddDireccion_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddDireccion" />
+  </wsdl:message>
+  <wsdl:message name="ISrvDatos_AddDireccion_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddDireccionResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISrvDatos_EditDireccion_InputMessage">
+    <wsdl:part name="parameters" element="tns:EditDireccion" />
+  </wsdl:message>
+  <wsdl:message name="ISrvDatos_EditDireccion_OutputMessage">
+    <wsdl:part name="parameters" element="tns:EditDireccionResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISrvDatos_BorrarDireccion_InputMessage">
+    <wsdl:part name="parameters" element="tns:BorrarDireccion" />
+  </wsdl:message>
+  <wsdl:message name="ISrvDatos_BorrarDireccion_OutputMessage">
+    <wsdl:part name="parameters" element="tns:BorrarDireccionResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISrvDatos_AddDireccionEmpresa_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddDireccionEmpresa" />
+  </wsdl:message>
+  <wsdl:message name="ISrvDatos_AddDireccionEmpresa_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddDireccionEmpresaResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISrvDatos_AddDireccionContacto_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddDireccionContacto" />
+  </wsdl:message>
+  <wsdl:message name="ISrvDatos_AddDireccionContacto_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddDireccionContactoResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISrvDatos_BorrarDireccionEmpresa_InputMessage">
+    <wsdl:part name="parameters" element="tns:BorrarDireccionEmpresa" />
+  </wsdl:message>
+  <wsdl:message name="ISrvDatos_BorrarDireccionEmpresa_OutputMessage">
+    <wsdl:part name="parameters" element="tns:BorrarDireccionEmpresaResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISrvDatos_BorrarDireccionContacto_InputMessage">
+    <wsdl:part name="parameters" element="tns:BorrarDireccionContacto" />
+  </wsdl:message>
+  <wsdl:message name="ISrvDatos_BorrarDireccionContacto_OutputMessage">
+    <wsdl:part name="parameters" element="tns:BorrarDireccionContactoResponse" />
+  </wsdl:message>
   <wsdl:portType name="ISrvDatos">
     <wsdl:operation name="GetAllUsers">
       <wsdl:input wsaw:Action="http://tempuri.org/ISrvDatos/GetAllUsers" message="tns:ISrvDatos_GetAllUsers_InputMessage" />
@@ -407,6 +479,54 @@
     <wsdl:operation name="BorrarEstado">
       <wsdl:input wsaw:Action="http://tempuri.org/ISrvDatos/BorrarEstado" message="tns:ISrvDatos_BorrarEstado_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/ISrvDatos/BorrarEstadoResponse" message="tns:ISrvDatos_BorrarEstado_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AddCargo">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISrvDatos/AddCargo" message="tns:ISrvDatos_AddCargo_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISrvDatos/AddCargoResponse" message="tns:ISrvDatos_AddCargo_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="BorrarCargo">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISrvDatos/BorrarCargo" message="tns:ISrvDatos_BorrarCargo_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISrvDatos/BorrarCargoResponse" message="tns:ISrvDatos_BorrarCargo_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllDireccionesEmpresa">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISrvDatos/GetAllDireccionesEmpresa" message="tns:ISrvDatos_GetAllDireccionesEmpresa_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISrvDatos/GetAllDireccionesEmpresaResponse" message="tns:ISrvDatos_GetAllDireccionesEmpresa_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllDireccionesContacto">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISrvDatos/GetAllDireccionesContacto" message="tns:ISrvDatos_GetAllDireccionesContacto_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISrvDatos/GetAllDireccionesContactoResponse" message="tns:ISrvDatos_GetAllDireccionesContacto_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDireccion">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISrvDatos/GetDireccion" message="tns:ISrvDatos_GetDireccion_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISrvDatos/GetDireccionResponse" message="tns:ISrvDatos_GetDireccion_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AddDireccion">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISrvDatos/AddDireccion" message="tns:ISrvDatos_AddDireccion_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISrvDatos/AddDireccionResponse" message="tns:ISrvDatos_AddDireccion_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="EditDireccion">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISrvDatos/EditDireccion" message="tns:ISrvDatos_EditDireccion_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISrvDatos/EditDireccionResponse" message="tns:ISrvDatos_EditDireccion_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="BorrarDireccion">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISrvDatos/BorrarDireccion" message="tns:ISrvDatos_BorrarDireccion_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISrvDatos/BorrarDireccionResponse" message="tns:ISrvDatos_BorrarDireccion_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AddDireccionEmpresa">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISrvDatos/AddDireccionEmpresa" message="tns:ISrvDatos_AddDireccionEmpresa_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISrvDatos/AddDireccionEmpresaResponse" message="tns:ISrvDatos_AddDireccionEmpresa_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AddDireccionContacto">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISrvDatos/AddDireccionContacto" message="tns:ISrvDatos_AddDireccionContacto_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISrvDatos/AddDireccionContactoResponse" message="tns:ISrvDatos_AddDireccionContacto_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="BorrarDireccionEmpresa">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISrvDatos/BorrarDireccionEmpresa" message="tns:ISrvDatos_BorrarDireccionEmpresa_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISrvDatos/BorrarDireccionEmpresaResponse" message="tns:ISrvDatos_BorrarDireccionEmpresa_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="BorrarDireccionContacto">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISrvDatos/BorrarDireccionContacto" message="tns:ISrvDatos_BorrarDireccionContacto_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISrvDatos/BorrarDireccionContactoResponse" message="tns:ISrvDatos_BorrarDireccionContacto_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_ISrvDatos" type="tns:ISrvDatos">
@@ -764,6 +884,114 @@
     </wsdl:operation>
     <wsdl:operation name="BorrarEstado">
       <soap:operation soapAction="http://tempuri.org/ISrvDatos/BorrarEstado" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddCargo">
+      <soap:operation soapAction="http://tempuri.org/ISrvDatos/AddCargo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="BorrarCargo">
+      <soap:operation soapAction="http://tempuri.org/ISrvDatos/BorrarCargo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllDireccionesEmpresa">
+      <soap:operation soapAction="http://tempuri.org/ISrvDatos/GetAllDireccionesEmpresa" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllDireccionesContacto">
+      <soap:operation soapAction="http://tempuri.org/ISrvDatos/GetAllDireccionesContacto" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDireccion">
+      <soap:operation soapAction="http://tempuri.org/ISrvDatos/GetDireccion" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddDireccion">
+      <soap:operation soapAction="http://tempuri.org/ISrvDatos/AddDireccion" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EditDireccion">
+      <soap:operation soapAction="http://tempuri.org/ISrvDatos/EditDireccion" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="BorrarDireccion">
+      <soap:operation soapAction="http://tempuri.org/ISrvDatos/BorrarDireccion" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddDireccionEmpresa">
+      <soap:operation soapAction="http://tempuri.org/ISrvDatos/AddDireccionEmpresa" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddDireccionContacto">
+      <soap:operation soapAction="http://tempuri.org/ISrvDatos/AddDireccionContacto" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="BorrarDireccionEmpresa">
+      <soap:operation soapAction="http://tempuri.org/ISrvDatos/BorrarDireccionEmpresa" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="BorrarDireccionContacto">
+      <soap:operation soapAction="http://tempuri.org/ISrvDatos/BorrarDireccionContacto" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

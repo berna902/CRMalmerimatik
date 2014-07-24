@@ -29,8 +29,6 @@ namespace Clientes.Private.Admin
                     if (id_ != null)
                         id = Int32.Parse(id_);
 
-
-
                     switch (estado)
                     {
                         case 0:
@@ -76,7 +74,7 @@ namespace Clientes.Private.Admin
                 switch (estado)
                 {
                     case 0:
-                        proxy.AddCargp(tbCargo.Text);
+                        proxy.AddCargo(tbCargo.Text);
                         ScriptManager.RegisterStartupScript(this, this.GetType(), "Mensaje", "<script type='text/javascript'> alert('SE HA INSERTADO CORRECTAMENTE'); parent.$.fancybox.close();</script>", false);
                         break;
                     case 1:

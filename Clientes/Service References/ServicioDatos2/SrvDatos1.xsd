@@ -138,4 +138,20 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="EstadoData" nillable="true" type="tns:EstadoData" />
+  <xs:complexType name="ArrayOfDireccionData">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="DireccionData" nillable="true" type="tns:DireccionData" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfDireccionData" nillable="true" type="tns:ArrayOfDireccionData" />
+  <xs:complexType name="DireccionData">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CP" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Domicilio" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ID" type="xs:int" />
+      <xs:element minOccurs="0" name="Poblacion" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Provincia" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="DireccionData" nillable="true" type="tns:DireccionData" />
 </xs:schema>
