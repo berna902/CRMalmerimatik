@@ -463,6 +463,79 @@ namespace almerimatik.ServicioCRM
         bool BorrarDireccionContacto(int idContacto, int idDireccion);
 
 
+        /// <summary>
+        /// Operacion del servicio que edita un tipo de empresa
+        /// </summary>
+        /// <param name="tipo">datos del tipo de empresa</param>
+        /// <returns>verdadero o falso segun si se realiza la accion o no</returns>
+        [OperationContract]
+        bool EditTipoEmpresa(TipoEmpresaData tipo);
+
+
+        /// <summary>
+        /// Operacion del servicio que devuelve los datos de un tipo de empresa
+        /// </summary>
+        /// <param name="idTipo">identificador del tipo de empresa</param>
+        /// <returns></returns>
+        [OperationContract]
+        TipoEmpresaData GetTipoEmpresa(int idTipo);
+
+
+        /// <summary>
+        /// Operacion del servicio que edita un tipo de accion
+        /// </summary>
+        /// <param name="tipo">datos del tipo de accion</param>
+        /// <returns>verdadero o falso segun si se realiza la accion o no</returns>
+        [OperationContract]
+        bool EditTipoAccion(TipoAccionData tipo);
+
+
+
+        /// <summary>
+        /// Operacion del servicio que devuelve los datos de un tipo de accion
+        /// </summary>
+        /// <param name="idTipo">identificador del tipo de accion</param>
+        /// <returns></returns>
+        [OperationContract]
+        TipoAccionData GetTipoAccion(int idTipo);
+
+
+        /// <summary>
+        /// Operacion del servicio que edita un cargo
+        /// </summary>
+        /// <param name="cargo">datos del cargo</param>
+        /// <returns>verdadero o falso segun si se realiza la accion o no</returns>
+        [OperationContract]
+        bool EditCargo(CargoData cargo);
+
+
+        /// <summary>
+        /// Operacion del servicio que devuelve los datos de un cargo
+        /// </summary>
+        /// <param name="idCargo">identificador del cargo</param>
+        /// <returns></returns>
+        [OperationContract]
+        CargoData GetCargo(int idCargo);
+
+
+        /// <summary>
+        /// Operacion del servicio que edita un estado
+        /// </summary>
+        /// <param name="estado">datos del estado</param>
+        /// <returns>verdadero o falso segun si se realiza la accion o no</returns>
+        [OperationContract]
+        bool EditEstado(EstadoData estado);
+
+
+        /// <summary>
+        /// Operacion del servicio que devuelve los datos de un estado
+        /// </summary>
+        /// <param name="idEstado">identificador del estado</param>
+        /// <returns></returns>
+        [OperationContract]
+        EstadoData GetEstado(int idEstado);
+
+
 
     }
 
