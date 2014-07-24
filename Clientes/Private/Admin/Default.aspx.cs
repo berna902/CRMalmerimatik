@@ -35,6 +35,18 @@ namespace Clientes.Private.Admin
 
         protected void GridView1_RowEditing(object sender, GridViewEditEventArgs e)
         {
+            string id = this.GridView1.Rows[e.NewEditIndex].Cells[0].Text;
+            //ScriptManager.RegisterStartupScript(this, this.GetType(), "Mensaje", "<script type='text/javascript'> alert('SE HA INSERTADO CORRECTAMENTE'); parent.$.fancybox.close();</script>", false);
+            //this.Response.Redirect("GContactos.aspx?estado=1&idU=" + idu + "&id=" + id);
+
+            string script = @"<script type=""text/javascript"">$(document).ready(function() {$(""#termsandConditions"").fancybox({'transitionIn':'elastic','transitionOut':'elastic','speedIn':600,'speedOut':200,'overlayShow':false,'overlayOpacity': 0.5,'width':800,'href':""/Contents/Common/EN/TermandConditions.aspx""}).trigger('click');});</script>";
+            Type cstype = this.GetType();
+            ClientScriptManager cs = Page.ClientScript;
+
+            if (!cs.IsStartupScriptRegistered(cstype, script))
+            {
+                cs.RegisterStartupScript(cstype, "fancybox", script);
+            }
 
         }
 
