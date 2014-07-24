@@ -421,6 +421,49 @@ namespace almerimatik.ServicioCRM
         /// <returns>verdadero o falso segun si realiza la accion o no</returns>
         [OperationContract]
         bool BorrarDireccion(int idDireccion);
+
+
+        /// <summary>
+        /// Operacion del servicio que añade una direccion y la coloca en una empresa
+        /// </summary>
+        /// <param name="direccion">datos de la direccion</param>
+        /// <param name="idEmpresa">identificador de la empresa</param>
+        /// <returns>devuelve el identificador de la direccion nueva o -1 si existe algun error</returns>
+        [OperationContract]
+        int AddDireccionEmpresa(DireccionData direccion, int idEmpresa);
+
+
+        /// <summary>
+        /// Operacion del servicio que añade una direccion y la coloca en un contacto
+        /// </summary>
+        /// <param name="direccion">datos de la direccion</param>
+        /// <param name="idContacto">identificador del contacto</param>
+        /// <returns>devuelve el identificador de la direccion nueva o -1 si existe algun error</returns>
+        [OperationContract]
+        int AddDireccionContacto(DireccionData direccion, int idContacto);
+
+
+        /// <summary>
+        /// Operacion del servicio que borrar una direccion de una empresa
+        /// </summary>
+        /// <param name="idEmpresa">identificador de la empresa</param>
+        /// <param name="idDireccion">identificador de la direccion</param>
+        /// <returns>verdadero o falso segun si realiza con exito la operacion o no</returns>
+        [OperationContract]
+        bool BorrarDireccionEmpresa(int idEmpresa, int idDireccion);
+
+
+        /// <summary>
+        /// Operacion del servicio que borrar una direccion de un contacto
+        /// </summary>
+        /// <param name="idContacto">identificador del contacto</param>
+        /// <param name="idDireccion">identificador de la direccion</param>
+        /// <returns>verdadero o falso segun si realiza con exito la operacion o no</returns>
+        [OperationContract]
+        bool BorrarDireccionContacto(int idContacto, int idDireccion);
+
+
+
     }
 
 

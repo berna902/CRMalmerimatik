@@ -1943,8 +1943,212 @@ namespace almerimatik.ServicioCRM
         }
 
 
+        /// <summary>
+        /// metodo que añade una direccion y la coloca en una empresa
+        /// </summary>
+        /// <param name="direccion">datos de la direccion</param>
+        /// <param name="idEmpresa">identificador de la empresa</param>
+        /// <returns>devuelve el identificador de la direccion nueva o -1 si existe algun error</returns>
+        public int AddDireccionEmpresa(DireccionData direccion, int idEmpresa)
+        {
+            try
+            {
+                using (BDCRMEntities db = new BDCRMEntities())
+                {
+                    if (direccion != null)
+                    {
+
+                        int id = AddDireccion(direccion);
+
+                        //añadimos la direccion a la empresa                        
+                        
+                        var consulta = from tabla in db.Direccion
+                                        where tabla.ID == id
+                                        select tabla;
+
+                        var consulta2 = from tabla2 in db.Empresa
+                                        where tabla2.ID == idEmpresa
+                                        select tabla2;
+
+                        Direccion d = consulta.First();
+                        Empresa e = consulta2.First();
+                        
+                        //añadimos la direccion a la empresa
+                        e.Direccion.Add(d);
+                        
+                        
+                        db.SaveChanges();
+                        return id;
+
+                    }
+                    else
+                    {
+                        return -1;
+                    }
+
+
+                }
+
+            }
+            catch (SqlException ex)
+            {
+                FaultException fault = new FaultException("Error SQL: " + ex.Message, new FaultCode("SQL"));
+                return -1;
+
+            }
+            catch (Exception ex)
+            {
+                FaultException fault = new FaultException("Error: " + ex.Message, new FaultCode("GENERAL"));
+                return -1;
+            }
+        }
+
+
+        /// <summary>
+        /// metodo que añade una direccion y la coloca en un contacto
+        /// </summary>
+        /// <param name="direccion">datos de la direccion</param>
+        /// <param name="idContacto">identificador del contacto</param>
+        /// <returns>devuelve el identificador de la direccion nueva o -1 si existe algun error</returns>
+        public int AddDireccionContacto(DireccionData direccion, int idContacto)
+        {
+            try
+            {
+                using (BDCRMEntities db = new BDCRMEntities())
+                {
+                    if (direccion != null)
+                    {
+
+                        int id = AddDireccion(direccion);
+
+                        //añadimos la direccion al contacto                        
+                         
+                        DireccionContacto dc = new DireccionContacto();
+                        dc.IDDireccion = id;
+                        dc.IDContacto = idContacto;
+
+                        db.DireccionContacto.Add(dc);
+                        db.SaveChanges();
+                        return id;
+
+                    }
+                    else
+                    {
+                        return -1;
+                    }
+
+
+                }
+
+            }
+            catch (SqlException ex)
+            {
+                FaultException fault = new FaultException("Error SQL: " + ex.Message, new FaultCode("SQL"));
+                return -1;
+
+            }
+            catch (Exception ex)
+            {
+                FaultException fault = new FaultException("Error: " + ex.Message, new FaultCode("GENERAL"));
+                return -1;
+            }
+        }
+
+
+        /// <summary>
+        /// metodo que borrar una direccion de una empresa
+        /// </summary>
+        /// <param name="idEmpresa">identificador de la empresa</param>
+        /// <param name="idDireccion">identificador de la direccion</param>
+        /// <returns>verdadero o falso segun si realiza con exito la operacion o no</returns>
+        public bool BorrarDireccionEmpresa(int idEmpresa, int idDireccion){
+            try
+            {
+                using (BDCRMEntities db = new BDCRMEntities())
+                {
+                    var consulta = from tabla in db.Empresa where tabla.ID == idEmpresa select tabla;
+                    Empresa borrar = consulta.First();
+
+                    var consulta2 = from tabla in db.Direccion where tabla.ID == idDireccion select tabla;
+                    Direccion d = consulta2.First();
+
+                   
+                    borrar.Direccion.Remove(d);
+                    bool b = BorrarDireccion(idDireccion);
+                    if(b == true){
+                        db.SaveChanges();
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                    
+                    
+
+
+                }
+            }
+            catch (SqlException ex)
+            {
+                FaultException fault = new FaultException("Error SQL: " + ex.Message, new FaultCode("SQL"));
+                return false;
+
+            }
+            catch (Exception ex)
+            {
+                FaultException fault = new FaultException("Error: " + ex.Message, new FaultCode("GENERAL"));
+                return false;
+            }
+        }
+
+        
+        /// <summary>
+        /// metodo que borrar una direccion de un contacto
+        /// </summary>
+        /// <param name="idContacto">identificador del contacto</param>
+        /// <param name="idDireccion">identificador de la direccion</param>
+        /// <returns>verdadero o falso segun si realiza con exito la operacion o no</returns>
+        public bool BorrarDireccionContacto(int idContacto, int idDireccion)
+        {
+            try
+            {
+                using (BDCRMEntities db = new BDCRMEntities())
+                {
+                    var consulta = from tabla in db.DireccionContacto
+                                   where (tabla.IDContacto == idContacto && tabla.IDDireccion == idDireccion)
+                                   select tabla;
+                    DireccionContacto borrar = consulta.First();
+
+                    
+                    db.DireccionContacto.Remove(borrar);
+                    bool b = BorrarDireccion(idDireccion);
+                    if (b == true)
+                    {
+                        db.SaveChanges();
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
+            }
+            catch (SqlException ex)
+            {
+                FaultException fault = new FaultException("Error SQL: " + ex.Message, new FaultCode("SQL"));
+                return false;
+
+            }
+            catch (Exception ex)
+            {
+                FaultException fault = new FaultException("Error: " + ex.Message, new FaultCode("GENERAL"));
+                return false;
+            }
+        }
+
+
+
         
     }
 }
-//AddDireccionEmpresa
-//AddDireccionContacto
