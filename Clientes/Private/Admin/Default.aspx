@@ -48,8 +48,8 @@
         <div class="panel panel-primary">
             <div class="panel-heading">Tipo de Empresas</div>
             <div class="panel-body">
-                <a class="fancy" rel="fancy" href="TEmpresas.aspx" >
-                <asp:Button ID="btAltaTempresa" runat="server" Text="Nuevo tipo de empresa" CssClass="btn btn-success" OnClick="btAltaTempresa_Click" />
+                <a class="fancy" rel="fancy" href="TEmpresas.aspx?estado=0" >
+                <asp:Button ID="btAltaTempresa" runat="server" Text="Nuevo tipo de empresa" CssClass="btn btn-success fancy" OnClick="btAltaTempresa_Click" />
                 </a>
                     <br />
                 <br />
@@ -67,8 +67,7 @@
                             <asp:TemplateField>
                                 <ItemTemplate>
                                     
-                                    <asp:LinkButton ID="btnModificarAccion" runat="server" Text="Modificar" CssClass="btn btn-warning fancy" href="TEmpresas.aspx"><span class="glyphicon glyphicon-pencil"></span>Modificar</asp:LinkButton>
-                                   
+                                    <asp:LinkButton id="btnModificarAccion" CssClass="btn btn-warning fancy" runat="server" href='<%# string.Format("TEmpresas.aspx?estado=1&id={0}", Eval("ID")) %>' Text="Modificar" ><span class="glyphicon glyphicon-pencil"></span>Modificar</asp:LinkButton>  
                                     <asp:LinkButton ID="btnEliminarAccion" runat="server" Text="Eliminar" CssClass="btn btn-danger" CommandName="Delete"><span class="glyphicon glyphicon-minus"></span>Eliminar</asp:LinkButton>
                                 </ItemTemplate>
                                 <HeaderStyle BackColor="#DCDCDC" />

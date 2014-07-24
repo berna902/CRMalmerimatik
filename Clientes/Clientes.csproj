@@ -165,7 +165,10 @@
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Private\Acciones\acciones.aspx" />
     <Content Include="Private\Acciones\Default.aspx" />
+    <Content Include="Private\Admin\Cargos.aspx" />
     <Content Include="Private\Admin\Default.aspx" />
+    <Content Include="Private\Admin\Estados.aspx" />
+    <Content Include="Private\Admin\TAccionesaspx.aspx" />
     <Content Include="Private\Admin\TEmpresas.aspx" />
     <Content Include="Private\Default.aspx" />
     <Content Include="Private\Empresas\contactos.aspx" />
@@ -379,12 +382,33 @@
     <Compile Include="Private\Acciones\Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Private\Admin\Cargos.aspx.cs">
+      <DependentUpon>Cargos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Private\Admin\Cargos.aspx.designer.cs">
+      <DependentUpon>Cargos.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Private\Admin\Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Private\Admin\Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Private\Admin\Estados.aspx.cs">
+      <DependentUpon>Estados.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Private\Admin\Estados.aspx.designer.cs">
+      <DependentUpon>Estados.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Private\Admin\TAccionesaspx.aspx.cs">
+      <DependentUpon>TAccionesaspx.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Private\Admin\TAccionesaspx.aspx.designer.cs">
+      <DependentUpon>TAccionesaspx.aspx</DependentUpon>
     </Compile>
     <Compile Include="Private\Admin\TEmpresas.aspx.cs">
       <DependentUpon>TEmpresas.aspx</DependentUpon>

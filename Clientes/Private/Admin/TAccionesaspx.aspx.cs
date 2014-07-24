@@ -8,7 +8,7 @@ using System.Web.UI.WebControls;
 
 namespace Clientes.Private.Admin
 {
-    public partial class TEmpresas : System.Web.UI.Page
+    public partial class TAccionesaspx : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -29,7 +29,7 @@ namespace Clientes.Private.Admin
                     if (id_ != null)
                         id = Int32.Parse(id_);
 
-                    
+
 
                     switch (estado)
                     {
@@ -39,7 +39,7 @@ namespace Clientes.Private.Admin
 
                         case 1:
                             SrvDatosClient proxy = new SrvDatosClient();
-                            
+
                             break;
 
                         default:
@@ -54,7 +54,6 @@ namespace Clientes.Private.Admin
             {
             }
         }
-
         protected void btAlta_Click(object sender, EventArgs e)
         {
             try
@@ -76,7 +75,7 @@ namespace Clientes.Private.Admin
                 switch (estado)
                 {
                     case 0:
-                        proxy.AddTipoEmpresa(tbTipo.Text);
+                        proxy.AddTipoAccion(tbAccion.Text);
                         ScriptManager.RegisterStartupScript(this, this.GetType(), "Mensaje", "<script type='text/javascript'> alert('SE HA INSERTADO CORRECTAMENTE'); parent.$.fancybox.close();</script>", false);
                         break;
                     case 1:
