@@ -536,6 +536,41 @@ namespace almerimatik.ServicioCRM
         EstadoData GetEstado(int idEstado);
 
 
+        /// <summary>
+        /// Operacion del servicio que devuelve la direccion como una cadena
+        /// </summary>
+        /// <param name="direccion">datos de la direccion</param>
+        /// <returns>string con la direccion completa unida</returns>
+        [OperationContract]
+        String DireccionToString(DireccionData direccion);
+
+
+        /// <summary>
+        /// Operacion del servicio que indica si existe un usuario en la BD
+        /// </summary>
+        /// <param name="user">datos del usuario</param>
+        /// <returns>devuelve verdadero o falso segun si existe o no</returns>
+        [OperationContract]
+        bool ExisteUser(UserData user);
+
+
+        /// <summary>
+        /// Operacion del servicio que indica si existe una empresa en la BD
+        /// </summary>
+        /// <param name="empresa">datos de la empresa</param>
+        /// <returns>devuelve verdadero o falso segun si existe o no</returns>
+        [OperationContract]
+        bool ExisteEmpresa(EmpresaData empresa);
+
+
+        /// <summary>
+        /// Operacion del servicio que valida un usuario 
+        /// </summary>
+        /// <param name="username">username del usuario</param>
+        /// <param name="password">password del usuario</param>
+        /// <returns>verdadero o falso segun si el usuario esta validado o no</returns>
+        [OperationContract]
+        bool ValidaUser(String username, String password);
 
     }
 

@@ -458,30 +458,40 @@ namespace almerimatik.ServicioCRM
                 {
                     if (empresa != null)
                     {
-                        //insertamos empresa
-                        Empresa nuevo = new Empresa();
-                        
-                        nuevo.Nombre = empresa.Nombre;
-                        nuevo.RazonSocial = empresa.RazonSocial;
-                        nuevo.CIF = empresa.CIF;
-                        nuevo.Email = empresa.Email;
-                        nuevo.Web = empresa.Web;
-                        nuevo.TipoEmpresa = empresa.IDTipoEmpresa;
-                                                
-                        db.Empresa.Add(nuevo);
 
-                        //insertamos el telefono
-                        if (empresa.Telefono != null && empresa.Telefono != "")
+                        if (!ExisteEmpresa(empresa))
                         {
-                            TelefonosData nuevoTlf = new TelefonosData();
-                            nuevoTlf.ID = nuevo.ID;
-                            nuevoTlf.Telefono = empresa.Telefono;
-                            AddTelefonoEmpresa(nuevoTlf);
+                            //insertamos empresa
+                            Empresa nuevo = new Empresa();
+
+                            nuevo.Nombre = empresa.Nombre;
+                            nuevo.RazonSocial = empresa.RazonSocial;
+                            nuevo.CIF = empresa.CIF;
+                            nuevo.Email = empresa.Email;
+                            nuevo.Web = empresa.Web;
+                            nuevo.TipoEmpresa = empresa.IDTipoEmpresa;
+
+                            db.Empresa.Add(nuevo);
+
+                            //insertamos el telefono
+                            if (empresa.Telefono != null && empresa.Telefono != "")
+                            {
+                                TelefonosData nuevoTlf = new TelefonosData();
+                                nuevoTlf.ID = nuevo.ID;
+                                nuevoTlf.Telefono = empresa.Telefono;
+                                AddTelefonoEmpresa(nuevoTlf);
+                            }
+
+
+                            db.SaveChanges();
+                            return nuevo.ID;
                         }
-
-
-                        db.SaveChanges();
-                        return nuevo.ID;
+                        else
+                        {
+                            return -1;
+                            //ya existe la empresa
+                        }
+                        
 
                     }
                     else
@@ -975,17 +985,27 @@ namespace almerimatik.ServicioCRM
                 {
                     if (user != null)
                     {
-                        User nuevo = new User();
+                        if (!ExisteUser(user))
+                        {
+                            User nuevo = new User();
 
 
-                        nuevo.Nombre = user.Nombre;
-                        nuevo.Username = user.Username;
-                        nuevo.Password = user.Password;
+                            nuevo.Nombre = user.Nombre;
+                            nuevo.Username = user.Username;
+                            nuevo.Password = user.Password;
+
+
+                            db.User.Add(nuevo);
+                            db.SaveChanges();
+                            return nuevo.IDUsuario;
+                        }
+                        else
+                        {
+                            //ya existe el usuario
+                            return -1;
+                        }
+
                         
-
-                        db.User.Add(nuevo);
-                        db.SaveChanges();
-                        return nuevo.IDUsuario;
 
                     }
                     else
@@ -2493,19 +2513,214 @@ namespace almerimatik.ServicioCRM
         }
 
 
+        /// <summary>
+        /// metodo que devuelve la direccion como una cadena
+        /// </summary>
+        /// <param name="direccion">datos de la direccion</param>
+        /// <returns>string con la direccion completa unida</returns>
+        public String DireccionToString(DireccionData direccion)
+        {
+            
+            if (direccion != null)
+            {
+                return direccion.Domicilio + " (" + direccion.CP + ") " + direccion.Poblacion + " " + direccion.Provincia;
+            }
+            else
+            {
+                return "";
+            }
+        }
 
+
+        /// <summary>
+        /// metodo que indica si existe un usuario en la BD (compara por username)
+        /// </summary>
+        /// <param name="user">datos del usuario</param>
+        /// <returns>devuelve verdadero o falso segun si existe o no</returns>
+        public bool ExisteUser(UserData user){
+            List<UserData> lst = new List<UserData>();
+            try
+            {
+                using (BDCRMEntities datos = new BDCRMEntities())
+                {
+
+                    if(user != null){
+                        var consulta = from tabla in datos.User
+                                       where tabla.Username == user.Username
+                                       select new UserData()
+                                       {
+                                           IDUsuario = tabla.IDUsuario,
+                                           Nombre = tabla.Nombre,
+                                           Username = tabla.Username,
+                                           Password = tabla.Password
+                                       };
+
+
+                        lst = consulta.ToList();
+                        if(lst.Count > 0){
+                            return true;
+                        }
+                        else
+                        {
+                            return false;
+                        }
+
+                    }else{
+                        return false;
+                    }
+                    
+                }
+            }
+            catch (SqlException ex)
+            {
+                FaultException fault = new FaultException("Error SQL: " + ex.Message, new FaultCode("SQL"));
+                return false;
+
+            }
+            catch (Exception ex)
+            {
+                FaultException fault = new FaultException("Error: " + ex.Message, new FaultCode("GENERAL"));
+                return false;
+            }
+        }
+
+
+        /// <summary>
+        /// metodo que indica si existe una empresa en la BD (compara por CIF)
+        /// </summary>
+        /// <param name="empresa">datos de la empresa</param>
+        /// <returns>devuelve verdadero o falso segun si existe o no</returns>
+        public bool ExisteEmpresa(EmpresaData empresa)
+        {
+            List<EmpresaData> lst = new List<EmpresaData>();
+            try
+            {
+                using (BDCRMEntities datos = new BDCRMEntities())
+                {
+
+                    if (empresa != null)
+                    {
+                        var consulta = from tabla in datos.Empresa
+                                       where tabla.CIF == empresa.CIF
+                                       select new EmpresaData()
+                                       {
+                                           ID = tabla.ID,
+                                           CIF = tabla.CIF,
+                                           Email = tabla.Email,
+                                           Nombre = tabla.Nombre,
+                                           RazonSocial = tabla.RazonSocial,
+                                           Web = tabla.Web,
+                                           IDTipoEmpresa = tabla.TipoEmpresa,
+                                           TipoEmpresa = tabla.TipoEmpresa1.Tipo,
+                                           Telefono = tabla.TelefonoEmpresa.FirstOrDefault().Telefono
+                                       };
+
+
+                        lst = consulta.ToList();
+                        if (lst.Count > 0)
+                        {
+                            return true;
+                        }
+                        else
+                        {
+                            return false;
+                        }
+
+                    }
+                    else
+                    {
+                        return false;
+                    }
+
+                }
+            }
+            catch (SqlException ex)
+            {
+                FaultException fault = new FaultException("Error SQL: " + ex.Message, new FaultCode("SQL"));
+                return false;
+
+            }
+            catch (Exception ex)
+            {
+                FaultException fault = new FaultException("Error: " + ex.Message, new FaultCode("GENERAL"));
+                return false;
+            }
+        }
+
+        /// <summary>
+        /// metodo que valida un usuario 
+        /// </summary>
+        /// <param name="username">username del usuario</param>
+        /// <param name="password">password del usuario</param>
+        /// <returns>verdadero o falso segun si el usuario esta validado o no</returns>
+        public bool ValidaUser(String username, String password)
+        {
+            List<UserData> lst = new List<UserData>();
+            try
+            {
+                using (BDCRMEntities datos = new BDCRMEntities())
+                {
+
+                    if (username != "" && password != "")
+                    {
+                        var consulta = from tabla in datos.User
+                                       where tabla.Username == username
+                                       select new UserData()
+                                       {
+                                           IDUsuario = tabla.IDUsuario,
+                                           Nombre = tabla.Nombre,
+                                           Username = tabla.Username,
+                                           Password = tabla.Password
+                                       };
+
+
+                        lst = consulta.ToList();
+                        if (lst.Count > 0)
+                        {
+                            UserData ud = lst.First();
+                            if (ud.Username == username && ud.Password == password)
+                            {
+                                return true;
+                            }
+                            else
+                            {
+                                return false;
+                                //usuario o contraseña no correctos
+                            }
+                        }
+                        else
+                        {
+                            return false;
+                            //el username no existe
+                        }
+                        
+
+                    }
+                    else
+                    {
+                        return false;
+                        //datos vacios. falta username o password o ambos
+                    }
+
+                }
+            }
+            catch (SqlException ex)
+            {
+                FaultException fault = new FaultException("Error SQL: " + ex.Message, new FaultCode("SQL"));
+                return false;
+
+            }
+            catch (Exception ex)
+            {
+                FaultException fault = new FaultException("Error: " + ex.Message, new FaultCode("GENERAL"));
+                return false;
+            }
+        }
 
     }
 }
 
 
-//editDireccionEmpresa
-//editDireccionContacto
 
-
-
-
-//esUsuario
 //busqueda rapida
 //busqueda avanzada
-//DireccionToString
