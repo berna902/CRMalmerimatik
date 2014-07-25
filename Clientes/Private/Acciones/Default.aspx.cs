@@ -41,5 +41,13 @@ namespace Clientes.Private.Acciones
             string id = this.GridView1.Rows[e.NewEditIndex].Cells[0].Text;
             this.Response.Redirect("acciones.aspx?estado=1&id=" + id);
         }
+
+        protected void GridView1_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            SrvDatosClient proxy = new SrvDatosClient();
+            this.GridView1.PageIndex = e.NewPageIndex;
+            this.GridView1.DataSource = proxy.GetAllAccionesComerciales();
+            this.GridView1.DataBind();
+        }
     }
 }

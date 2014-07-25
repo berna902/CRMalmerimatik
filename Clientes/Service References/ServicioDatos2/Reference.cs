@@ -1322,6 +1322,54 @@ namespace Clientes.ServicioDatos2 {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISrvDatos/BorrarDireccionContacto", ReplyAction="http://tempuri.org/ISrvDatos/BorrarDireccionContactoResponse")]
         System.Threading.Tasks.Task<bool> BorrarDireccionContactoAsync(int idContacto, int idDireccion);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISrvDatos/EditTipoEmpresa", ReplyAction="http://tempuri.org/ISrvDatos/EditTipoEmpresaResponse")]
+        bool EditTipoEmpresa(Clientes.ServicioDatos2.TipoEmpresaData tipo);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISrvDatos/EditTipoEmpresa", ReplyAction="http://tempuri.org/ISrvDatos/EditTipoEmpresaResponse")]
+        System.Threading.Tasks.Task<bool> EditTipoEmpresaAsync(Clientes.ServicioDatos2.TipoEmpresaData tipo);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISrvDatos/GetTipoEmpresa", ReplyAction="http://tempuri.org/ISrvDatos/GetTipoEmpresaResponse")]
+        Clientes.ServicioDatos2.TipoEmpresaData GetTipoEmpresa(int idTipo);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISrvDatos/GetTipoEmpresa", ReplyAction="http://tempuri.org/ISrvDatos/GetTipoEmpresaResponse")]
+        System.Threading.Tasks.Task<Clientes.ServicioDatos2.TipoEmpresaData> GetTipoEmpresaAsync(int idTipo);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISrvDatos/EditTipoAccion", ReplyAction="http://tempuri.org/ISrvDatos/EditTipoAccionResponse")]
+        bool EditTipoAccion(Clientes.ServicioDatos2.TipoAccionData tipo);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISrvDatos/EditTipoAccion", ReplyAction="http://tempuri.org/ISrvDatos/EditTipoAccionResponse")]
+        System.Threading.Tasks.Task<bool> EditTipoAccionAsync(Clientes.ServicioDatos2.TipoAccionData tipo);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISrvDatos/GetTipoAccion", ReplyAction="http://tempuri.org/ISrvDatos/GetTipoAccionResponse")]
+        Clientes.ServicioDatos2.TipoAccionData GetTipoAccion(int idTipo);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISrvDatos/GetTipoAccion", ReplyAction="http://tempuri.org/ISrvDatos/GetTipoAccionResponse")]
+        System.Threading.Tasks.Task<Clientes.ServicioDatos2.TipoAccionData> GetTipoAccionAsync(int idTipo);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISrvDatos/EditCargo", ReplyAction="http://tempuri.org/ISrvDatos/EditCargoResponse")]
+        bool EditCargo(Clientes.ServicioDatos2.CargoData cargo);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISrvDatos/EditCargo", ReplyAction="http://tempuri.org/ISrvDatos/EditCargoResponse")]
+        System.Threading.Tasks.Task<bool> EditCargoAsync(Clientes.ServicioDatos2.CargoData cargo);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISrvDatos/GetCargo", ReplyAction="http://tempuri.org/ISrvDatos/GetCargoResponse")]
+        Clientes.ServicioDatos2.CargoData GetCargo(int idCargo);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISrvDatos/GetCargo", ReplyAction="http://tempuri.org/ISrvDatos/GetCargoResponse")]
+        System.Threading.Tasks.Task<Clientes.ServicioDatos2.CargoData> GetCargoAsync(int idCargo);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISrvDatos/EditEstado", ReplyAction="http://tempuri.org/ISrvDatos/EditEstadoResponse")]
+        bool EditEstado(Clientes.ServicioDatos2.EstadoData estado);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISrvDatos/EditEstado", ReplyAction="http://tempuri.org/ISrvDatos/EditEstadoResponse")]
+        System.Threading.Tasks.Task<bool> EditEstadoAsync(Clientes.ServicioDatos2.EstadoData estado);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISrvDatos/GetEstado", ReplyAction="http://tempuri.org/ISrvDatos/GetEstadoResponse")]
+        Clientes.ServicioDatos2.EstadoData GetEstado(int idEstado);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISrvDatos/GetEstado", ReplyAction="http://tempuri.org/ISrvDatos/GetEstadoResponse")]
+        System.Threading.Tasks.Task<Clientes.ServicioDatos2.EstadoData> GetEstadoAsync(int idEstado);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -1765,6 +1813,70 @@ namespace Clientes.ServicioDatos2 {
         
         public System.Threading.Tasks.Task<bool> BorrarDireccionContactoAsync(int idContacto, int idDireccion) {
             return base.Channel.BorrarDireccionContactoAsync(idContacto, idDireccion);
+        }
+        
+        public bool EditTipoEmpresa(Clientes.ServicioDatos2.TipoEmpresaData tipo) {
+            return base.Channel.EditTipoEmpresa(tipo);
+        }
+        
+        public System.Threading.Tasks.Task<bool> EditTipoEmpresaAsync(Clientes.ServicioDatos2.TipoEmpresaData tipo) {
+            return base.Channel.EditTipoEmpresaAsync(tipo);
+        }
+        
+        public Clientes.ServicioDatos2.TipoEmpresaData GetTipoEmpresa(int idTipo) {
+            return base.Channel.GetTipoEmpresa(idTipo);
+        }
+        
+        public System.Threading.Tasks.Task<Clientes.ServicioDatos2.TipoEmpresaData> GetTipoEmpresaAsync(int idTipo) {
+            return base.Channel.GetTipoEmpresaAsync(idTipo);
+        }
+        
+        public bool EditTipoAccion(Clientes.ServicioDatos2.TipoAccionData tipo) {
+            return base.Channel.EditTipoAccion(tipo);
+        }
+        
+        public System.Threading.Tasks.Task<bool> EditTipoAccionAsync(Clientes.ServicioDatos2.TipoAccionData tipo) {
+            return base.Channel.EditTipoAccionAsync(tipo);
+        }
+        
+        public Clientes.ServicioDatos2.TipoAccionData GetTipoAccion(int idTipo) {
+            return base.Channel.GetTipoAccion(idTipo);
+        }
+        
+        public System.Threading.Tasks.Task<Clientes.ServicioDatos2.TipoAccionData> GetTipoAccionAsync(int idTipo) {
+            return base.Channel.GetTipoAccionAsync(idTipo);
+        }
+        
+        public bool EditCargo(Clientes.ServicioDatos2.CargoData cargo) {
+            return base.Channel.EditCargo(cargo);
+        }
+        
+        public System.Threading.Tasks.Task<bool> EditCargoAsync(Clientes.ServicioDatos2.CargoData cargo) {
+            return base.Channel.EditCargoAsync(cargo);
+        }
+        
+        public Clientes.ServicioDatos2.CargoData GetCargo(int idCargo) {
+            return base.Channel.GetCargo(idCargo);
+        }
+        
+        public System.Threading.Tasks.Task<Clientes.ServicioDatos2.CargoData> GetCargoAsync(int idCargo) {
+            return base.Channel.GetCargoAsync(idCargo);
+        }
+        
+        public bool EditEstado(Clientes.ServicioDatos2.EstadoData estado) {
+            return base.Channel.EditEstado(estado);
+        }
+        
+        public System.Threading.Tasks.Task<bool> EditEstadoAsync(Clientes.ServicioDatos2.EstadoData estado) {
+            return base.Channel.EditEstadoAsync(estado);
+        }
+        
+        public Clientes.ServicioDatos2.EstadoData GetEstado(int idEstado) {
+            return base.Channel.GetEstado(idEstado);
+        }
+        
+        public System.Threading.Tasks.Task<Clientes.ServicioDatos2.EstadoData> GetEstadoAsync(int idEstado) {
+            return base.Channel.GetEstadoAsync(idEstado);
         }
     }
 }

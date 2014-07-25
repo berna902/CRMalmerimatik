@@ -21,6 +21,7 @@
                 <div class="form-group">
                     <asp:Label CssClass="control-label" Text="Cargo" ID="lbCargo" runat="server" AssociatedControlID="tbCargo"></asp:Label>
                     <asp:TextBox ID="tbCargo" runat="server" CssClass="form-control"></asp:TextBox>
+                    <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="Introduce un nombre de cargo." ControlToValidate="tbCargo" CssClass="label label-danger" SetFocusOnError="True"></asp:RequiredFieldValidator>
                 </div>
                 <div class="form-group">
                     <asp:Button ID="btAlta" runat="server" Text="Alta" CssClass="btn btn-primary" OnClick="btAlta_Click" />

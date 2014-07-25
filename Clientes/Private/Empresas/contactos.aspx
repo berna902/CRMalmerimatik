@@ -24,7 +24,7 @@
         </fieldset>
        <div class="table-responsive">
             <!--<asp:GridView ID="GridView2" runat="server" CssClass="table table-striped"></asp:GridView>-->
-            <asp:GridView ID="GridView1" runat="server" CssClass="table table-hover table-striped" AutoGenerateColumns="False" GridLines="None" AllowPaging="True" OnRowEditing="GridView1_RowEditing" OnRowDeleting="GridView1_RowDeleting">
+            <asp:GridView ID="GridView1" runat="server" CssClass="table table-hover table-striped" AutoGenerateColumns="False" GridLines="None" AllowPaging="True" OnRowEditing="GridView1_RowEditing" OnRowDeleting="GridView1_RowDeleting" EmptyDataText="No hay datos." OnPageIndexChanging="GridView1_PageIndexChanging" PageSize="5" ShowHeaderWhenEmpty="True">
                 
                 <Columns>
                     <asp:BoundField DataField="ID" HeaderText="ID">

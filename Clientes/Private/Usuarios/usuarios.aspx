@@ -21,37 +21,33 @@
     <div class="col-md-12">
         <div class="form-group">
             <asp:Label CssClass="control-label" Text="ID" ID="lbID" runat="server" AssociatedControlID="tbID"></asp:Label>
-
             <asp:TextBox ID="tbID" runat="server" CssClass="form-control" placeholder="ID del usuario"></asp:TextBox>
 
         </div>
         <div class="form-group">
             <asp:Label CssClass="control-label" Text="Nombre" ID="lbNombre" runat="server" AssociatedControlID="tbNombre"></asp:Label>
-
             <asp:TextBox ID="tbNombre" runat="server" CssClass="form-control" placeholder="Nombre del usuario"></asp:TextBox>
-
+            <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="Introduzca el nombre del usuario." ControlToValidate="tbNombre" CssClass="label label-danger" SetFocusOnError="True"></asp:RequiredFieldValidator>
         </div>
 
         <div class="form-group">
             <asp:Label CssClass="control-label" Text="Username" ID="lbUsername" runat="server" AssociatedControlID="tbUsername"></asp:Label>
-
             <asp:TextBox ID="tbUsername" runat="server" CssClass="form-control" placeholder="Username del usuario"></asp:TextBox>
-
+            <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ErrorMessage="Introduzca un username." ControlToValidate="tbUsername" CssClass="label label-danger" SetFocusOnError="True"></asp:RequiredFieldValidator>
         </div>
 
         <div class="form-group">
             <asp:Label CssClass="control-label" Text="Password" ID="lbPassword" runat="server" AssociatedControlID="tbPassword"></asp:Label>
-
             <asp:TextBox ID="tbPassword" runat="server" CssClass="form-control" placeholder="Password del usuario"></asp:TextBox>
-
+            <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ErrorMessage="Introduzca una contraseña." ControlToValidate="tbPassword" CssClass="label label-danger" SetFocusOnError="True"></asp:RequiredFieldValidator>
         </div>
 
 
         <div class="form-group">
             <asp:Label CssClass="control-label" Text="Repite el password" ID="lbPassword2" runat="server" AssociatedControlID="tbPassword2"></asp:Label>
-
             <asp:TextBox ID="tbpassword2" runat="server" CssClass="form-control" placeholder="Repite el password.."></asp:TextBox>
-
+            <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ErrorMessage="Repita la contraseña." ControlToValidate="tbpassword2" CssClass="label label-danger" SetFocusOnError="True"></asp:RequiredFieldValidator>
+            <asp:CompareValidator ID="CompareValidator1" runat="server" ErrorMessage="Las contraseñas son distintas." ControlToCompare="tbPassword" ControlToValidate="tbpassword2" CssClass="label label-danger" SetFocusOnError="True"></asp:CompareValidator>
         </div>
 
         

@@ -41,5 +41,13 @@ namespace Clientes.Private.Usuarios
             this.GridView1.DataBind();
         }
 
+        protected void GridView1_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            SrvDatosClient proxy = new SrvDatosClient();
+            this.GridView1.PageIndex = e.NewPageIndex;
+            this.GridView1.DataSource = proxy.GetAllUsers();
+            this.GridView1.DataBind();
+        }
+
     }
 }

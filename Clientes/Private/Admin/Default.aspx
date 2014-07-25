@@ -13,11 +13,13 @@
                 'autoScale': false,
                 'height': "220px",
                 'width': "500px",
+                'arrows': false,
                 'transitionIn': 'none',
                 'transitionOut': 'none',
                 'hideOnOverlayClick': false,
                 'hideOnContentClick': false,
                 'type': 'iframe',
+
                 'afterClose': function () {
                     window.location.reload();
                 }
@@ -52,7 +54,7 @@
                     <br />
                 <br />
                 <div class="table-responsive">
-                    <asp:GridView ID="GridView1" CssClass="table table-hover table-striped" AutoGenerateColumns="False" GridLines="None" AllowPaging="True" OnRowDeleting="GridView1_RowDeleting" runat="server" EmptyDataText="No hay datos." ShowHeaderWhenEmpty="True">
+                    <asp:GridView ID="GridView1" CssClass="table table-hover table-striped" AutoGenerateColumns="False" GridLines="None" AllowPaging="True" OnRowDeleting="GridView1_RowDeleting" runat="server" EmptyDataText="No hay datos." ShowHeaderWhenEmpty="True" OnPageIndexChanging="GridView1_PageIndexChanging" PageSize="5">
                         <Columns>
                             <asp:BoundField DataField="ID" HeaderText="ID">
                                 <HeaderStyle BackColor="#DCDCDC" ForeColor="#696969" HorizontalAlign="Center" VerticalAlign="Middle" />
@@ -84,7 +86,7 @@
                 <br />
                 <br />
                 <div class="table-responsive">
-                    <asp:GridView ID="GridView3" CssClass="table table-hover table-striped" AutoGenerateColumns="False" GridLines="None" AllowPaging="True" OnRowDeleting="GridView3_RowDeleting" runat="server" EmptyDataText="No hay datos." ShowHeaderWhenEmpty="True">
+                    <asp:GridView ID="GridView3" CssClass="table table-hover table-striped" AutoGenerateColumns="False" GridLines="None" AllowPaging="True" OnRowDeleting="GridView3_RowDeleting" runat="server" EmptyDataText="No hay datos." ShowHeaderWhenEmpty="True" OnPageIndexChanging="GridView3_PageIndexChanging" PageSize="5">
                         <Columns>
                             <asp:BoundField DataField="ID" HeaderText="ID">
                                 <HeaderStyle BackColor="#DCDCDC" ForeColor="#696969" HorizontalAlign="Center" VerticalAlign="Middle" />
@@ -117,7 +119,7 @@
                 <br />
                 <br />
                 <div class="table-responsive">
-                    <asp:GridView ID="GridView2" CssClass="table table-hover table-striped" AutoGenerateColumns="False" GridLines="None" AllowPaging="True" OnRowDeleting="GridView2_RowDeleting" runat="server" EmptyDataText="No hay datos." ShowHeaderWhenEmpty="True">
+                    <asp:GridView ID="GridView2" CssClass="table table-hover table-striped" AutoGenerateColumns="False" GridLines="None" AllowPaging="True" OnRowDeleting="GridView2_RowDeleting" runat="server" EmptyDataText="No hay datos." ShowHeaderWhenEmpty="True" OnPageIndexChanging="GridView2_PageIndexChanging" PageSize="5">
                         <Columns>
                             <asp:BoundField DataField="ID" HeaderText="ID">
                                 <HeaderStyle BackColor="#DCDCDC" ForeColor="#696969" HorizontalAlign="Center" VerticalAlign="Middle" />
@@ -148,7 +150,7 @@
                 <br />
                 <br />
                 <div class="table-responsive">
-                    <asp:GridView ID="GridView4" CssClass="table table-hover table-striped" AutoGenerateColumns="False" GridLines="None" AllowPaging="True" OnRowDeleting="GridView4_RowDeleting" runat="server" EmptyDataText="No hay datos." ShowHeaderWhenEmpty="True">
+                    <asp:GridView ID="GridView4" CssClass="table table-hover table-striped" AutoGenerateColumns="False" GridLines="None" AllowPaging="True" OnRowDeleting="GridView4_RowDeleting" runat="server" EmptyDataText="No hay datos." ShowHeaderWhenEmpty="True" OnPageIndexChanging="GridView4_PageIndexChanging" PageSize="5">
                         <Columns>
                             <asp:BoundField DataField="ID" HeaderText="ID">
                                 <HeaderStyle BackColor="#DCDCDC" ForeColor="#696969" HorizontalAlign="Center" VerticalAlign="Middle" />

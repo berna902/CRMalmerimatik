@@ -39,7 +39,8 @@ namespace Clientes.Private.Admin
 
                         case 1:
                             SrvDatosClient proxy = new SrvDatosClient();
-                            
+                            TipoEmpresaData empresa = proxy.GetTipoEmpresa(id);
+                            tbTipo.Text = empresa.Tipo;
                             break;
 
                         default:
@@ -80,7 +81,9 @@ namespace Clientes.Private.Admin
                         ScriptManager.RegisterStartupScript(this, this.GetType(), "Mensaje", "<script type='text/javascript'> alert('SE HA INSERTADO CORRECTAMENTE'); parent.$.fancybox.close();</script>", false);
                         break;
                     case 1:
-
+                        TipoEmpresaData tipoEmpresa = new TipoEmpresaData();
+                        tipoEmpresa.Tipo = tbTipo.Text;
+                        proxy.EditTipoEmpresa(tipoEmpresa);
                         ScriptManager.RegisterStartupScript(this, this.GetType(), "Mensaje", "<script type='text/javascript'> alert('SE HA MODIFICADO CORRECTAMENTE'); parent.$.fancybox.close();</script>", false);
                         break;
                     default:

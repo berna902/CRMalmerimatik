@@ -98,6 +98,39 @@ namespace Clientes.Private.Admin
             this.GridView1.DataBind();
         }
 
+        protected void GridView1_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            SrvDatosClient proxy = new SrvDatosClient();
+            this.GridView1.PageIndex = e.NewPageIndex;
+            this.GridView1.DataSource = proxy.GetAllTiposEmpresa();
+            this.GridView1.DataBind();
+        }
+
+        protected void GridView3_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            SrvDatosClient proxy = new SrvDatosClient();
+            this.GridView1.PageIndex = e.NewPageIndex;
+            this.GridView1.DataSource = proxy.GetAllCargos();
+            this.GridView1.DataBind();
+        }
+
+        protected void GridView2_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            SrvDatosClient proxy = new SrvDatosClient();
+            this.GridView1.PageIndex = e.NewPageIndex;
+            this.GridView1.DataSource = proxy.GetAllTiposAccion();
+            this.GridView1.DataBind();
+        }
+
+        protected void GridView4_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            SrvDatosClient proxy = new SrvDatosClient();
+            this.GridView1.PageIndex = e.NewPageIndex;
+            this.GridView1.DataSource = proxy.GetAllEstados();
+            this.GridView1.DataBind();
+        }
+
+
 
        
     }

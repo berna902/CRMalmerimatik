@@ -21,13 +21,11 @@
     <div class="col-md-12">
         <div class="form-group">
             <asp:Label CssClass="control-label" Text="ID Usuario" ID="lbIDUsuario" runat="server" AssociatedControlID="tbIDUsuario"></asp:Label>
-
             <asp:TextBox ID="tbIDUsuario" runat="server" CssClass="form-control"></asp:TextBox>
 
         </div>
         <div class="form-group">
             <asp:Label CssClass="control-label" Text="Empresa" ID="lbEmpresa" runat="server" AssociatedControlID="tbEmpresa"></asp:Label>
-
             <asp:DropDownList ID="tbEmpresa" runat="server" CssClass="form-control" AutoPostBack="True">
                 <asp:ListItem Value="1">-</asp:ListItem>
             </asp:DropDownList>
@@ -36,9 +34,8 @@
 
         <div class="form-group">
             <asp:Label CssClass="control-label" Text="Nombre" ID="lbNombre" runat="server" AssociatedControlID="tbNombre"></asp:Label>
-
             <asp:TextBox ID="tbNombre" runat="server" CssClass="form-control" placeholder="Nombre del contacto"></asp:TextBox>
-
+            <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="Introduzca un nombre para el contacto." ControlToValidate="tbNombre" CssClass="label label-danger" SetFocusOnError="True"></asp:RequiredFieldValidator>
         </div>
 
          <div class="form-group">
@@ -52,13 +49,11 @@
 
         <div class="form-group">
             <asp:Label CssClass="control-label" Text="Email" ID="lbEmail" runat="server" AssociatedControlID="tbEmail"></asp:Label>
-
             <asp:TextBox ID="tbEmail" runat="server" CssClass="form-control" placeholder="Email del usuario.."></asp:TextBox>
 
         </div>
 
         <div class="form-group" id="formularioTelefonos" runat="server">
-
 
                 <asp:Label CssClass="control-label" Text="Telefonos" ID="Label1" runat="server" AssociatedControlID="tbTelefonos"></asp:Label>
                 <div class="telefonos navbar-form">
