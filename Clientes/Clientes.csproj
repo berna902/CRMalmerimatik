@@ -173,6 +173,7 @@
     <Content Include="Private\Default.aspx" />
     <Content Include="Private\Empresas\contactos.aspx" />
     <Content Include="Private\Empresas\Default.aspx" />
+    <Content Include="Private\Empresas\direccion.aspx" />
     <Content Include="Private\Empresas\empresa.aspx" />
     <Content Include="Private\Empresas\GContactos.aspx" />
     <Content Include="Private\Maestra.Master" />
@@ -440,6 +441,13 @@
     </Compile>
     <Compile Include="Private\Empresas\Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Private\Empresas\direccion.aspx.cs">
+      <DependentUpon>direccion.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Private\Empresas\direccion.aspx.designer.cs">
+      <DependentUpon>direccion.aspx</DependentUpon>
     </Compile>
     <Compile Include="Private\Empresas\empresa.aspx.cs">
       <DependentUpon>empresa.aspx</DependentUpon>

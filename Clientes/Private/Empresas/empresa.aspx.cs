@@ -12,7 +12,7 @@ namespace Clientes.Private.Empresas
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+           
             //SrvDatosClient proxy = new SrvDatosClient();
             if (!this.IsPostBack)
             {
@@ -49,7 +49,7 @@ namespace Clientes.Private.Empresas
                             tbTipoEMpresa.DataSource = tiposEmpresas;
                             tbTipoEMpresa.DataValueField = "ID";
                             tbTipoEMpresa.DataTextField = "Tipo";
-                            formularioTelefonos.Visible = false;
+                            formularioTelefonos.Visible = true;
                             tbTipoEMpresa.DataBind();
 
                             break;
@@ -89,6 +89,11 @@ namespace Clientes.Private.Empresas
                             this.GridView1.DataSource = contactos;
                             this.GridView1.DataBind();
                             //this.tbTipoEMpresa.Text = empresa.TipoEmpresa;
+
+                            DireccionData[] direcciones = proxy.GetAllDireccionesEmpresa(idEmpresa);
+
+                            this.GridView3.DataSource = direcciones;
+                            this.GridView3.DataBind();
                             break;
                        
                         default:
@@ -123,7 +128,15 @@ namespace Clientes.Private.Empresas
                         empresa.CIF = tbCIF.Text;
                         empresa.Email = tbEmail.Text;
                         empresa.Web = tbWeb.Text;
-                        if(proxy.AddEmpresa(empresa)!=-1){
+                        int id = proxy.AddEmpresa(empresa);
+                        if(id !=-1){
+                            TelefonosData tel = new TelefonosData();
+                            tel.ID = id;
+                            for (int i = 0; i < tbTelefonos.Items.Count; i++)
+                            {
+                                tel.Telefono = tbTelefonos.SelectedValue;
+                                proxy.AddTelefonoContacto(tel);
+                            }
                             Response.Redirect("Default.aspx");
                             //string script = "alert('No se pudo modificar la empresa');";
                             //ClientScript.RegisterClientScriptBlock(this.GetType(), "Alert", script, true);
@@ -166,6 +179,11 @@ namespace Clientes.Private.Empresas
             TelefonosData telefono = new TelefonosData();
             telefono.ID = Int32.Parse(tbIDEmpresa.Text);
             telefono.Telefono = tbTelefono.Text;
+            String s = Request.QueryString["estado"];
+            int estado = -1;
+            if (s != null)
+                estado = Int32.Parse(s);
+            if (estado == 1)
             proxy.AddTelefonoEmpresa(telefono);
             //llamar al servicio para que inserte el telefono nuevo. aun no está hecho T_T
             tbTelefonos.Items.Add(new ListItem(tbTelefono.Text, tbTelefono.Text));
@@ -220,9 +238,141 @@ namespace Clientes.Private.Empresas
             this.GridView1.DataBind();
         }
 
+        /// <summary>
+        /// Funcion que valida un CIF
+        /// </summary>
+        /// <param name="Numero">El numero del CIF a validar</param>
+        /// <returns>True si el CIF es correcto</returns>
+
         protected void validar_CIF(object source, ServerValidateEventArgs args)
         {
+            string Numero = tbCIF.Text;
+            //Valida el cif actual
+            string[] letrasCodigo = { "J", "A", "B", "C", "D", "E", "F", "G", "H", "I" };
 
+            string LetraInicial = Numero[0].ToString();
+            string DigitoControl = Numero[Numero.Length - 1].ToString();
+            string n = Numero.ToString().Substring(1, Numero.Length - 2);
+            int sumaPares = 0;
+            int sumaImpares = 0;
+            int sumaTotal = 0;
+            int i = 0;
+            bool retVal = false;
+
+            // Recorrido por todos los dígitos del número
+            // Recorrido por todos los dígitos del número
+            for (i = 0; i < n.Length; i++)
+            {
+                int aux;
+                Int32.TryParse(n[i].ToString(), out aux);
+
+                if ((i + 1) % 2 == 0)
+                {
+                    // Si es una posición par, se suman los dígitos
+                    sumaPares += aux;
+                }
+                else
+                {
+                    // Si es una posición impar, se multiplican los dígitos por 2
+                    aux = aux * 2;
+
+                    // se suman los dígitos de la suma
+                    sumaImpares += SumaDigitos(aux);
+                }
+            }
+
+            // Se suman los resultados de los números pares e impares
+            sumaTotal += sumaPares + sumaImpares;
+
+            // Se obtiene el dígito de las unidades
+            Int32 unidades = sumaTotal % 10;
+
+            // Si las unidades son distintas de 0, se restan de 10
+            if (unidades != 0) unidades = 10 - unidades;
+
+            switch (LetraInicial)
+            {
+                // Sólo números
+                case "A":
+                case "B":
+                case "E":
+                case "H":
+                    retVal = DigitoControl == unidades.ToString();
+                    break;
+
+                // Sólo letras
+                case "K":
+                case "P":
+                case "Q":
+                case "S":
+                    retVal = DigitoControl == letrasCodigo[unidades];
+                    break;
+
+                default:
+                    retVal = (DigitoControl == unidades.ToString()) || (DigitoControl == letrasCodigo[unidades]);
+                    break;
+            }
+
+            args.IsValid = retVal;
+        }
+
+        private Int32 SumaDigitos(Int32 digitos)
+        {
+            string sNumero = digitos.ToString();
+            Int32 suma = 0;
+
+            for (Int32 i = 0; i < sNumero.Length; i++)
+            {
+                Int32 aux;
+                Int32.TryParse(sNumero[i].ToString(), out aux);
+                suma += aux;
+            }
+            return suma;
+        }
+
+        protected void GridView3_RowEditing(object sender, GridViewEditEventArgs e)
+        {
+            string id = this.GridView3.Rows[e.NewEditIndex].Cells[0].Text;
+            string ide = tbIDEmpresa.Text;
+            this.Response.Redirect("direccion.aspx?estado=1&ide=" + ide + "&id=" + id);
+        }
+
+        protected void GridView3_RowDeleting(object sender, GridViewDeleteEventArgs e)
+        {
+            string id = e.Values["id"].ToString();
+            SrvDatosClient proxy = new SrvDatosClient();
+
+            proxy.BorrarDireccion(Int32.Parse(id));
+
+            int idEmpresa;
+            String id_ = Request.QueryString["id"];
+            idEmpresa = -1;
+
+            if (id_ != null)
+                idEmpresa = Int32.Parse(id_);
+            this.GridView3.DataSource = proxy.GetAllDireccionesEmpresa(idEmpresa);
+            this.GridView3.DataBind();
+        }
+
+        protected void GridView3_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            int idEmpresa;
+            String id = Request.QueryString["id"];
+            idEmpresa = -1;
+
+            if (id != null)
+                idEmpresa = Int32.Parse(id);
+
+            SrvDatosClient proxy = new SrvDatosClient();
+            this.GridView3.PageIndex = e.NewPageIndex;
+            this.GridView3.DataSource = proxy.GetAllDireccionesEmpresa(idEmpresa);
+            this.GridView3.DataBind();
+        }
+
+        protected void btAltaDireccion_Click(object sender, EventArgs e)
+        {
+            string ide = tbIDEmpresa.Text;
+            this.Response.Redirect("direccion.aspx?estado=0&ide=" + ide);
         }
     }
 }

@@ -1,5 +1,10 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Private/Maestra.Master" AutoEventWireup="true" CodeBehind="acciones.aspx.cs" Inherits="Clientes.Private.Acciones.acciones" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+        <style type="text/css">
+        input:focus::-webkit-input-placeholder {
+            color: transparent;
+        }
+    </style>
     <script src="../../Scripts/jquery-1.10.2.min.js"></script>
     <link href="../../Content/bootstrap-datepicker.css" rel="stylesheet" />
     <script src="../../Scripts/bootstrap.min.js"></script>

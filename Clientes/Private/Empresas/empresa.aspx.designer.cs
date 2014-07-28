@@ -274,13 +274,22 @@ namespace Clientes.Private.Empresas {
         protected global::System.Web.UI.WebControls.DropDownList tbTipoEMpresa;
         
         /// <summary>
-        /// GridView2 control.
+        /// btAltaDireccion control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView GridView2;
+        protected global::System.Web.UI.WebControls.Button btAltaDireccion;
+        
+        /// <summary>
+        /// GridView3 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView GridView3;
         
         /// <summary>
         /// GridView1 control.
