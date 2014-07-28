@@ -572,6 +572,15 @@ namespace almerimatik.ServicioCRM
         [OperationContract]
         bool ValidaUser(String username, String password);
 
+
+        /// <summary>
+        /// Operacion del servicio que devuelve la lista de terminos que coinciden con una cadena
+        /// </summary>
+        /// <param name="cadena">termino de busqueda</param>
+        /// <returns></returns>
+        [OperationContract]
+        List<BusquedaData> BusquedaRapida(String cadena);
+
     }
 
 
@@ -769,6 +778,21 @@ namespace almerimatik.ServicioCRM
         public string Provincia { get; set; }
         [DataMember]
         public string CP { get; set; }
+    }
+
+
+    /// <summary>
+    /// datos que definen una busqueda rapida
+    /// </summary>
+    [DataContract]
+    public class BusquedaData
+    {
+        [DataMember]
+        public String Nombre { get; set; }
+        [DataMember]
+        public String Tipo { get; set; }
+        [DataMember]
+        public int ID { get; set; }
     }
 
 

@@ -2717,6 +2717,133 @@ namespace almerimatik.ServicioCRM
             }
         }
 
+
+        /// <summary>
+        /// metodo que devuelve la lista de terminos que coinciden con una cadena
+        /// </summary>
+        /// <param name="cadena">termino de busqueda</param>
+        /// <returns></returns>
+        public List<BusquedaData> BusquedaRapida(String cadena)
+        {
+            List<BusquedaData> busqueda = new List<BusquedaData>();
+            List<Empresa> empresas = new List<Empresa>();
+            List<User> users = new List<User>();
+            List<AccionComercial> accion = new List<AccionComercial>();
+            List<Contacto> contacto = new List<Contacto>();
+            try
+            {
+                using (BDCRMEntities datos = new BDCRMEntities())
+                {
+                    //busqueda rapida de empresas
+                    var consulta = from tabla in datos.Empresa
+                                   where (tabla.Nombre.Contains(cadena) || tabla.RazonSocial.Contains(cadena))
+                                   select tabla;
+                                   
+
+                    empresas = consulta.ToList();
+                    BusquedaData bd;
+                    foreach (var ele in empresas)
+                    {
+                        bd = new BusquedaData();
+                        if(ele.Nombre.Contains(cadena))
+                        {
+                            bd.Nombre = ele.Nombre;
+                        }
+                        else
+                        {
+                            bd.Nombre = ele.RazonSocial;
+                        }
+                        
+                        bd.Tipo = "Empresa";
+                        bd.ID = ele.ID;
+
+                        busqueda.Add(bd);
+                    }
+
+                    //busqueda rapida de usuarios
+                    var consulta2 = from tabla in datos.User
+                                   where (tabla.Nombre.Contains(cadena) || tabla.Username.Contains(cadena))
+                                   select tabla;
+
+
+                    users = consulta2.ToList();
+                    
+                    foreach (var ele in users)
+                    {
+                        bd = new BusquedaData();
+                        if (ele.Nombre.Contains(cadena))
+                        {
+                            bd.Nombre = ele.Nombre;
+                        }
+                        else
+                        {
+                            bd.Nombre = ele.Username;
+                        }
+                        
+                        bd.Tipo = "Usuario";
+                        bd.ID = ele.IDUsuario;
+
+                        busqueda.Add(bd);
+                    }
+
+
+                    //busqueda rapida de acciones comerciales
+                    var consulta3 = from tabla in datos.AccionComercial
+                                    where (tabla.Descripcion.Contains(cadena) || tabla.Comentarios.Contains(cadena))
+                                    select tabla;
+
+
+                    accion = consulta3.ToList();
+
+                    foreach (var ele in accion)
+                    {
+                        bd = new BusquedaData();
+                        if (ele.Descripcion.Contains(cadena))
+                        {
+                            bd.Nombre = ele.Descripcion;
+                        }
+                        else
+                        {
+                            bd.Nombre = ele.Comentarios;
+                        }
+
+                        bd.Tipo = "AccionComercial";
+                        bd.ID = ele.ID;
+
+                        busqueda.Add(bd);
+                    }
+
+
+                    //busqueda rapida de contactos
+                    var consulta4 = from tabla in datos.Contacto
+                                    where tabla.Nombre.Contains(cadena)
+                                    select tabla;
+
+
+                    contacto = consulta4.ToList();
+
+                    foreach (var ele in contacto)
+                    {
+                        bd = new BusquedaData();
+                        
+                        bd.Nombre = ele.Nombre;
+                        bd.Tipo = "Contacto";
+                        bd.ID = ele.ID;
+
+                        busqueda.Add(bd);
+                    }
+
+
+
+                    return busqueda;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new FaultException("ERROR EN ACCESO A DATOS. " + ex.Message);
+            }
+        }
+
     }
 }
 
