@@ -31,7 +31,7 @@ namespace Clientes.Private.Empresas
             
             proxy.BorrarContacto(Int32.Parse(id));
 
-            this.GridView1.DataSource = proxy.GetAllEmpresas();
+            this.GridView1.DataSource = proxy.GetAllContactos();
             this.GridView1.DataBind();
         }
 
@@ -40,6 +40,14 @@ namespace Clientes.Private.Empresas
             string idu = this.GridView1.Rows[e.NewEditIndex].Cells[0].Text;
             string id = this.GridView1.Rows[e.NewEditIndex].Cells[1].Text;
             this.Response.Redirect("GContactos.aspx?estado=1&idU=" + idu + "&id=" + id);
+        }
+
+        protected void GridView1_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            SrvDatosClient proxy = new SrvDatosClient();
+            this.GridView1.PageIndex = e.NewPageIndex;
+            this.GridView1.DataSource = proxy.GetAllContactos();
+            this.GridView1.DataBind();
         }
     }
 }

@@ -204,5 +204,25 @@ namespace Clientes.Private.Empresas
             tbTelefonos.DataTextField = "Telefono";
             tbTelefonos.DataBind();
         }
+
+        protected void GridView1_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            int idEmpresa;
+            String id = Request.QueryString["id"];
+            idEmpresa = -1;
+            
+            if (id != null)
+                idEmpresa = Int32.Parse(id);
+
+            SrvDatosClient proxy = new SrvDatosClient();
+            this.GridView1.PageIndex = e.NewPageIndex;
+            this.GridView1.DataSource = proxy.GetAllContactosEmpresa(idEmpresa);
+            this.GridView1.DataBind();
+        }
+
+        protected void validar_CIF(object source, ServerValidateEventArgs args)
+        {
+
+        }
     }
 }

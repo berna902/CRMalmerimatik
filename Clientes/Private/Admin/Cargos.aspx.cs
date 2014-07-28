@@ -37,7 +37,8 @@ namespace Clientes.Private.Admin
 
                         case 1:
                             SrvDatosClient proxy = new SrvDatosClient();
-
+                            CargoData cargo = proxy.GetCargo(id);
+                            tbCargo.Text = cargo.Cargo;
                             break;
 
                         default:
@@ -78,7 +79,9 @@ namespace Clientes.Private.Admin
                         ScriptManager.RegisterStartupScript(this, this.GetType(), "Mensaje", "<script type='text/javascript'> alert('SE HA INSERTADO CORRECTAMENTE'); parent.$.fancybox.close();</script>", false);
                         break;
                     case 1:
-
+                        CargoData cargo = new CargoData();
+                        cargo.Cargo = tbCargo.Text;
+                        proxy.EditCargo(cargo);
                         ScriptManager.RegisterStartupScript(this, this.GetType(), "Mensaje", "<script type='text/javascript'> alert('SE HA MODIFICADO CORRECTAMENTE'); parent.$.fancybox.close();</script>", false);
                         break;
                     default:

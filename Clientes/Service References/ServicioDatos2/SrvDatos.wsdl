@@ -319,6 +319,54 @@
   <wsdl:message name="ISrvDatos_BorrarDireccionContacto_OutputMessage">
     <wsdl:part name="parameters" element="tns:BorrarDireccionContactoResponse" />
   </wsdl:message>
+  <wsdl:message name="ISrvDatos_EditTipoEmpresa_InputMessage">
+    <wsdl:part name="parameters" element="tns:EditTipoEmpresa" />
+  </wsdl:message>
+  <wsdl:message name="ISrvDatos_EditTipoEmpresa_OutputMessage">
+    <wsdl:part name="parameters" element="tns:EditTipoEmpresaResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISrvDatos_GetTipoEmpresa_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetTipoEmpresa" />
+  </wsdl:message>
+  <wsdl:message name="ISrvDatos_GetTipoEmpresa_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetTipoEmpresaResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISrvDatos_EditTipoAccion_InputMessage">
+    <wsdl:part name="parameters" element="tns:EditTipoAccion" />
+  </wsdl:message>
+  <wsdl:message name="ISrvDatos_EditTipoAccion_OutputMessage">
+    <wsdl:part name="parameters" element="tns:EditTipoAccionResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISrvDatos_GetTipoAccion_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetTipoAccion" />
+  </wsdl:message>
+  <wsdl:message name="ISrvDatos_GetTipoAccion_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetTipoAccionResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISrvDatos_EditCargo_InputMessage">
+    <wsdl:part name="parameters" element="tns:EditCargo" />
+  </wsdl:message>
+  <wsdl:message name="ISrvDatos_EditCargo_OutputMessage">
+    <wsdl:part name="parameters" element="tns:EditCargoResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISrvDatos_GetCargo_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetCargo" />
+  </wsdl:message>
+  <wsdl:message name="ISrvDatos_GetCargo_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetCargoResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISrvDatos_EditEstado_InputMessage">
+    <wsdl:part name="parameters" element="tns:EditEstado" />
+  </wsdl:message>
+  <wsdl:message name="ISrvDatos_EditEstado_OutputMessage">
+    <wsdl:part name="parameters" element="tns:EditEstadoResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISrvDatos_GetEstado_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetEstado" />
+  </wsdl:message>
+  <wsdl:message name="ISrvDatos_GetEstado_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetEstadoResponse" />
+  </wsdl:message>
   <wsdl:portType name="ISrvDatos">
     <wsdl:operation name="GetAllUsers">
       <wsdl:input wsaw:Action="http://tempuri.org/ISrvDatos/GetAllUsers" message="tns:ISrvDatos_GetAllUsers_InputMessage" />
@@ -527,6 +575,38 @@
     <wsdl:operation name="BorrarDireccionContacto">
       <wsdl:input wsaw:Action="http://tempuri.org/ISrvDatos/BorrarDireccionContacto" message="tns:ISrvDatos_BorrarDireccionContacto_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/ISrvDatos/BorrarDireccionContactoResponse" message="tns:ISrvDatos_BorrarDireccionContacto_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="EditTipoEmpresa">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISrvDatos/EditTipoEmpresa" message="tns:ISrvDatos_EditTipoEmpresa_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISrvDatos/EditTipoEmpresaResponse" message="tns:ISrvDatos_EditTipoEmpresa_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTipoEmpresa">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISrvDatos/GetTipoEmpresa" message="tns:ISrvDatos_GetTipoEmpresa_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISrvDatos/GetTipoEmpresaResponse" message="tns:ISrvDatos_GetTipoEmpresa_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="EditTipoAccion">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISrvDatos/EditTipoAccion" message="tns:ISrvDatos_EditTipoAccion_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISrvDatos/EditTipoAccionResponse" message="tns:ISrvDatos_EditTipoAccion_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTipoAccion">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISrvDatos/GetTipoAccion" message="tns:ISrvDatos_GetTipoAccion_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISrvDatos/GetTipoAccionResponse" message="tns:ISrvDatos_GetTipoAccion_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="EditCargo">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISrvDatos/EditCargo" message="tns:ISrvDatos_EditCargo_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISrvDatos/EditCargoResponse" message="tns:ISrvDatos_EditCargo_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCargo">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISrvDatos/GetCargo" message="tns:ISrvDatos_GetCargo_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISrvDatos/GetCargoResponse" message="tns:ISrvDatos_GetCargo_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="EditEstado">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISrvDatos/EditEstado" message="tns:ISrvDatos_EditEstado_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISrvDatos/EditEstadoResponse" message="tns:ISrvDatos_EditEstado_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetEstado">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISrvDatos/GetEstado" message="tns:ISrvDatos_GetEstado_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISrvDatos/GetEstadoResponse" message="tns:ISrvDatos_GetEstado_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_ISrvDatos" type="tns:ISrvDatos">
@@ -992,6 +1072,78 @@
     </wsdl:operation>
     <wsdl:operation name="BorrarDireccionContacto">
       <soap:operation soapAction="http://tempuri.org/ISrvDatos/BorrarDireccionContacto" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EditTipoEmpresa">
+      <soap:operation soapAction="http://tempuri.org/ISrvDatos/EditTipoEmpresa" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTipoEmpresa">
+      <soap:operation soapAction="http://tempuri.org/ISrvDatos/GetTipoEmpresa" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EditTipoAccion">
+      <soap:operation soapAction="http://tempuri.org/ISrvDatos/EditTipoAccion" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTipoAccion">
+      <soap:operation soapAction="http://tempuri.org/ISrvDatos/GetTipoAccion" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EditCargo">
+      <soap:operation soapAction="http://tempuri.org/ISrvDatos/EditCargo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCargo">
+      <soap:operation soapAction="http://tempuri.org/ISrvDatos/GetCargo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EditEstado">
+      <soap:operation soapAction="http://tempuri.org/ISrvDatos/EditEstado" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetEstado">
+      <soap:operation soapAction="http://tempuri.org/ISrvDatos/GetEstado" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

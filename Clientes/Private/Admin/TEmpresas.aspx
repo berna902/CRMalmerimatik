@@ -21,6 +21,7 @@
                 <div class="form-group">
                     <asp:Label CssClass="control-label" Text="Tipo" ID="lbTipo" runat="server" AssociatedControlID="tbTipo"></asp:Label>
                     <asp:TextBox ID="tbTipo" runat="server" CssClass="form-control"></asp:TextBox>
+                    <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="Introduce un nuevo tipo de empresa." ControlToValidate="tbTipo" CssClass="label label-danger"></asp:RequiredFieldValidator>
                 </div>
                 <div class="form-group">
                     <asp:Button ID="btAlta" runat="server" Text="Alta" CssClass="btn btn-primary" OnClick="btAlta_Click" />

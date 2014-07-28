@@ -21,6 +21,7 @@
                 <div class="form-group">
                     <asp:Label CssClass="control-label" Text="Tipo" ID="lbAccion" runat="server" AssociatedControlID="tbAccion"></asp:Label>
                     <asp:TextBox ID="tbAccion" runat="server" CssClass="form-control"></asp:TextBox>
+                    <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="Introduce una nueva acción." ControlToValidate="tbAccion" CssClass="label label-danger" SetFocusOnError="True"></asp:RequiredFieldValidator>
                 </div>
                 <div class="form-group">
                     <asp:Button ID="btAlta" runat="server" Text="Alta" CssClass="btn btn-primary" OnClick="btAlta_Click" />
