@@ -364,8 +364,9 @@ namespace almerimatik.ServicioCRM
                                        Nombre = tabla.Nombre,
                                        Email = tabla.Email,
                                        Telefono = tabla.TelefonoContacto.FirstOrDefault().Telefono,
-                                       Cargo = tabla.Cargo.FirstOrDefault().Carg,
-                                       IDCargo = tabla.Cargo.FirstOrDefault().ID
+                                       IDCargo = tabla.Cargo.FirstOrDefault().ID,
+                                       Cargo = tabla.Cargo.FirstOrDefault().Carg
+                                       
 
                                    };
                     lst = consulta.ToList();
@@ -1085,7 +1086,10 @@ namespace almerimatik.ServicioCRM
 
                         nuevo.Nombre = user.Nombre;
                         nuevo.Username = user.Username;
-                        nuevo.Password = user.Password;
+                        if (user.Password != "")
+                        {
+                            nuevo.Password = user.Password;
+                        }
                         
                         db.SaveChanges();
                         return true;
@@ -1410,7 +1414,16 @@ namespace almerimatik.ServicioCRM
                         nuevo.IDEstado = accion.IDEstado;
                         nuevo.Comentarios = accion.Comentarios;
                         nuevo.Descripcion = accion.Descripcion;
-                        nuevo.Fecha = accion.Fecha;
+                        if (accion.Fecha != null)
+                        {
+                            nuevo.Fecha = accion.Fecha;
+                        }
+                        else
+                        {
+                            nuevo.Fecha = new DateTime();
+                            nuevo.Fecha = DateTime.Now;
+                        }
+                        
                         nuevo.Usuario = accion.Usuario;
                         
 
@@ -2849,5 +2862,5 @@ namespace almerimatik.ServicioCRM
 
 
 
-//busqueda rapida
+
 //busqueda avanzada

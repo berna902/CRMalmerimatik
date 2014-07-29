@@ -120,8 +120,34 @@ namespace Pruebas
         public void GetUserTest()
         {
             SrvDatos d = new SrvDatos();
-            UserData u = d.GetUser(2);
-            Assert.AreEqual(u.Username, "berna");
+            UserData u = d.GetUser(23);
+            Assert.AreEqual(u.Username, "admin");
+        }
+
+
+        /// <summary>
+        /// Test del metodo ExisteUser
+        /// </summary>
+        [TestMethod]
+        public void ExisteUserTest()
+        {
+            SrvDatos d = new SrvDatos();
+            UserData u = new UserData();
+            u.Username = "admin";
+            bool b = d.ExisteUser(u);
+            Assert.AreEqual(b, true);
+        }
+
+
+        /// <summary>
+        /// Test del metodo ValidarUser
+        /// </summary>
+        [TestMethod]
+        public void ValidarUserTest()
+        {
+            SrvDatos d = new SrvDatos();
+            bool b = d.ValidaUser("admin", "admin");
+            Assert.AreEqual(b,true);
         }
 
         //////////////////////////////////////////////////////////////////////////
@@ -142,7 +168,7 @@ namespace Pruebas
 
             //insertamos una empresa nueva
             EmpresaData emp = new EmpresaData();
-            emp.CIF = "75721776A";
+            emp.CIF = "75721776B";
             emp.Web = "www.webempresa.com";
             emp.IDTipoEmpresa = 1;
             emp.Email = "email@empresa.com";
@@ -171,7 +197,7 @@ namespace Pruebas
             //insertamos una empresa nueva
             SrvDatos d = new SrvDatos();
             EmpresaData emp = new EmpresaData();
-            emp.CIF = "75721776A";
+            emp.CIF = "75721776B";
             emp.Web = "www.webempresa.com";
             emp.IDTipoEmpresa = 1;
             emp.Email = "email@empresa.com";
@@ -196,7 +222,7 @@ namespace Pruebas
             //insertamos una empresa nueva
             SrvDatos d = new SrvDatos();
             EmpresaData emp = new EmpresaData();
-            emp.CIF = "75721776A";
+            emp.CIF = "75721776B";
             emp.Web = "www.webempresa.com";
             emp.IDTipoEmpresa = 1;
             emp.Email = "email@empresa.com";
@@ -242,6 +268,20 @@ namespace Pruebas
                 emp.IDTipoEmpresa = 1;
             }
             bool b = d.EditEmpresa(emp);
+            Assert.AreEqual(b, true);
+        }
+
+
+        /// <summary>
+        /// Test del metodo ExisteEmpresa
+        /// </summary>
+        [TestMethod]
+        public void ExisteEmpresaTest()
+        {
+            SrvDatos d = new SrvDatos();
+            EmpresaData e = new EmpresaData();
+            e.CIF = "75721776A";
+            bool b = d.ExisteEmpresa(e);
             Assert.AreEqual(b, true);
         }
 
@@ -319,6 +359,20 @@ namespace Pruebas
             Assert.AreEqual(b, true);
         }
 
+        /// <summary>
+        /// Test del metodo GetTipoEmpresa
+        /// </summary>
+        [TestMethod]
+        public void GetTipoEmpresaTest()
+        {
+            SrvDatos d = new SrvDatos();
+            TipoEmpresaData ted = d.GetTipoEmpresa(1);
+            Assert.AreEqual(ted.Tipo, "S.L.");
+        }
+
+
+
+
         ////////////////////////////////////////////////////////////////////////////////////
         // TIPOS DE ACCIONES
         /////////////////////////////////////////////////////////////////////////////////
@@ -391,6 +445,17 @@ namespace Pruebas
 
             //comprobamos que se ha borrado
             Assert.AreEqual(b, true);
+        }
+
+        /// <summary>
+        /// Test del metodo GetTipoAccion
+        /// </summary>
+        [TestMethod]
+        public void GetTipoAccionTest()
+        {
+            SrvDatos d = new SrvDatos();
+            TipoAccionData ted = d.GetTipoAccion(1);
+            Assert.AreEqual(ted.Tipo, "Alta");
         }
 
 
@@ -542,6 +607,381 @@ namespace Pruebas
         // ACCIONES COMERCIALES
         //////////////////////////////////////////////////////////////////////////////////////
 
+
+        /// <summary>
+        /// Test del metodo GetAllAccionesComerciales
+        /// </summary>
+        [TestMethod]
+        public void GetAllAccionesComercialesTest()
+        {
+            //comprobamos cuantas acciones hay
+            SrvDatos d = new SrvDatos();
+            List<AccionComercialData> lst = d.GetAllAccionesComerciales();
+            int contador1 = lst.Count;
+
+            //insertamos una accion nueva
+            AccionComercialData u = new AccionComercialData();
+            u.Comentarios = "Flanders";
+            u.Descripcion = "contacto@mail.com";
+            u.IDAccion = 1;
+            u.IDEstado = 1;
+            u.IDEmpresa = 2;
+            u.Usuario = 2;
+            u.Fecha = DateTime.Now;         
+
+            int id = d.AddAccionComercial(u);
+
+            //volvemos a ver cuantas acciones hay
+            lst = d.GetAllAccionesComerciales();
+            int contador2 = lst.Count;
+
+            //comprobamos que ha aumentado en uno
+            Assert.AreEqual(contador1 + 1, contador2);
+
+            //borramos la accion creado
+            bool b = d.BorrarAccionComercial(id);
+        }
+
+        /// <summary>
+        /// Test del metodo GetAllAccionComercialEmpresa
+        /// </summary>
+        [TestMethod]
+        public void GetAllAccionComercialEmpresaTest()
+        {
+            //comprobamos cuantas acciones hay
+            SrvDatos d = new SrvDatos();
+            List<AccionComercialData> lst = d.GetAllAccionesComercialesEmpresa(2);
+            int contador1 = lst.Count;
+
+            //insertamos una accion nueva
+            AccionComercialData u = new AccionComercialData();
+            u.Comentarios = "Flanders";
+            u.Descripcion = "contacto@mail.com";
+            u.IDAccion = 1;
+            u.IDEstado = 1;
+            u.IDEmpresa = 2;
+            u.Usuario = 2;
+            u.Fecha = DateTime.Now;
+            int id = d.AddAccionComercial(u);
+
+            //volvemos a ver cuantas acciones hay
+            lst = d.GetAllAccionesComercialesEmpresa(2);
+            int contador2 = lst.Count;
+
+            //comprobamos que ha aumentado en uno
+            Assert.AreEqual(contador1 + 1, contador2);
+
+            //borramos la accion creada
+            bool b = d.BorrarAccionComercial(id);
+        }
+
+
+        /// <summary>
+        /// Test del metodo GetAllAccionComercialUsuario
+        /// </summary>
+        [TestMethod]
+        public void GetAllAccionComercialUsuarioTest()
+        {
+            //comprobamos cuantas acciones hay
+            SrvDatos d = new SrvDatos();
+            List<AccionComercialData> lst = d.GetAllAccionesComercialesUsuario(2);
+            int contador1 = lst.Count;
+
+            //insertamos una accion nueva
+            AccionComercialData u = new AccionComercialData();
+            u.Comentarios = "Flanders";
+            u.Descripcion = "contacto@mail.com";
+            u.IDAccion = 1;
+            u.IDEstado = 1;
+            u.IDEmpresa = 2;
+            u.Usuario = 2;
+            u.Fecha = DateTime.Now;
+            int id = d.AddAccionComercial(u);
+
+            //volvemos a ver cuantas acciones hay
+            lst = d.GetAllAccionesComercialesUsuario(2);
+            int contador2 = lst.Count;
+
+            //comprobamos que ha aumentado en uno
+            Assert.AreEqual(contador1 + 1, contador2);
+
+            //borramos la accion creada
+            bool b = d.BorrarAccionComercial(id);
+        }
+
+
+        /// <summary>
+        /// Test del metodo GetAccionComercial
+        /// </summary>
+        [TestMethod]
+        public void GetAccionComercialTest()
+        {
+            SrvDatos d = new SrvDatos();
+            AccionComercialData u = d.GetAccionComercial(2);
+            Assert.AreEqual(u.Usuario, 1);
+        }
+
+
+        /// <summary>
+        /// Test del metodo AddAccionComercial
+        /// </summary>
+        [TestMethod]
+        public void AddAccionComercialTest()
+        {
+            SrvDatos d = new SrvDatos();
+
+            //insertamos una accion nueva
+            AccionComercialData u = new AccionComercialData();
+            u.Comentarios = "Flanders";
+            u.Descripcion = "contacto@mail.com";
+            u.IDAccion = 1;
+            u.IDEstado = 1;
+            u.IDEmpresa = 2;
+            u.Usuario = 2;
+            u.Fecha = DateTime.Now;
+            int id = d.AddAccionComercial(u);
+
+
+            //comprobamos que no hay error
+            Assert.AreNotEqual(id, -1);
+
+            //borramos la accion creado
+            bool b = d.BorrarAccionComercial(id);
+        }
+
+
+        /// <summary>
+        /// Test del metodo BorrarAccionComercial
+        /// </summary>
+        [TestMethod]
+        public void BorrarAccionComercialTest()
+        {
+            SrvDatos d = new SrvDatos();
+
+            //insertamos una accion nueva
+            AccionComercialData u = new AccionComercialData();
+            u.Comentarios = "Flanders";
+            u.Descripcion = "contacto@mail.com";
+            u.IDAccion = 1;
+            u.IDEstado = 1;
+            u.IDEmpresa = 2;
+            u.Usuario = 2;
+            u.Fecha = DateTime.Now;
+            int id = d.AddAccionComercial(u);
+
+            //borramos la accion creada
+            bool b = d.BorrarAccionComercial(id);
+            //comprobamos que no da error al borrar
+            Assert.AreEqual(b, true);
+        }
+
+        /// <summary>
+        /// Test del metodo EditAccionComercial
+        /// </summary>
+        [TestMethod]
+        public void EditAccionComercialTest()
+        {
+            SrvDatos d = new SrvDatos();
+            AccionComercialData u = d.GetAccionComercial(2);
+            
+            if (u.Comentarios == "este comentario explica la accion")
+            {
+                u.Comentarios = "este comentario esta editado";
+            }
+            else
+            {
+                u.Comentarios = "este comentario explica la accion";
+            }
+            bool b = d.EditAccionComercial(u);
+            Assert.AreEqual(b, true);
+        }
+
+
+        //////////////////////////////////////////////////////////////////////////////////////////
+        // TELEFONOS
+        //////////////////////////////////////////////////////////////////////////////////////
+
+
+        /// <summary>
+        /// Test del metodo GetAllTelefonosEmpresa
+        /// </summary>
+        [TestMethod]
+        public void GetAllTelefonosEmpresaTest()
+        {
+            //comprobamos cuantos telefonos hay
+            SrvDatos d = new SrvDatos();
+            List<TelefonosData> lst = d.GetAllTelefonosEmpresa(2);
+            int contador1 = lst.Count;
+
+            //insertamos un telefono nuevo
+            TelefonosData u = new TelefonosData();
+            u.ID = 2;
+            u.Telefono = "699999996";
+            
+            bool b = d.AddTelefonoEmpresa(u);
+
+            //volvemos a ver cuantos telefonos hay
+            lst = d.GetAllTelefonosEmpresa(2);
+            int contador2 = lst.Count;
+
+            //comprobamos que ha aumentado en uno
+            Assert.AreEqual(contador1 + 1, contador2);
+
+            //borramos el telefono creado
+            b = d.BorrarTelefonoEmpresa(u.Telefono);
+        }
+
+
+        /// <summary>
+        /// Test del metodo AddTelefonoEmpresa
+        /// </summary>
+        [TestMethod]
+        public void AddTelefonoEmpresaTest()
+        {
+            //comprobamos cuantos telefonos hay
+            SrvDatos d = new SrvDatos();
+            List<TelefonosData> lst = d.GetAllTelefonosEmpresa(2);
+            int contador1 = lst.Count;
+
+            //insertamos un telefono nuevo
+            TelefonosData u = new TelefonosData();
+            u.ID = 2;
+            u.Telefono = "699999996";
+
+            bool b = d.AddTelefonoEmpresa(u);
+            Assert.AreEqual(b, true);
+
+            //volvemos a ver cuantos telefonos hay
+            lst = d.GetAllTelefonosEmpresa(2);
+            int contador2 = lst.Count;
+
+           
+           
+
+            //borramos el telefono creado
+            b = d.BorrarTelefonoEmpresa(u.Telefono);
+        }
+
+
+        /// <summary>
+        /// Test del metodo BorrarTelefonoEmpresa
+        /// </summary>
+        [TestMethod]
+        public void BorrarTelefonoEmpresaTest()
+        {
+            //comprobamos cuantos telefonos hay
+            SrvDatos d = new SrvDatos();
+            List<TelefonosData> lst = d.GetAllTelefonosEmpresa(2);
+            int contador1 = lst.Count;
+
+            //insertamos un telefono nuevo
+            TelefonosData u = new TelefonosData();
+            u.ID = 2;
+            u.Telefono = "699999996";
+
+            bool b = d.AddTelefonoEmpresa(u);
+
+            //volvemos a ver cuantos telefonos hay
+            lst = d.GetAllTelefonosEmpresa(2);
+            int contador2 = lst.Count;
+
+            
+
+            //borramos el telefono creado
+            b = d.BorrarTelefonoEmpresa(u.Telefono);
+            Assert.AreEqual(b, true);
+        }
+
+
+        /// <summary>
+        /// Test del metodo GetAllTelefonosContacto
+        /// </summary>
+        [TestMethod]
+        public void GetAllTelefonosContactoTest()
+        {
+            //comprobamos cuantos telefonos hay
+            SrvDatos d = new SrvDatos();
+            List<TelefonosData> lst = d.GetAllTelefonosContacto(1);
+            int contador1 = lst.Count;
+
+            //insertamos un telefono nuevo
+            TelefonosData u = new TelefonosData();
+            u.ID = 1;
+            u.Telefono = "699999996";
+
+            bool b = d.AddTelefonoContacto(u);
+
+            //volvemos a ver cuantos telefonos hay
+            lst = d.GetAllTelefonosContacto(1);
+            int contador2 = lst.Count;
+
+            //comprobamos que ha aumentado en uno
+            Assert.AreEqual(contador1 + 1, contador2);
+
+            //borramos el telefono creado
+            b = d.BorrarTelefonoContacto(u.Telefono);
+        }
+
+
+        /// <summary>
+        /// Test del metodo AddTelefonoContacto
+        /// </summary>
+        [TestMethod]
+        public void AddTelefonoContactoTest()
+        {
+            //comprobamos cuantos telefonos hay
+            SrvDatos d = new SrvDatos();
+            List<TelefonosData> lst = d.GetAllTelefonosContacto(1);
+            int contador1 = lst.Count;
+
+            //insertamos un telefono nuevo
+            TelefonosData u = new TelefonosData();
+            u.ID = 1;
+            u.Telefono = "699999996";
+
+            bool b = d.AddTelefonoContacto(u);
+            Assert.AreEqual(b, true);
+
+            //volvemos a ver cuantos telefonos hay
+            lst = d.GetAllTelefonosContacto(1);
+            int contador2 = lst.Count;
+            
+            //borramos el telefono creado
+            b = d.BorrarTelefonoContacto(u.Telefono);
+        }
+
+
+        /// <summary>
+        /// Test del metodo BorrarTelefonoContacto
+        /// </summary>
+        [TestMethod]
+        public void BorrarTelefonoContactoTest()
+        {
+            //comprobamos cuantos telefonos hay
+            SrvDatos d = new SrvDatos();
+            List<TelefonosData> lst = d.GetAllTelefonosContacto(1);
+            int contador1 = lst.Count;
+
+            //insertamos un telefono nuevo
+            TelefonosData u = new TelefonosData();
+            u.ID = 1;
+            u.Telefono = "699999996";
+
+            bool b = d.AddTelefonoContacto(u);
+
+            //volvemos a ver cuantos telefonos hay
+            lst = d.GetAllTelefonosContacto(1);
+            int contador2 = lst.Count;
+            
+            //borramos el telefono creado
+            b = d.BorrarTelefonoContacto(u.Telefono);
+            Assert.AreEqual(b, true);
+        }
+
+
+        //////////////////////////////////////////////////////////////////////////////////////////
+        // ESTADOS
+        //////////////////////////////////////////////////////////////////////////////////////
 
 
 

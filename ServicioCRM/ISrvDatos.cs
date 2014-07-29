@@ -726,7 +726,7 @@ namespace almerimatik.ServicioCRM
         [DataMember]
         public string Cargo { get; set; }
         [DataMember]
-        public int IDCargo { get; set; }
+        public Nullable<int> IDCargo { get; set; }
         /// <summary>
         /// Este telefono es el primero de la lista de telefonos del contacto. Será el que salga por defecto.
         /// </summary>
