@@ -2536,7 +2536,7 @@ namespace almerimatik.ServicioCRM
             
             if (direccion != null)
             {
-                return direccion.Domicilio + " (" + direccion.CP + ") " + direccion.Poblacion + " " + direccion.Provincia;
+                return direccion.Domicilio + " (" + direccion.CP + ") " + direccion.Poblacion + " - " + direccion.Provincia;
             }
             else
             {
@@ -2864,3 +2864,5 @@ namespace almerimatik.ServicioCRM
 
 
 //busqueda avanzada
+//AddCargoContacto
+//BorrarCargoContacto

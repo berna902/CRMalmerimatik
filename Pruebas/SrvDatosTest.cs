@@ -1170,5 +1170,116 @@ namespace Pruebas
         // DIRECCIONES
         //////////////////////////////////////////////////////////////////////////////////////
 
+
+        /// <summary>
+        /// Test del metodo AddDireccion
+        /// </summary>
+        [TestMethod]
+        public void AddDireccionTest()
+        {
+
+            SrvDatos d = new SrvDatos();
+
+            //insertamos una direccion nueva
+            DireccionData emp = new DireccionData();
+            emp.CP = "04001";
+            emp.Domicilio = "Paseo de Almeria";
+            emp.Poblacion = "Almeria";
+            emp.Provincia = "Almeria";
+            
+            int id = d.AddDireccion(emp);
+
+            //comprobamos que se ha insertado
+            Assert.AreNotEqual(id, -1);
+
+            //borramos la direccion creada
+            bool b = d.BorrarDireccion(id);
+        }
+
+        /// <summary>
+        /// Test del metodo BorrarDireccion
+        /// </summary>
+        [TestMethod]
+        public void BorrarDireccionTest()
+        {
+            SrvDatos d = new SrvDatos();
+
+            //insertamos una direccion nueva
+            DireccionData emp = new DireccionData();
+            emp.CP = "04001";
+            emp.Domicilio = "Paseo de Almeria";
+            emp.Poblacion = "Almeria";
+            emp.Provincia = "Almeria";
+            int id = d.AddDireccion(emp);
+
+
+            //borramos la direccion creada
+            bool b = d.BorrarDireccion(id);
+
+            //comprobamos que se ha borrado
+            Assert.AreEqual(b, true);
+        }
+
+        /// <summary>
+        /// Test del metodo GetDireccion
+        /// </summary>
+        [TestMethod]
+        public void GetDireccionTest()
+        {
+            SrvDatos d = new SrvDatos();
+            DireccionData ted = d.GetDireccion(1);
+            Assert.AreEqual(ted.CP, "04001");
+        }
+
+
+        /// <summary>
+        /// Test del metodo DireccionToString
+        /// </summary>
+        [TestMethod]
+        public void DireccionToString()
+        {
+            SrvDatos d = new SrvDatos();
+            DireccionData ted = d.GetDireccion(1);
+            String cadena = d.DireccionToString(ted);
+            Assert.AreEqual(cadena, "calle 1 (04001) almeria - almeria");
+        }
+
+
+        /// <summary>
+        /// Test del metodo GetAllDireccionesEmpresa
+        /// </summary>
+        [TestMethod]
+        public void GetAllDireccionesEmpresaTest()
+        {
+            SrvDatos d = new SrvDatos();
+            List<DireccionData> lst = d.GetAllDireccionesEmpresa(2);
+            bool b = false;
+            if (lst.Count > 0)
+            {
+                b = true;
+            }
+            Assert.AreEqual(b,true);
+        }
+
+
+        /// <summary>
+        /// Test del metodo GetAllDireccionesContacto
+        /// </summary>
+        [TestMethod]
+        public void GetAllDireccionesContactoTest()
+        {
+            SrvDatos d = new SrvDatos();
+            List<DireccionData> lst = d.GetAllDireccionesContacto(1);
+            bool b = false;
+            if (lst.Count > 0)
+            {
+                b = true;
+            }
+            Assert.AreEqual(b, true);
+        }
+
+
+        
+
     }
 }
