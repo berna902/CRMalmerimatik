@@ -979,9 +979,98 @@ namespace Pruebas
         }
 
 
+
+
         //////////////////////////////////////////////////////////////////////////////////////////
         // ESTADOS
         //////////////////////////////////////////////////////////////////////////////////////
+
+
+        /// <summary>
+        /// Test del metodo GetAllEstados
+        /// </summary>
+        [TestMethod]
+        public void GetAllEstadosTest()
+        {
+            //comprobamos cuantos estados hay en la BD
+            SrvDatos d = new SrvDatos();
+            List<EstadoData> lst = d.GetAllEstados();
+            int contador1 = lst.Count;
+
+            //insertamos un estado nuevo
+            EstadoData emp = new EstadoData();
+            emp.Estado = "EMPERRADO";
+            int id = d.AddEstado(emp.Estado);
+
+            //volvemos a ver cuantos estados hay
+            lst = d.GetAllEstados();
+            int contador2 = lst.Count;
+
+            //comprobamos que ha aumentado en uno
+            Assert.AreEqual(contador1 + 1, contador2);
+
+            //borramos el estado creado
+            bool b = d.BorrarEstado(id);
+        }
+
+        /// <summary>
+        /// Test del metodo AddEstado
+        /// </summary>
+        [TestMethod]
+        public void AddEstadoTest()
+        {
+
+            SrvDatos d = new SrvDatos();
+
+            //insertamos un estado nuevo
+            EstadoData emp = new EstadoData();
+            emp.Estado = "EMPERRADO";
+            int id = d.AddEstado(emp.Estado);
+
+            //comprobamos que se ha insertado
+            Assert.AreNotEqual(id, -1);
+
+            //borramos el estado creado
+            bool b = d.BorrarEstado(id);
+        }
+
+        /// <summary>
+        /// Test del metodo BorrarEstado
+        /// </summary>
+        [TestMethod]
+        public void BorrarEstadoTest()
+        {
+            SrvDatos d = new SrvDatos();
+
+            //insertamos un estado nuevo
+            EstadoData emp = new EstadoData();
+            emp.Estado = "EMPERRADO";
+            int id = d.AddEstado(emp.Estado);
+
+
+            //borramos el estado creado
+            bool b = d.BorrarEstado(id);
+
+            //comprobamos que se ha borrado
+            Assert.AreEqual(b, true);
+        }
+
+        /// <summary>
+        /// Test del metodo GetEstado
+        /// </summary>
+        [TestMethod]
+        public void GetEstadoTest()
+        {
+            SrvDatos d = new SrvDatos();
+            EstadoData ted = d.GetEstado(1);
+            Assert.AreEqual(ted.Estado, "Abierta");
+        }
+
+
+        //////////////////////////////////////////////////////////////////////////////////////////
+        // CARGOS
+        //////////////////////////////////////////////////////////////////////////////////////
+
 
 
 
