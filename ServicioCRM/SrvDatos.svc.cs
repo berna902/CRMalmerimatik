@@ -2660,6 +2660,122 @@ namespace almerimatik.ServicioCRM
             }
         }
 
+
+        /// <summary>
+        /// metodo que indica si existe un telefono en una empresa
+        /// </summary>
+        /// <param name="telefono">datos del telefono y empresa</param>
+        /// <returns>devuelve verdadero o falso segun si existe o no</returns>
+        public bool ExisteTelefonoEmpresa(TelefonosData telefono)
+        {
+            List<TelefonosData> lst = new List<TelefonosData>();
+            try
+            {
+                using (BDCRMEntities datos = new BDCRMEntities())
+                {
+
+                    if (telefono != null)
+                    {
+                        var consulta = from tabla in datos.TelefonoEmpresa
+                                       where tabla.Telefono == telefono.Telefono
+                                       select new TelefonosData()
+                                       {
+                                           ID = tabla.IDEmpresa,
+                                           Telefono = tabla.Telefono
+                                           
+                                       };
+
+
+                        lst = consulta.ToList();
+                        if (lst.Count > 0)
+                        {
+                            return true;
+                        }
+                        else
+                        {
+                            return false;
+                        }
+
+                    }
+                    else
+                    {
+                        return false;
+                    }
+
+                }
+            }
+            catch (SqlException ex)
+            {
+                FaultException fault = new FaultException("Error SQL: " + ex.Message, new FaultCode("SQL"));
+                return false;
+
+            }
+            catch (Exception ex)
+            {
+                FaultException fault = new FaultException("Error: " + ex.Message, new FaultCode("GENERAL"));
+                return false;
+            }
+        }
+
+
+        /// <summary>
+        /// metodo que indica si existe un telefono en un contacto
+        /// </summary>
+        /// <param name="telefono">datos del telefono y contacto</param>
+        /// <returns>devuelve verdadero o falso segun si existe o no</returns>
+        public bool ExisteTelefonoContacto(TelefonosData telefono)
+        {
+            List<TelefonosData> lst = new List<TelefonosData>();
+            try
+            {
+                using (BDCRMEntities datos = new BDCRMEntities())
+                {
+
+                    if (telefono != null)
+                    {
+                        var consulta = from tabla in datos.TelefonoContacto
+                                       where tabla.Telefono == telefono.Telefono
+                                       select new TelefonosData()
+                                       {
+                                           ID = tabla.IDContacto,
+                                           Telefono = tabla.Telefono
+
+                                       };
+
+
+                        lst = consulta.ToList();
+                        if (lst.Count > 0)
+                        {
+                            return true;
+                        }
+                        else
+                        {
+                            return false;
+                        }
+
+                    }
+                    else
+                    {
+                        return false;
+                    }
+
+                }
+            }
+            catch (SqlException ex)
+            {
+                FaultException fault = new FaultException("Error SQL: " + ex.Message, new FaultCode("SQL"));
+                return false;
+
+            }
+            catch (Exception ex)
+            {
+                FaultException fault = new FaultException("Error: " + ex.Message, new FaultCode("GENERAL"));
+                return false;
+            }
+        }
+
+
+
         /// <summary>
         /// metodo que valida un usuario 
         /// </summary>

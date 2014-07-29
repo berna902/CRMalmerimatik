@@ -581,6 +581,24 @@ namespace almerimatik.ServicioCRM
         [OperationContract]
         List<BusquedaData> BusquedaRapida(String cadena);
 
+
+        /// <summary>
+        /// Operacion del servicio que indica si existe un telefono en una empresa
+        /// </summary>
+        /// <param name="telefono">datos del telefono y empresa</param>
+        /// <returns>devuelve verdadero o falso segun si existe o no</returns>
+        [OperationContract]
+        bool ExisteTelefonoEmpresa(TelefonosData telefono);
+
+
+        /// <summary>
+        /// Operacion del servicio que indica si existe un telefono en un contacto
+        /// </summary>
+        /// <param name="telefono">datos del telefono y contacto</param>
+        /// <returns>devuelve verdadero o falso segun si existe o no</returns>
+        [OperationContract]
+        bool ExisteTelefonoContacto(TelefonosData telefono);
+
     }
 
 
