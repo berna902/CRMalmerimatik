@@ -1,17 +1,32 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Private/Maestra.Master" AutoEventWireup="true" CodeBehind="empresa.aspx.cs" Inherits="Clientes.Private.Empresas.empresa" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+    <style type="text/css">
+        input:focus::-webkit-input-placeholder {
+            color: transparent;
+        }
+    </style>
     <script src="../../Scripts/jquery-1.10.2.min.js"></script>
     <script src="../../Scripts/bootstrap.min.js"></script>
-    <script>
+    <script type="text/javascript">
 
         $(document).ready(function () {
             $('#central_btAddTelf').on("click", function (event) {
                 //alert("clicked on Tozih");
-                $('.alert-success').slideDown(500);
+                //$('.alert-success').slideDown(500);
+                SINO('.alert-success');
             });
-            
+
 
         });
+
+        function SINO(cual) {
+            var elElemento = document.getElementById(cual);
+            if (elElemento.style.display == 'block') {
+                elElemento.style.display = 'none';
+            } else {
+                elElemento.style.display = 'block';
+            }
+        }
 
         function validateCIF(cif) {
             //Quitamos el primer caracter y el ultimo digito
@@ -72,7 +87,7 @@
             }
             return false;
         }
-        </script>
+    </script>
 
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="menu_lateral" runat="server">
@@ -141,8 +156,8 @@
                             <asp:Button ID="btnDeleteTelf" runat="server" Text="X" CssClass="btn btn-danger" OnClick="btnDeleteTelf_Click" />
                             <asp:TextBox ID="tbTelefono" runat="server" CssClass="form-control" placeholder="nuevo telefono"></asp:TextBox>
                             <asp:Button ID="btAddTelf" runat="server" Text="Añadir" CssClass="btn btn-success" OnClick="btAddTelf_Click" />
-                            <div id="mcorrecto" class="alert alert-success hidden" role="alert" runat="server">Insertado!</div>
-                            <div id="mfallo" class="alert alert-danger hidden" role="alert" runat="server">ERROR!</div>
+                            <div id="mcorrecto" style="display:none;" class="alert alert-success" role="alert" runat="server">Insertado!</div>
+                            <div id="mfallo" style="display:none;" class="alert alert-danger" role="alert" runat="server">ERROR!</div>
                         </ContentTemplate>
                         <Triggers>
                             <asp:AsyncPostBackTrigger ControlID="btAddTelf" />
@@ -153,6 +168,7 @@
 
         </div>
 
+
         <div class="form-group">
             <asp:Label CssClass="control-label" Text="Tipo de empresa" ID="lbTipoEmpresa" runat="server" AssociatedControlID="tbTipoEMpresa"></asp:Label>
 
@@ -161,9 +177,47 @@
             </asp:DropDownList>
 
         </div>
+        <asp:Button ID="btAltaDireccion" runat="server" Text="Nueva dirección" CssClass="btn btn-success" OnClick="btAltaDireccion_Click" />
+        <div class="table-responsive">
+
+            <asp:GridView ID="GridView3" runat="server" CssClass="table table-hover table-striped" AutoGenerateColumns="False" GridLines="None" AllowPaging="True" OnRowEditing="GridView3_RowEditing" OnRowDeleting="GridView3_RowDeleting" EmptyDataText="No hay datos." ShowHeaderWhenEmpty="True" OnPageIndexChanging="GridView3_PageIndexChanging">
+
+                <Columns>
+                    <asp:BoundField DataField="ID" HeaderText="ID">
+                        <HeaderStyle BackColor="#000066" ForeColor="White" HorizontalAlign="Center" VerticalAlign="Middle" />
+                        <ItemStyle HorizontalAlign="Justify" VerticalAlign="Middle" />
+                    </asp:BoundField>
+                    <asp:BoundField DataField="Domicilio" HeaderText="Domicilio">
+                        <HeaderStyle BackColor="#000066" ForeColor="White" HorizontalAlign="Center" VerticalAlign="Middle" />
+                        <ItemStyle HorizontalAlign="Justify" VerticalAlign="Middle" />
+                    </asp:BoundField>
+                    <asp:BoundField DataField="Poblacion" HeaderText="Poblacion">
+                        <HeaderStyle BackColor="#000066" ForeColor="White" HorizontalAlign="Center" VerticalAlign="Middle" />
+                        <ItemStyle HorizontalAlign="Justify" VerticalAlign="Middle" />
+                    </asp:BoundField>
+                    <asp:BoundField DataField="Provincia" HeaderText="Provincia">
+                        <HeaderStyle BackColor="#000066" ForeColor="White" HorizontalAlign="Center" VerticalAlign="Middle" />
+                        <ItemStyle HorizontalAlign="Justify" VerticalAlign="Middle" />
+                    </asp:BoundField>
+                    <asp:BoundField DataField="CP" HeaderText="CP">
+                        <HeaderStyle BackColor="#000066" ForeColor="White" HorizontalAlign="Center" VerticalAlign="Middle" />
+                        <ItemStyle HorizontalAlign="Justify" VerticalAlign="Middle" />
+                    </asp:BoundField>
+                    <asp:TemplateField>
+                        <ItemTemplate>
+
+                            <asp:LinkButton ID="btnModificarDireccion" runat="server" Text="Modificar" CssClass="btn btn-warning" CommandName="Edit"><span class="glyphicon glyphicon-pencil"></span>Modificar</asp:LinkButton>
+                            <asp:LinkButton ID="btnEliminarDireccion" runat="server" Text="Eliminar" CssClass="btn btn-danger" CommandName="Delete"><span class="glyphicon glyphicon-remove"></span>Eliminar</asp:LinkButton>
+
+                        </ItemTemplate>
+                        <HeaderStyle BackColor="#000066" />
+                    </asp:TemplateField>
+                </Columns>
+            </asp:GridView>
+        </div>
 
         <div class="table-responsive">
-            <!--<asp:GridView ID="GridView2" runat="server" CssClass="table table-striped"></asp:GridView>-->
+
             <asp:GridView ID="GridView1" runat="server" CssClass="table table-hover table-striped" AutoGenerateColumns="False" GridLines="None" AllowPaging="True" OnRowEditing="GridView1_RowEditing" OnRowDeleting="GridView1_RowDeleting" EmptyDataText="No hay datos." ShowHeaderWhenEmpty="True" OnPageIndexChanging="GridView1_PageIndexChanging">
 
                 <Columns>

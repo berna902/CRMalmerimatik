@@ -1,5 +1,10 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Private/Maestra.Master" AutoEventWireup="true" CodeBehind="GContactos.aspx.cs" Inherits="Clientes.Private.Empresas.GContactos" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+        <style type="text/css">
+        input:focus::-webkit-input-placeholder {
+            color: transparent;
+        }
+    </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="menu_lateral" runat="server">
     <ul class="nav nav-sidebar">

@@ -165,6 +165,8 @@ namespace Clientes.Private.Empresas
                         contacto.IDEmpresa = Int32.Parse(tbEmpresa.SelectedValue);
                         contacto.Nombre = tbNombre.Text;
                         int id = proxy.AddContacto(contacto);
+                        if (id != -1)
+                        {
                         TelefonosData tel = new TelefonosData();
                         tel.ID = id;
                         for (int i = 0; i < tbTelefonos.Items.Count; i++ )
@@ -173,6 +175,13 @@ namespace Clientes.Private.Empresas
                             proxy.AddTelefonoContacto(tel);
                         }
 
+                            Response.Redirect("Default.aspx");
+                            //string script = "alert('No se pudo modificar la empresa');";
+                            //ClientScript.RegisterClientScriptBlock(this.GetType(), "Alert", script, true);
+                        }else{
+                            string script = "alert('No se pudo insertar el contacto');";
+                            ClientScript.RegisterClientScriptBlock(this.GetType(), "Alert", script, true);
+                        }
                         break;
 
                     case 1:
