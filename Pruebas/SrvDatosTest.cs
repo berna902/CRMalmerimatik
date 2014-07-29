@@ -1072,7 +1072,103 @@ namespace Pruebas
         //////////////////////////////////////////////////////////////////////////////////////
 
 
+        /// <summary>
+        /// Test del metodo GetAllCargos
+        /// </summary>
+        [TestMethod]
+        public void GetAllCargosTest()
+        {
+            //comprobamos cuantos cargos hay en la BD
+            SrvDatos d = new SrvDatos();
+            List<CargoData> lst = d.GetAllCargos();
+            int contador1 = lst.Count;
 
+            //insertamos un cargo nuevo
+            CargoData emp = new CargoData();
+            emp.Cargo = "JEFE GOBIERNO";
+            int id = d.AddCargo(emp.Cargo);
+
+            //volvemos a ver cuantos cargos hay
+            lst = d.GetAllCargos();
+            int contador2 = lst.Count;
+
+            //comprobamos que ha aumentado en uno
+            Assert.AreEqual(contador1 + 1, contador2);
+
+            //borramos el cargo creado
+            bool b = d.BorrarCargo(id);
+        }
+
+
+        /// <summary>
+        /// Test del metodo GetAllCargosContacto
+        /// </summary>
+        [TestMethod]
+        public void GetAllCargosContactoTest()
+        {
+            //comprobamos cuantos cargos tiene un contacto
+            SrvDatos d = new SrvDatos();
+            List<CargoData> lst = d.GetAllCargosContacto(1);
+            Assert.AreEqual(lst.Count,2);
+        }
+
+        /// <summary>
+        /// Test del metodo AddCargo
+        /// </summary>
+        [TestMethod]
+        public void AddCargoTest()
+        {
+
+            SrvDatos d = new SrvDatos();
+
+            //insertamos un cargo nuevo
+            CargoData emp = new CargoData();
+            emp.Cargo = "PRESIDENTE";
+            int id = d.AddCargo(emp.Cargo);
+
+            //comprobamos que se ha insertado
+            Assert.AreNotEqual(id, -1);
+
+            //borramos el cargo creado
+            bool b = d.BorrarCargo(id);
+        }
+
+        /// <summary>
+        /// Test del metodo BorrarCargo
+        /// </summary>
+        [TestMethod]
+        public void BorrarCargoTest()
+        {
+            SrvDatos d = new SrvDatos();
+
+            //insertamos un cargo nuevo
+            CargoData emp = new CargoData();
+            emp.Cargo = "PRESIDENTE";
+            int id = d.AddCargo(emp.Cargo);
+
+
+            //borramos el cargo creado
+            bool b = d.BorrarCargo(id);
+
+            //comprobamos que se ha borrado
+            Assert.AreEqual(b, true);
+        }
+
+        /// <summary>
+        /// Test del metodo GetCargo
+        /// </summary>
+        [TestMethod]
+        public void GetCargoTest()
+        {
+            SrvDatos d = new SrvDatos();
+            CargoData ted = d.GetCargo(1);
+            Assert.AreEqual(ted.Cargo, "Administrador");
+        }
+
+
+        //////////////////////////////////////////////////////////////////////////////////////////
+        // DIRECCIONES
+        //////////////////////////////////////////////////////////////////////////////////////
 
     }
 }
