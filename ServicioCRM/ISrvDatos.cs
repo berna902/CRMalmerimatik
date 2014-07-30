@@ -581,6 +581,24 @@ namespace almerimatik.ServicioCRM
         [OperationContract]
         List<BusquedaData> BusquedaRapida(String cadena);
 
+
+        /// <summary>
+        /// Operacion del servicio que indica si existe un telefono en una empresa
+        /// </summary>
+        /// <param name="telefono">datos del telefono y empresa</param>
+        /// <returns>devuelve verdadero o falso segun si existe o no</returns>
+        [OperationContract]
+        bool ExisteTelefonoEmpresa(TelefonosData telefono);
+
+
+        /// <summary>
+        /// Operacion del servicio que indica si existe un telefono en un contacto
+        /// </summary>
+        /// <param name="telefono">datos del telefono y contacto</param>
+        /// <returns>devuelve verdadero o falso segun si existe o no</returns>
+        [OperationContract]
+        bool ExisteTelefonoContacto(TelefonosData telefono);
+
     }
 
 
@@ -654,7 +672,11 @@ namespace almerimatik.ServicioCRM
         [DataMember]
         public int Usuario { get; set; }
         [DataMember]
+        public String Username { get; set; }
+        [DataMember]
         public int IDEmpresa { get; set; }
+        [DataMember]
+        public String CIF { get; set; }
         [DataMember]
         public System.DateTime Fecha { get; set; }
         [DataMember]
@@ -663,6 +685,8 @@ namespace almerimatik.ServicioCRM
         public string Comentarios { get; set; }
         [DataMember]
         public int IDAccion { get; set; }
+        [DataMember]
+        public String Accion { get; set; }
         [DataMember]
         public int IDEstado { get; set; }
         [DataMember]
@@ -726,7 +750,7 @@ namespace almerimatik.ServicioCRM
         [DataMember]
         public string Cargo { get; set; }
         [DataMember]
-        public int IDCargo { get; set; }
+        public Nullable<int> IDCargo { get; set; }
         /// <summary>
         /// Este telefono es el primero de la lista de telefonos del contacto. Será el que salga por defecto.
         /// </summary>

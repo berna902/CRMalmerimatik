@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Runtime.Serialization;
+using System.Security.Cryptography;
 using System.ServiceModel;
 using System.ServiceModel.Web;
 using System.Text;
@@ -97,11 +98,14 @@ namespace almerimatik.ServicioCRM
                                    {
                                        ID = tabla.ID,
                                        Usuario = tabla.Usuario,
+                                       Username = tabla.User.Username,
                                        IDEmpresa = tabla.IDEmpresa,
+                                       CIF = tabla.Empresa.CIF,
                                        Fecha = tabla.Fecha,
                                        Descripcion = tabla.Descripcion,
                                        Comentarios = tabla.Comentarios,
                                        IDAccion = tabla.IDAccion,
+                                       Accion = tabla.TipoAccion.Tipo,
                                        IDEstado = tabla.IDEstado,
                                        Estado = tabla.Estado.Estado1
 
@@ -133,11 +137,14 @@ namespace almerimatik.ServicioCRM
                                    {
                                        ID = tabla.ID,
                                        Usuario = tabla.Usuario,
+                                       Username = tabla.User.Username,
                                        IDEmpresa = tabla.IDEmpresa,
+                                       CIF = tabla.Empresa.CIF,
                                        Fecha = tabla.Fecha,
                                        Descripcion = tabla.Descripcion,
                                        Comentarios = tabla.Comentarios,
                                        IDAccion = tabla.IDAccion,
+                                       Accion = tabla.TipoAccion.Tipo,
                                        IDEstado = tabla.IDEstado,
                                        Estado = tabla.Estado.Estado1
 
@@ -169,11 +176,14 @@ namespace almerimatik.ServicioCRM
                                    {
                                        ID = tabla.ID,
                                        Usuario = tabla.Usuario,
+                                       Username = tabla.User.Username,
                                        IDEmpresa = tabla.IDEmpresa,
+                                       CIF = tabla.Empresa.CIF,
                                        Fecha = tabla.Fecha,
                                        Descripcion = tabla.Descripcion,
                                        Comentarios = tabla.Comentarios,
                                        IDAccion = tabla.IDAccion,
+                                       Accion = tabla.TipoAccion.Tipo,
                                        IDEstado = tabla.IDEstado,
                                        Estado = tabla.Estado.Estado1
 
@@ -364,8 +374,9 @@ namespace almerimatik.ServicioCRM
                                        Nombre = tabla.Nombre,
                                        Email = tabla.Email,
                                        Telefono = tabla.TelefonoContacto.FirstOrDefault().Telefono,
-                                       Cargo = tabla.Cargo.FirstOrDefault().Carg,
-                                       IDCargo = tabla.Cargo.FirstOrDefault().ID
+                                       IDCargo = tabla.Cargo.FirstOrDefault().ID,
+                                       Cargo = tabla.Cargo.FirstOrDefault().Carg
+                                       
 
                                    };
                     lst = consulta.ToList();
@@ -992,7 +1003,9 @@ namespace almerimatik.ServicioCRM
 
                             nuevo.Nombre = user.Nombre;
                             nuevo.Username = user.Username;
-                            nuevo.Password = user.Password;
+                            String hash = EncodePassword(String.Concat(user.Username, user.Password));
+                            nuevo.Password = hash;
+                            
 
 
                             db.User.Add(nuevo);
@@ -1085,7 +1098,11 @@ namespace almerimatik.ServicioCRM
 
                         nuevo.Nombre = user.Nombre;
                         nuevo.Username = user.Username;
-                        nuevo.Password = user.Password;
+                        if (user.Password != "")
+                        {
+                            String hash = EncodePassword(String.Concat(user.Username, user.Password));
+                            nuevo.Password = hash;
+                        }
                         
                         db.SaveChanges();
                         return true;
@@ -1129,7 +1146,6 @@ namespace almerimatik.ServicioCRM
                                    {
                                        IDUsuario = tabla.IDUsuario,
                                        Username = tabla.Username,
-                                       Password = tabla.Password,
                                        Nombre = tabla.Nombre,
                                       
                                    };
@@ -1210,6 +1226,7 @@ namespace almerimatik.ServicioCRM
                                            select tabla;
                             Cargo c = consulta.First();
                             nuevo.Cargo.Add(c);
+
                         }
 
 
@@ -1364,14 +1381,17 @@ namespace almerimatik.ServicioCRM
                                    select new AccionComercialData()
                                    {
                                        ID = tabla.ID,
+                                       Usuario = tabla.Usuario,
+                                       Username = tabla.User.Username,
                                        IDEmpresa = tabla.IDEmpresa,
-                                       IDAccion = tabla.IDAccion,
-                                       IDEstado = tabla.IDEstado,
-                                       Estado = tabla.Estado.Estado1,
-                                       Comentarios = tabla.Comentarios,
-                                       Descripcion = tabla.Descripcion,
+                                       CIF = tabla.Empresa.CIF,
                                        Fecha = tabla.Fecha,
-                                       Usuario = tabla.Usuario
+                                       Descripcion = tabla.Descripcion,
+                                       Comentarios = tabla.Comentarios,
+                                       IDAccion = tabla.IDAccion,
+                                       Accion = tabla.TipoAccion.Tipo,
+                                       IDEstado = tabla.IDEstado,
+                                       Estado = tabla.Estado.Estado1
                                        
                                        
                                    };
@@ -1410,7 +1430,16 @@ namespace almerimatik.ServicioCRM
                         nuevo.IDEstado = accion.IDEstado;
                         nuevo.Comentarios = accion.Comentarios;
                         nuevo.Descripcion = accion.Descripcion;
-                        nuevo.Fecha = accion.Fecha;
+                        if (accion.Fecha != null)
+                        {
+                            nuevo.Fecha = accion.Fecha;
+                        }
+                        else
+                        {
+                            nuevo.Fecha = new DateTime();
+                            nuevo.Fecha = DateTime.Now;
+                        }
+                        
                         nuevo.Usuario = accion.Usuario;
                         
 
@@ -2523,7 +2552,7 @@ namespace almerimatik.ServicioCRM
             
             if (direccion != null)
             {
-                return direccion.Domicilio + " (" + direccion.CP + ") " + direccion.Poblacion + " " + direccion.Provincia;
+                return direccion.Domicilio + " (" + direccion.CP + ") " + direccion.Poblacion + " - " + direccion.Provincia;
             }
             else
             {
@@ -2551,8 +2580,8 @@ namespace almerimatik.ServicioCRM
                                        {
                                            IDUsuario = tabla.IDUsuario,
                                            Nombre = tabla.Nombre,
-                                           Username = tabla.Username,
-                                           Password = tabla.Password
+                                           Username = tabla.Username
+                                           
                                        };
 
 
@@ -2647,6 +2676,122 @@ namespace almerimatik.ServicioCRM
             }
         }
 
+
+        /// <summary>
+        /// metodo que indica si existe un telefono en una empresa
+        /// </summary>
+        /// <param name="telefono">datos del telefono y empresa</param>
+        /// <returns>devuelve verdadero o falso segun si existe o no</returns>
+        public bool ExisteTelefonoEmpresa(TelefonosData telefono)
+        {
+            List<TelefonosData> lst = new List<TelefonosData>();
+            try
+            {
+                using (BDCRMEntities datos = new BDCRMEntities())
+                {
+
+                    if (telefono != null)
+                    {
+                        var consulta = from tabla in datos.TelefonoEmpresa
+                                       where tabla.Telefono == telefono.Telefono
+                                       select new TelefonosData()
+                                       {
+                                           ID = tabla.IDEmpresa,
+                                           Telefono = tabla.Telefono
+                                           
+                                       };
+
+
+                        lst = consulta.ToList();
+                        if (lst.Count > 0)
+                        {
+                            return true;
+                        }
+                        else
+                        {
+                            return false;
+                        }
+
+                    }
+                    else
+                    {
+                        return false;
+                    }
+
+                }
+            }
+            catch (SqlException ex)
+            {
+                FaultException fault = new FaultException("Error SQL: " + ex.Message, new FaultCode("SQL"));
+                return false;
+
+            }
+            catch (Exception ex)
+            {
+                FaultException fault = new FaultException("Error: " + ex.Message, new FaultCode("GENERAL"));
+                return false;
+            }
+        }
+
+
+        /// <summary>
+        /// metodo que indica si existe un telefono en un contacto
+        /// </summary>
+        /// <param name="telefono">datos del telefono y contacto</param>
+        /// <returns>devuelve verdadero o falso segun si existe o no</returns>
+        public bool ExisteTelefonoContacto(TelefonosData telefono)
+        {
+            List<TelefonosData> lst = new List<TelefonosData>();
+            try
+            {
+                using (BDCRMEntities datos = new BDCRMEntities())
+                {
+
+                    if (telefono != null)
+                    {
+                        var consulta = from tabla in datos.TelefonoContacto
+                                       where tabla.Telefono == telefono.Telefono
+                                       select new TelefonosData()
+                                       {
+                                           ID = tabla.IDContacto,
+                                           Telefono = tabla.Telefono
+
+                                       };
+
+
+                        lst = consulta.ToList();
+                        if (lst.Count > 0)
+                        {
+                            return true;
+                        }
+                        else
+                        {
+                            return false;
+                        }
+
+                    }
+                    else
+                    {
+                        return false;
+                    }
+
+                }
+            }
+            catch (SqlException ex)
+            {
+                FaultException fault = new FaultException("Error SQL: " + ex.Message, new FaultCode("SQL"));
+                return false;
+
+            }
+            catch (Exception ex)
+            {
+                FaultException fault = new FaultException("Error: " + ex.Message, new FaultCode("GENERAL"));
+                return false;
+            }
+        }
+
+
+
         /// <summary>
         /// metodo que valida un usuario 
         /// </summary>
@@ -2673,12 +2818,12 @@ namespace almerimatik.ServicioCRM
                                            Password = tabla.Password
                                        };
 
-
+                        String hash = EncodePassword(String.Concat(username, password));
                         lst = consulta.ToList();
                         if (lst.Count > 0)
                         {
                             UserData ud = lst.First();
-                            if (ud.Username == username && ud.Password == password)
+                            if (ud.Username == username && ud.Password == hash)
                             {
                                 return true;
                             }
@@ -2844,10 +2989,30 @@ namespace almerimatik.ServicioCRM
             }
         }
 
+
+        /// <summary>
+        /// metodo privado para encriptar el password de los usuarios
+        /// </summary>
+        /// <param name="originalPassword"></param>
+        /// <returns></returns>
+        private string EncodePassword(string originalPassword)
+        {
+            SHA1 sha1 = new SHA1CryptoServiceProvider();
+
+            byte[] inputBytes = (new UnicodeEncoding()).GetBytes(originalPassword);
+            byte[] hash = sha1.ComputeHash(inputBytes);
+            
+            return Convert.ToBase64String(hash);
+        }
+
+
+
     }
 }
 
 
 
-//busqueda rapida
+
 //busqueda avanzada
+//AddCargoContacto
+//BorrarCargoContacto
