@@ -4,6 +4,26 @@
         input:focus::-webkit-input-placeholder {
             color: transparent;
         }
+
+        #tabs .row .tab {
+            background-color: #E0E0E0 ;
+            margin-bottom: 15px;
+            border-radius: 0px 5px 5px 5px;
+        }
+
+        #tabs .row .til {
+            padding-left:0px;
+
+        }
+        .row h2{
+            background-color: white;
+        }
+        .row h2 span{
+            background-color:#E0E0E0 ;
+            padding: 10px;
+            border-radius: 5px 5px 0px 0px;
+        }
+        
     </style>
     <script src="../../Scripts/jquery-1.10.2.min.js"></script>
     <script src="../../Scripts/bootstrap.min.js"></script>
@@ -97,81 +117,95 @@
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="central" runat="server">
     <asp:ScriptManager runat="server" ID="scripmanager1"></asp:ScriptManager>
+
     <h1 id="H1Titulo" runat="server">Alta empresa</h1>
 
-    <div class="col-md-12">
-        <div class="form-group">
-            <asp:Label CssClass="control-label" Text="ID de la Empresa" ID="lbIDEmpresa" runat="server" AssociatedControlID="tbIDEmpresa"></asp:Label>
-            <asp:TextBox ID="tbIDEmpresa" runat="server" CssClass="form-control"></asp:TextBox>
+    <div id="tabs">
+    <div class="row">
+        <div class="til col-md-10">
+        <h2><span>Datos de empresa</span></h2>
+            </div>
+        <div class="tab col-md-10">
 
-        </div>
-        <div class="form-group">
-            <asp:Label CssClass="control-label" Text="CIF" ID="lbCIF" runat="server" AssociatedControlID="tbCIF"></asp:Label>
-            <asp:TextBox ID="tbCIF" runat="server" CssClass="form-control" placeholder="CIF de la empresa" MaxLength="9"></asp:TextBox>
-            <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ErrorMessage="Debe introducir el CIF de la empresa." ControlToValidate="tbCIF" CssClass="label label-danger" SetFocusOnError="True"></asp:RequiredFieldValidator>
-            <asp:CustomValidator ID="CustomValidator1" runat="server" ErrorMessage="EL CIF no es correcto." ClientValidationFunction="validateCIF" ControlToValidate="tbCIF" CssClass="label label-danger" OnServerValidate="validar_CIF" SetFocusOnError="True"></asp:CustomValidator>
-        </div>
+            <div class="form-group">
+                <asp:Label CssClass="control-label" Text="ID de la Empresa" ID="lbIDEmpresa" runat="server" AssociatedControlID="tbIDEmpresa"></asp:Label>
+                <asp:TextBox ID="tbIDEmpresa" runat="server" CssClass="form-control"></asp:TextBox>
 
-        <div class="form-group">
-            <asp:Label CssClass="control-label" Text="Razón Social" ID="lbRazonSocial" runat="server" AssociatedControlID="tbRazonSocial"></asp:Label>
-            <asp:TextBox ID="tbRazonSocial" runat="server" CssClass="form-control" placeholder="Razón social de la empresa"></asp:TextBox>
-            <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ErrorMessage="Debe introducir la razón social de la empresa." ControlToValidate="tbRazonSocial" CssClass="label label-danger" SetFocusOnError="True"></asp:RequiredFieldValidator>
-        </div>
+            </div>
+            <div class="form-group">
+                <asp:Label CssClass="control-label" Text="CIF" ID="lbCIF" runat="server" AssociatedControlID="tbCIF"></asp:Label>
+                <asp:TextBox ID="tbCIF" runat="server" CssClass="form-control" placeholder="CIF de la empresa" MaxLength="9"></asp:TextBox>
+                <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ErrorMessage="Debe introducir el CIF de la empresa." ControlToValidate="tbCIF" CssClass="label label-danger" SetFocusOnError="True"></asp:RequiredFieldValidator>
+                <asp:CustomValidator ID="CustomValidator1" runat="server" ErrorMessage="EL CIF no es correcto." ClientValidationFunction="validateCIF" ControlToValidate="tbCIF" CssClass="label label-danger" OnServerValidate="validar_CIF" SetFocusOnError="True"></asp:CustomValidator>
+            </div>
 
-        <div class="form-group">
-            <asp:Label CssClass="control-label" Text="Nombre" ID="lbNombre" runat="server" AssociatedControlID="tbNombre"></asp:Label>
-            <asp:TextBox ID="tbNombre" runat="server" CssClass="form-control" placeholder="Introduce el nombre de la empresa"></asp:TextBox>
-            <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ErrorMessage="Introduzca un nombre de empresa." ControlToValidate="tbNombre" CssClass="label label-danger"></asp:RequiredFieldValidator>
-        </div>
+            <div class="form-group">
+                <asp:Label CssClass="control-label" Text="Razón Social" ID="lbRazonSocial" runat="server" AssociatedControlID="tbRazonSocial"></asp:Label>
+                <asp:TextBox ID="tbRazonSocial" runat="server" CssClass="form-control" placeholder="Razón social de la empresa"></asp:TextBox>
+                <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ErrorMessage="Debe introducir la razón social de la empresa." ControlToValidate="tbRazonSocial" CssClass="label label-danger" SetFocusOnError="True"></asp:RequiredFieldValidator>
+            </div>
 
-        <div class="form-group">
-            <asp:Label CssClass="control-label" Text="Web" ID="lbWeb" runat="server" AssociatedControlID="tbWeb"></asp:Label>
-            <asp:TextBox ID="tbWeb" runat="server" CssClass="form-control" placeholder="web de la empresa"></asp:TextBox>
+            <div class="form-group">
+                <asp:Label CssClass="control-label" Text="Nombre" ID="lbNombre" runat="server" AssociatedControlID="tbNombre"></asp:Label>
+                <asp:TextBox ID="tbNombre" runat="server" CssClass="form-control" placeholder="Introduce el nombre de la empresa"></asp:TextBox>
+                <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ErrorMessage="Introduzca un nombre de empresa." ControlToValidate="tbNombre" CssClass="label label-danger"></asp:RequiredFieldValidator>
+            </div>
 
-        </div>
+            <div class="form-group">
+                <asp:Label CssClass="control-label" Text="Web" ID="lbWeb" runat="server" AssociatedControlID="tbWeb"></asp:Label>
+                <asp:TextBox ID="tbWeb" runat="server" CssClass="form-control" placeholder="web de la empresa"></asp:TextBox>
 
-        <div class="form-group">
-            <asp:Label CssClass="control-label" Text="Email" ID="lbEmail" runat="server" AssociatedControlID="tbEmail"></asp:Label>
-            <asp:TextBox ID="tbEmail" runat="server" CssClass="form-control" placeholder="Introduce el email"></asp:TextBox>
+            </div>
 
-        </div>
+            <div class="form-group">
+                <asp:Label CssClass="control-label" Text="Email" ID="lbEmail" runat="server" AssociatedControlID="tbEmail"></asp:Label>
+                <asp:TextBox ID="tbEmail" runat="server" CssClass="form-control" placeholder="Introduce el email"></asp:TextBox>
 
-        <div class="form-group" id="formularioTelefonos" runat="server">
-            <asp:Label CssClass="control-label" Text="Telefonos" ID="Label1" runat="server" AssociatedControlID="tbTelefonos"></asp:Label>
-            <div class="telefonos navbar-form">
-                <div class="form-group">
-                    <asp:UpdatePanel ID="UpdatePanel1" runat="server">
-                        <ContentTemplate>
-                            <asp:ListBox ID="tbTelefonos" runat="server" CssClass="form-control" AutoPostBack="True">
-                                <asp:ListItem Value="1">-</asp:ListItem>
-                            </asp:ListBox>
-                            <asp:Button ID="btnDeleteTelf" runat="server" Text="X" CssClass="btn btn-danger" OnClick="btnDeleteTelf_Click" />
-                            <asp:TextBox ID="tbTelefono" runat="server" CssClass="form-control" placeholder="nuevo telefono"></asp:TextBox>
-                            <asp:Button ID="btAddTelf" runat="server" Text="Añadir" CssClass="btn btn-success" OnClick="btAddTelf_Click" />
-                            
-                        </ContentTemplate>
-                        <Triggers>
-                            <asp:AsyncPostBackTrigger ControlID="btAddTelf" />
-                        </Triggers>
-                    </asp:UpdatePanel>
-                    <div  id="mcorrecto" style="display:none;" class="alert alert-success" role="alert" >Insertado!</div>
-                    <div id="mfallo" style="display:none;" class="alert alert-danger" role="alert">ERROR!</div>
+            </div>
+
+            <div class="form-group" id="formularioTelefonos" runat="server">
+                <asp:Label CssClass="control-label" Text="Telefonos" ID="Label1" runat="server" AssociatedControlID="tbTelefonos"></asp:Label>
+                <div class="telefonos navbar-form">
+                    <div class="form-group">
+                        <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+                            <ContentTemplate>
+                                <asp:ListBox ID="tbTelefonos" runat="server" CssClass="form-control" AutoPostBack="True">
+                                    <asp:ListItem Value="1">-</asp:ListItem>
+                                </asp:ListBox>
+                                <asp:Button ID="btnDeleteTelf" runat="server" Text="X" CssClass="btn btn-danger" OnClick="btnDeleteTelf_Click" />
+                                <asp:TextBox ID="tbTelefono" runat="server" CssClass="form-control" placeholder="nuevo telefono"></asp:TextBox>
+                                <asp:Button ID="btAddTelf" runat="server" Text="Añadir" CssClass="btn btn-success" OnClick="btAddTelf_Click" />
+
+                            </ContentTemplate>
+                            <Triggers>
+                                <asp:AsyncPostBackTrigger ControlID="btAddTelf" />
+                            </Triggers>
+                        </asp:UpdatePanel>
+                        <div id="mcorrecto" style="display: none;" class="alert alert-success" role="alert">Insertado!</div>
+                        <div id="mfallo" style="display: none;" class="alert alert-danger" role="alert">ERROR!</div>
+                    </div>
                 </div>
+
+            </div>
+
+            <div class="form-group">
+                <asp:Label CssClass="control-label" Text="Tipo de empresa" ID="lbTipoEmpresa" runat="server" AssociatedControlID="tbTipoEMpresa"></asp:Label>
+
+                <asp:DropDownList ID="tbTipoEMpresa" runat="server" CssClass="form-control">
+                    <asp:ListItem Value="1">S.L.</asp:ListItem>
+                </asp:DropDownList>
+
             </div>
 
         </div>
+    </div>
+    <div class="row">
+        <div class="til col-md-10">
+        <h2><span>Direcciones</span></h2>
+            </div>
+        <div class="tab col-md-10">
 
-
-        <div class="form-group">
-            <asp:Label CssClass="control-label" Text="Tipo de empresa" ID="lbTipoEmpresa" runat="server" AssociatedControlID="tbTipoEMpresa"></asp:Label>
-
-            <asp:DropDownList ID="tbTipoEMpresa" runat="server" CssClass="form-control">
-                <asp:ListItem Value="1">S.L.</asp:ListItem>
-            </asp:DropDownList>
-
-        </div>
-        <asp:Button ID="btAltaDireccion" runat="server" Text="Nueva dirección" CssClass="btn btn-success" OnClick="btAltaDireccion_Click" />
-        <div class="table-responsive">
+            <asp:Button ID="btAltaDireccion" runat="server" Text="Nueva dirección" CssClass="btn btn-success" OnClick="btAltaDireccion_Click" />
 
             <asp:GridView ID="GridView3" runat="server" CssClass="table table-hover table-striped" AutoGenerateColumns="False" GridLines="None" AllowPaging="True" OnRowEditing="GridView3_RowEditing" OnRowDeleting="GridView3_RowDeleting" EmptyDataText="No hay datos." ShowHeaderWhenEmpty="True" OnPageIndexChanging="GridView3_PageIndexChanging">
 
@@ -199,7 +233,7 @@
                     <asp:TemplateField>
                         <ItemTemplate>
 
-                            <asp:LinkButton ID="btnModificarDireccion" runat="server" Text="Modificar" CssClass="btn btn-warning" CommandName="Edit" ><span class="glyphicon glyphicon-pencil"></span>Modificar</asp:LinkButton>
+                            <asp:LinkButton ID="btnModificarDireccion" runat="server" Text="Modificar" CssClass="btn btn-warning" CommandName="Edit"><span class="glyphicon glyphicon-pencil"></span>Modificar</asp:LinkButton>
                             <asp:LinkButton ID="btnEliminarDireccion" runat="server" Text="Eliminar" CssClass="btn btn-danger" CommandName="Delete"><span class="glyphicon glyphicon-remove"></span>Eliminar</asp:LinkButton>
 
                         </ItemTemplate>
@@ -207,10 +241,15 @@
                     </asp:TemplateField>
                 </Columns>
             </asp:GridView>
+
         </div>
-
-        <div class="table-responsive">
-
+    </div>
+    <div class="row">
+        <div class="til col-md-10">
+        <h2><span>Contactos</span></h2>
+            </div>
+        <div class="tab col-md-10">
+            <asp:Button ID="btNuevoContacto" runat="server" Text="Nueva contacto" CssClass="btn btn-success" OnClick="btNuevoContacto_Click" />
             <asp:GridView ID="GridView1" runat="server" CssClass="table table-hover table-striped" AutoGenerateColumns="False" GridLines="None" AllowPaging="True" OnRowEditing="GridView1_RowEditing" OnRowDeleting="GridView1_RowDeleting" EmptyDataText="No hay datos." ShowHeaderWhenEmpty="True" OnPageIndexChanging="GridView1_PageIndexChanging">
 
                 <Columns>
@@ -243,11 +282,12 @@
                 </Columns>
             </asp:GridView>
         </div>
-
-        <div class="form-group">
-
-            <asp:Button ID="btAlta" runat="server" Text="Alta" CssClass="btn btn-primary" OnClick="btAlta_Click" />
-
-        </div>
     </div>
+    </div>
+    <div class="form-group">
+
+        <asp:Button ID="btAlta" runat="server" Text="Alta" CssClass="btn btn-primary" OnClick="btAlta_Click" />
+
+    </div>
+
 </asp:Content>

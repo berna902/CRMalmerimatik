@@ -430,5 +430,10 @@ namespace Clientes.Private.Empresas
             string ide = tbIDEmpresa.Text;
             this.Response.Redirect("direccion.aspx?estado=0&ide=" + ide);
         }
+
+        protected void btNuevoContacto_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
