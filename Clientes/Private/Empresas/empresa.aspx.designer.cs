@@ -208,7 +208,7 @@ namespace Clientes.Private.Empresas {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList tbTelefonos;
+        protected global::System.Web.UI.WebControls.ListBox tbTelefonos;
         
         /// <summary>
         /// btnDeleteTelf control.
@@ -236,24 +236,6 @@ namespace Clientes.Private.Empresas {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btAddTelf;
-        
-        /// <summary>
-        /// mcorrecto control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl mcorrecto;
-        
-        /// <summary>
-        /// mfallo control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl mfallo;
         
         /// <summary>
         /// lbTipoEmpresa control.

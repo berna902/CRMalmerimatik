@@ -22,9 +22,12 @@
     </div>
 
     <h2 class="sub-header">Resumen empresas</h2>
-    No hay datos disponibles
+    <asp:Label CssClass="control-label" Text="Numero de empresas: " ID="lbEmpresas" runat="server"></asp:Label>
+    <asp:Label CssClass="control-label" Text="0" ID="lbNEmpresas" runat="server"></asp:Label>
     <h2 class="sub-header">Resumen usuarios</h2>
-    No hay datos disponibles
+    <asp:Label CssClass="control-label" Text="Numero de usuarios: " ID="lbUsuarios" runat="server"></asp:Label>
+    <asp:Label CssClass="control-label" Text="0" ID="lbNUsuarios" runat="server"></asp:Label>
     <h2 class="sub-header">Resumen acciones</h2>
-    No hay datos disponibles
+    <asp:Label CssClass="control-label" Text="Numero de acciones: " ID="lbAcciones" runat="server"></asp:Label>
+    <asp:Label CssClass="control-label" Text="0" ID="lbNAcciones" runat="server"></asp:Label>
 </asp:Content>

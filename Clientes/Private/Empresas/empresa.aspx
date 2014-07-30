@@ -9,29 +9,21 @@
     <script src="../../Scripts/bootstrap.min.js"></script>
     <script type="text/javascript">
 
-        $(document).ready(function () {
+        /*$(document).ready(function () {
             $('#central_btAddTelf').on("click", function (event) {
-                //alert("clicked on Tozih");
-                //$('.alert-success').slideDown(500);
-                SINO('.alert-success');
+                 
+                $('#mcorrecto').fadeIn(600);
+                var t = setTimeout(function () { $('#mcorrecto').fadeOut(1000); }, 3500);
+
             });
+        });*/
 
 
-        });
-
-        function SINO(cual) {
-            var elElemento = document.getElementById(cual);
-            if (elElemento.style.display == 'block') {
-                elElemento.style.display = 'none';
-            } else {
-                elElemento.style.display = 'block';
-            }
-        }
-
-        function validateCIF(cif) {
+        function validateCIF(val,cif) {
             //Quitamos el primer caracter y el ultimo digito
-            var valueCif = cif.substr(1, cif.length - 2);
-
+            var valueCif = cif.Value;
+            valueCif = valueCif.substr(1, valueCif.length - 2);
+            
             var suma = 0;
 
             //Sumamos las cifras pares de la cadena
@@ -59,31 +51,31 @@
             var unidad = String(suma).substr(1, 1)
             unidad = 10 - parseInt(unidad);
 
-            var primerCaracter = cif.substr(0, 1).toUpperCase();
+            var primerCaracter = valueCif.substr(0, 1).toUpperCase();
 
             if (primerCaracter.match(/^[FJKNPQRSUVW]$/)) {
                 //Empieza por .... Comparamos la ultima letra
-                if (String.fromCharCode(64 + unidad).toUpperCase() == cif.substr(cif.length - 1, 1).toUpperCase())
+                if (String.fromCharCode(64 + unidad).toUpperCase() == valueCif.substr(valueCif.length - 1, 1).toUpperCase())
                     return true;
             } else if (primerCaracter.match(/^[XYZ]$/)) {
                 //Se valida como un dni
                 var newcif;
                 if (primerCaracter == "X")
-                    newcif = cif.substr(1);
+                    newcif = valueCif.substr(1);
                 else if (primerCaracter == "Y")
-                    newcif = "1" + cif.substr(1);
+                    newcif = "1" + valueCif.substr(1);
                 else if (primerCaracter == "Z")
-                    newcif = "2" + cif.substr(1);
-                return validateDNI(newcif);
+                    newcif = "2" + valueCif.substr(1);
+                return  true;
             } else if (primerCaracter.match(/^[ABCDEFGHLM]$/)) {
                 //Se revisa que el ultimo valor coincida con el calculo
                 if (unidad == 10)
                     unidad = 0;
-                if (cif.substr(cif.length - 1, 1) == String(unidad))
+                if (valueCif.substr(valueCif.length - 1, 1) == String(unidad))
                     return true;
             } else {
                 //Se valida como un dni
-                return validateDNI(cif);
+                return true;
             }
             return false;
         }
@@ -150,19 +142,20 @@
                 <div class="form-group">
                     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
                         <ContentTemplate>
-                            <asp:DropDownList ID="tbTelefonos" runat="server" CssClass="form-control" AutoPostBack="True">
+                            <asp:ListBox ID="tbTelefonos" runat="server" CssClass="form-control" AutoPostBack="True">
                                 <asp:ListItem Value="1">-</asp:ListItem>
-                            </asp:DropDownList>
+                            </asp:ListBox>
                             <asp:Button ID="btnDeleteTelf" runat="server" Text="X" CssClass="btn btn-danger" OnClick="btnDeleteTelf_Click" />
                             <asp:TextBox ID="tbTelefono" runat="server" CssClass="form-control" placeholder="nuevo telefono"></asp:TextBox>
                             <asp:Button ID="btAddTelf" runat="server" Text="Añadir" CssClass="btn btn-success" OnClick="btAddTelf_Click" />
-                            <div id="mcorrecto" style="display:none;" class="alert alert-success" role="alert" runat="server">Insertado!</div>
-                            <div id="mfallo" style="display:none;" class="alert alert-danger" role="alert" runat="server">ERROR!</div>
+                            
                         </ContentTemplate>
                         <Triggers>
                             <asp:AsyncPostBackTrigger ControlID="btAddTelf" />
                         </Triggers>
                     </asp:UpdatePanel>
+                    <div  id="mcorrecto" style="display:none;" class="alert alert-success" role="alert" >Insertado!</div>
+                    <div id="mfallo" style="display:none;" class="alert alert-danger" role="alert">ERROR!</div>
                 </div>
             </div>
 
@@ -206,7 +199,7 @@
                     <asp:TemplateField>
                         <ItemTemplate>
 
-                            <asp:LinkButton ID="btnModificarDireccion" runat="server" Text="Modificar" CssClass="btn btn-warning" CommandName="Edit"><span class="glyphicon glyphicon-pencil"></span>Modificar</asp:LinkButton>
+                            <asp:LinkButton ID="btnModificarDireccion" runat="server" Text="Modificar" CssClass="btn btn-warning" CommandName="Edit" ><span class="glyphicon glyphicon-pencil"></span>Modificar</asp:LinkButton>
                             <asp:LinkButton ID="btnEliminarDireccion" runat="server" Text="Eliminar" CssClass="btn btn-danger" CommandName="Delete"><span class="glyphicon glyphicon-remove"></span>Eliminar</asp:LinkButton>
 
                         </ItemTemplate>

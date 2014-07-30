@@ -1,5 +1,6 @@
 ﻿using Clientes.ServicioDatos2;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -10,11 +11,13 @@ namespace Clientes.Private.Usuarios
 {
     public partial class usuarios : System.Web.UI.Page
     {
+
         protected void Page_Load(object sender, EventArgs e)
         {
             //SrvDatosClient proxy = new SrvDatosClient();
             if (!this.IsPostBack)
             {
+
                 String s = Request.QueryString["estado"];
                 String id = Request.QueryString["id"];
                 try
@@ -91,6 +94,9 @@ namespace Clientes.Private.Usuarios
                         
                         if (proxy.AddUser(usuario) != -1)
                         {
+                            //ArrayList historial = new ArrayList();
+                            //historial = (ArrayList)Session["historial"];
+                            //historial.Add("Usuario insertado");
                             Response.Redirect("Default.aspx");
                             
                         }
@@ -111,6 +117,9 @@ namespace Clientes.Private.Usuarios
                         
                         if (proxy.EditUser(usuario))
                         {
+                            //ArrayList historial = new ArrayList();
+                            //historial = (ArrayList)Session["historial"];
+                            //historial.Add("Usuario modificado");
                             string script = "alert('Usuario modificado');";
                             ClientScript.RegisterClientScriptBlock(this.GetType(), "Alert", script, true);
                             

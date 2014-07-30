@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -179,19 +180,50 @@ namespace Clientes.Private.Empresas
             TelefonosData telefono = new TelefonosData();
             telefono.ID = Int32.Parse(tbIDEmpresa.Text);
             telefono.Telefono = tbTelefono.Text;
-            String s = Request.QueryString["estado"];
-            int estado = -1;
-            if (s != null)
-                estado = Int32.Parse(s);
-            if (estado == 1)
-            proxy.AddTelefonoEmpresa(telefono);
-            //llamar al servicio para que inserte el telefono nuevo. aun no está hecho T_T
-            tbTelefonos.Items.Add(new ListItem(tbTelefono.Text, tbTelefono.Text));
-            tbTelefono.DataBind();
-            tbTelefono.Text = "";
 
+            if (telefono.Telefono != "" && validar(telefono.Telefono, @"^[+-]?\d+(\.\d+)?$") && telefono.Telefono.Length ==9)
+            {
+                String s = Request.QueryString["estado"];
+                int estado = -1;
+                if (s != null)
+                    estado = Int32.Parse(s);
+                if (estado == 1)
+                {
+                    if (proxy.AddTelefonoEmpresa(telefono))
+                    {
+                        //llamar al servicio para que inserte el telefono nuevo. aun no está hecho T_T
+                        tbTelefonos.Items.Add(new ListItem(tbTelefono.Text, tbTelefono.Text));
+                        tbTelefonos.DataBind();
+                        tbTelefono.Text = "";
+                        tbTelefono.Focus();
+                        ScriptManager.RegisterStartupScript(this, this.GetType(), "Mensaje", "<script type='text/javascript'> alert('SE HA INSERTADO CORRECTAMENTE'); parent.$.fancybox.close();</script>", false);
+                    }
+                    else
+                    {
+                        ScriptManager.RegisterStartupScript(this, this.GetType(), "Mensaje", "<script type='text/javascript'> alert('ERROR AL INSERTAR'); </script>", false);
+                    }
+                }else
+                {
+                    tbTelefonos.Items.Add(new ListItem(tbTelefono.Text, tbTelefono.Text));
+                    tbTelefonos.DataBind();
+                    tbTelefono.Text = "";
+                    tbTelefono.Focus();
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), "Mensaje", "<script type='text/javascript'> alert('SE HA INSERTADO CORRECTAMENTE'); </script>", false);
+                }
+            }else
+            {
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "Mensaje", "<script type='text/javascript'> alert('El teléfono no es correcto'); </script>", false);
+            }
         }
 
+        protected bool validar(string cadena, string expresion)
+        {
+            //^\+?\d{1,3}?[- .]?\(?(?:\d{2,3})\)?[- .]?\d\d\d[- .]?\d\d\d\d$
+            Regex regex = new Regex(expresion);
+            if(regex.IsMatch(cadena))
+                return true;
+            else return false;
+        }
         protected void GridView1_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {
             string id = e.Values["id"].ToString();
@@ -213,14 +245,38 @@ namespace Clientes.Private.Empresas
 
         protected void btnDeleteTelf_Click(object sender, EventArgs e)
         {
-            SrvDatosClient proxy = new SrvDatosClient();
-            proxy.BorrarTelefonoEmpresa(tbTelefonos.SelectedValue);
+            try
+            {
+                SrvDatosClient proxy = new SrvDatosClient();
+                String s = Request.QueryString["estado"];
+                int estado = -1;
+                if (s != null)
+                    estado = Int32.Parse(s);
+                if (estado == 1)
+                {
+                    if (proxy.BorrarTelefonoEmpresa(tbTelefonos.SelectedValue))
+                    {
 
-            TelefonosData[] telefonos = proxy.GetAllTelefonosEmpresa(Int32.Parse(tbIDEmpresa.Text));
-            tbTelefonos.DataSource = telefonos;
-            tbTelefonos.DataValueField = "Telefono";
-            tbTelefonos.DataTextField = "Telefono";
-            tbTelefonos.DataBind();
+                        TelefonosData[] telefonos = proxy.GetAllTelefonosEmpresa(Int32.Parse(tbIDEmpresa.Text));
+                        tbTelefonos.DataSource = telefonos;
+                        tbTelefonos.DataValueField = "Telefono";
+                        tbTelefonos.DataTextField = "Telefono";
+                        tbTelefonos.DataBind();
+                        ScriptManager.RegisterStartupScript(this, this.GetType(), "Mensaje", "<script type='text/javascript'> alert('TELÉFONO ELIMINADO'); </script>", false);
+                    }
+                    else
+                        ScriptManager.RegisterStartupScript(this, this.GetType(), "Mensaje", "<script type='text/javascript'> alert('NO SE PUDO ELIMINAR'); </script>", false);
+
+                }
+                else
+                {
+                    tbTelefonos.Items.Remove(tbTelefonos.SelectedValue);
+                }
+            }
+            catch (Exception ex)
+            {
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "Mensaje", "<script type='text/javascript'> alert('NO SE PUDO ELIMINAR'); </script>", false);
+            }
         }
 
         protected void GridView1_PageIndexChanging(object sender, GridViewPageEventArgs e)
