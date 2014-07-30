@@ -672,7 +672,11 @@ namespace almerimatik.ServicioCRM
         [DataMember]
         public int Usuario { get; set; }
         [DataMember]
+        public String Username { get; set; }
+        [DataMember]
         public int IDEmpresa { get; set; }
+        [DataMember]
+        public String CIF { get; set; }
         [DataMember]
         public System.DateTime Fecha { get; set; }
         [DataMember]
@@ -681,6 +685,8 @@ namespace almerimatik.ServicioCRM
         public string Comentarios { get; set; }
         [DataMember]
         public int IDAccion { get; set; }
+        [DataMember]
+        public String Accion { get; set; }
         [DataMember]
         public int IDEstado { get; set; }
         [DataMember]

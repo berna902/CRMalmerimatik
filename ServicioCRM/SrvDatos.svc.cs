@@ -97,11 +97,14 @@ namespace almerimatik.ServicioCRM
                                    {
                                        ID = tabla.ID,
                                        Usuario = tabla.Usuario,
+                                       Username = tabla.User.Username,
                                        IDEmpresa = tabla.IDEmpresa,
+                                       CIF = tabla.Empresa.CIF,
                                        Fecha = tabla.Fecha,
                                        Descripcion = tabla.Descripcion,
                                        Comentarios = tabla.Comentarios,
                                        IDAccion = tabla.IDAccion,
+                                       Accion = tabla.TipoAccion.Tipo,
                                        IDEstado = tabla.IDEstado,
                                        Estado = tabla.Estado.Estado1
 
@@ -133,11 +136,14 @@ namespace almerimatik.ServicioCRM
                                    {
                                        ID = tabla.ID,
                                        Usuario = tabla.Usuario,
+                                       Username = tabla.User.Username,
                                        IDEmpresa = tabla.IDEmpresa,
+                                       CIF = tabla.Empresa.CIF,
                                        Fecha = tabla.Fecha,
                                        Descripcion = tabla.Descripcion,
                                        Comentarios = tabla.Comentarios,
                                        IDAccion = tabla.IDAccion,
+                                       Accion = tabla.TipoAccion.Tipo,
                                        IDEstado = tabla.IDEstado,
                                        Estado = tabla.Estado.Estado1
 
@@ -169,11 +175,14 @@ namespace almerimatik.ServicioCRM
                                    {
                                        ID = tabla.ID,
                                        Usuario = tabla.Usuario,
+                                       Username = tabla.User.Username,
                                        IDEmpresa = tabla.IDEmpresa,
+                                       CIF = tabla.Empresa.CIF,
                                        Fecha = tabla.Fecha,
                                        Descripcion = tabla.Descripcion,
                                        Comentarios = tabla.Comentarios,
                                        IDAccion = tabla.IDAccion,
+                                       Accion = tabla.TipoAccion.Tipo,
                                        IDEstado = tabla.IDEstado,
                                        Estado = tabla.Estado.Estado1
 
@@ -1214,6 +1223,7 @@ namespace almerimatik.ServicioCRM
                                            select tabla;
                             Cargo c = consulta.First();
                             nuevo.Cargo.Add(c);
+
                         }
 
 
@@ -1368,14 +1378,17 @@ namespace almerimatik.ServicioCRM
                                    select new AccionComercialData()
                                    {
                                        ID = tabla.ID,
+                                       Usuario = tabla.Usuario,
+                                       Username = tabla.User.Username,
                                        IDEmpresa = tabla.IDEmpresa,
-                                       IDAccion = tabla.IDAccion,
-                                       IDEstado = tabla.IDEstado,
-                                       Estado = tabla.Estado.Estado1,
-                                       Comentarios = tabla.Comentarios,
-                                       Descripcion = tabla.Descripcion,
+                                       CIF = tabla.Empresa.CIF,
                                        Fecha = tabla.Fecha,
-                                       Usuario = tabla.Usuario
+                                       Descripcion = tabla.Descripcion,
+                                       Comentarios = tabla.Comentarios,
+                                       IDAccion = tabla.IDAccion,
+                                       Accion = tabla.TipoAccion.Tipo,
+                                       IDEstado = tabla.IDEstado,
+                                       Estado = tabla.Estado.Estado1
                                        
                                        
                                    };
@@ -2972,6 +2985,9 @@ namespace almerimatik.ServicioCRM
                 throw new FaultException("ERROR EN ACCESO A DATOS. " + ex.Message);
             }
         }
+
+
+
 
     }
 }
