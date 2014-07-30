@@ -313,6 +313,9 @@
     <Content Include="Service References\ServicioDatos2\Clientes.ServicioDatos2.DireccionData.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
+    <Content Include="Service References\ServicioDatos2\Clientes.ServicioDatos2.BusquedaData.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
     <None Include="Service References\ServicioDatos2\SrvDatos.wsdl" />
     <None Include="Service References\ServicioDatos2\SrvDatos.xsd">
       <SubType>Designer</SubType>

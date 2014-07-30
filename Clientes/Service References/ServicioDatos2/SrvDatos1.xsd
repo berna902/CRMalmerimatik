@@ -43,6 +43,8 @@
   <xs:element name="ArrayOfAccionComercialData" nillable="true" type="tns:ArrayOfAccionComercialData" />
   <xs:complexType name="AccionComercialData">
     <xs:sequence>
+      <xs:element minOccurs="0" name="Accion" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CIF" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Comentarios" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Descripcion" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Estado" nillable="true" type="xs:string" />
@@ -51,6 +53,7 @@
       <xs:element minOccurs="0" name="IDAccion" type="xs:int" />
       <xs:element minOccurs="0" name="IDEmpresa" type="xs:int" />
       <xs:element minOccurs="0" name="IDEstado" type="xs:int" />
+      <xs:element minOccurs="0" name="Username" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Usuario" type="xs:int" />
     </xs:sequence>
   </xs:complexType>
@@ -105,7 +108,7 @@
       <xs:element minOccurs="0" name="Cargo" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Email" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="ID" type="xs:int" />
-      <xs:element minOccurs="0" name="IDCargo" type="xs:int" />
+      <xs:element minOccurs="0" name="IDCargo" nillable="true" type="xs:int" />
       <xs:element minOccurs="0" name="IDEmpresa" type="xs:int" />
       <xs:element minOccurs="0" name="Nombre" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Telefono" nillable="true" type="xs:string" />
@@ -154,4 +157,18 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="DireccionData" nillable="true" type="tns:DireccionData" />
+  <xs:complexType name="ArrayOfBusquedaData">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="BusquedaData" nillable="true" type="tns:BusquedaData" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfBusquedaData" nillable="true" type="tns:ArrayOfBusquedaData" />
+  <xs:complexType name="BusquedaData">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ID" type="xs:int" />
+      <xs:element minOccurs="0" name="Nombre" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Tipo" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="BusquedaData" nillable="true" type="tns:BusquedaData" />
 </xs:schema>

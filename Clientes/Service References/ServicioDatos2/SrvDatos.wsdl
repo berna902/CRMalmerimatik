@@ -367,6 +367,48 @@
   <wsdl:message name="ISrvDatos_GetEstado_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetEstadoResponse" />
   </wsdl:message>
+  <wsdl:message name="ISrvDatos_DireccionToString_InputMessage">
+    <wsdl:part name="parameters" element="tns:DireccionToString" />
+  </wsdl:message>
+  <wsdl:message name="ISrvDatos_DireccionToString_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DireccionToStringResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISrvDatos_ExisteUser_InputMessage">
+    <wsdl:part name="parameters" element="tns:ExisteUser" />
+  </wsdl:message>
+  <wsdl:message name="ISrvDatos_ExisteUser_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ExisteUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISrvDatos_ExisteEmpresa_InputMessage">
+    <wsdl:part name="parameters" element="tns:ExisteEmpresa" />
+  </wsdl:message>
+  <wsdl:message name="ISrvDatos_ExisteEmpresa_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ExisteEmpresaResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISrvDatos_ValidaUser_InputMessage">
+    <wsdl:part name="parameters" element="tns:ValidaUser" />
+  </wsdl:message>
+  <wsdl:message name="ISrvDatos_ValidaUser_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ValidaUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISrvDatos_BusquedaRapida_InputMessage">
+    <wsdl:part name="parameters" element="tns:BusquedaRapida" />
+  </wsdl:message>
+  <wsdl:message name="ISrvDatos_BusquedaRapida_OutputMessage">
+    <wsdl:part name="parameters" element="tns:BusquedaRapidaResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISrvDatos_ExisteTelefonoEmpresa_InputMessage">
+    <wsdl:part name="parameters" element="tns:ExisteTelefonoEmpresa" />
+  </wsdl:message>
+  <wsdl:message name="ISrvDatos_ExisteTelefonoEmpresa_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ExisteTelefonoEmpresaResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISrvDatos_ExisteTelefonoContacto_InputMessage">
+    <wsdl:part name="parameters" element="tns:ExisteTelefonoContacto" />
+  </wsdl:message>
+  <wsdl:message name="ISrvDatos_ExisteTelefonoContacto_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ExisteTelefonoContactoResponse" />
+  </wsdl:message>
   <wsdl:portType name="ISrvDatos">
     <wsdl:operation name="GetAllUsers">
       <wsdl:input wsaw:Action="http://tempuri.org/ISrvDatos/GetAllUsers" message="tns:ISrvDatos_GetAllUsers_InputMessage" />
@@ -607,6 +649,34 @@
     <wsdl:operation name="GetEstado">
       <wsdl:input wsaw:Action="http://tempuri.org/ISrvDatos/GetEstado" message="tns:ISrvDatos_GetEstado_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/ISrvDatos/GetEstadoResponse" message="tns:ISrvDatos_GetEstado_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DireccionToString">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISrvDatos/DireccionToString" message="tns:ISrvDatos_DireccionToString_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISrvDatos/DireccionToStringResponse" message="tns:ISrvDatos_DireccionToString_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ExisteUser">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISrvDatos/ExisteUser" message="tns:ISrvDatos_ExisteUser_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISrvDatos/ExisteUserResponse" message="tns:ISrvDatos_ExisteUser_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ExisteEmpresa">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISrvDatos/ExisteEmpresa" message="tns:ISrvDatos_ExisteEmpresa_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISrvDatos/ExisteEmpresaResponse" message="tns:ISrvDatos_ExisteEmpresa_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ValidaUser">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISrvDatos/ValidaUser" message="tns:ISrvDatos_ValidaUser_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISrvDatos/ValidaUserResponse" message="tns:ISrvDatos_ValidaUser_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="BusquedaRapida">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISrvDatos/BusquedaRapida" message="tns:ISrvDatos_BusquedaRapida_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISrvDatos/BusquedaRapidaResponse" message="tns:ISrvDatos_BusquedaRapida_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ExisteTelefonoEmpresa">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISrvDatos/ExisteTelefonoEmpresa" message="tns:ISrvDatos_ExisteTelefonoEmpresa_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISrvDatos/ExisteTelefonoEmpresaResponse" message="tns:ISrvDatos_ExisteTelefonoEmpresa_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ExisteTelefonoContacto">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISrvDatos/ExisteTelefonoContacto" message="tns:ISrvDatos_ExisteTelefonoContacto_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISrvDatos/ExisteTelefonoContactoResponse" message="tns:ISrvDatos_ExisteTelefonoContacto_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_ISrvDatos" type="tns:ISrvDatos">
@@ -1144,6 +1214,69 @@
     </wsdl:operation>
     <wsdl:operation name="GetEstado">
       <soap:operation soapAction="http://tempuri.org/ISrvDatos/GetEstado" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DireccionToString">
+      <soap:operation soapAction="http://tempuri.org/ISrvDatos/DireccionToString" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ExisteUser">
+      <soap:operation soapAction="http://tempuri.org/ISrvDatos/ExisteUser" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ExisteEmpresa">
+      <soap:operation soapAction="http://tempuri.org/ISrvDatos/ExisteEmpresa" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ValidaUser">
+      <soap:operation soapAction="http://tempuri.org/ISrvDatos/ValidaUser" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="BusquedaRapida">
+      <soap:operation soapAction="http://tempuri.org/ISrvDatos/BusquedaRapida" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ExisteTelefonoEmpresa">
+      <soap:operation soapAction="http://tempuri.org/ISrvDatos/ExisteTelefonoEmpresa" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ExisteTelefonoContacto">
+      <soap:operation soapAction="http://tempuri.org/ISrvDatos/ExisteTelefonoContacto" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
