@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Runtime.Serialization;
+using System.Security.Cryptography;
 using System.ServiceModel;
 using System.ServiceModel.Web;
 using System.Text;
@@ -1002,7 +1003,9 @@ namespace almerimatik.ServicioCRM
 
                             nuevo.Nombre = user.Nombre;
                             nuevo.Username = user.Username;
-                            nuevo.Password = user.Password;
+                            String hash = EncodePassword(String.Concat(user.Username, user.Password));
+                            nuevo.Password = hash;
+                            
 
 
                             db.User.Add(nuevo);
@@ -1097,7 +1100,8 @@ namespace almerimatik.ServicioCRM
                         nuevo.Username = user.Username;
                         if (user.Password != "")
                         {
-                            nuevo.Password = user.Password;
+                            String hash = EncodePassword(String.Concat(user.Username, user.Password));
+                            nuevo.Password = hash;
                         }
                         
                         db.SaveChanges();
@@ -1142,7 +1146,6 @@ namespace almerimatik.ServicioCRM
                                    {
                                        IDUsuario = tabla.IDUsuario,
                                        Username = tabla.Username,
-                                       Password = tabla.Password,
                                        Nombre = tabla.Nombre,
                                       
                                    };
@@ -2577,8 +2580,8 @@ namespace almerimatik.ServicioCRM
                                        {
                                            IDUsuario = tabla.IDUsuario,
                                            Nombre = tabla.Nombre,
-                                           Username = tabla.Username,
-                                           Password = tabla.Password
+                                           Username = tabla.Username
+                                           
                                        };
 
 
@@ -2815,12 +2818,12 @@ namespace almerimatik.ServicioCRM
                                            Password = tabla.Password
                                        };
 
-
+                        String hash = EncodePassword(String.Concat(username, password));
                         lst = consulta.ToList();
                         if (lst.Count > 0)
                         {
                             UserData ud = lst.First();
-                            if (ud.Username == username && ud.Password == password)
+                            if (ud.Username == username && ud.Password == hash)
                             {
                                 return true;
                             }
@@ -2986,6 +2989,21 @@ namespace almerimatik.ServicioCRM
             }
         }
 
+
+        /// <summary>
+        /// metodo privado para encriptar el password de los usuarios
+        /// </summary>
+        /// <param name="originalPassword"></param>
+        /// <returns></returns>
+        private string EncodePassword(string originalPassword)
+        {
+            SHA1 sha1 = new SHA1CryptoServiceProvider();
+
+            byte[] inputBytes = (new UnicodeEncoding()).GetBytes(originalPassword);
+            byte[] hash = sha1.ComputeHash(inputBytes);
+            
+            return Convert.ToBase64String(hash);
+        }
 
 
 
