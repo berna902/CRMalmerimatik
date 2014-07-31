@@ -76,14 +76,19 @@ namespace Clientes.Private.Admin
                 switch (estado)
                 {
                     case 0:
-                        proxy.AddTipoAccion(tbAccion.Text);
-                        ScriptManager.RegisterStartupScript(this, this.GetType(), "Mensaje", "<script type='text/javascript'> alert('SE HA INSERTADO CORRECTAMENTE'); parent.$.fancybox.close();</script>", false);
+                        if(proxy.AddTipoAccion(tbAccion.Text) != -1)
+                            ScriptManager.RegisterStartupScript(this, this.GetType(), "Mensaje", "<script type='text/javascript'> alert('SE HA INSERTADO CORRECTAMENTE'); parent.$.fancybox.close();</script>", false);
+                        else
+                            ScriptManager.RegisterStartupScript(this, this.GetType(), "Mensaje", "<script type='text/javascript'> alert('ERROR AL INSERTAR'); parent.$.fancybox.close();</script>", false);
                         break;
                     case 1:
                         TipoAccionData tipoAccion = new TipoAccionData();
                         tipoAccion.Tipo = tbAccion.Text;
-                        proxy.EditTipoAccion(tipoAccion);
-                        ScriptManager.RegisterStartupScript(this, this.GetType(), "Mensaje", "<script type='text/javascript'> alert('SE HA MODIFICADO CORRECTAMENTE'); parent.$.fancybox.close();</script>", false);
+                        tipoAccion.ID = id;
+                        if(proxy.EditTipoAccion(tipoAccion))
+                            ScriptManager.RegisterStartupScript(this, this.GetType(), "Mensaje", "<script type='text/javascript'> alert('SE HA MODIFICADO CORRECTAMENTE'); parent.$.fancybox.close();</script>", false);
+                        else
+                            ScriptManager.RegisterStartupScript(this, this.GetType(), "Mensaje", "<script type='text/javascript'> alert('NO SE HA MODIFICADO'); parent.$.fancybox.close();</script>", false);
                         break;
                     default:
                         break;

@@ -75,14 +75,23 @@ namespace Clientes.Private.Admin
                 switch (estado)
                 {
                     case 0:
-                        proxy.AddCargo(tbCargo.Text);
-                        ScriptManager.RegisterStartupScript(this, this.GetType(), "Mensaje", "<script type='text/javascript'> alert('SE HA INSERTADO CORRECTAMENTE'); parent.$.fancybox.close();</script>", false);
+                        if (proxy.AddCargo(tbCargo.Text) != -1)
+                        {
+                            ScriptManager.RegisterStartupScript(this, this.GetType(), "Mensaje", "<script type='text/javascript'> alert('SE HA INSERTADO CORRECTAMENTE'); parent.$.fancybox.close();</script>", false);
+                        }
+                        else
+                        {
+                            ScriptManager.RegisterStartupScript(this, this.GetType(), "Mensaje", "<script type='text/javascript'> alert('ERROR AL INSERTAR'); parent.$.fancybox.close();</script>", false);
+                        }
                         break;
                     case 1:
                         CargoData cargo = new CargoData();
                         cargo.Cargo = tbCargo.Text;
-                        proxy.EditCargo(cargo);
-                        ScriptManager.RegisterStartupScript(this, this.GetType(), "Mensaje", "<script type='text/javascript'> alert('SE HA MODIFICADO CORRECTAMENTE'); parent.$.fancybox.close();</script>", false);
+                        cargo.ID = id;
+                        if(proxy.EditCargo(cargo))
+                            ScriptManager.RegisterStartupScript(this, this.GetType(), "Mensaje", "<script type='text/javascript'> alert('SE HA MODIFICADO CORRECTAMENTE'); parent.$.fancybox.close();</script>", false);
+                        else
+                            ScriptManager.RegisterStartupScript(this, this.GetType(), "Mensaje", "<script type='text/javascript'> alert('ERROR AL MODIFICAR'); parent.$.fancybox.close();</script>", false);
                         break;
                     default:
                         break;
