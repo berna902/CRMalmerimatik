@@ -79,7 +79,7 @@ namespace Clientes.Private.Admin
                         if(proxy.AddTipoEmpresa(tbTipo.Text) != -1)
                             ScriptManager.RegisterStartupScript(this, this.GetType(), "Mensaje", "<script type='text/javascript'> alert('SE HA INSERTADO CORRECTAMENTE'); parent.$.fancybox.close();</script>", false);
                         else
-                                                    else
+
                             ScriptManager.RegisterStartupScript(this, this.GetType(), "Mensaje", "<script type='text/javascript'> alert('ERROR AL INSERTAR'); parent.$.fancybox.close();</script>", false);
                         break;
                     case 1:
