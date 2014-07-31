@@ -38,7 +38,8 @@ namespace Clientes.Private.Acciones
                         case 0:
 
                             this.lbIDAccion.Visible = false;
-                            this.tbIDAcciones.Visible = false;           
+                            this.tbIDAcciones.Visible = false;
+                            this.formGroupID.Visible = false;
                             this.H1Titulo.InnerHtml = "Nueva acción";
                             this.btnAlta.Text = "Alta";
                             this.btnAlta.Visible = true;

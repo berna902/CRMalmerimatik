@@ -26,69 +26,79 @@
 <asp:Content ID="Content3" ContentPlaceHolderID="central" runat="server">
 
     <h1 id="H1Titulo" runat="server">Nueva acción</h1>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form-group" id="formGroupID" runat="server">
+                <asp:Label CssClass="control-label" Text="ID Acción" ID="lbIDAccion" runat="server" AssociatedControlID="tbIDAcciones"></asp:Label>
+                <asp:TextBox ID="tbIDAcciones" runat="server" CssClass="form-control"></asp:TextBox>
 
-    <div class="col-md-12">
-        <div class="form-group">
-            <asp:Label CssClass="control-label" Text="ID Acción" ID="lbIDAccion" runat="server" AssociatedControlID="tbIDAcciones"></asp:Label>
-            <asp:TextBox ID="tbIDAcciones" runat="server" CssClass="form-control"></asp:TextBox>
+            </div>
+            <div class="form-group">
+                <asp:Label CssClass="control-label" Text="Empresa" ID="lbEmpresa" runat="server" AssociatedControlID="tbEmpresa"></asp:Label>
 
-        </div>
-        <div class="form-group">
-            <asp:Label CssClass="control-label" Text="Empresa" ID="lbEmpresa" runat="server" AssociatedControlID="tbEmpresa"></asp:Label>
+                <asp:DropDownList ID="tbEmpresa" runat="server" CssClass="form-control">
+                    <asp:ListItem Value="1">S.L.</asp:ListItem>
+                </asp:DropDownList>
 
-            <asp:DropDownList ID="tbEmpresa" runat="server" CssClass="form-control">
-                <asp:ListItem Value="1">S.L.</asp:ListItem>
-            </asp:DropDownList>
+            </div>
+            <div class="form-group">
+                <asp:Label CssClass="control-label" Text="Usuario" ID="lbUsuario" runat="server" AssociatedControlID="tbUsuario"></asp:Label>
 
-        </div>
-        <div class="form-group">
-            <asp:Label CssClass="control-label" Text="Usuario" ID="lbUsuario" runat="server" AssociatedControlID="tbUsuario"></asp:Label>
+                <asp:DropDownList ID="tbUsuario" runat="server" CssClass="form-control">
+                    <asp:ListItem Value="1">S.L.</asp:ListItem>
+                </asp:DropDownList>
 
-            <asp:DropDownList ID="tbUsuario" runat="server" CssClass="form-control">
-                <asp:ListItem Value="1">S.L.</asp:ListItem>
-            </asp:DropDownList>
+            </div>
 
-        </div>
-
-        <div class="form-group">
-            <asp:Label CssClass="control-label" Text="Fecha" ID="lbFecha" runat="server" AssociatedControlID="tbFecha"></asp:Label>
-            <asp:TextBox ID="tbFecha" runat="server" CssClass="form-control" data-provide="datepicker" data-date-format="dd/mm/yyyy"></asp:TextBox>
-            <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="Introduzca la fecha de realización." ControlToValidate="tbFecha" CssClass="label label-danger" SetFocusOnError="True"></asp:RequiredFieldValidator>
-        </div>
-
-        <div class="form-group">
-            <asp:Label CssClass="control-label" Text="Descripción" ID="lbDescripcion" runat="server" AssociatedControlID="tbDescripcion"></asp:Label>
-            <asp:TextBox ID="tbDescripcion" runat="server" CssClass="form-control" placeholder="Descripción de la acción"></asp:TextBox>
-            <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ErrorMessage="Introduce una pequeña descripción." ControlToValidate="tbDescripcion" CssClass="label label-danger" SetFocusOnError="True"></asp:RequiredFieldValidator>
-        </div>
+            <div class="form-group">
+                <asp:Label CssClass="control-label" Text="Fecha" ID="lbFecha" runat="server" AssociatedControlID="tbFecha"></asp:Label>
+                <asp:TextBox ID="tbFecha" runat="server" CssClass="form-control" data-provide="datepicker" data-date-format="dd/mm/yyyy"></asp:TextBox>
+                <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="Introduzca la fecha de realización." ControlToValidate="tbFecha" CssClass="label label-danger" SetFocusOnError="True"></asp:RequiredFieldValidator>
+            </div>
 
 
-        <div class="form-group">
-            <asp:Label CssClass="control-label" Text="Comentarios" ID="lbComentarios" runat="server" AssociatedControlID="tbComentarios"></asp:Label>
-            <asp:TextBox ID="tbComentarios" runat="server" CssClass="form-control" placeholder="Introduce un comentario.."></asp:TextBox>
 
         </div>
 
-        <div class="form-group">
-            <asp:Label CssClass="control-label" Text="Tipo de acción" ID="lbTipoAccion" runat="server" AssociatedControlID="tbTipoAccion"></asp:Label>
+        <div class="col-md-6">
+            <div class="form-group">
+                <asp:Label CssClass="control-label" Text="Comentarios" ID="lbComentarios" runat="server" AssociatedControlID="tbComentarios"></asp:Label>
+                <asp:TextBox ID="tbComentarios" runat="server" CssClass="form-control" placeholder="Introduce un comentario.."></asp:TextBox>
 
-            <asp:DropDownList ID="tbTipoAccion" runat="server" CssClass="form-control">
-                <asp:ListItem Value="1">S.L.</asp:ListItem>
-            </asp:DropDownList>
+            </div>
 
-        </div>
-        <div class="form-group">
-            <asp:Label CssClass="control-label" Text="Estado" ID="lbEstado" runat="server" AssociatedControlID="tbEstado"></asp:Label>
+            <div class="form-group">
+                <asp:Label CssClass="control-label" Text="Tipo de acción" ID="lbTipoAccion" runat="server" AssociatedControlID="tbTipoAccion"></asp:Label>
 
-            <asp:DropDownList ID="tbEstado" runat="server" CssClass="form-control">
-                <asp:ListItem Value="1">S.L.</asp:ListItem>
-            </asp:DropDownList>
+                <asp:DropDownList ID="tbTipoAccion" runat="server" CssClass="form-control">
+                    <asp:ListItem Value="1">S.L.</asp:ListItem>
+                </asp:DropDownList>
 
-        </div>
-        <div class="form-group">
+            </div>
+            <div class="form-group">
+                <asp:Label CssClass="control-label" Text="Estado" ID="lbEstado" runat="server" AssociatedControlID="tbEstado"></asp:Label>
 
-            <asp:Button ID="btnAlta" runat="server" Text="Alta" CssClass="btn btn-primary" OnClick="btnAlta_Click" />
+                <asp:DropDownList ID="tbEstado" runat="server" CssClass="form-control">
+                    <asp:ListItem Value="1">S.L.</asp:ListItem>
+                </asp:DropDownList>
 
+            </div>
         </div>
     </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="form-group">
+                <asp:Label CssClass="control-label" Text="Descripción" ID="lbDescripcion" runat="server" AssociatedControlID="tbDescripcion"></asp:Label>
+                <asp:TextBox ID="tbDescripcion" runat="server" CssClass="form-control" placeholder="Descripción de la acción"></asp:TextBox>
+                <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ErrorMessage="Introduce una pequeña descripción." ControlToValidate="tbDescripcion" CssClass="label label-danger" SetFocusOnError="True"></asp:RequiredFieldValidator>
+            </div>
+        </div>
+
+    </div>
+    <div class="form-group">
+
+        <asp:Button ID="btnAlta" runat="server" Text="Alta" CssClass="btn btn-primary" OnClick="btnAlta_Click" />
+
+    </div>
+
 </asp:Content>
