@@ -55,7 +55,7 @@
                             <asp:LoginView ID="LoginView1" runat="server">
 
                                 <LoggedInTemplate>
-                                    <a href="~/Privada/Default.aspx" runat="server"><span class="text-muted">
+                                    <a href="~/Private/Default.aspx" runat="server"><span class="text-muted">
                                         <asp:LoginName ID="LoginName1" runat="server" />
                                     </span></a>
                                 </LoggedInTemplate>
