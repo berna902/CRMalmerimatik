@@ -11,7 +11,7 @@
                 'type': 'iframe',
                 'autoSize': false,
                 'autoScale': false,
-                'height': "220px",
+                'height': "250px",
                 'width': "500px",
                 'arrows': false,
                 'transitionIn': 'none',

@@ -38,7 +38,7 @@ namespace Clientes.Private.Admin
 
         protected void GridView1_RowEditing(object sender, GridViewEditEventArgs e)
         {
-            string id = this.GridView1.Rows[e.NewEditIndex].Cells[0].Text;
+           /* string id = this.GridView1.Rows[e.NewEditIndex].Cells[0].Text;
             //ScriptManager.RegisterStartupScript(this, this.GetType(), "Mensaje", "<script type='text/javascript'> alert('SE HA INSERTADO CORRECTAMENTE'); parent.$.fancybox.close();</script>", false);
             //this.Response.Redirect("GContactos.aspx?estado=1&idU=" + idu + "&id=" + id);
 
@@ -49,7 +49,7 @@ namespace Clientes.Private.Admin
             if (!cs.IsStartupScriptRegistered(cstype, script))
             {
                 cs.RegisterStartupScript(cstype, "fancybox", script);
-            }
+            }*/
 
         }
 
@@ -58,10 +58,15 @@ namespace Clientes.Private.Admin
             string id = e.Values["ID"].ToString();
             SrvDatosClient proxy = new SrvDatosClient();
 
-            proxy.BorrarTipoEmpresa(Int32.Parse(id));
-            
-            this.GridView1.DataSource = proxy.GetAllTiposEmpresa();
-            this.GridView1.DataBind();
+            if (proxy.BorrarTipoEmpresa(Int32.Parse(id)))
+            {
+                this.GridView1.DataSource = proxy.GetAllTiposEmpresa();
+                this.GridView1.DataBind();
+            }
+            else
+            {
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "Mensaje", "<script type='text/javascript'> alert('ERROR AL ELIMINAR: Compruebe que el valor no esta asignado.'); </script>", false);
+            }
         }
 
         protected void GridView2_RowDeleting(object sender, GridViewDeleteEventArgs e)
@@ -69,10 +74,15 @@ namespace Clientes.Private.Admin
             string id = e.Values["ID"].ToString();
             SrvDatosClient proxy = new SrvDatosClient();
 
-            proxy.BorrarTipoAccion(Int32.Parse(id));
+            if (proxy.BorrarTipoAccion(Int32.Parse(id)))
+            {
 
-            this.GridView1.DataSource = proxy.GetAllTiposAccion();
-            this.GridView1.DataBind();
+                this.GridView2.DataSource = proxy.GetAllTiposAccion();
+                this.GridView2.DataBind();
+            }
+            else {
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "Mensaje", "<script type='text/javascript'> alert('ERROR AL ELIMINAR: Compruebe que el valor no esta asignado.'); </script>", false);
+            }
         }
 
         protected void GridView3_RowDeleting(object sender, GridViewDeleteEventArgs e)
@@ -80,10 +90,16 @@ namespace Clientes.Private.Admin
             string id = e.Values["ID"].ToString();
             SrvDatosClient proxy = new SrvDatosClient();
 
-            proxy.BorrarCargo(Int32.Parse(id));
+            if (proxy.BorrarCargo(Int32.Parse(id)))
+            {
 
-            this.GridView1.DataSource = proxy.GetAllCargos();
-            this.GridView1.DataBind();
+                this.GridView3.DataSource = proxy.GetAllCargos();
+                this.GridView3.DataBind();
+            }
+            else {
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "Mensaje", "<script type='text/javascript'> alert('ERROR AL ELIMINAR: Compruebe que el valor no esta asignado.'); </script>", false);
+            }
+
         }
 
 
@@ -92,10 +108,15 @@ namespace Clientes.Private.Admin
             string id = e.Values["ID"].ToString();
             SrvDatosClient proxy = new SrvDatosClient();
 
-            proxy.BorrarEstado(Int32.Parse(id));
+            if (proxy.BorrarEstado(Int32.Parse(id)))
+            {
+                this.GridView4.DataSource = proxy.GetAllEstados();
+                this.GridView4.DataBind();
+            }
+            else {
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "Mensaje", "<script type='text/javascript'> alert('ERROR AL ELIMINAR: Compruebe que el valor no esta asignado.'); </script>", false);
+            }
 
-            this.GridView1.DataSource = proxy.GetAllEstados();
-            this.GridView1.DataBind();
         }
 
         protected void GridView1_PageIndexChanging(object sender, GridViewPageEventArgs e)
@@ -109,25 +130,25 @@ namespace Clientes.Private.Admin
         protected void GridView3_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
             SrvDatosClient proxy = new SrvDatosClient();
-            this.GridView1.PageIndex = e.NewPageIndex;
-            this.GridView1.DataSource = proxy.GetAllCargos();
-            this.GridView1.DataBind();
+            this.GridView3.PageIndex = e.NewPageIndex;
+            this.GridView3.DataSource = proxy.GetAllCargos();
+            this.GridView3.DataBind();
         }
 
         protected void GridView2_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
             SrvDatosClient proxy = new SrvDatosClient();
-            this.GridView1.PageIndex = e.NewPageIndex;
-            this.GridView1.DataSource = proxy.GetAllTiposAccion();
-            this.GridView1.DataBind();
+            this.GridView2.PageIndex = e.NewPageIndex;
+            this.GridView2.DataSource = proxy.GetAllTiposAccion();
+            this.GridView2.DataBind();
         }
 
         protected void GridView4_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
             SrvDatosClient proxy = new SrvDatosClient();
-            this.GridView1.PageIndex = e.NewPageIndex;
-            this.GridView1.DataSource = proxy.GetAllEstados();
-            this.GridView1.DataBind();
+            this.GridView4.PageIndex = e.NewPageIndex;
+            this.GridView4.DataSource = proxy.GetAllEstados();
+            this.GridView4.DataBind();
         }
 
 

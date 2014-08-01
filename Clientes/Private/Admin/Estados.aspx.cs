@@ -77,14 +77,19 @@ namespace Clientes.Private.Admin
                 switch (estado)
                 {
                     case 0:
-                        proxy.AddEstado(tbEstado.Text);
-                        ScriptManager.RegisterStartupScript(this, this.GetType(), "Mensaje", "<script type='text/javascript'> alert('SE HA INSERTADO CORRECTAMENTE'); parent.$.fancybox.close();</script>", false);
+                        if(proxy.AddEstado(tbEstado.Text) != -1)
+                            ScriptManager.RegisterStartupScript(this, this.GetType(), "Mensaje", "<script type='text/javascript'> alert('SE HA INSERTADO CORRECTAMENTE'); parent.$.fancybox.close();</script>", false);
+                        else
+                            ScriptManager.RegisterStartupScript(this, this.GetType(), "Mensaje", "<script type='text/javascript'> alert('ERROR AL INSERTAR'); parent.$.fancybox.close();</script>", false);
                         break;
                     case 1:
                         EstadoData estadotipo = new EstadoData();
                         estadotipo.Estado = tbEstado.Text;
-                        proxy.EditEstado(estadotipo);
-                        ScriptManager.RegisterStartupScript(this, this.GetType(), "Mensaje", "<script type='text/javascript'> alert('SE HA MODIFICADO CORRECTAMENTE'); parent.$.fancybox.close();</script>", false);
+                        estadotipo.ID = id;
+                        if(proxy.EditEstado(estadotipo))
+                            ScriptManager.RegisterStartupScript(this, this.GetType(), "Mensaje", "<script type='text/javascript'> alert('SE HA MODIFICADO CORRECTAMENTE'); parent.$.fancybox.close();</script>", false);
+                        else
+                            ScriptManager.RegisterStartupScript(this, this.GetType(), "Mensaje", "<script type='text/javascript'> alert('ERROR AL MODIFICAR'); parent.$.fancybox.close();</script>", false);
                         break;
                     default:
                         break;
