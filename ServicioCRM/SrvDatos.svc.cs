@@ -1290,14 +1290,14 @@ namespace almerimatik.ServicioCRM
                     }
 
 
+                    
                     var consulta = from tabla in db.Contacto where tabla.ID == idContacto select tabla;
                     Contacto c = consulta.First();
 
                     //borramos los cargos de este contacto
-                    foreach (var ele in c.Cargo)
-                    {
-                        c.Cargo.Remove(ele);
-                    }
+                        Cargo car = c.Cargo.First();
+                        c.Cargo.Remove(car);
+                    
 
                     db.Contacto.Remove(c);
                     db.SaveChanges();
