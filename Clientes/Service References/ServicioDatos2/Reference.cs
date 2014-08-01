@@ -693,6 +693,9 @@ namespace Clientes.ServicioDatos2 {
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string CIFField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string CargoField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -720,6 +723,19 @@ namespace Clientes.ServicioDatos2 {
             }
             set {
                 this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string CIF {
+            get {
+                return this.CIFField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.CIFField, value) != true)) {
+                    this.CIFField = value;
+                    this.RaisePropertyChanged("CIF");
+                }
             }
         }
         
@@ -1537,6 +1553,30 @@ namespace Clientes.ServicioDatos2 {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISrvDatos/ExisteTelefonoContacto", ReplyAction="http://tempuri.org/ISrvDatos/ExisteTelefonoContactoResponse")]
         System.Threading.Tasks.Task<bool> ExisteTelefonoContactoAsync(Clientes.ServicioDatos2.TelefonosData telefono);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISrvDatos/BusquedaAvanzadaUser", ReplyAction="http://tempuri.org/ISrvDatos/BusquedaAvanzadaUserResponse")]
+        Clientes.ServicioDatos2.UserData[] BusquedaAvanzadaUser(string nombre, string username);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISrvDatos/BusquedaAvanzadaUser", ReplyAction="http://tempuri.org/ISrvDatos/BusquedaAvanzadaUserResponse")]
+        System.Threading.Tasks.Task<Clientes.ServicioDatos2.UserData[]> BusquedaAvanzadaUserAsync(string nombre, string username);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISrvDatos/BusquedaAvanzadaContacto", ReplyAction="http://tempuri.org/ISrvDatos/BusquedaAvanzadaContactoResponse")]
+        Clientes.ServicioDatos2.ContactoData[] BusquedaAvanzadaContacto(string nombre, string email);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISrvDatos/BusquedaAvanzadaContacto", ReplyAction="http://tempuri.org/ISrvDatos/BusquedaAvanzadaContactoResponse")]
+        System.Threading.Tasks.Task<Clientes.ServicioDatos2.ContactoData[]> BusquedaAvanzadaContactoAsync(string nombre, string email);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISrvDatos/BusquedaAvanzadaEmpresa", ReplyAction="http://tempuri.org/ISrvDatos/BusquedaAvanzadaEmpresaResponse")]
+        Clientes.ServicioDatos2.EmpresaData[] BusquedaAvanzadaEmpresa(string nombre, string razon, string cif, string email, string web);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISrvDatos/BusquedaAvanzadaEmpresa", ReplyAction="http://tempuri.org/ISrvDatos/BusquedaAvanzadaEmpresaResponse")]
+        System.Threading.Tasks.Task<Clientes.ServicioDatos2.EmpresaData[]> BusquedaAvanzadaEmpresaAsync(string nombre, string razon, string cif, string email, string web);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISrvDatos/BusquedaAvanzadaAccionComercial", ReplyAction="http://tempuri.org/ISrvDatos/BusquedaAvanzadaAccionComercialResponse")]
+        Clientes.ServicioDatos2.AccionComercialData[] BusquedaAvanzadaAccionComercial(string comentario, string descripcion, string tipo, string estado);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISrvDatos/BusquedaAvanzadaAccionComercial", ReplyAction="http://tempuri.org/ISrvDatos/BusquedaAvanzadaAccionComercialResponse")]
+        System.Threading.Tasks.Task<Clientes.ServicioDatos2.AccionComercialData[]> BusquedaAvanzadaAccionComercialAsync(string comentario, string descripcion, string tipo, string estado);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -2100,6 +2140,38 @@ namespace Clientes.ServicioDatos2 {
         
         public System.Threading.Tasks.Task<bool> ExisteTelefonoContactoAsync(Clientes.ServicioDatos2.TelefonosData telefono) {
             return base.Channel.ExisteTelefonoContactoAsync(telefono);
+        }
+        
+        public Clientes.ServicioDatos2.UserData[] BusquedaAvanzadaUser(string nombre, string username) {
+            return base.Channel.BusquedaAvanzadaUser(nombre, username);
+        }
+        
+        public System.Threading.Tasks.Task<Clientes.ServicioDatos2.UserData[]> BusquedaAvanzadaUserAsync(string nombre, string username) {
+            return base.Channel.BusquedaAvanzadaUserAsync(nombre, username);
+        }
+        
+        public Clientes.ServicioDatos2.ContactoData[] BusquedaAvanzadaContacto(string nombre, string email) {
+            return base.Channel.BusquedaAvanzadaContacto(nombre, email);
+        }
+        
+        public System.Threading.Tasks.Task<Clientes.ServicioDatos2.ContactoData[]> BusquedaAvanzadaContactoAsync(string nombre, string email) {
+            return base.Channel.BusquedaAvanzadaContactoAsync(nombre, email);
+        }
+        
+        public Clientes.ServicioDatos2.EmpresaData[] BusquedaAvanzadaEmpresa(string nombre, string razon, string cif, string email, string web) {
+            return base.Channel.BusquedaAvanzadaEmpresa(nombre, razon, cif, email, web);
+        }
+        
+        public System.Threading.Tasks.Task<Clientes.ServicioDatos2.EmpresaData[]> BusquedaAvanzadaEmpresaAsync(string nombre, string razon, string cif, string email, string web) {
+            return base.Channel.BusquedaAvanzadaEmpresaAsync(nombre, razon, cif, email, web);
+        }
+        
+        public Clientes.ServicioDatos2.AccionComercialData[] BusquedaAvanzadaAccionComercial(string comentario, string descripcion, string tipo, string estado) {
+            return base.Channel.BusquedaAvanzadaAccionComercial(comentario, descripcion, tipo, estado);
+        }
+        
+        public System.Threading.Tasks.Task<Clientes.ServicioDatos2.AccionComercialData[]> BusquedaAvanzadaAccionComercialAsync(string comentario, string descripcion, string tipo, string estado) {
+            return base.Channel.BusquedaAvanzadaAccionComercialAsync(comentario, descripcion, tipo, estado);
         }
     }
 }

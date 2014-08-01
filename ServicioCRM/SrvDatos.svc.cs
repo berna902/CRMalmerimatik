@@ -337,6 +337,7 @@ namespace almerimatik.ServicioCRM
                                    {
                                        ID = tabla.ID,
                                        IDEmpresa = tabla.IDEmpresa,
+                                       CIF = tabla.Empresa.CIF,
                                        Nombre = tabla.Nombre,
                                        Email = tabla.Email,
                                        Telefono = tabla.TelefonoContacto.FirstOrDefault().Telefono,
@@ -371,6 +372,7 @@ namespace almerimatik.ServicioCRM
                                    {
                                        ID = tabla.ID,
                                        IDEmpresa = tabla.IDEmpresa,
+                                       CIF = tabla.Empresa.CIF,
                                        Nombre = tabla.Nombre,
                                        Email = tabla.Email,
                                        Telefono = tabla.TelefonoContacto.FirstOrDefault().Telefono,
@@ -3186,6 +3188,7 @@ namespace almerimatik.ServicioCRM
         public List<EmpresaData> BusquedaAvanzadaEmpresa(String nombre, String razon, String cif, String email, String web)
         {
             List<EmpresaData> empresas = new List<EmpresaData>();
+            List<EmpresaData> empresas2 = new List<EmpresaData>();
             try
             {
                 using (BDCRMEntities datos = new BDCRMEntities())
@@ -3216,32 +3219,37 @@ namespace almerimatik.ServicioCRM
                             borrado = false;
                             if(nombre != "" && (!ele.Nombre.Contains(nombre)) && borrado == false)
                             {
-                                empresas.Remove(ele);
+                                
                                 borrado = true;
                             }
 
                             if (razon != "" && (!ele.RazonSocial.Contains(razon)) && borrado == false)
                             {
-                                empresas.Remove(ele);
+                                
                                 borrado = true;
                             }
 
                             if (cif != "" && (!ele.CIF.Contains(cif)) && borrado == false)
                             {
-                                empresas.Remove(ele);
+                                
                                 borrado = true;
                             }
 
                             if (email != "" && (!ele.Email.Contains(email)) && borrado == false)
                             {
-                                empresas.Remove(ele);
+                                
                                 borrado = true;
                             }
 
                             if (web != "" && (!ele.Web.Contains(web)) && borrado == false)
                             {
-                                empresas.Remove(ele);
+                                
                                 borrado = true;
+                            }
+
+                            if (borrado == false)
+                            {
+                                empresas2.Add(ele);
                             }
 
                             
@@ -3250,7 +3258,7 @@ namespace almerimatik.ServicioCRM
                         
 
 
-                        return empresas;
+                        return empresas2;
                     }
                     
 
@@ -3278,6 +3286,7 @@ namespace almerimatik.ServicioCRM
         public List<AccionComercialData> BusquedaAvanzadaAccionComercial(String comentario, String descripcion, String tipo, String estado)
         {
             List<AccionComercialData> acciones = new List<AccionComercialData>();
+            List<AccionComercialData> acciones2 = new List<AccionComercialData>();
             try
             {
                 using (BDCRMEntities datos = new BDCRMEntities())
@@ -3316,33 +3325,35 @@ namespace almerimatik.ServicioCRM
                             borrado = false;
                             if (comentario != "" && (!ele.Comentarios.Contains(comentario)) && borrado == false)
                             {
-                                acciones.Remove(ele);
+                               
                                 borrado = true;
                             }
 
                             if (descripcion != "" && (!ele.Descripcion.Contains(descripcion)) && borrado == false)
                             {
-                                acciones.Remove(ele);
+                                
                                 borrado = true;
                             }
 
                             if (estado != "" && (!ele.Estado.Contains(estado)) && borrado == false)
                             {
-                                acciones.Remove(ele);
+                                
                                 borrado = true;
                             }
 
                             if (tipo != "" && (!ele.Accion.Contains(tipo)) && borrado == false)
                             {
-                                acciones.Remove(ele);
+                                
                                 borrado = true;
                             }
+
+                            if (!borrado) acciones2.Add(ele);
 
                         }
 
 
 
-                        return acciones;
+                        return acciones2;
                     }
 
                 }

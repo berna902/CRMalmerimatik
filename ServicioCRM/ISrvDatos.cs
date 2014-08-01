@@ -786,6 +786,8 @@ namespace almerimatik.ServicioCRM
         [DataMember]
         public int IDEmpresa { get; set; }
         [DataMember]
+        public String CIF { get; set; }
+        [DataMember]
         public string Nombre { get; set; }
         [DataMember]
         public string Email { get; set; }
