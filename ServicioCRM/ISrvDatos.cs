@@ -599,6 +599,51 @@ namespace almerimatik.ServicioCRM
         [OperationContract]
         bool ExisteTelefonoContacto(TelefonosData telefono);
 
+
+        /// <summary>
+        /// Operacion del servicio que realiza una busqueda avanzada por varios campos en los usuarios
+        /// </summary>
+        /// <param name="nombre">nombre del usuario</param>
+        /// <param name="username">username del usuario</param>
+        /// <returns>devuelve la lista de usuarios que coinciden en la busqueda. Devuelve null si los campos de busqueda estan vacios</returns>
+        [OperationContract]
+        List<UserData> BusquedaAvanzadaUser(String nombre, String username);
+
+
+        /// <summary>
+        /// Operacion del servicio que realiza una busqueda avanzada por varios campos en los contactos
+        /// </summary>
+        /// <param name="nombre">nombre del contacto</param>
+        /// <param name="email">email del contacto</param>
+        /// <returns>devuelve la lista de contactos que coinciden en la busqueda. Devuelve null si los campos de busqueda estan vacios</returns>
+        [OperationContract]
+        List<ContactoData> BusquedaAvanzadaContacto(String nombre, String email);
+
+
+        /// <summary>
+        /// Operacion del servicio que realiza una busqueda avanzada por varios campos en las empresas. Se devuelve lo que coincida al comprar en todos los campos por lo que se busque.
+        /// </summary>
+        /// <param name="nombre">nombre de la empresa</param>
+        /// <param name="razon">razon de la empresa</param>
+        /// <param name="cif">cif de la empresa</param>
+        /// <param name="email">email de la empresa</param>
+        /// <param name="web">web de la empresa</param>
+        /// <returns>devuelve la lista de empresas que coinciden en la busqueda. Devuelve null si los campos de busqueda estan vacios</returns>
+        [OperationContract]
+        List<EmpresaData> BusquedaAvanzadaEmpresa(String nombre, String razon, String cif, String email, String web);
+
+
+
+        /// <summary>
+        /// Operacion del servicio que realiza una busqueda avanzada por varios campos en las acciones. Se devuelve lo que coincida al comprar en todos los campos por lo que se busque.
+        /// </summary>
+        /// <param name="comentario">comentario de la accion</param>
+        /// <param name="descripcion">descripcion de la accion</param>
+        /// <param name="tipo">tipo de la accion</param>
+        /// <param name="estado">estado de la accion</param>
+        /// <returns>devuelve la lista de acciones que coinciden en la busqueda. Devuelve null si los campos de busqueda estan vacios</returns>
+        [OperationContract]
+        List<AccionComercialData> BusquedaAvanzadaAccionComercial(String comentario, String descripcion, String tipo, String estado);
     }
 
 
