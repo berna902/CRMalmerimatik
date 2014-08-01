@@ -177,9 +177,9 @@
                                         <asp:ListBox ID="tbTelefonos" runat="server" CssClass="form-control" AutoPostBack="True">
                                             <asp:ListItem Value="1">-</asp:ListItem>
                                         </asp:ListBox>
-                                        <asp:Button ID="btnDeleteTelf" runat="server" Text="X" CssClass="btn btn-danger" OnClick="btnDeleteTelf_Click" />
+                                        <asp:Button ID="btnDeleteTelf" runat="server" Text="X" CssClass="btn btn-danger" OnClick="btnDeleteTelf_Click" CausesValidation="False" />
                                         <asp:TextBox ID="tbTelefono" runat="server" CssClass="form-control" placeholder="nuevo telefono"></asp:TextBox>
-                                        <asp:Button ID="btAddTelf" runat="server" Text="Añadir" CssClass="btn btn-success" OnClick="btAddTelf_Click" />
+                                        <asp:Button ID="btAddTelf" runat="server" Text="Añadir" CssClass="btn btn-success" OnClick="btAddTelf_Click" CausesValidation="False" />
 
                                     </ContentTemplate>
                                     <Triggers>
@@ -210,7 +210,7 @@
         </div>
         <div class="tab col-md-10">
 
-            <asp:Button ID="btAltaDireccion" runat="server" Text="Nueva dirección" CssClass="btn btn-success" OnClick="btAltaDireccion_Click" />
+            <asp:Button ID="btAltaDireccion" runat="server" Text="Nueva dirección" CssClass="btn btn-success" OnClick="btAltaDireccion_Click" CausesValidation="False" />
 
             <asp:GridView ID="GridView3" runat="server" CssClass="table table-hover table-striped" AutoGenerateColumns="False" GridLines="None" AllowPaging="True" OnRowEditing="GridView3_RowEditing" OnRowDeleting="GridView3_RowDeleting" EmptyDataText="No hay datos." ShowHeaderWhenEmpty="True" OnPageIndexChanging="GridView3_PageIndexChanging">
 
@@ -238,8 +238,8 @@
                     <asp:TemplateField>
                         <ItemTemplate>
 
-                            <asp:LinkButton ID="btnModificarDireccion" runat="server" Text="Modificar" CssClass="btn btn-warning" CommandName="Edit"><span class="glyphicon glyphicon-pencil"></span>Modificar</asp:LinkButton>
-                            <asp:LinkButton ID="btnEliminarDireccion" runat="server" Text="Eliminar" CssClass="btn btn-danger" CommandName="Delete"><span class="glyphicon glyphicon-remove"></span>Eliminar</asp:LinkButton>
+                            <asp:LinkButton ID="btnModificarDireccion" runat="server" Text="Modificar" CssClass="btn btn-warning" CommandName="Edit" CausesValidation="False"><span class="glyphicon glyphicon-pencil"></span>Modificar</asp:LinkButton>
+                            <asp:LinkButton ID="btnEliminarDireccion" runat="server" Text="Eliminar" CssClass="btn btn-danger" CommandName="Delete" CausesValidation="False"><span class="glyphicon glyphicon-remove"></span>Eliminar</asp:LinkButton>
 
                         </ItemTemplate>
                         <HeaderStyle BackColor="#000066" />
@@ -254,7 +254,7 @@
             <h2><span>Contactos</span></h2>
         </div>
         <div class="tab col-md-10">
-            <asp:Button ID="btNuevoContacto" runat="server" Text="Nueva contacto" CssClass="btn btn-success" OnClick="btNuevoContacto_Click" />
+            <asp:Button ID="btNuevoContacto" runat="server" Text="Nueva contacto" CssClass="btn btn-success" OnClick="btNuevoContacto_Click" CausesValidation="False" />
             <asp:GridView ID="GridView1" runat="server" CssClass="table table-hover table-striped" AutoGenerateColumns="False" GridLines="None" AllowPaging="True" OnRowEditing="GridView1_RowEditing" OnRowDeleting="GridView1_RowDeleting" EmptyDataText="No hay datos." ShowHeaderWhenEmpty="True" OnPageIndexChanging="GridView1_PageIndexChanging">
 
                 <Columns>
@@ -278,8 +278,8 @@
                     <asp:TemplateField>
                         <ItemTemplate>
 
-                            <asp:LinkButton ID="btnModificar" runat="server" Text="Modificar" CssClass="btn btn-warning" CommandName="Edit"><span class="glyphicon glyphicon-pencil"></span>Modificar</asp:LinkButton>
-                            <asp:LinkButton ID="btnEliminar" runat="server" Text="Eliminar" CssClass="btn btn-danger" CommandName="Delete"><span class="glyphicon glyphicon-remove"></span>Eliminar</asp:LinkButton>
+                            <asp:LinkButton ID="btnModificar" runat="server" Text="Modificar" CssClass="btn btn-warning" CommandName="Edit" CausesValidation="False"><span class="glyphicon glyphicon-pencil"></span>Modificar</asp:LinkButton>
+                            <asp:LinkButton ID="btnEliminar" runat="server" Text="Eliminar" CssClass="btn btn-danger" CommandName="Delete" CausesValidation="False"><span class="glyphicon glyphicon-remove"></span>Eliminar</asp:LinkButton>
 
                         </ItemTemplate>
                         <HeaderStyle BackColor="#000066" />
@@ -292,7 +292,7 @@
     <div class="form-group">
 
         <asp:Button ID="btAlta" runat="server" Text="Alta" CssClass="btn btn-primary" OnClick="btAlta_Click" />
-
+        <asp:LinkButton ID="LinkButton1" runat="server" CssClass="btn btn-info" PostBackUrl="~/Private/Empresas/Default.aspx">Volver</asp:LinkButton>
     </div>
 
 </asp:Content>

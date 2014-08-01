@@ -58,11 +58,11 @@ namespace Clientes.Private.Empresas
                             //this.formularioTelefonos.Visible = false;
 
                             CargoData[] cargos = proxy.GetAllCargos();
-                            tbEmpresa.DataSource = cargos;
-                            tbEmpresa.DataValueField = "ID";
-                            tbEmpresa.DataTextField = "Cargo";
-                            tbEmpresa.SelectedValue = cargos[0].ID.ToString();
-                            tbEmpresa.DataBind();
+                            tbCargos.DataSource = cargos;
+                            tbCargos.DataValueField = "ID";
+                            tbCargos.DataTextField = "Cargo";
+                            tbCargos.SelectedValue = cargos[0].ID.ToString();
+                            tbCargos.DataBind();
 
                             break;
 
@@ -174,24 +174,29 @@ namespace Clientes.Private.Empresas
                             tel.Telefono = tbTelefonos.SelectedValue;
                             proxy.AddTelefonoContacto(tel);
                         }
-
+                            ScriptManager.RegisterStartupScript(this, this.GetType(), "Mensaje", "<script type='text/javascript'> alert('CONTACTO INSERTADO'); </script>", false);
                             Response.Redirect("Default.aspx");
                             //string script = "alert('No se pudo modificar la empresa');";
                             //ClientScript.RegisterClientScriptBlock(this.GetType(), "Alert", script, true);
                         }else{
-                            string script = "alert('No se pudo insertar el contacto');";
-                            ClientScript.RegisterClientScriptBlock(this.GetType(), "Alert", script, true);
+                            ScriptManager.RegisterStartupScript(this, this.GetType(), "Mensaje", "<script type='text/javascript'> alert('ERROR AL INSERTAR'); </script>", false);
+                            //string script = "alert('No se pudo insertar el contacto');";
+                            //ClientScript.RegisterClientScriptBlock(this.GetType(), "Alert", script, true);
                         }
                         break;
 
                     case 1:
-                       ContactoData contacto2 = new ContactoData();
-
+                        ContactoData contacto2 = new ContactoData();
+                        contacto2.ID = Int32.Parse(tbIDUsuario.Text);
                         contacto2.Email = tbEmail.Text;
                         contacto2.IDEmpresa = Int32.Parse(tbEmpresa.SelectedValue);
                         contacto2.Nombre = tbNombre.Text;
                         contacto2.Cargo = tbEmpresa.SelectedValue;
-                        proxy.EditContacto(contacto2);
+                        if (proxy.EditContacto(contacto2))
+                        {
+                            ScriptManager.RegisterStartupScript(this, this.GetType(), "Mensaje", "<script type='text/javascript'> alert('CONTACTO MODIFICADO'); </script>", false);
+                        }else
+                            ScriptManager.RegisterStartupScript(this, this.GetType(), "Mensaje", "<script type='text/javascript'> alert('ERROR AL MODIFICAR'); </script>", false);
 
                         break;
                     default:

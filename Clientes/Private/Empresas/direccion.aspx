@@ -57,7 +57,7 @@
         <div class="form-group">
 
                 <asp:Button ID="btnAltaDireccion" runat="server" Text="Alta" CssClass="btn btn-primary" OnClick="btnAltaDireccion_Click" />
-
+            <asp:LinkButton ID="LinkButton1" runat="server" CssClass="btn btn-info" PostBackUrl="~/Private/Empresas/Default.aspx">Volver</asp:LinkButton>
         </div>
     </div>
 </asp:Content>

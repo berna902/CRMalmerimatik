@@ -26,7 +26,7 @@ namespace Clientes.Private.Empresas
 
         protected void GridView1_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {
-            string id = e.Values["id"].ToString();
+            string id = e.Values["ID"].ToString();
             SrvDatosClient proxy = new SrvDatosClient();
             
             proxy.BorrarContacto(Int32.Parse(id));

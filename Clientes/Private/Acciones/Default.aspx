@@ -31,11 +31,11 @@
                         <HeaderStyle BackColor="#000066" ForeColor="White" HorizontalAlign="Center" VerticalAlign="Middle" />
                     <ItemStyle HorizontalAlign="Justify" VerticalAlign="Middle" />
                     </asp:BoundField>
-                    <asp:BoundField DataField="Usuario" HeaderText="Usuario">
+                    <asp:BoundField DataField="Username" HeaderText="Username">
                         <HeaderStyle BackColor="#000066" ForeColor="White" HorizontalAlign="Center" VerticalAlign="Middle" />
                     <ItemStyle HorizontalAlign="Justify" VerticalAlign="Middle" />
                     </asp:BoundField>
-                    <asp:BoundField DataField="IDEmpresa" HeaderText="IDEmpresa">
+                    <asp:BoundField DataField="CIF" HeaderText="CIF">
                         <HeaderStyle BackColor="#000066" ForeColor="White" HorizontalAlign="Center" VerticalAlign="Middle" />
                     <ItemStyle HorizontalAlign="Justify" VerticalAlign="Middle" />
                     </asp:BoundField>
@@ -51,11 +51,11 @@
                         <HeaderStyle BackColor="#000066" ForeColor="White" HorizontalAlign="Center" VerticalAlign="Middle" />
                     <ItemStyle HorizontalAlign="Justify" VerticalAlign="Middle" />
                     </asp:BoundField>
-                    <asp:BoundField DataField="IDAccion" HeaderText="IDAccion">
+                    <asp:BoundField DataField="Accion" HeaderText="Accion">
                         <HeaderStyle BackColor="#000066" ForeColor="White" HorizontalAlign="Center" VerticalAlign="Middle" />
                     <ItemStyle HorizontalAlign="Justify" VerticalAlign="Middle" />
                     </asp:BoundField>
-                    <asp:BoundField DataField="IDEstado" HeaderText="IDEstado">
+                    <asp:BoundField DataField="Estado" HeaderText="Estado">
                         <HeaderStyle BackColor="#000066" ForeColor="White" HorizontalAlign="Center" VerticalAlign="Middle" />
                     <ItemStyle HorizontalAlign="Justify" VerticalAlign="Middle" />
                     </asp:BoundField>

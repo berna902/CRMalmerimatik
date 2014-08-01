@@ -96,6 +96,7 @@ namespace Clientes.Private.Acciones
                             tbUsuario.DataTextField = "Nombre";
                             tbUsuario.SelectedValue = accion.Usuario.ToString();
                             tbUsuario.DataBind();
+                        
 
                             TipoAccionData[] tiposAcciones2 = proxy.GetAllTiposAccion();
 
@@ -149,7 +150,7 @@ namespace Clientes.Private.Acciones
                     case 0:
                         AccionComercialData accion = new AccionComercialData();
 
-                        accion.ID = Int32.Parse(tbIDAcciones.Text);                        
+                        //accion.ID = Int32.Parse(tbIDAcciones.Text);                        
                         accion.Fecha = DateTime.Parse(tbFecha.Text);
                         accion.Comentarios = tbComentarios.Text;
                         accion.Descripcion = tbDescripcion.Text;
@@ -158,9 +159,15 @@ namespace Clientes.Private.Acciones
                         accion.IDEmpresa = Int32.Parse(tbEmpresa.SelectedValue);
                         accion.Usuario = Int32.Parse(tbUsuario.SelectedValue);
 
-                        int id = proxy.AddAccionComercial(accion);
-                       
-
+                        if (proxy.AddAccionComercial(accion) != -1)
+                        {
+                            ScriptManager.RegisterStartupScript(this, this.GetType(), "Mensaje", "<script type='text/javascript'> alert('ACCIÓN INSERTADA'); </script>", false);
+                            this.Response.Redirect("default.aspx");
+                        }
+                        else {
+                            ScriptManager.RegisterStartupScript(this, this.GetType(), "Mensaje", "<script type='text/javascript'> alert('ERROR AL INSERTAR'); </script>", false);
+                        }
+ 
                         break;
 
                     case 1:
@@ -175,7 +182,13 @@ namespace Clientes.Private.Acciones
                         accion2.IDEmpresa = Int32.Parse(tbEmpresa.SelectedValue);
                         accion2.Usuario = Int32.Parse(tbUsuario.SelectedValue);
 
-                        proxy.EditAccionComercial(accion2);
+                        if (proxy.EditAccionComercial(accion2))
+                        {
+                            ScriptManager.RegisterStartupScript(this, this.GetType(), "Mensaje", "<script type='text/javascript'> alert('ACCIÓN MODIFICADA'); </script>", false);
+                        }
+                        else {
+                            ScriptManager.RegisterStartupScript(this, this.GetType(), "Mensaje", "<script type='text/javascript'> alert('ERROR AL MODIFICACIÓN'); </script>", false);
+                        }
 
                         break;
                     default:

@@ -44,14 +44,14 @@
         <div class="form-group">
             <asp:Label CssClass="control-label" Text="Password" ID="lbPassword" runat="server" AssociatedControlID="tbPassword"></asp:Label>
             <asp:TextBox ID="tbPassword" runat="server" CssClass="form-control" placeholder="Password del usuario"></asp:TextBox>
-            <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ErrorMessage="Introduzca una contraseña." ControlToValidate="tbPassword" CssClass="label label-danger" SetFocusOnError="True"></asp:RequiredFieldValidator>
+            
         </div>
 
 
         <div class="form-group">
             <asp:Label CssClass="control-label" Text="Repite el password" ID="lbPassword2" runat="server" AssociatedControlID="tbPassword2"></asp:Label>
             <asp:TextBox ID="tbpassword2" runat="server" CssClass="form-control" placeholder="Repite el password.."></asp:TextBox>
-            <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ErrorMessage="Repita la contraseña." ControlToValidate="tbpassword2" CssClass="label label-danger" SetFocusOnError="True"></asp:RequiredFieldValidator>
+            
             <asp:CompareValidator ID="CompareValidator1" runat="server" ErrorMessage="Las contraseñas son distintas." ControlToCompare="tbPassword" ControlToValidate="tbpassword2" CssClass="label label-danger" SetFocusOnError="True"></asp:CompareValidator>
         </div>
 
@@ -60,7 +60,7 @@
         <div class="form-group">
 
              <asp:Button ID="btnAlta" runat="server" Text="Alta" CssClass="btn btn-primary" OnClick="btnAlta_Click" />
-
+            <asp:LinkButton ID="LinkButton1" runat="server" CssClass="btn btn-info" PostBackUrl="~/Private/Usuarios/Default.aspx">Volver</asp:LinkButton>
         </div>
     </div>
 </asp:Content>

@@ -226,13 +226,19 @@ namespace Clientes.Private.Empresas
         }
         protected void GridView1_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {
-            string id = e.Values["id"].ToString();
+            string id = e.Values["ID"].ToString();
             SrvDatosClient proxy = new SrvDatosClient();
-           
-            proxy.BorrarEmpresa(Int32.Parse(id));
 
-            this.GridView1.DataSource = proxy.GetAllEmpresas();
-            this.GridView1.DataBind();
+            if (proxy.BorrarContacto(Int32.Parse(id)))
+            {
+
+                this.GridView1.DataSource = proxy.GetAllContactosEmpresa(Int32.Parse(tbIDEmpresa.Text));
+                this.GridView1.DataBind();
+            }
+            else
+            {
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "Mensaje", "<script type='text/javascript'> alert('ERROR AL ELIMINAR'); </script>", false);
+            }
         }
 
         protected void GridView1_RowEditing(object sender, GridViewEditEventArgs e)
@@ -395,19 +401,24 @@ namespace Clientes.Private.Empresas
 
         protected void GridView3_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {
-            string id = e.Values["id"].ToString();
+            string id = e.Values["ID"].ToString();
             SrvDatosClient proxy = new SrvDatosClient();
 
-            proxy.BorrarDireccion(Int32.Parse(id));
+            if (proxy.BorrarDireccionEmpresa(Int32.Parse(tbIDEmpresa.Text), Int32.Parse(id)))
+            {
 
-            int idEmpresa;
-            String id_ = Request.QueryString["id"];
-            idEmpresa = -1;
+                int idEmpresa;
+                String id_ = Request.QueryString["id"];
+                idEmpresa = -1;
 
-            if (id_ != null)
-                idEmpresa = Int32.Parse(id_);
-            this.GridView3.DataSource = proxy.GetAllDireccionesEmpresa(idEmpresa);
-            this.GridView3.DataBind();
+                if (id_ != null)
+                    idEmpresa = Int32.Parse(id_);
+                this.GridView3.DataSource = proxy.GetAllDireccionesEmpresa(idEmpresa);
+                this.GridView3.DataBind();
+            }
+            else {
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "Mensaje", "<script type='text/javascript'> alert('ERROR AL ELIMINAR'); </script>", false);
+            }
         }
 
         protected void GridView3_PageIndexChanging(object sender, GridViewPageEventArgs e)
