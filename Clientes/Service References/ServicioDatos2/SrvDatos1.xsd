@@ -105,6 +105,7 @@
   <xs:element name="ArrayOfContactoData" nillable="true" type="tns:ArrayOfContactoData" />
   <xs:complexType name="ContactoData">
     <xs:sequence>
+      <xs:element minOccurs="0" name="CIF" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Cargo" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Email" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="ID" type="xs:int" />

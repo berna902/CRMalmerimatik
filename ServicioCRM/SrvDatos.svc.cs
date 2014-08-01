@@ -337,6 +337,7 @@ namespace almerimatik.ServicioCRM
                                    {
                                        ID = tabla.ID,
                                        IDEmpresa = tabla.IDEmpresa,
+                                       CIF = tabla.Empresa.CIF,
                                        Nombre = tabla.Nombre,
                                        Email = tabla.Email,
                                        Telefono = tabla.TelefonoContacto.FirstOrDefault().Telefono,
@@ -371,6 +372,7 @@ namespace almerimatik.ServicioCRM
                                    {
                                        ID = tabla.ID,
                                        IDEmpresa = tabla.IDEmpresa,
+                                       CIF = tabla.Empresa.CIF,
                                        Nombre = tabla.Nombre,
                                        Email = tabla.Email,
                                        Telefono = tabla.TelefonoContacto.FirstOrDefault().Telefono,
@@ -1288,14 +1290,14 @@ namespace almerimatik.ServicioCRM
                     }
 
 
+                    
                     var consulta = from tabla in db.Contacto where tabla.ID == idContacto select tabla;
                     Contacto c = consulta.First();
 
                     //borramos los cargos de este contacto
-                    foreach (var ele in c.Cargo)
-                    {
-                        c.Cargo.Remove(ele);
-                    }
+                        Cargo car = c.Cargo.First();
+                        c.Cargo.Remove(car);
+                    
 
                     db.Contacto.Remove(c);
                     db.SaveChanges();
@@ -2586,6 +2588,7 @@ namespace almerimatik.ServicioCRM
 
 
                         lst = consulta.ToList();
+                        
                         if(lst.Count > 0){
                             return true;
                         }
@@ -2613,7 +2616,7 @@ namespace almerimatik.ServicioCRM
             }
         }
 
-
+        
         /// <summary>
         /// metodo que indica si existe una empresa en la BD (compara por CIF)
         /// </summary>
@@ -3003,6 +3006,363 @@ namespace almerimatik.ServicioCRM
             byte[] hash = sha1.ComputeHash(inputBytes);
             
             return Convert.ToBase64String(hash);
+        }
+
+
+        /// <summary>
+        /// metodo que realiza una busqueda avanzada por varios campos en los usuarios
+        /// </summary>
+        /// <param name="nombre">nombre del usuario</param>
+        /// <param name="username">username del usuario</param>
+        /// <returns>devuelve la lista de usuarios que coinciden en la busqueda. Devuelve null si los campos de busqueda estan vacios</returns>
+        public List<UserData> BusquedaAvanzadaUser(String nombre, String username)
+        {
+            List<UserData> users = new List<UserData>();
+            try
+            {
+                using (BDCRMEntities datos = new BDCRMEntities())
+                {
+
+                    //busqueda avanzada de usuarios
+                    if (nombre != "" && username != "")
+                    {
+                        var consulta2 = from tabla in datos.User
+                                        where (tabla.Nombre.Contains(nombre) && tabla.Username.Contains(username))
+                                        select new UserData
+                                        {
+                                            IDUsuario = tabla.IDUsuario,
+                                            Nombre =  tabla.Nombre,
+                                            Username = tabla.Username
+                                        };
+                        users = consulta2.ToList();
+                        return users;
+                    }
+                    else
+                    {
+                        if (nombre != "" && username == "")
+                        {
+                            var consulta2 = from tabla in datos.User
+                                            where (tabla.Nombre.Contains(nombre))
+                                            select new UserData
+                                            {
+                                                IDUsuario = tabla.IDUsuario,
+                                                Nombre = tabla.Nombre,
+                                                Username = tabla.Username
+                                            };
+                            users = consulta2.ToList();
+                            return users;
+                        }
+                        else
+                        {
+                            if (nombre == "" && username != "")
+                            {
+                                var consulta2 = from tabla in datos.User
+                                                where (tabla.Username.Contains(username))
+                                                select new UserData
+                                                {
+                                                    IDUsuario = tabla.IDUsuario,
+                                                    Nombre = tabla.Nombre,
+                                                    Username = tabla.Username
+                                                };
+                                users = consulta2.ToList();
+                                return users;
+                            }
+                            else
+                            {
+                                return null;
+                            }
+                        }
+                    }
+                    
+
+                    
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new FaultException("ERROR EN ACCESO A DATOS. " + ex.Message);
+            }
+            
+        }
+
+
+        
+        /// <summary>
+        /// metodo que realiza una busqueda avanzada por varios campos en los contactos
+        /// </summary>
+        /// <param name="nombre">nombre del contacto</param>
+        /// <param name="email">email del contacto</param>
+        /// <returns>devuelve la lista de contactos que coinciden en la busqueda. Devuelve null si los campos de busqueda estan vacios</returns>
+        public List<ContactoData> BusquedaAvanzadaContacto(String nombre, String email)
+        {
+            List<ContactoData> contactos = new List<ContactoData>();
+            try
+            {
+                using (BDCRMEntities datos = new BDCRMEntities())
+                {
+
+                    //busqueda avanzada de contactos
+                    if (nombre != "" && email != "")
+                    {
+                        var consulta2 = from tabla in datos.Contacto
+                                        where (tabla.Nombre.Contains(nombre) && tabla.Email.Contains(email))
+                                        select new ContactoData
+                                        {
+                                            ID = tabla.ID,
+                                            IDEmpresa = tabla.IDEmpresa,
+                                            IDCargo = tabla.Cargo.FirstOrDefault().ID,
+                                            Nombre = tabla.Nombre,
+                                            Email = tabla.Email,
+                                            Cargo = tabla.Cargo.FirstOrDefault().Carg,
+                                            Telefono = tabla.TelefonoContacto.FirstOrDefault().Telefono
+                                        };
+                        contactos = consulta2.ToList();
+                        return contactos;
+                    }
+                    else
+                    {
+                        if (nombre != "" && email == "")
+                        {
+                            var consulta2 = from tabla in datos.Contacto
+                                            where (tabla.Nombre.Contains(nombre))
+                                            select new ContactoData
+                                            {
+                                                ID = tabla.ID,
+                                                IDEmpresa = tabla.IDEmpresa,
+                                                IDCargo = tabla.Cargo.FirstOrDefault().ID,
+                                                Nombre = tabla.Nombre,
+                                                Email = tabla.Email,
+                                                Cargo = tabla.Cargo.FirstOrDefault().Carg,
+                                                Telefono = tabla.TelefonoContacto.FirstOrDefault().Telefono
+                                            };
+                            contactos = consulta2.ToList();
+                            return contactos;
+                        }
+                        else
+                        {
+                            if (nombre == "" && email != "")
+                            {
+                                var consulta2 = from tabla in datos.Contacto
+                                                where (tabla.Email.Contains(email))
+                                                select new ContactoData
+                                                {
+                                                    ID = tabla.ID,
+                                                    IDEmpresa = tabla.IDEmpresa,
+                                                    IDCargo = tabla.Cargo.FirstOrDefault().ID,
+                                                    Nombre = tabla.Nombre,
+                                                    Email = tabla.Email,
+                                                    Cargo = tabla.Cargo.FirstOrDefault().Carg,
+                                                    Telefono = tabla.TelefonoContacto.FirstOrDefault().Telefono
+                                                };
+                                contactos = consulta2.ToList();
+                                return contactos;
+                            }
+                            else
+                            {
+                                return null;
+                            }
+                        }
+                    }
+
+
+
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new FaultException("ERROR EN ACCESO A DATOS. " + ex.Message);
+            }
+
+        }
+
+
+        /// <summary>
+        /// metodo que realiza una busqueda avanzada por varios campos en las empresas. Se devuelve lo que coincida al comprar en todos los campos por lo que se busque.
+        /// </summary>
+        /// <param name="nombre">nombre de la empresa</param>
+        /// <param name="razon">razon de la empresa</param>
+        /// <param name="cif">cif de la empresa</param>
+        /// <param name="email">email de la empresa</param>
+        /// <param name="web">web de la empresa</param>
+        /// <returns>devuelve la lista de empresas que coinciden en la busqueda. Devuelve null si los campos de busqueda estan vacios</returns>
+        public List<EmpresaData> BusquedaAvanzadaEmpresa(String nombre, String razon, String cif, String email, String web)
+        {
+            List<EmpresaData> empresas = new List<EmpresaData>();
+            List<EmpresaData> empresas2 = new List<EmpresaData>();
+            try
+            {
+                using (BDCRMEntities datos = new BDCRMEntities())
+                {
+
+                    //busqueda avanzada de empresas
+                    var consulta2 = from tabla in datos.Empresa
+                                    select new EmpresaData
+                                    {
+                                        ID = tabla.ID,
+                                        CIF = tabla.CIF,
+                                        RazonSocial = tabla.RazonSocial,
+                                        Nombre = tabla.Nombre,
+                                        Email = tabla.Email,
+                                        Web = tabla.Web,
+                                        IDTipoEmpresa = tabla.TipoEmpresa,
+                                        TipoEmpresa = tabla.TipoEmpresa1.Tipo,
+                                        Telefono = tabla.TelefonoEmpresa.FirstOrDefault().Telefono
+                                    };
+                    empresas = consulta2.ToList();
+                    bool borrado = false;
+                    if(nombre == "" && razon == "" && cif == "" && email == "" && web == ""){
+                        return null;
+                    }else{
+                        //vamos descartando empresas segun los campos de busqueda
+                        
+                        foreach(var ele in empresas){
+                            borrado = false;
+                            if(nombre != "" && (!ele.Nombre.Contains(nombre)) && borrado == false)
+                            {
+                                
+                                borrado = true;
+                            }
+
+                            if (razon != "" && (!ele.RazonSocial.Contains(razon)) && borrado == false)
+                            {
+                                
+                                borrado = true;
+                            }
+
+                            if (cif != "" && (!ele.CIF.Contains(cif)) && borrado == false)
+                            {
+                                
+                                borrado = true;
+                            }
+
+                            if (email != "" && (!ele.Email.Contains(email)) && borrado == false)
+                            {
+                                
+                                borrado = true;
+                            }
+
+                            if (web != "" && (!ele.Web.Contains(web)) && borrado == false)
+                            {
+                                
+                                borrado = true;
+                            }
+
+                            if (borrado == false)
+                            {
+                                empresas2.Add(ele);
+                            }
+
+                            
+                            
+                        }
+                        
+
+
+                        return empresas2;
+                    }
+                    
+
+                    
+
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new FaultException("ERROR EN ACCESO A DATOS. " + ex.Message);
+            }
+
+        }
+
+
+
+        /// <summary>
+        /// metodo que realiza una busqueda avanzada por varios campos en las acciones. Se devuelve lo que coincida al comprar en todos los campos por lo que se busque.
+        /// </summary>
+        /// <param name="comentario">comentario de la accion</param>
+        /// <param name="descripcion">descripcion de la accion</param>
+        /// <param name="tipo">tipo de la accion</param>
+        /// <param name="estado">estado de la accion</param>
+        /// <returns>devuelve la lista de acciones que coinciden en la busqueda. Devuelve null si los campos de busqueda estan vacios</returns>
+        public List<AccionComercialData> BusquedaAvanzadaAccionComercial(String comentario, String descripcion, String tipo, String estado)
+        {
+            List<AccionComercialData> acciones = new List<AccionComercialData>();
+            List<AccionComercialData> acciones2 = new List<AccionComercialData>();
+            try
+            {
+                using (BDCRMEntities datos = new BDCRMEntities())
+                {
+
+                    //busqueda avanzada de acciones
+                    var consulta2 = from tabla in datos.AccionComercial
+                                    select new AccionComercialData
+                                    {
+                                        ID = tabla.ID,
+                                        Comentarios = tabla.Comentarios,
+                                        Descripcion = tabla.Descripcion,
+                                        Fecha = tabla.Fecha,
+                                        IDAccion = tabla.IDAccion,
+                                        IDEmpresa = tabla.IDEmpresa,
+                                        IDEstado = tabla.IDEstado,
+                                        Estado = tabla.Estado.Estado1,
+                                        CIF = tabla.Empresa.CIF,
+                                        Usuario = tabla.Usuario,
+                                        Username = tabla.User.Username,
+                                        Accion = tabla.TipoAccion.Tipo
+                                                                           
+                                    };
+                    acciones = consulta2.ToList();
+                    bool borrado = false;
+                    if (descripcion == "" && comentario == "" && estado == "" && tipo == "")
+                    {
+                        return null;
+                    }
+                    else
+                    {
+                        //vamos descartando empresas segun los campos de busqueda
+
+                        foreach (var ele in acciones)
+                        {
+                            borrado = false;
+                            if (comentario != "" && (!ele.Comentarios.Contains(comentario)) && borrado == false)
+                            {
+                               
+                                borrado = true;
+                            }
+
+                            if (descripcion != "" && (!ele.Descripcion.Contains(descripcion)) && borrado == false)
+                            {
+                                
+                                borrado = true;
+                            }
+
+                            if (estado != "" && (!ele.Estado.Contains(estado)) && borrado == false)
+                            {
+                                
+                                borrado = true;
+                            }
+
+                            if (tipo != "" && (!ele.Accion.Contains(tipo)) && borrado == false)
+                            {
+                                
+                                borrado = true;
+                            }
+
+                            if (!borrado) acciones2.Add(ele);
+
+                        }
+
+
+
+                        return acciones2;
+                    }
+
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new FaultException("ERROR EN ACCESO A DATOS. " + ex.Message);
+            }
+
         }
 
 

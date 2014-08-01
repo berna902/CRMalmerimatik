@@ -928,4 +928,69 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="BusquedaAvanzadaUser">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="nombre" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="username" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="BusquedaAvanzadaUserResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q50="http://schemas.datacontract.org/2004/07/almerimatik.ServicioCRM" minOccurs="0" name="BusquedaAvanzadaUserResult" nillable="true" type="q50:ArrayOfUserData" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="BusquedaAvanzadaContacto">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="nombre" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="email" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="BusquedaAvanzadaContactoResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q51="http://schemas.datacontract.org/2004/07/almerimatik.ServicioCRM" minOccurs="0" name="BusquedaAvanzadaContactoResult" nillable="true" type="q51:ArrayOfContactoData" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="BusquedaAvanzadaEmpresa">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="nombre" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="razon" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="cif" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="email" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="web" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="BusquedaAvanzadaEmpresaResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q52="http://schemas.datacontract.org/2004/07/almerimatik.ServicioCRM" minOccurs="0" name="BusquedaAvanzadaEmpresaResult" nillable="true" type="q52:ArrayOfEmpresaData" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="BusquedaAvanzadaAccionComercial">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="comentario" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="descripcion" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="tipo" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="estado" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="BusquedaAvanzadaAccionComercialResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q53="http://schemas.datacontract.org/2004/07/almerimatik.ServicioCRM" minOccurs="0" name="BusquedaAvanzadaAccionComercialResult" nillable="true" type="q53:ArrayOfAccionComercialData" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
 </xs:schema>
