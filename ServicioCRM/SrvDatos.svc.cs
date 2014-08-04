@@ -3373,6 +3373,6 @@ namespace almerimatik.ServicioCRM
 
 
 
-//busqueda avanzada
+
 //AddCargoContacto
 //BorrarCargoContacto
