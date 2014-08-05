@@ -3014,7 +3014,7 @@ namespace almerimatik.ServicioCRM
         /// </summary>
         /// <param name="nombre">nombre del usuario</param>
         /// <param name="username">username del usuario</param>
-        /// <returns>devuelve la lista de usuarios que coinciden en la busqueda. Devuelve null si los campos de busqueda estan vacios</returns>
+        /// <returns>devuelve la lista de usuarios que coinciden en la busqueda.</returns>
         public List<UserData> BusquedaAvanzadaUser(String nombre, String username)
         {
             List<UserData> users = new List<UserData>();
@@ -3069,7 +3069,15 @@ namespace almerimatik.ServicioCRM
                             }
                             else
                             {
-                                return null;
+                                var consulta2 = from tabla in datos.User
+                                                select new UserData
+                                                {
+                                                    IDUsuario = tabla.IDUsuario,
+                                                    Nombre = tabla.Nombre,
+                                                    Username = tabla.Username
+                                                };
+                                users = consulta2.ToList();
+                                return users;
                             }
                         }
                     }
@@ -3092,7 +3100,7 @@ namespace almerimatik.ServicioCRM
         /// </summary>
         /// <param name="nombre">nombre del contacto</param>
         /// <param name="email">email del contacto</param>
-        /// <returns>devuelve la lista de contactos que coinciden en la busqueda. Devuelve null si los campos de busqueda estan vacios</returns>
+        /// <returns>devuelve la lista de contactos que coinciden en la busqueda.</returns>
         public List<ContactoData> BusquedaAvanzadaContacto(String nombre, String email)
         {
             List<ContactoData> contactos = new List<ContactoData>();
@@ -3159,7 +3167,19 @@ namespace almerimatik.ServicioCRM
                             }
                             else
                             {
-                                return null;
+                                var consulta2 = from tabla in datos.Contacto
+                                                select new ContactoData
+                                                {
+                                                    ID = tabla.ID,
+                                                    IDEmpresa = tabla.IDEmpresa,
+                                                    IDCargo = tabla.Cargo.FirstOrDefault().ID,
+                                                    Nombre = tabla.Nombre,
+                                                    Email = tabla.Email,
+                                                    Cargo = tabla.Cargo.FirstOrDefault().Carg,
+                                                    Telefono = tabla.TelefonoContacto.FirstOrDefault().Telefono
+                                                };
+                                contactos = consulta2.ToList();
+                                return contactos;
                             }
                         }
                     }
@@ -3184,7 +3204,7 @@ namespace almerimatik.ServicioCRM
         /// <param name="cif">cif de la empresa</param>
         /// <param name="email">email de la empresa</param>
         /// <param name="web">web de la empresa</param>
-        /// <returns>devuelve la lista de empresas que coinciden en la busqueda. Devuelve null si los campos de busqueda estan vacios</returns>
+        /// <returns>devuelve la lista de empresas que coinciden en la busqueda.</returns>
         public List<EmpresaData> BusquedaAvanzadaEmpresa(String nombre, String razon, String cif, String email, String web)
         {
             List<EmpresaData> empresas = new List<EmpresaData>();
@@ -3210,60 +3230,50 @@ namespace almerimatik.ServicioCRM
                                     };
                     empresas = consulta2.ToList();
                     bool borrado = false;
-                    if(nombre == "" && razon == "" && cif == "" && email == "" && web == ""){
-                        return null;
-                    }else{
-                        //vamos descartando empresas segun los campos de busqueda
+                    
+                    //vamos descartando empresas segun los campos de busqueda
                         
-                        foreach(var ele in empresas){
-                            borrado = false;
-                            if(nombre != "" && (!ele.Nombre.Contains(nombre)) && borrado == false)
-                            {
+                    foreach(var ele in empresas){
+                        borrado = false;
+                        if(nombre != "" && (!ele.Nombre.Contains(nombre)) && borrado == false)
+                        {
                                 
-                                borrado = true;
-                            }
-
-                            if (razon != "" && (!ele.RazonSocial.Contains(razon)) && borrado == false)
-                            {
-                                
-                                borrado = true;
-                            }
-
-                            if (cif != "" && (!ele.CIF.Contains(cif)) && borrado == false)
-                            {
-                                
-                                borrado = true;
-                            }
-
-                            if (email != "" && (!ele.Email.Contains(email)) && borrado == false)
-                            {
-                                
-                                borrado = true;
-                            }
-
-                            if (web != "" && (!ele.Web.Contains(web)) && borrado == false)
-                            {
-                                
-                                borrado = true;
-                            }
-
-                            if (borrado == false)
-                            {
-                                empresas2.Add(ele);
-                            }
-
-                            
-                            
+                            borrado = true;
                         }
-                        
 
+                        if (razon != "" && (!ele.RazonSocial.Contains(razon)) && borrado == false)
+                        {
+                                
+                            borrado = true;
+                        }
 
-                        return empresas2;
+                        if (cif != "" && (!ele.CIF.Contains(cif)) && borrado == false)
+                        {
+                                
+                            borrado = true;
+                        }
+
+                        if (email != "" && (!ele.Email.Contains(email)) && borrado == false)
+                        {
+                                
+                            borrado = true;
+                        }
+
+                        if (web != "" && (!ele.Web.Contains(web)) && borrado == false)
+                        {
+                                
+                            borrado = true;
+                        }
+
+                        if (borrado == false)
+                        {
+                            empresas2.Add(ele);
+                        }
+     
                     }
                     
-
+                    return empresas2;
                     
-
                 }
             }
             catch (Exception ex)
@@ -3282,8 +3292,9 @@ namespace almerimatik.ServicioCRM
         /// <param name="descripcion">descripcion de la accion</param>
         /// <param name="tipo">tipo de la accion</param>
         /// <param name="estado">estado de la accion</param>
-        /// <returns>devuelve la lista de acciones que coinciden en la busqueda. Devuelve null si los campos de busqueda estan vacios</returns>
-        public List<AccionComercialData> BusquedaAvanzadaAccionComercial(String comentario, String descripcion, String tipo, String estado)
+        /// <param name="username">username del usuario</param>
+        /// <returns>devuelve la lista de acciones que coinciden en la busqueda.</returns>
+        public List<AccionComercialData> BusquedaAvanzadaAccionComercial(String comentario, String descripcion, String tipo, String estado, String username)
         {
             List<AccionComercialData> acciones = new List<AccionComercialData>();
             List<AccionComercialData> acciones2 = new List<AccionComercialData>();
@@ -3312,51 +3323,52 @@ namespace almerimatik.ServicioCRM
                                     };
                     acciones = consulta2.ToList();
                     bool borrado = false;
-                    if (descripcion == "" && comentario == "" && estado == "" && tipo == "")
-                    {
-                        return null;
-                    }
-                    else
-                    {
+                    
                         //vamos descartando empresas segun los campos de busqueda
 
-                        foreach (var ele in acciones)
+                    foreach (var ele in acciones)
+                    {
+                        borrado = false;
+                        if (comentario != "" && (!ele.Comentarios.Contains(comentario)) && borrado == false)
                         {
-                            borrado = false;
-                            if (comentario != "" && (!ele.Comentarios.Contains(comentario)) && borrado == false)
-                            {
                                
-                                borrado = true;
-                            }
-
-                            if (descripcion != "" && (!ele.Descripcion.Contains(descripcion)) && borrado == false)
-                            {
-                                
-                                borrado = true;
-                            }
-
-                            if (estado != "" && (!ele.Estado.Contains(estado)) && borrado == false)
-                            {
-                                
-                                borrado = true;
-                            }
-
-                            if (tipo != "" && (!ele.Accion.Contains(tipo)) && borrado == false)
-                            {
-                                
-                                borrado = true;
-                            }
-
-                            if (!borrado) acciones2.Add(ele);
-
+                            borrado = true;
                         }
 
+                        if (username != "" && (!ele.Username.Contains(username)) && borrado == false)
+                        {
 
+                            borrado = true;
+                        }
 
-                        return acciones2;
+                        if (descripcion != "" && (!ele.Descripcion.Contains(descripcion)) && borrado == false)
+                        {
+                                
+                            borrado = true;
+                        }
+
+                        if (estado != "" && (!ele.Estado.Contains(estado)) && borrado == false)
+                        {
+                                
+                            borrado = true;
+                        }
+
+                        if (tipo != "" && (!ele.Accion.Contains(tipo)) && borrado == false)
+                        {
+                                
+                            borrado = true;
+                        }
+
+                        if (!borrado) acciones2.Add(ele);
+
                     }
 
+
+
+                    return acciones2;
                 }
+
+                
             }
             catch (Exception ex)
             {
@@ -3373,6 +3385,6 @@ namespace almerimatik.ServicioCRM
 
 
 
-//busqueda avanzada
+
 //AddCargoContacto
 //BorrarCargoContacto
