@@ -60,6 +60,10 @@ namespace Clientes.Private.Usuarios
                             this.tbID.Text = id;
                             this.tbNombre.Text = usuario.Nombre;
                             this.tbUsername.Text = usuario.Username;
+
+                            AccionComercialData[] acciones = proxy.GetAllAccionesComercialesUsuario(idUsuario);
+                            this.GridView1.DataSource = acciones;
+                            this.GridView1.DataBind();
                             break;
                         default:
                             break;
@@ -135,6 +139,21 @@ namespace Clientes.Private.Usuarios
                 }
             }
             catch (Exception ex) { }
+        }
+
+        protected void GridView1_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            String id = Request.QueryString["id"];
+               
+            int idUsuario;                   
+            idUsuario = -1;
+            if (id != null)
+                idUsuario = Int32.Parse(id);
+
+            SrvDatosClient proxy = new SrvDatosClient();
+            this.GridView1.PageIndex = e.NewPageIndex;
+            this.GridView1.DataSource = proxy.GetAllAccionesComercialesUsuario(idUsuario);
+            this.GridView1.DataBind();
         }
     }
 }

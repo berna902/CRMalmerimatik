@@ -16,6 +16,22 @@ namespace Clientes.Private.Acciones
             {
                 SrvDatosClient proxy = new SrvDatosClient();
 
+                TipoAccionData[] tipos = proxy.GetAllTiposAccion();
+                this.tbTipo.DataSource = tipos;
+                tbTipo.DataValueField = "Tipo";
+                tbTipo.DataTextField = "Tipo";
+
+                this.tbTipo.DataBind();
+                tbTipo.Items.Insert(0, new ListItem("", ""));
+                
+                EstadoData[] estados = proxy.GetAllEstados();
+                this.tbEstado.DataSource = estados;
+                tbEstado.DataValueField = "Estado";
+                tbEstado.DataTextField = "Estado";
+ 
+                this.tbEstado.DataBind();
+                tbEstado.Items.Insert(0, new ListItem("", ""));
+
                 AccionComercialData[] acciones = proxy.GetAllAccionesComerciales();
 
                 this.GridView1.DataSource = acciones;
@@ -47,6 +63,15 @@ namespace Clientes.Private.Acciones
             SrvDatosClient proxy = new SrvDatosClient();
             this.GridView1.PageIndex = e.NewPageIndex;
             this.GridView1.DataSource = proxy.GetAllAccionesComerciales();
+            this.GridView1.DataBind();
+        }
+
+        protected void btnBuscar_Click(object sender, EventArgs e)
+        {
+            SrvDatosClient proxy = new SrvDatosClient();
+            AccionComercialData[] acciones = proxy.BusquedaAvanzadaAccionComercial(tbBuscarCom.Text, tbBuscarDes.Text, tbTipo.SelectedValue, tbEstado.SelectedValue);
+
+            this.GridView1.DataSource = acciones;
             this.GridView1.DataBind();
         }
     }

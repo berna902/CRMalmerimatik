@@ -55,7 +55,46 @@
             <asp:CompareValidator ID="CompareValidator1" runat="server" ErrorMessage="Las contraseñas son distintas." ControlToCompare="tbPassword" ControlToValidate="tbpassword2" CssClass="label label-danger" SetFocusOnError="True"></asp:CompareValidator>
         </div>
 
-        
+                <div class="table-responsive">
+            <!--<asp:GridView ID="GridView2" runat="server" CssClass="table table-striped"></asp:GridView>-->
+            <asp:GridView ID="GridView1" runat="server" CssClass="table table-hover table-striped" AutoGenerateColumns="False" GridLines="None" AllowPaging="True"  EmptyDataText="No hay datos." OnPageIndexChanging="GridView1_PageIndexChanging" PageSize="5" ShowHeaderWhenEmpty="True">
+
+                <Columns>
+                    <asp:BoundField DataField="ID" HeaderText="ID">
+                        <HeaderStyle BackColor="#000066" ForeColor="White" HorizontalAlign="Center" VerticalAlign="Middle" />
+                        <ItemStyle HorizontalAlign="Justify" VerticalAlign="Middle" />
+                    </asp:BoundField>
+                    <asp:BoundField DataField="Username" HeaderText="Username">
+                        <HeaderStyle BackColor="#000066" ForeColor="White" HorizontalAlign="Center" VerticalAlign="Middle" />
+                        <ItemStyle HorizontalAlign="Justify" VerticalAlign="Middle" />
+                    </asp:BoundField>
+                    <asp:BoundField DataField="CIF" HeaderText="CIF">
+                        <HeaderStyle BackColor="#000066" ForeColor="White" HorizontalAlign="Center" VerticalAlign="Middle" />
+                        <ItemStyle HorizontalAlign="Justify" VerticalAlign="Middle" />
+                    </asp:BoundField>
+                    <asp:BoundField DataField="Fecha" HeaderText="Fecha">
+                        <HeaderStyle BackColor="#000066" ForeColor="White" HorizontalAlign="Center" VerticalAlign="Middle" />
+                        <ItemStyle HorizontalAlign="Justify" VerticalAlign="Middle" />
+                    </asp:BoundField>
+                    <asp:BoundField DataField="Descripcion" HeaderText="Descripcion">
+                        <HeaderStyle BackColor="#000066" ForeColor="White" HorizontalAlign="Center" VerticalAlign="Middle" />
+                        <ItemStyle HorizontalAlign="Justify" VerticalAlign="Middle" />
+                    </asp:BoundField>
+                    <asp:BoundField DataField="Comentarios" HeaderText="Comentarios">
+                        <HeaderStyle BackColor="#000066" ForeColor="White" HorizontalAlign="Center" VerticalAlign="Middle" />
+                        <ItemStyle HorizontalAlign="Justify" VerticalAlign="Middle" />
+                    </asp:BoundField>
+                    <asp:BoundField DataField="Accion" HeaderText="Accion">
+                        <HeaderStyle BackColor="#000066" ForeColor="White" HorizontalAlign="Center" VerticalAlign="Middle" />
+                        <ItemStyle HorizontalAlign="Justify" VerticalAlign="Middle" />
+                    </asp:BoundField>
+                    <asp:BoundField DataField="Estado" HeaderText="Estado">
+                        <HeaderStyle BackColor="#000066" ForeColor="White" HorizontalAlign="Center" VerticalAlign="Middle" />
+                        <ItemStyle HorizontalAlign="Justify" VerticalAlign="Middle" />
+                    </asp:BoundField>
+                </Columns>
+            </asp:GridView>
+        </div>
 
         <div class="form-group">
 

@@ -49,5 +49,14 @@ namespace Clientes.Private.Usuarios
             this.GridView1.DataBind();
         }
 
+        protected void btnBuscar_Click(object sender, EventArgs e)
+        {
+            SrvDatosClient proxy = new SrvDatosClient();
+            UserData[] usuarios = proxy.BusquedaAvanzadaUser(tbNombre.Text, tbUsername.Text);
+
+            this.GridView1.DataSource = usuarios;
+            this.GridView1.DataBind();
+        }
+
     }
 }
