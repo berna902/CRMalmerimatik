@@ -200,9 +200,21 @@ namespace Clientes.Private.Acciones
                         if (proxy.EditAccionComercial(accion2))
                         {
                             ScriptManager.RegisterStartupScript(this, this.GetType(), "Mensaje", "<script type='text/javascript'> alert('ACCIÓN MODIFICADA'); </script>", false);
+                            List<Clientes.Models.ERROR> historial = new List<Clientes.Models.ERROR>();
+                            historial = (List<Clientes.Models.ERROR>)Session["historial"];
+
+                            ERROR err = new ERROR(0, "Acción modificada con exito.");
+                            historial.Add(err);
+                            Session["historial"] = historial;
                         }
                         else {
                             ScriptManager.RegisterStartupScript(this, this.GetType(), "Mensaje", "<script type='text/javascript'> alert('ERROR AL MODIFICACIÓN'); </script>", false);
+                            List<Clientes.Models.ERROR> historial = new List<Clientes.Models.ERROR>();
+                            historial = (List<Clientes.Models.ERROR>)Session["historial"];
+
+                            ERROR err = new ERROR(1, "ERROR al modificadar acción.");
+                            historial.Add(err);
+                            Session["historial"] = historial;
                         }
 
                         break;

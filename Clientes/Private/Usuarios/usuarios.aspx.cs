@@ -1,4 +1,5 @@
-﻿using Clientes.ServicioDatos2;
+﻿using Clientes.Models;
+using Clientes.ServicioDatos2;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -98,14 +99,26 @@ namespace Clientes.Private.Usuarios
                         
                         if (proxy.AddUser(usuario) != -1)
                         {
-                            //ArrayList historial = new ArrayList();
-                            //historial = (ArrayList)Session["historial"];
-                            //historial.Add("Usuario insertado");
+
+                            List<Clientes.Models.ERROR> historial = new List<Clientes.Models.ERROR>();
+                            historial = (List<Clientes.Models.ERROR>)Session["historial"];
+
+                            ERROR err = new ERROR(0, "Usuario insertado con exito.");
+                            historial.Add(err);
+                            Session["historial"] = historial;
+
                             Response.Redirect("Default.aspx");
                             
                         }
                         else
                         {
+                            List<Clientes.Models.ERROR> historial = new List<Clientes.Models.ERROR>();
+                            historial = (List<Clientes.Models.ERROR>)Session["historial"];
+
+                            ERROR err = new ERROR(0, "ERROR al insertar usuario.");
+                            historial.Add(err);
+                            Session["historial"] = historial;
+
                             string script = "alert('No se pudo insertar el usuario');";
                             ClientScript.RegisterClientScriptBlock(this.GetType(), "Alert", script, true);
                         }
@@ -125,12 +138,24 @@ namespace Clientes.Private.Usuarios
                             //historial = (ArrayList)Session["historial"];
                             //historial.Add("Usuario modificado");
                             string script = "alert('Usuario modificado');";
+                            List<Clientes.Models.ERROR> historial = new List<Clientes.Models.ERROR>();
+                            historial = (List<Clientes.Models.ERROR>)Session["historial"];
+
+                            ERROR err = new ERROR(0, "Usuario modificado con exito");
+                            historial.Add(err);
+                            Session["historial"] = historial;
                             ClientScript.RegisterClientScriptBlock(this.GetType(), "Alert", script, true);
                             
                         }
                         else
                         {
                             string script = "alert('No se pudo modificar el usuario');";
+                            List<Clientes.Models.ERROR> historial = new List<Clientes.Models.ERROR>();
+                            historial = (List<Clientes.Models.ERROR>)Session["historial"];
+
+                            ERROR err = new ERROR(0, "ERROR al modificar usuario");
+                            historial.Add(err);
+                            Session["historial"] = historial;
                             ClientScript.RegisterClientScriptBlock(this.GetType(), "Alert", script, true);
                         }
                         break;

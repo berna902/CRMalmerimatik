@@ -1,4 +1,5 @@
-﻿using Clientes.ServicioDatos2;
+﻿using Clientes.Models;
+using Clientes.ServicioDatos2;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -174,11 +175,23 @@ namespace Clientes.Private.Empresas
                             tel.Telefono = tbTelefonos.SelectedValue;
                             proxy.AddTelefonoContacto(tel);
                         }
+                        List<Clientes.Models.ERROR> historial = new List<Clientes.Models.ERROR>();
+                        historial = (List<Clientes.Models.ERROR>)Session["historial"];
+
+                        ERROR err = new ERROR(0, "Contacto insertado con exito");
+                        historial.Add(err);
+                        Session["historial"] = historial;
                             ScriptManager.RegisterStartupScript(this, this.GetType(), "Mensaje", "<script type='text/javascript'> alert('CONTACTO INSERTADO'); </script>", false);
                             Response.Redirect("Default.aspx");
                             //string script = "alert('No se pudo modificar la empresa');";
                             //ClientScript.RegisterClientScriptBlock(this.GetType(), "Alert", script, true);
                         }else{
+                            List<Clientes.Models.ERROR> historial = new List<Clientes.Models.ERROR>();
+                            historial = (List<Clientes.Models.ERROR>)Session["historial"];
+
+                            ERROR err = new ERROR(0, "ERROR al insertar contacto");
+                            historial.Add(err);
+                            Session["historial"] = historial;
                             ScriptManager.RegisterStartupScript(this, this.GetType(), "Mensaje", "<script type='text/javascript'> alert('ERROR AL INSERTAR'); </script>", false);
                             //string script = "alert('No se pudo insertar el contacto');";
                             //ClientScript.RegisterClientScriptBlock(this.GetType(), "Alert", script, true);
@@ -194,10 +207,24 @@ namespace Clientes.Private.Empresas
                         contacto2.Cargo = tbEmpresa.SelectedValue;
                         if (proxy.EditContacto(contacto2))
                         {
-                            ScriptManager.RegisterStartupScript(this, this.GetType(), "Mensaje", "<script type='text/javascript'> alert('CONTACTO MODIFICADO'); </script>", false);
-                        }else
-                            ScriptManager.RegisterStartupScript(this, this.GetType(), "Mensaje", "<script type='text/javascript'> alert('ERROR AL MODIFICAR'); </script>", false);
+                            List<Clientes.Models.ERROR> historial = new List<Clientes.Models.ERROR>();
+                            historial = (List<Clientes.Models.ERROR>)Session["historial"];
 
+                            ERROR err = new ERROR(0, "Contacto modificado con exito.");
+                            historial.Add(err);
+                            Session["historial"] = historial;
+                            ScriptManager.RegisterStartupScript(this, this.GetType(), "Mensaje", "<script type='text/javascript'> alert('CONTACTO MODIFICADO'); </script>", false);
+                        }
+                        else
+                        {
+                            List<Clientes.Models.ERROR> historial = new List<Clientes.Models.ERROR>();
+                            historial = (List<Clientes.Models.ERROR>)Session["historial"];
+
+                            ERROR err = new ERROR(0, "ERROR al modificar contacto.");
+                            historial.Add(err);
+                            Session["historial"] = historial;
+                            ScriptManager.RegisterStartupScript(this, this.GetType(), "Mensaje", "<script type='text/javascript'> alert('ERROR AL MODIFICAR'); </script>", false);
+                        }
                         break;
                     default:
                         break;

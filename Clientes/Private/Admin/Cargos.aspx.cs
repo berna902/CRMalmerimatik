@@ -1,4 +1,5 @@
-﻿using Clientes.ServicioDatos2;
+﻿using Clientes.Models;
+using Clientes.ServicioDatos2;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -78,20 +79,48 @@ namespace Clientes.Private.Admin
                         if (proxy.AddCargo(tbCargo.Text) != -1)
                         {
                             ScriptManager.RegisterStartupScript(this, this.GetType(), "Mensaje", "<script type='text/javascript'> alert('SE HA INSERTADO CORRECTAMENTE'); parent.$.fancybox.close();</script>", false);
+                            List<Clientes.Models.ERROR> historial = new List<Clientes.Models.ERROR>();
+                            historial = (List<Clientes.Models.ERROR>)Session["historial"];
+
+                            ERROR err = new ERROR(0, "Cargo insertado con exito.");
+                            historial.Add(err);
+                            Session["historial"] = historial;
                         }
                         else
                         {
                             ScriptManager.RegisterStartupScript(this, this.GetType(), "Mensaje", "<script type='text/javascript'> alert('ERROR AL INSERTAR'); parent.$.fancybox.close();</script>", false);
+                            List<Clientes.Models.ERROR> historial = new List<Clientes.Models.ERROR>();
+                            historial = (List<Clientes.Models.ERROR>)Session["historial"];
+
+                            ERROR err = new ERROR(1, "ERROR al insertar cargo.");
+                            historial.Add(err);
+                            Session["historial"] = historial;
                         }
                         break;
                     case 1:
                         CargoData cargo = new CargoData();
                         cargo.Cargo = tbCargo.Text;
                         cargo.ID = id;
-                        if(proxy.EditCargo(cargo))
+                        if (proxy.EditCargo(cargo))
+                        {
                             ScriptManager.RegisterStartupScript(this, this.GetType(), "Mensaje", "<script type='text/javascript'> alert('SE HA MODIFICADO CORRECTAMENTE'); parent.$.fancybox.close();</script>", false);
+                            List<Clientes.Models.ERROR> historial = new List<Clientes.Models.ERROR>();
+                            historial = (List<Clientes.Models.ERROR>)Session["historial"];
+
+                            ERROR err = new ERROR(0, "Cargo modificado con exito");
+                            historial.Add(err);
+                            Session["historial"] = historial;
+                        }
                         else
+                        {
                             ScriptManager.RegisterStartupScript(this, this.GetType(), "Mensaje", "<script type='text/javascript'> alert('ERROR AL MODIFICAR'); parent.$.fancybox.close();</script>", false);
+                            List<Clientes.Models.ERROR> historial = new List<Clientes.Models.ERROR>();
+                            historial = (List<Clientes.Models.ERROR>)Session["historial"];
+
+                            ERROR err = new ERROR(1, "ERROR al modificar cargo");
+                            historial.Add(err);
+                            Session["historial"] = historial;
+                        }
                         break;
                     default:
                         break;

@@ -1,4 +1,5 @@
-﻿using Clientes.ServicioDatos2;
+﻿using Clientes.Models;
+using Clientes.ServicioDatos2;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -77,20 +78,52 @@ namespace Clientes.Private.Admin
                 switch (estado)
                 {
                     case 0:
-                        if(proxy.AddEstado(tbEstado.Text) != -1)
+                        if (proxy.AddEstado(tbEstado.Text) != -1)
+                        {
                             ScriptManager.RegisterStartupScript(this, this.GetType(), "Mensaje", "<script type='text/javascript'> alert('SE HA INSERTADO CORRECTAMENTE'); parent.$.fancybox.close();</script>", false);
+                            List<Clientes.Models.ERROR> historial = new List<Clientes.Models.ERROR>();
+                            historial = (List<Clientes.Models.ERROR>)Session["historial"];
+
+                            ERROR err = new ERROR(0, "Estado insertado con exito");
+                            historial.Add(err);
+                            Session["historial"] = historial;
+                        }
                         else
+                        {
                             ScriptManager.RegisterStartupScript(this, this.GetType(), "Mensaje", "<script type='text/javascript'> alert('ERROR AL INSERTAR'); parent.$.fancybox.close();</script>", false);
-                        break;
+                            List<Clientes.Models.ERROR> historial = new List<Clientes.Models.ERROR>();
+                            historial = (List<Clientes.Models.ERROR>)Session["historial"];
+
+                            ERROR err = new ERROR(1, "ERROR al insertar estado");
+                            historial.Add(err);
+                            Session["historial"] = historial;
+                        }
+                            break;
                     case 1:
                         EstadoData estadotipo = new EstadoData();
                         estadotipo.Estado = tbEstado.Text;
                         estadotipo.ID = id;
-                        if(proxy.EditEstado(estadotipo))
+                        if (proxy.EditEstado(estadotipo))
+                        {
                             ScriptManager.RegisterStartupScript(this, this.GetType(), "Mensaje", "<script type='text/javascript'> alert('SE HA MODIFICADO CORRECTAMENTE'); parent.$.fancybox.close();</script>", false);
+                            List<Clientes.Models.ERROR> historial = new List<Clientes.Models.ERROR>();
+                            historial = (List<Clientes.Models.ERROR>)Session["historial"];
+
+                            ERROR err = new ERROR(0, "Estado modificado con exito");
+                            historial.Add(err);
+                            Session["historial"] = historial;
+                        }
                         else
+                        {
                             ScriptManager.RegisterStartupScript(this, this.GetType(), "Mensaje", "<script type='text/javascript'> alert('ERROR AL MODIFICAR'); parent.$.fancybox.close();</script>", false);
-                        break;
+                            List<Clientes.Models.ERROR> historial = new List<Clientes.Models.ERROR>();
+                            historial = (List<Clientes.Models.ERROR>)Session["historial"];
+
+                            ERROR err = new ERROR(1, "ERROR al modificar estado.");
+                            historial.Add(err);
+                            Session["historial"] = historial;
+                        }
+                            break;
                     default:
                         break;
 

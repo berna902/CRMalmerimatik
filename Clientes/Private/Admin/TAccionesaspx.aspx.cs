@@ -1,4 +1,5 @@
-﻿using Clientes.ServicioDatos2;
+﻿using Clientes.Models;
+using Clientes.ServicioDatos2;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -77,19 +78,51 @@ namespace Clientes.Private.Admin
                 {
                     case 0:
                         if(proxy.AddTipoAccion(tbAccion.Text) != -1)
+                        {
                             ScriptManager.RegisterStartupScript(this, this.GetType(), "Mensaje", "<script type='text/javascript'> alert('SE HA INSERTADO CORRECTAMENTE'); parent.$.fancybox.close();</script>", false);
-                        else
+                            List<Clientes.Models.ERROR> historial = new List<Clientes.Models.ERROR>();
+                            historial = (List<Clientes.Models.ERROR>)Session["historial"];
+
+                            ERROR err = new ERROR(0, "Tipo de acción insertada con exito");
+                            historial.Add(err);
+                            Session["historial"] = historial;
+                        }    
+                    else
+                        { 
                             ScriptManager.RegisterStartupScript(this, this.GetType(), "Mensaje", "<script type='text/javascript'> alert('ERROR AL INSERTAR'); parent.$.fancybox.close();</script>", false);
-                        break;
+                            List<Clientes.Models.ERROR> historial = new List<Clientes.Models.ERROR>();
+                            historial = (List<Clientes.Models.ERROR>)Session["historial"];
+
+                            ERROR err = new ERROR(0, "ERROR al insertadar tipo de acción");
+                            historial.Add(err);
+                            Session["historial"] = historial;
+                        }
+                            break;
                     case 1:
                         TipoAccionData tipoAccion = new TipoAccionData();
                         tipoAccion.Tipo = tbAccion.Text;
                         tipoAccion.ID = id;
-                        if(proxy.EditTipoAccion(tipoAccion))
+                        if (proxy.EditTipoAccion(tipoAccion))
+                        {
                             ScriptManager.RegisterStartupScript(this, this.GetType(), "Mensaje", "<script type='text/javascript'> alert('SE HA MODIFICADO CORRECTAMENTE'); parent.$.fancybox.close();</script>", false);
+                            List<Clientes.Models.ERROR> historial = new List<Clientes.Models.ERROR>();
+                            historial = (List<Clientes.Models.ERROR>)Session["historial"];
+
+                            ERROR err = new ERROR(0, "Tipo de acción modificada con exito");
+                            historial.Add(err);
+                            Session["historial"] = historial;
+                        }
                         else
+                        {
                             ScriptManager.RegisterStartupScript(this, this.GetType(), "Mensaje", "<script type='text/javascript'> alert('NO SE HA MODIFICADO'); parent.$.fancybox.close();</script>", false);
-                        break;
+                            List<Clientes.Models.ERROR> historial = new List<Clientes.Models.ERROR>();
+                            historial = (List<Clientes.Models.ERROR>)Session["historial"];
+
+                            ERROR err = new ERROR(0, "ERROR al modificar tipo de acción.");
+                            historial.Add(err);
+                            Session["historial"] = historial;
+                        }
+                            break;
                     default:
                         break;
 

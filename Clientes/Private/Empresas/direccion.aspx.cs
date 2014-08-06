@@ -1,4 +1,5 @@
-﻿using Clientes.ServicioDatos2;
+﻿using Clientes.Models;
+using Clientes.ServicioDatos2;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -114,6 +115,13 @@ namespace Clientes.Private.Empresas
                         }
                         else
                         {
+                            List<Clientes.Models.ERROR> historial = new List<Clientes.Models.ERROR>();
+                            historial = (List<Clientes.Models.ERROR>)Session["historial"];
+
+                            ERROR err = new ERROR(0, "ERROR al insrtar dirección.");
+                            historial.Add(err);
+                            Session["historial"] = historial;
+
                             string script = "alert('No se pudo insertar la direccion');";
                             ClientScript.RegisterClientScriptBlock(this.GetType(), "Alert", script, true);
                         }
@@ -136,6 +144,13 @@ namespace Clientes.Private.Empresas
                         }
                         else
                         {
+                            List<Clientes.Models.ERROR> historial = new List<Clientes.Models.ERROR>();
+                            historial = (List<Clientes.Models.ERROR>)Session["historial"];
+
+                            ERROR err = new ERROR(0, "ERROR al modificar la dirección.");
+                            historial.Add(err);
+                            Session["historial"] = historial;
+
                             string script = "alert('No se pudo modificar la direccion');";
                             ClientScript.RegisterClientScriptBlock(this.GetType(), "Alert", script, true);
                         }

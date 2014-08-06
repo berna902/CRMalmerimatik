@@ -1,4 +1,5 @@
-﻿using Clientes.ServicioDatos2;
+﻿using Clientes.Models;
+using Clientes.ServicioDatos2;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -139,10 +140,22 @@ namespace Clientes.Private.Empresas
                                 tel.Telefono = tbTelefonos.SelectedValue;
                                 proxy.AddTelefonoContacto(tel);
                             }
+                            List<Clientes.Models.ERROR> historial = new List<Clientes.Models.ERROR>();
+                            historial = (List<Clientes.Models.ERROR>)Session["historial"];
+
+                            ERROR err = new ERROR(0, "Empresa insertada con exito");
+                            historial.Add(err);
+                            Session["historial"] = historial;
                             Response.Redirect("Default.aspx");
                             //string script = "alert('No se pudo modificar la empresa');";
                             //ClientScript.RegisterClientScriptBlock(this.GetType(), "Alert", script, true);
                         }else{
+                            List<Clientes.Models.ERROR> historial = new List<Clientes.Models.ERROR>();
+                            historial = (List<Clientes.Models.ERROR>)Session["historial"];
+
+                            ERROR err = new ERROR(0, "ERROR al insertar empresa");
+                            historial.Add(err);
+                            Session["historial"] = historial;
                             string script = "alert('No se pudo insertar la empresa');";
                             ClientScript.RegisterClientScriptBlock(this.GetType(), "Alert", script, true);
                         }
@@ -160,10 +173,22 @@ namespace Clientes.Private.Empresas
                         empresa2.Web = tbWeb.Text;
                         if (proxy.EditEmpresa(empresa2))
                         {
-                            string script = "alert('Empresa modificada con exito');";
+                            List<Clientes.Models.ERROR> historial = new List<Clientes.Models.ERROR>();
+                            historial = (List<Clientes.Models.ERROR>)Session["historial"];
+
+                            ERROR err = new ERROR(0, "Empresa modificada con exito.");
+                            historial.Add(err);
+                            Session["historial"] = historial;
+                            string script = "alert('Empresa modificada con exito.');";
                             ClientScript.RegisterClientScriptBlock(this.GetType(), "Alert", script, true);
                         }
                         else {
+                            List<Clientes.Models.ERROR> historial = new List<Clientes.Models.ERROR>();
+                            historial = (List<Clientes.Models.ERROR>)Session["historial"];
+
+                            ERROR err = new ERROR(0, "ERROR al modificar empresa.");
+                            historial.Add(err);
+                            Session["historial"] = historial;
                             string script = "alert('No se pudo modificar la empresa');";
                             ClientScript.RegisterClientScriptBlock(this.GetType(), "Alert", script, true);
                         }
