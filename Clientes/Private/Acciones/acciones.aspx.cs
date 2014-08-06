@@ -1,4 +1,5 @@
-﻿using Clientes.ServicioDatos2;
+﻿using Clientes.Models;
+using Clientes.ServicioDatos2;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -162,10 +163,24 @@ namespace Clientes.Private.Acciones
                         if (proxy.AddAccionComercial(accion) != -1)
                         {
                             ScriptManager.RegisterStartupScript(this, this.GetType(), "Mensaje", "<script type='text/javascript'> alert('ACCIÓN INSERTADA'); </script>", false);
+                            
+                            List<Clientes.Models.ERROR> historial = new List<Clientes.Models.ERROR>();
+                            historial = (List<Clientes.Models.ERROR>)Session["historial"];
+
+                            ERROR err = new ERROR(0, "Acción insertada con exito");
+                            historial.Add(err);
+                            Session["historial"] = historial;
+
                             this.Response.Redirect("default.aspx");
                         }
                         else {
                             ScriptManager.RegisterStartupScript(this, this.GetType(), "Mensaje", "<script type='text/javascript'> alert('ERROR AL INSERTAR'); </script>", false);
+                            List<Clientes.Models.ERROR> historial = new List<Clientes.Models.ERROR>();
+                            historial = (List<Clientes.Models.ERROR>)Session["historial"];
+
+                            ERROR err = new ERROR(1, "ERROR al insertada acción");
+                            historial.Add(err);
+                            Session["historial"] = historial;
                         }
  
                         break;

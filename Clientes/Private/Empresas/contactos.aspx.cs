@@ -1,4 +1,5 @@
-﻿using Clientes.ServicioDatos2;
+﻿using Clientes.Models;
+using Clientes.ServicioDatos2;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -47,6 +48,15 @@ namespace Clientes.Private.Empresas
             SrvDatosClient proxy = new SrvDatosClient();
             this.GridView1.PageIndex = e.NewPageIndex;
             this.GridView1.DataSource = proxy.GetAllContactos();
+            this.GridView1.DataBind();
+        }
+
+        protected void btnBuscar_Click(object sender, EventArgs e)
+        {
+            SrvDatosClient proxy = new SrvDatosClient();
+            ContactoData[] contactos = proxy.BusquedaAvanzadaContacto(tbNombre.Text, tbEmail.Text);
+
+            this.GridView1.DataSource = contactos;
             this.GridView1.DataBind();
         }
     }

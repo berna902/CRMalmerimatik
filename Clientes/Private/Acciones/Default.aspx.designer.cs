@@ -58,6 +58,24 @@ namespace Clientes.Private.Acciones {
         protected global::System.Web.UI.WebControls.TextBox tbBuscarCom;
         
         /// <summary>
+        /// lbUsername control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbUsername;
+        
+        /// <summary>
+        /// tbUsername control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList tbUsername;
+        
+        /// <summary>
         /// lbTipo control.
         /// </summary>
         /// <remarks>

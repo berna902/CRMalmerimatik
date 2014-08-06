@@ -983,6 +983,7 @@
         <xs:element minOccurs="0" name="descripcion" nillable="true" type="xs:string" />
         <xs:element minOccurs="0" name="tipo" nillable="true" type="xs:string" />
         <xs:element minOccurs="0" name="estado" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="username" nillable="true" type="xs:string" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

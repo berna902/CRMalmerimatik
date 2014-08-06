@@ -51,6 +51,15 @@ namespace Clientes.Private.Empresas
             this.GridView1.DataBind();
         }
 
+        protected void btnBuscar_Click(object sender, EventArgs e)
+        {
+            SrvDatosClient proxy = new SrvDatosClient();
+            EmpresaData[] empresas = proxy.BusquedaAvanzadaEmpresa(tbNombre.Text,tbRazonSocial.Text,tbCIF.Text,tbEmail.Text, tbWeb.Text);
+
+            this.GridView1.DataSource = empresas;
+            this.GridView1.DataBind();
+        }
+
 
     }
 }

@@ -32,6 +32,14 @@ namespace Clientes.Private.Acciones
                 this.tbEstado.DataBind();
                 tbEstado.Items.Insert(0, new ListItem("", ""));
 
+                UserData[] usuarios = proxy.GetAllUsers();
+                this.tbUsername.DataSource = usuarios;
+                tbUsername.DataValueField = "Username";
+                tbUsername.DataTextField = "Username";
+
+                this.tbUsername.DataBind();
+                tbUsername.Items.Insert(0, new ListItem("", ""));
+
                 AccionComercialData[] acciones = proxy.GetAllAccionesComerciales();
 
                 this.GridView1.DataSource = acciones;
@@ -69,7 +77,7 @@ namespace Clientes.Private.Acciones
         protected void btnBuscar_Click(object sender, EventArgs e)
         {
             SrvDatosClient proxy = new SrvDatosClient();
-            AccionComercialData[] acciones = proxy.BusquedaAvanzadaAccionComercial(tbBuscarCom.Text, tbBuscarDes.Text, tbTipo.SelectedValue, tbEstado.SelectedValue);
+            AccionComercialData[] acciones = proxy.BusquedaAvanzadaAccionComercial(tbBuscarCom.Text, tbBuscarDes.Text, tbTipo.SelectedValue, tbEstado.SelectedValue,tbUsername.SelectedValue);
 
             this.GridView1.DataSource = acciones;
             this.GridView1.DataBind();

@@ -115,7 +115,7 @@
         <li><a href="../Admin/Default.aspx">Administración</a></li>
     </ul>
     <ul class="nav nav-sidebar">
-        <li class="active historial"><a href="#">Historial</a></li>
+        <li class="active historial"><a href="../historial.aspx">Historial</a></li>
 
     </ul>
 </asp:Content>
@@ -204,7 +204,7 @@
                 </div>
             </div>
     </div>
-    <div class="row">
+    <div class="row" id ="div_direcciones_empresa" runat="server">
         <div class="til col-md-10">
             <h2><span>Direcciones</span></h2>
         </div>
@@ -249,7 +249,7 @@
 
         </div>
     </div>
-    <div class="row">
+    <div class="row" id ="div_contactos_empresa" runat="server">
         <div class="til col-md-10">
             <h2><span>Contactos</span></h2>
         </div>

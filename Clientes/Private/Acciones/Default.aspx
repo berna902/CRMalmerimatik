@@ -10,7 +10,7 @@
         <li><a href="../Admin/Default.aspx">Administración</a></li>
     </ul>
     <ul class="nav nav-sidebar">
-        <li class="active historial"><a href="#">Historial</a></li>
+        <li class="active historial"><a href="../historial.aspx">Historial</a></li>
 
     </ul>
 </asp:Content>
@@ -26,16 +26,24 @@
 
                 <div class="col-md-11">
                     <div class="form-group">
-                        <div class="col-md-3">
+                        <div class="col-md-2">
                             <div class="form-group" runat="server">
                                 <asp:Label ID="lbBuscarDes" runat="server" Text="Descripción" AssociatedControlID="tbBuscarDes"></asp:Label>
                                 <asp:TextBox ID="tbBuscarDes" runat="server" CssClass="form-control"></asp:TextBox>
                             </div>
                         </div>
-                        <div class="col-md-3">
+                        <div class="col-md-2">
                             <div class="form-group" runat="server">
                                 <asp:Label ID="lbBuscarCom" runat="server" Text="Comentario" AssociatedControlID="tbBuscarCom"></asp:Label>
                                 <asp:TextBox ID="tbBuscarCom" runat="server" CssClass="form-control"></asp:TextBox>
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="form-group" runat="server">
+                                <asp:Label ID="lbUsername" runat="server" Text="Username" AssociatedControlID="tbUsername"></asp:Label>
+                                <asp:DropDownList ID="tbUsername" runat="server" CssClass="form-control">
+                                    <asp:ListItem Value="1">S.L.</asp:ListItem>
+                                </asp:DropDownList>
                             </div>
                         </div>
                         <div class="col-md-2">

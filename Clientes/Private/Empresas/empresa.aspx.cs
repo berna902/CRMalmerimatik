@@ -44,7 +44,8 @@ namespace Clientes.Private.Empresas
                             this.H1Titulo.InnerHtml = "Alta de empresa";
                             this.btAlta.Text = "Alta";
                             this.btAlta.Visible = true;
-
+                            this.div_contactos_empresa.Visible = false;
+                            this.div_direcciones_empresa.Visible = false;
                             //TipoEmpresaData[] tiposEmpresas = proxy.GetAllTiposEmpresa();
 
                             tbTipoEMpresa.DataSource = tiposEmpresas;

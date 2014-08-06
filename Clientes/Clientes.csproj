@@ -148,6 +148,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="About.aspx" />
+    <Content Include="App_Data\BDCRM.sql" />
     <Content Include="Contact.aspx" />
     <Content Include="Content\bootstrap-datepicker.css" />
     <Content Include="Content\bootstrap-datepicker3.css" />
@@ -176,6 +177,7 @@
     <Content Include="Private\Empresas\direccion.aspx" />
     <Content Include="Private\Empresas\empresa.aspx" />
     <Content Include="Private\Empresas\GContactos.aspx" />
+    <Content Include="Private\historial.aspx" />
     <Content Include="Private\Maestra.Master" />
     <Content Include="Content\bootstrap-theme.css.map" />
     <Content Include="Content\bootstrap.css.map" />
@@ -375,6 +377,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\ERROR.cs" />
     <Compile Include="Private\Acciones\acciones.aspx.cs">
       <DependentUpon>acciones.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -466,6 +469,13 @@
     <Compile Include="Private\Empresas\GContactos.aspx.designer.cs">
       <DependentUpon>GContactos.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Private\historial.aspx.cs">
+      <DependentUpon>historial.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Private\historial.aspx.designer.cs">
+      <DependentUpon>historial.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Private\Maestra.Master.cs">
       <DependentUpon>Maestra.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -516,9 +526,7 @@
       <DependentUpon>ViewSwitcher.ascx</DependentUpon>
     </Compile>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Models\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
   </ItemGroup>

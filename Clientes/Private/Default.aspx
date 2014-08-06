@@ -10,7 +10,7 @@
             <li><a href="Admin/Default.aspx">Administración</a></li>
           </ul>
           <ul class="nav nav-sidebar">
-            <li class="active historial"><a href="#">Historial</a></li>
+            <li class="active historial"><a href="historial.aspx">Historial</a></li>
 
           </ul>
 </asp:Content>

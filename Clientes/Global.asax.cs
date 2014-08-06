@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Clientes.Models;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,9 +18,14 @@ namespace Clientes
             // Code that runs on application startup
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
-            //Application["historial"] = new ArrayList();
-            ArrayList historial = new ArrayList();
-            //Session["historial"] = historial;
+
         }
+        void Session_Start(object sender, EventArgs e)
+        {
+            //Application["historial"] = new ArrayList();
+            List<ERROR> historial = new List<ERROR>();
+            Session["historial"] = historial;
+        }
+        
     }
 }
