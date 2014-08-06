@@ -99,7 +99,7 @@
         <div class="form-group">
 
              <asp:Button ID="btnAlta" runat="server" Text="Alta" CssClass="btn btn-primary" OnClick="btnAlta_Click" />
-            <asp:LinkButton ID="LinkButton1" runat="server" CssClass="btn btn-info" PostBackUrl="~/Private/Usuarios/Default.aspx">Volver</asp:LinkButton>
+            <asp:LinkButton ID="LinkButton1" runat="server" CssClass="btn btn-info" PostBackUrl="~/Private/Usuarios/Default.aspx" CausesValidation="False">Volver</asp:LinkButton>
         </div>
     </div>
 </asp:Content>
