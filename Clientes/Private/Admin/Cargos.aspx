@@ -15,7 +15,7 @@
 <body>
     <form id="form1" runat="server">
         <div class="panel panel-primary">
-            <div class="panel-heading">Estados</div>
+            <div class="panel-heading">Cargos</div>
             <div class="panel-body">
 
                 <div class="form-group">
