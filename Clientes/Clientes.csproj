@@ -149,6 +149,7 @@
   <ItemGroup>
     <Content Include="About.aspx" />
     <Content Include="App_Data\BDCRM.sql" />
+    <Content Include="App_Data\Entityrelationshipdiagram1.png" />
     <Content Include="Contact.aspx" />
     <Content Include="Content\bootstrap-datepicker.css" />
     <Content Include="Content\bootstrap-datepicker3.css" />
@@ -198,6 +199,8 @@
     <Content Include="Scripts\fancybox\jquery.fancybox.js" />
     <Content Include="Scripts\fancybox\jquery.fancybox.pack.js" />
     <Content Include="Scripts\fancybox\Thumbs.db" />
+    <Content Include="App_Data\MANUAL DE USUARIO_08.odt" />
+    <Content Include="App_Data\MANUAL DE USUARIO_08.pdf" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Private\Usuarios\Default.aspx" />
     <Content Include="Private\Usuarios\usuarios.aspx" />
