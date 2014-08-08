@@ -201,6 +201,7 @@
     <Content Include="Scripts\fancybox\Thumbs.db" />
     <Content Include="App_Data\MANUAL DE USUARIO_08.odt" />
     <Content Include="App_Data\MANUAL DE USUARIO_08.pdf" />
+    <Content Include="App_Data\MANUAL DE USUARIO 08-08.docx" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Private\Usuarios\Default.aspx" />
     <Content Include="Private\Usuarios\usuarios.aspx" />
